@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
+
 @fixture(scope="function", params=["chrome", "firefox"])
 def get_driver(request):
     # before test execution, initialize the driver based on the browser parameter
