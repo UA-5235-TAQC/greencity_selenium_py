@@ -40,8 +40,7 @@ class HomePage(BasePage):
     @allure.step("Open home page")
     def open(self) -> "HomePage":
         self.driver.get(self.get_base_host())
-        self.is_page_opened()
-        return self
+        return self.wait_until_opened()
 
     @allure.step("Get hero title text")
     def get_hero_title(self) -> str:
