@@ -34,9 +34,7 @@ class HomePage(BasePage):
 
     @allure.step("Wait until home page is loaded")
     def wait_until_opened(self) -> "HomePage":
-        self.wait.until(
-            EC.visibility_of_element_located(self.root)
-        )
+        self.wait_until_visible(self.root)
         return self
 
     @allure.step("Open home page")
