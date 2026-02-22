@@ -1,11 +1,14 @@
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 
+from pages.base import Base
 
-class BaseComponent:
+
+class BaseComponent(Base):
     root: WebElement
 
-    def __init__(self, root: WebElement):
+    def __init__(self, root: WebElement, driver: WebDriver, timeout):
+        super().__init__(driver, timeout)
         self.root = root
 
     def get_driver(self) -> WebDriver:
