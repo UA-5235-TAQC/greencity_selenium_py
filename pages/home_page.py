@@ -68,9 +68,7 @@ class HomePage(BasePage):
 
     @allure.step("Subscribe with email: {email}")
     def subscribe(self, email: str):
-        email_input = self.wait_until_visible(self.email_input)
-        email_input.send_keys(email)
-
+        self.wait_until_visible(self.email_input).send_keys(email)
         self.wait_until_visible(self.subscribe_button).click()
 
     @allure.step("Get statistics row components list")
