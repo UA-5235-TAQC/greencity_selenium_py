@@ -12,7 +12,6 @@ class TagItem(BaseComponent):
         self.driver = driver
         self.root = root
 
-
     @allure.step("Get tag name")
     def get_name(self):
         return self.root.find_element(*self._name).text

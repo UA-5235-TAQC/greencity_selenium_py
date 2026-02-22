@@ -13,7 +13,6 @@ from pages.news_preview_page import NewsPreviewPage
 
 
 class CreateEditNewsPage(BasePage):
-    # Локатори
     _root = (By.CSS_SELECTOR, "div.main-content")
     _title_input = (By.CSS_SELECTOR, "textarea[formcontrolname='title']")
     _page_title_header = (By.CSS_SELECTOR, "div.title h2.title-header")
@@ -32,7 +31,7 @@ class CreateEditNewsPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-    def _clear_element_via_keyboard(self, element):
+    def _clear_element_by_keyboard(self, element):
         element.send_keys(Keys.CONTROL + "a")
         element.send_keys(Keys.DELETE)
         return self
@@ -55,21 +54,21 @@ class CreateEditNewsPage(BasePage):
     @allure.step("Enter news title: {title}")
     def enter_title(self, title):
         element = self.wait.until(EC.element_to_be_clickable(self._title_input))
-        self._clear_element_via_keyboard(element)
+        self._clear_element_by_keyboard(element)
         element.send_keys(title)
         return self
 
     @allure.step("Enter news source: {url}")
     def enter_source(self, url):
         element = self.driver.find_element(*self._source_input)
-        self._clear_element_via_keyboard(element)
+        self._clear_element_by_keyboard(element)
         element.send_keys(url)
         return self
 
     @allure.step("Clear source field")
     def clear_source_field(self):
         element = self.driver.find_element(*self._source_input)
-        self._clear_element_via_keyboard(element)
+        self._clear_element_by_keyboard(element)
         return self
 
     @allure.step("Get all tag items on page")
@@ -102,11 +101,11 @@ class CreateEditNewsPage(BasePage):
 
     def get_image_component(self):
         root = self.driver.find_element(*self._image_root)
-        return ImageComponent(self.driver, root)
+        return ImageComponent(root, self.driver)
 
     def get_content_component(self):
         root = self.driver.find_element(*self._content_root)
-        return ContentComponent(self.driver, root)
+        return ContentComponent(root, self.driver)
 
     def get_title_value(self):
         return self.driver.find_element(*self._title_input).get_attribute("value")
@@ -122,7 +121,7 @@ class CreateEditNewsPage(BasePage):
     @allure.step("Get Cancel modal component")
     def get_cancel_modal(self):
         container = self.wait.until(EC.visibility_of_element_located(self._cancel_modal_container))
-        return CancelModalComponent(self.driver, container)
+        return CancelModalComponent(container, self.driver)
 
     @allure.step("Prepend text to title")
     def prepend_title(self, text):

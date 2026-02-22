@@ -57,7 +57,6 @@ class BasePage(Base):
     def get_text(self, element):
         return self.wait.until(EC.visibility_of(element)).text
 
-    # snackbar message
     @allure.step("Wait for snackbar message to appear")
     def wait_for_message_appear(self):
         self.wait.until(EC.visibility_of_element_located(self.message_locator))
