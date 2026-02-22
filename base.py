@@ -1,9 +1,10 @@
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
-from typing import Tuple
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.common.exceptions import TimeoutException
+
+from typing import Tuple
 
 class Base:
     driver: WebDriver
