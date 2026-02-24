@@ -1,21 +1,17 @@
-from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.remote.webelement import WebElement
+import allure
 
-from pages.base import Base
+from utils.page_factory import PageFactory
 
 
-class BaseComponent(Base):
-    root: WebElement
+class BaseComponent(PageFactory):
+    """ Base class for page components. """
 
-    def __init__(self, root: WebElement, driver: WebDriver, timeout):
-        super().__init__(driver, timeout)
-        self.root = root
-
-    def get_driver(self) -> WebDriver:
-        return self.root.parent
-
+    @allure.step("Check if the component is enabled")
     def is_enabled(self) -> bool:
-        return self.root.is_enabled()
+        """Check if the component is enabled."""
+        return self.root_element.is_enabled()
 
-    def is_visible(self) -> bool:
-        return self.root.is_displayed()
+    @allure.step("Check if the component is visible")
+    def is_component_visible(self) -> bool:
+        """Check if the component is visible."""
+        return self.root_element.is_displayed()
