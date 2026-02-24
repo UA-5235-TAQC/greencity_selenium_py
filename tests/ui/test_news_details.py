@@ -49,3 +49,40 @@ class TestNewsDetails:
 
         news_page.click_back_to_news_button()
         assert "news" in get_driver.current_url
+
+    @pytest.mark.skip(reason="Test just for object's methods testing")
+    @allure.title("Verify 'Recommended News' section title")
+    @allure.severity(allure.severity_level.NORMAL)
+    def test_recommended_section_title(self, get_driver):
+        page = NewsDetailsPage(get_driver, self.news_id)
+        page.open()
+        
+        expected_title = "May be interesting for you" 
+        actual_title = page.recommended_news.get_title_text()
+        
+        assert actual_title == expected_title, \
+            f"Expected title '{expected_title}', but got '{actual_title}'"
+
+    @pytest.mark.skip(reason="Test just for object's methods testing")
+    @allure.title("Verify that 3 recommended news cards are displayed")
+    @allure.description("Checks that the count of recommended cards equals 3")
+    def test_recommended_cards_count(self, get_driver):
+        page = NewsDetailsPage(get_driver, self.news_id)
+        page.open()
+        
+        cards = page.recommended_news.get_all_cards()
+        
+        assert len(cards) == 3, f"Expected 3 cards, but found {len(cards)}"
+
+    @pytest.mark.skip(reason="Test just for object's methods testing")
+    @allure.title("Verify navigation to a recommended news card")
+    def test_click_recommended_card(self, get_driver):
+        page = NewsDetailsPage(get_driver, self.news_id)
+        page.open()
+        
+        first_card = page.recommended_news.get_card_by_index(0)
+        
+        first_card.click()
+        
+        assert f"/news/" in get_driver.current_url
+        assert str(self.news_id) not in get_driver.current_url

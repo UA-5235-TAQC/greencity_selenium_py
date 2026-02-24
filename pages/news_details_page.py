@@ -3,7 +3,8 @@ from selenium.webdriver.common.by import By
 from data.config import Config
 import allure
 from typing import List
-#from pages.edit_news_page import EditNewsPage
+from components.news_details_content_component import NewsDetailsContentComponent
+from pages.edit_news_page import EditNewsPage
 
 class NewsDetailsPage(BasePage):
     root = (By.CSS_SELECTOR, "main-content app-container")
@@ -16,7 +17,7 @@ class NewsDetailsPage(BasePage):
     tags = (By.CSS_SELECTOR, ".tags .tags-item")
     comments_container = (By.XPATH, "(//app-comments-container)[1]")
     comments_form = (By.CSS_SELECTOR, ".app-add-comment form")
-    recommended_news = (By.CSS_SELECTOR, ".app-eco-news-widget")
+    recommended_news_container = (By.CSS_SELECTOR, "app-eco-news-widget")
     news_title_text = (By.CSS_SELECTOR, ".news-title-container .news-title")
     post_date = (By.CSS_SELECTOR, ".news-info-date")
     author_name = (By.CSS_SELECTOR, ".news-info-author")
@@ -26,6 +27,8 @@ class NewsDetailsPage(BasePage):
     def __init__(self, driver, news_id: int):
         super().__init__(driver)
         self.news_id = news_id
+        _section_root = self.driver.find_element(*self.recommended_news_container)
+        self.recommended_news = NewsDetailsContentComponent(_section_root)
 
     @allure.step("Open news details page with ID")
     def open(self):
@@ -42,10 +45,10 @@ class NewsDetailsPage(BasePage):
         self.driver.find_element(*self.delete_button).click()
         return self
 
-    #@allure.step("Click 'Edit news' button")
-    #def click_edit_button(self):
-    #    self.driver.find_element(*self.edit_button).click()
-    #    return EditNewsPage(self.driver, self.news_id)
+    @allure.step("Click 'Edit news' button")
+    def click_edit_button(self):
+        self.driver.find_element(*self.edit_button).click()
+        return EditNewsPage(self.driver, self.news_id)
 
     @allure.step("Check if Edit button is enabled")
     def is_edit_button_enabled(self) -> bool:
