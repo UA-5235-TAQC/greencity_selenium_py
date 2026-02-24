@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException, TimeoutException, WebDriverException
 from selenium.webdriver.support import expected_conditions as EC
+from urllib3.util import parse_url
 
 from pages.base_page import BasePage
 from components.tag_item import TagItem
@@ -38,7 +39,9 @@ class CreateEditNewsPage(BasePage):
 
     @allure.step("Open Create News page")
     def open(self):
-        self.driver.get("https://www.greencity.cx.ua/#/greenCity/news/create-news")
+        url = parse_url(self.get_current_url())
+        base_url = f"{url.scheme}://{url.hostname}"
+        self.driver.get(base_url + "/#/greenCity/news/create-news")
         return self
 
     @allure.step("Check if Create/Edit News page is opened")
