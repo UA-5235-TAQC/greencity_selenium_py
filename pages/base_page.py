@@ -69,4 +69,4 @@ class BasePage(PageFactory):
     def open_telegram_chat(self):
         """Open Telegram chat by clicking the chat button."""
         self.telegram.click()
-        self.click(self.TELEGRAM_CHAT)
+

@@ -59,24 +59,34 @@ class PageFactory:
 
         locator = (by_type, selector)
 
+        wait = WebDriverWait(self.root_element, self.timeout)
+
+        # Спочатку чекаємо, поки елемент з'явиться в DOM
         try:
-            wait = WebDriverWait(self.root_element, self.timeout)
-
             wait.until(EC.presence_of_element_located(locator))
-            element = wait.until(EC.visibility_of_element_located(locator))
-
-            if component_class:
-                return component_class(element)
-
-            # Повертаємо стандартний WebElement замість проксі-класу
-            return element
-
         except (TimeoutException, NoSuchElementException) as e:
             raise ElementNotFoundException(
                 f"Елемент '{name}' не знайдено за локатором {locator} у контексті {self.__class__.__name__}"
             ) from e
 
+        # Потім чекаємо, поки елемент стане видимим
+        try:
+            element = wait.until(EC.visibility_of_element_located(locator))
+        except TimeoutException as e:
+            raise ElementNotVisibleException(
+                f"Елемент '{name}' знайдено за локатором {locator}, але він не став видимим у контексті {self.__class__.__name__}"
+            ) from e
+        except NoSuchElementException as e:
+            # Елемент зник з DOM між перевірками присутності та видимості
+            raise ElementNotFoundException(
+                f"Елемент '{name}' не знайдено за локатором {locator} у контексті {self.__class__.__name__}"
+            ) from e
 
+        if component_class:
+            return component_class(element)
+
+        # Повертаємо стандартний WebElement замість проксі-класу
+        return element
 __all__ = [
     "PageFactory",
     "PageFactoryException",
