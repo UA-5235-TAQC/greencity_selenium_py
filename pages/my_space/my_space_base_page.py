@@ -1,15 +1,19 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webdriver import WebDriver
 import allure
+from selenium.webdriver.common.by import By
 
+from components.my_space.profile_panel_component import ProfilePanelComponent
 from pages.base_page import BasePage
+from utils.page_factory import LocatorsTable
 
 
 class MySpaceBasePage(BasePage):
-    profile_panel_locator = (By.XPATH, "//div[@class='left-column']")
+    """ Base Page Object for the 'My Space' (Profile) page in the application. """
 
-    def __init__(self, driver: WebDriver):
-        super().__init__(driver)
+    profile_panel: ProfilePanelComponent
+
+    locators: LocatorsTable = {
+        "profile_panel": (By.XPATH, "//div[@class='left-column']")
+    }
 
     @allure.step("Open My Space Page")
     def open(self) -> "MySpaceBasePage":
@@ -20,4 +24,4 @@ class MySpaceBasePage(BasePage):
     @allure.step("Check if My Space Page is opened")
     def is_page_opened(self) -> bool:
         """ Verify that the My Space page is opened. """
-        return self.is_visible(self.profile_panel_locator)
+        return self.profile_panel.is_component_visible()

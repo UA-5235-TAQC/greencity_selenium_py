@@ -8,6 +8,10 @@ from components.create_edit_news.content_component import ContentComponent
 from components.create_edit_news.image_component import ImageComponent
 from components.tag_component import TagItem
 from pages.base_page import BasePage
+from utils.page_factory import LocatorsTable
+from selenium.webdriver.remote.webelement import WebElement
+
+from utils.web_element_utils import enter_text
 
 
 class CreateEditNewsPage(BasePage):
@@ -16,11 +20,19 @@ class CreateEditNewsPage(BasePage):
     Provides functionality for creating and editing news items.
     """
 
-    TITLE_INPUT = (By.CSS_SELECTOR, "textarea[formcontrolname='title']")
-    TAG_ROOT_ELEMENTS = (By.CSS_SELECTOR, "div.tags-box button.tag-button")
-    SOURCE_INPUT = (By.CSS_SELECTOR, "input[formcontrolname='source']")
-    IMAGE_ROOT = (By.CSS_SELECTOR, "div.image-block")
-    CONTENT_ROOT = (By.CSS_SELECTOR, "div.textarea-wrapper")
+    title_input: WebElement
+    tags: List[TagItem]
+    source_input: WebElement
+    image_component: ImageComponent
+    content_component: ContentComponent
+
+    locators: LocatorsTable = {
+        "title_input": (By.CSS_SELECTOR, "textarea[formcontrolname='title']"),
+        "tags": (By.CSS_SELECTOR, "div.tags-box button.tag-button"),
+        "source_input": (By.CSS_SELECTOR, "input[formcontrolname='source']"),
+        "image_component": (By.CSS_SELECTOR, "div.image-block"),
+        "content_component": (By.CSS_SELECTOR, "div.textarea-wrapper")
+    }
 
     @allure.step("Open Create News page")
     def open(self):
@@ -31,25 +43,17 @@ class CreateEditNewsPage(BasePage):
     @allure.step("Check if Create/Edit News page is opened")
     def is_page_opened(self) -> bool:
         """Check if the Create/Edit News is visible."""
-        return self.is_visible(self.TITLE_INPUT)
+        return self.title_input.is_displayed()
 
     @allure.step("Enter news title: {title}")
     def enter_title(self, title):
         """ Enter title into the news title input field. """
-        element = self.click(self.TITLE_INPUT)
-        self.clear_element_by_keyboard(element)
-        element.send_keys(title)
+        enter_text(self.title_input, title)
         return self
-
-    @allure.step("Get all tag items on page")
-    def get_tag_items(self) -> List[TagItem]:
-        """ Get all tag elements available on the page. """
-        elements = self.find_all(self.TAG_ROOT_ELEMENTS)
-        return [TagItem(self.driver, el) for el in elements]
 
     def _get_tag_by_name(self, tag_name: str) -> TagItem:
         """ Find tag by its name (case-insensitive). """
-        for tag in self.get_tag_items():
+        for tag in self.tags:
             if tag.get_name().lower() == tag_name.lower():
                 return tag
         raise NoSuchElementException(f"Tag not found: {tag_name}")
@@ -74,7 +78,7 @@ class CreateEditNewsPage(BasePage):
         """ Get names of all currently selected tags. """
         return [
             tag.get_name()
-            for tag in self.get_tag_items()
+            for tag in self.tags
             if tag.is_selected()
         ]
 
@@ -96,19 +100,5 @@ class CreateEditNewsPage(BasePage):
     @allure.step("Enter news source: {url}")
     def enter_source(self, url):
         """ Enter source into the news source input field. """
-        element = self.find(*self.SOURCE_INPUT)
-        self.clear_element_by_keyboard(element)
-        element.send_keys(url)
+        enter_text(self.source_input, url)
         return self
-
-    @allure.step("Get content component")
-    def get_content_component(self):
-        """ Get content component. """
-        root = self.find(*self.CONTENT_ROOT)
-        return ContentComponent(self.driver, root)
-
-    @allure.step("Get image component")
-    def get_image_component(self):
-        """ Get image component. """
-        root = self.find(*self.IMAGE_ROOT)
-        return ImageComponent(self.driver, root)

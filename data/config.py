@@ -6,6 +6,8 @@ load_dotenv()
 
 
 class Config:
+    """ Configuration class for environment variables and application settings. """
+
     BASE_GREEN_CITY_API_URL = os.getenv("BASE_GREEN_CITY_API_URL")
     BASE_GREEN_CITY_USER_API_URL = os.getenv("BASE_GREEN_CITY_USER_API_URL")
     BASE_UI_GREEN_CITY_URL = os.getenv("BASE_UI_GREEN_CITY_URL")

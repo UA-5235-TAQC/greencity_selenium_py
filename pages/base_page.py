@@ -5,7 +5,10 @@ from selenium.webdriver.remote.webelement import WebElement
 
 from components.footer_component import FooterComponent
 from components.header_component import HeaderComponent
+from data.config import Config
 from utils.page_factory import (PageFactory, LocatorsTable, By)
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class BasePage(PageFactory):
@@ -70,3 +73,6 @@ class BasePage(PageFactory):
         """Open Telegram chat by clicking the chat button."""
         self.telegram.click()
 
+    def wait_until_visible(self, element: WebElement, timeout: int = Config.IMPLICITLY_WAIT) -> WebElement:
+        """ Waits for the element to become visible on the page. """
+        return WebDriverWait(self.driver, timeout).until(EC.visibility_of(element))

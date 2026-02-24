@@ -8,7 +8,6 @@ from selenium.webdriver.remote.webelement import WebElement
 from components.auth_modal.sign_in_modal import SignInModal
 from components.auth_modal.sign_up_modal import SignUpModal
 from components.base_component import BaseComponent
-from selenium.webdriver.support import expected_conditions as EC
 import allure
 
 from enums.language import Language
@@ -19,6 +18,7 @@ from components.profile_dropdown_component import ProfileDropdownComponent
 
 class HeaderComponent(BaseComponent):
     """ Represents the header section of the GreenCity application. """
+
     logo: WebElement
     news_link: WebElement
     my_space_link: WebElement
@@ -30,17 +30,16 @@ class HeaderComponent(BaseComponent):
     user_dropdown: WebElement
 
     locators: LocatorsTable = {
-        "logo" : (By.CSS_SELECTOR, 'a.header_logo'),
-        "news_link" : (By.XPATH, "//a[contains(@href, '#/greenCity/news')]"),
-        "my_space_link" : (By.XPATH, "//a[contains(@href, '#/greenCity/profile')]"),
-        "sign_in" : (By.CSS_SELECTOR, "a.header_sign-in-link"),
-        "sign_up" : (By.CSS_SELECTOR, "li.header_sign-up-link"),
-        "search_btn" : (By.CSS_SELECTOR, "li.search-icon"),
+        "logo": (By.CSS_SELECTOR, 'a.header_logo'),
+        "news_link": (By.XPATH, "//a[contains(@href, '#/greenCity/news')]"),
+        "my_space_link": (By.XPATH, "//a[contains(@href, '#/greenCity/profile')]"),
+        "sign_in": (By.CSS_SELECTOR, "a.header_sign-in-link"),
+        "sign_up": (By.CSS_SELECTOR, "li.header_sign-up-link"),
+        "search_btn": (By.CSS_SELECTOR, "li.search-icon"),
         "language_dropdown": (By.CSS_SELECTOR, "ul.header_lang-switcher-wrp"),
-        "user_name" : (By.CSS_SELECTOR, ".body-2"),
-        "user_dropdown" : (By.CSS_SELECTOR, "ul.dropdown-list")
+        "user_name": (By.CSS_SELECTOR, ".body-2"),
+        "user_dropdown": (By.CSS_SELECTOR, "ul.dropdown-list")
     }
-
 
     @allure.step("Click header logo")
     def click_logo(self) -> "HomePage":
@@ -49,13 +48,12 @@ class HeaderComponent(BaseComponent):
         from pages.home_page import HomePage
         return HomePage(self.driver)
 
-
     @allure.step("Click 'Eco News' link in header")
     def click_news_link(self) -> "NewsPage":
         """ Click on the news link in the header to navigate to the Eco News page. """
         self.news_link.click()
         from pages.news_page import NewsPage
-        return NewsPage(self.driver)
+        return NewsPage(self.driver).wait_until_opened()
 
     @allure.step("Click 'Sign In' link in header")
     def click_sign_in_link(self) -> SignInModal:
@@ -98,7 +96,7 @@ class HeaderComponent(BaseComponent):
 
     def _switch_language(self, lang: Language):
         """ Switch the header language to the specified language. """
-        if self.get_current_locale() == lang.locale_code:
+        if self.get_current_locale() == lang:
             return self
         self.language_dropdown.click()
         self.driver.find_element(*self._language_option_locator(lang)).click()
@@ -118,7 +116,6 @@ class HeaderComponent(BaseComponent):
     def get_user(self) -> str:
         """Get the name of the logged-in user, return empty string if not present."""
         return self.user_name.text.strip()
-
 
     @allure.step("Open profile dropdown")
     def click_profile_dropdown(self) -> ProfileDropdownComponent:

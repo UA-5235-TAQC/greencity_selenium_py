@@ -4,16 +4,22 @@ from selenium.webdriver.remote.webdriver import WebDriver
 import allure
 from typing_extensions import override
 from pages.create_edit_news.create_edit_news_page import CreateEditNewsPage
+from utils.page_factory import LocatorsTable
+from selenium.webdriver.remote.webelement import WebElement
 
 
 class EditNewsPage(CreateEditNewsPage):
     """ Page Object representing the Edit News page. """
-    EDIT_BUTTON = (
-        By.XPATH,
-        "//button[@type='submit' and contains(@class,'primary-global-button')]"
-    )
+
+    edit_btn: WebElement
+
+    locators: LocatorsTable = {
+        "edit_btn": (By.XPATH,
+                        "//button[@type='submit' and contains(@class,'primary-global-button')]")
+    }
 
     def __init__(self, driver: WebDriver, news_id: int):
+        """ Initialize the Edit News page for a specific news item. """
         super().__init__(driver)
         self.news_id = news_id
 
@@ -29,22 +35,22 @@ class EditNewsPage(CreateEditNewsPage):
     @allure.step("Check if Edit button is visible")
     def is_edit_button_visible(self) -> bool:
         """ Check if Edit button is visible. """
-        return self.is_visible(self.EDIT_BUTTON)
+        return self.edit_btn.is_displayed()
 
     @allure.step("Check if Edit button is enabled")
     def is_edit_button_enabled(self) -> bool:
         """ Check if Edit button is enabled. """
-        return self.is_edit_button_visible.is_enabled()
+        return self.edit_btn.is_enabled()
 
     @allure.step("Click Edit button")
     def click_edit(self) -> None:
         """ Click Edit button. """
-        self.click(self.EDIT_BUTTON)
+        self.edit_btn.click()
 
     @allure.step("Get Edit button text")
     def get_edit_button_text(self) -> str:
         """ Get Edit button text. """
-        return self.get_text(self.EDIT_BUTTON)
+        return self.edit_btn.text
 
     @allure.step(
         "Edit news with title: {title}, tags: {tags}, "
@@ -70,10 +76,10 @@ class EditNewsPage(CreateEditNewsPage):
             self.enter_source(source)
 
         if content is not None:
-            self.get_content_component().enter_content(content)
+            self.content_component.enter_content(content)
 
         if image_path is not None:
-            self.get_image_component().change_image(image_path)
+            self.image_component.change_image(image_path)
 
         return self
 

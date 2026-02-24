@@ -4,6 +4,8 @@ import allure
 from selenium.webdriver.common.by import By
 
 from components.base_component import BaseComponent
+from utils.page_factory import LocatorsTable
+from selenium.webdriver.remote.webelement import WebElement
 
 
 class ProfileCardsComponent(BaseComponent):
@@ -12,38 +14,55 @@ class ProfileCardsComponent(BaseComponent):
     Each card displays information such as "Fact of the Day" and may include a title, description, and decorative image.
     """
 
-    CARDS_CONTAINER = (By.CSS_SELECTOR, ".right-cards")
-    CARDS = (By.CSS_SELECTOR, ".right-cards .card")
-    CARD_TITLES = (By.CSS_SELECTOR, ".right-cards .card .cart-title")
-    CARD_DESCRIPTIONS = (By.CSS_SELECTOR, ".right-cards .card .card-description")
-    CARD_IMAGES = (By.CSS_SELECTOR, ".right-cards .card .shape-img img")
+    image: WebElement
+    title: WebElement
+    tags: List[WebElement]
+    creation_date: WebElement
+    creation_date_icon: WebElement
+    author_name: WebElement
+    author_icon: WebElement
 
-    @allure.step("Get all profile card titles")
-    def get_card_titles(self) -> List[str]:
-        """Return all profile card titles."""
-        return self.get_texts_from(self.CARD_TITLES)
+    locators: LocatorsTable = {
+        "image": (By.CSS_SELECTOR, ".news-image"),
+        "title": (By.CSS_SELECTOR, ".news-content .title h3"),
+        "tags": (By.CSS_SELECTOR, ".news-content .tags .tag-btn"),
+        "creation_date": (By.CSS_SELECTOR, ".user-info-date p"),
+        "creation_date_icon": (By.CSS_SELECTOR, ".user-info-date img"),
+        "author_name": (By.CSS_SELECTOR, ".user-info-icon p"),
+        "author_icon": (By.CSS_SELECTOR, ".user-info-icon img")
+    }
 
-    @allure.step("Get all profile card descriptions")
-    def get_card_descriptions(self) -> List[str]:
-        """Return all profile card descriptions."""
-        return self.get_texts_from(self.CARD_DESCRIPTIONS)
+    def __init__(self, driver):
+        """ Initialize the news card of the MySpace page. """
+        super().__init__(driver)
+        self.news_id: int = 0
 
-    @allure.step("Get profile card title at index {index}")
-    def get_card_title(self, index: int) -> str:
-        """Return profile card title by index."""
-        return self.get_text_by_index(self.get_card_titles(), index, "card titles")
+    @allure.step("Get card title")
+    def get_title(self) -> str:
+        """Return card title."""
+        return self.title.text
 
-    @allure.step("Get profile card description at index {index}")
-    def get_card_description(self, index: int) -> str:
-        """Return profile card description by index."""
-        return self.get_text_by_index(self.get_card_descriptions(), index, "card descriptions")
+    @allure.step("Get card title")
+    def get_title(self) -> str:
+        """Return card title."""
+        return self.title.text
 
-    @allure.step("Get count of profile cards")
-    def get_cards_count(self) -> int:
-        """ Return the number of visible profile cards. """
-        return len(self.find_all(self.CARDS))
+    @allure.step("Get author name")
+    def get_author_name(self) -> str:
+        """ Get author name text. """
+        return self.author_name.text
 
-    @allure.step("Check if profile cards component is visible")
+    @allure.step("Get news creation date")
+    def get_creation_date(self) -> str:
+        """ Get creation date text. """
+        return self.creation_date.text
+
+    @allure.step("Check if card is visible")
     def is_displayed(self) -> bool:
-        """ Return True if the profile cards component is visible. """
-        return self.is_visible(self.CARDS_CONTAINER)
+        """ Return True if the cards is visible. """
+        return self.title.is_displayed()
+
+    @allure.step("Get news ID")
+    def get_news_id(self) -> int:
+        """ Get news ID. """
+        return self.news_id

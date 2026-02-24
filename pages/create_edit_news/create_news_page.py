@@ -1,16 +1,21 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webelement import WebElement
-
+import allure
 from pages.create_edit_news.create_edit_news_page import CreateEditNewsPage
+from utils.page_factory import LocatorsTable
+from selenium.webdriver.remote.webelement import WebElement
 
 
 class CreateNewsPage(CreateEditNewsPage):
     """Page object for Create News page."""
-    PUBLISH_BTN = (
-        By.XPATH,
-        "//button[@type='submit' and contains(@class,'primary-global-button')]"
-    )
 
-    @property
-    def publish_btn(self) -> WebElement:
-        return self.find(*self.PUBLISH_BTN)
+    publish_btn: WebElement
+
+    locators: LocatorsTable = {
+        "publish_btn": (By.XPATH,
+                        "//button[@type='submit' and contains(@class,'primary-global-button')]")
+    }
+
+    @allure.step("Click Publish button")
+    def click_publish(self):
+        """ Click Publish button. """
+        self.publish_btn.click()

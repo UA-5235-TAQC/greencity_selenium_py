@@ -5,6 +5,8 @@ from enums.language import Language
 
 
 class EcoNewsTag(Enum):
+    """ Enum representing tags for Eco News items in English and Ukrainian. """
+
     NEWS = ("News", "Новини")
     EVENTS = ("Events", "Події")
     EDUCATION = ("Education", "Освіта")
@@ -12,6 +14,7 @@ class EcoNewsTag(Enum):
     ADS = ("Ads", "Реклама")
 
     def __init__(self, en: str, ua: str):
+        """ Initialize a tag with English and Ukrainian names. """
         self._en = en
         self._ua = ua
 
