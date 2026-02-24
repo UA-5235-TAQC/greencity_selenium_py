@@ -3,6 +3,8 @@ from __future__ import annotations
 from typing import Tuple
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
+
 from components.auth_modal.sign_in_modal import SignInModal
 from components.auth_modal.sign_up_modal import SignUpModal
 from components.base_component import BaseComponent
@@ -10,71 +12,84 @@ from selenium.webdriver.support import expected_conditions as EC
 import allure
 
 from enums.language import Language
+from utils.page_factory import LocatorsTable
+
+from components.profile_dropdown_component import ProfileDropdownComponent
 
 
 class HeaderComponent(BaseComponent):
     """ Represents the header section of the GreenCity application. """
-    logo_locator = (By.CSS_SELECTOR, 'a.header_logo')
-    news_link_locator = (By.XPATH, "//a[contains(@href, '#/greenCity/news')]")
-    my_space_link_locator = (By.XPATH, "//a[contains(@href, '#/greenCity/profile')]")
-    sign_in_locator = (By.CSS_SELECTOR, "a.header_sign-in-link")
-    sign_up_locator = (By.CSS_SELECTOR, "li.header_sign-up-link")
-    search_btn_locator = (By.CSS_SELECTOR, "li.search-icon")
-    language_dropdown_locator = (By.CSS_SELECTOR, "ul.header_lang-switcher-wrp")
-    user_name_locator = (By.CSS_SELECTOR, ".body-2")
-    user_dropdown_locator = (By.CSS_SELECTOR, "ul.dropdown-list")
+    logo: WebElement
+    news_link: WebElement
+    my_space_link: WebElement
+    sign_in: WebElement
+    sign_up: WebElement
+    search_btn: WebElement
+    language_dropdown: WebElement
+    user_name: WebElement
+    user_dropdown: WebElement
+
+    locators: LocatorsTable = {
+        "logo" : (By.CSS_SELECTOR, 'a.header_logo'),
+        "news_link" : (By.XPATH, "//a[contains(@href, '#/greenCity/news')]"),
+        "my_space_link" : (By.XPATH, "//a[contains(@href, '#/greenCity/profile')]"),
+        "sign_in" : (By.CSS_SELECTOR, "a.header_sign-in-link"),
+        "sign_up" : (By.CSS_SELECTOR, "li.header_sign-up-link"),
+        "search_btn" : (By.CSS_SELECTOR, "li.search-icon"),
+        "language_dropdown": (By.CSS_SELECTOR, "ul.header_lang-switcher-wrp"),
+        "user_name" : (By.CSS_SELECTOR, ".body-2"),
+        "user_dropdown" : (By.CSS_SELECTOR, "ul.dropdown-list")
+    }
+
 
     @allure.step("Click header logo")
     def click_logo(self) -> "HomePage":
         """ Click on the logo in the header to navigate to the home page. """
-        self.click(self.logo_locator)
+        self.logo.click()
         from pages.home_page import HomePage
-        return HomePage(self.get_driver())
+        return HomePage(self.driver)
 
-    def wait_until_url_contains(self, value: str):
-        """Wait until current URL contains given value."""
-        self.wait.until(EC.url_contains(value))
 
     @allure.step("Click 'Eco News' link in header")
     def click_news_link(self) -> "NewsPage":
         """ Click on the news link in the header to navigate to the Eco News page. """
-        self.click(self.news_link_locator)
+        self.news_link.click()
         from pages.news_page import NewsPage
-        return NewsPage(self.get_driver()).wait_until_opened()
+        return NewsPage(self.driver)
 
     @allure.step("Click 'Sign In' link in header")
     def click_sign_in_link(self) -> SignInModal:
         """ Click on the Sign In link in the header. """
-        self.click(self.sign_in_locator)
-        return SignInModal(self.get_driver())
+        self.sign_in.click()
+        return SignInModal(self.driver)
 
     @allure.step("Click 'My Space' link in header")
     def click_my_space_link(self) -> "MySpaceHabitsTabPage":
         """ Click on the My Space link in the header. """
-        self.click(self.my_space_link_locator)
+        self.my_space_link.click()
         from pages.my_space.my_space_habits_tab_page import MySpaceHabitsTabPage
-        return MySpaceHabitsTabPage(self.get_driver())
+        return MySpaceHabitsTabPage(self.driver)
 
     @allure.step("Click 'Sign Up' link in header")
     def click_sign_up_link(self) -> SignUpModal:
         """Click on the Sign Up link in the header."""
-        self.click(self.sign_up_locator)
-        return SignUpModal(self.get_driver())
+        self.sign_up.click()
+        return SignUpModal(self.driver)
 
     @allure.step("Click search button in header")
     def click_search_btn(self):
         """Click on the search button in the header."""
-        self.click(self.search_btn_locator)
+        self.search_btn.click()
 
     @allure.step("Open language dropdown")
     def click_language_dropdown(self):
         """Click on the language dropdown button."""
-        self.click(self.language_dropdown_locator)
+        self.language_dropdown.click()
 
     @allure.step("Get current locale")
     def get_current_locale(self) -> Language:
         """Get the currently selected language, returns 'uk' or 'en'."""
-        lang = self.find(*self.language_dropdown_locator).text.strip()
+        lang = self.language_dropdown.text.strip()
         return Language.UK if lang.lower() == "uk" else Language.EN
 
     def _language_option_locator(self, lang: Language) -> Tuple[str, str]:
@@ -82,11 +97,11 @@ class HeaderComponent(BaseComponent):
         return By.XPATH, f"//span[text()='{lang.value}']"
 
     def _switch_language(self, lang: Language):
-        """Switch to the specified language if not already selected."""
+        """ Switch the header language to the specified language. """
         if self.get_current_locale() == lang.locale_code:
             return self
-        self.click(self.language_dropdown_locator)
-        self.click(self._language_option_locator(lang))
+        self.language_dropdown.click()
+        self.driver.find_element(*self._language_option_locator(lang)).click()
         return self
 
     @allure.step("Change language to English")
@@ -102,16 +117,12 @@ class HeaderComponent(BaseComponent):
     @allure.step("Get logged-in user name")
     def get_user(self) -> str:
         """Get the name of the logged-in user, return empty string if not present."""
-        try:
-            user_elem = self.wait_until_visible(*self.user_name_locator)
-            return user_elem.text.strip()
-        except Exception:
-            return ""
+        return self.user_name.text.strip()
+
 
     @allure.step("Open profile dropdown")
-    def click_profile_dropdown(self) -> "ProfileDropdownComponent":
+    def click_profile_dropdown(self) -> ProfileDropdownComponent:
         """Click the profile dropdown button and return the ProfileDropdownComponent."""
-        self.click(self.user_name_locator)
-        dropdown = self.wait_until_visible(*self.user_dropdown_locator)
-        from components.profile_dropdown_component import ProfileDropdownComponent
-        return ProfileDropdownComponent(self.get_driver(), dropdown)
+        self.user_name.click()
+        dropdown = self.user_dropdown
+        return ProfileDropdownComponent(dropdown)
