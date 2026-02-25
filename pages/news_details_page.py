@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 from data.config import Config
 from components.news_details_content_component import NewsDetailsContentComponent
 from pages.base_page import BasePage
-from pages.edit_news_page import EditNewsPage
+from pages.create_edit_news.edit_news_page import EditNewsPage
 from pages.news_page import NewsPage
 from utils.page_factory import LocatorsTable
 

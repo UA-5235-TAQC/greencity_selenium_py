@@ -29,9 +29,9 @@ class ProfilePanelComponent(BaseComponent):
         "name": (By.CSS_SELECTOR, "app-profile-header p.name"),
         "location": (By.CSS_SELECTOR, "p.location"),
         "rate": (By.CSS_SELECTOR, "div.rate p"),
-        "achievements": (By.CSS_SELECTOR, "app-users-achievements .achievements-images img"),
+        "achievements": (By.CSS_SELECTOR, "app-users-achievements .achievements-images img", List[WebElement]),
         "friends_count_label": (By.CSS_SELECTOR, "app-users-friends .text-number"),
-        "favourite_places": (By.CSS_SELECTOR, "app-eco-places .eco-place-list li"),
+        "favourite_places": (By.CSS_SELECTOR, "app-eco-places .eco-place-list li", List[WebElement]),
         "add_friend_btn": (By.CSS_SELECTOR, "app-users-friends .add-friends a")
     }
 

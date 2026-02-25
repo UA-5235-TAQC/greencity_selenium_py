@@ -22,7 +22,7 @@ class ToDoListComponent(BaseComponent):
         "to_do_list_container": (By.CSS_SELECTOR, "app-to-do-list .outer"),
         "header": (By.CSS_SELECTOR, "app-to-do-list .header"),
         "items_count_label": (By.CSS_SELECTOR, "app-to-do-list .items-count"),
-        "to_do_items": (By.CSS_SELECTOR, "app-to-do-list .to-do-list-block > div:not(.header-position)")
+        "to_do_items": (By.CSS_SELECTOR, "app-to-do-list .to-do-list-block > div:not(.header-position)", List[WebElement])
     }
 
     @allure.step("Get To-do list header text")

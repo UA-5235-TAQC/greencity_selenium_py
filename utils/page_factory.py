@@ -1,4 +1,4 @@
-from typing import Any, Type, Union, Dict, Tuple, Optional, get_origin
+from typing import Any, Type, Union, Dict, Tuple, Optional, get_origin, get_args
 
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver import ActionChains
@@ -49,23 +49,20 @@ class PageFactory:
     def __getattr__(self, name: str) -> Any:
         """ Overrides attribute access to provide lazy loading of elements defined in 'locators'. """
         if name in self.locators:
-            annotation = self.__annotations__.get(name)
-            if annotation and get_origin(annotation) is list:
-                return self._get_elements(name)
-            return self._get_element(name)
+            return self._resolve(name)
         raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
 
-    def _resolve(
-            self,
-            name: str,
-            multiple: bool = False
-    ) -> Any:
+    def _resolve(self, name: str, multiple: bool = False) -> Any:
         """Universal resolver for single or multiple elements."""
 
         config = self.locators[name]
         by_type = config[0]
         selector = config[1]
-        component_class = config[2] if len(config) > 2 else None
+        multiple = False
+        component_class = None
+        if len(config) > 2:
+            multiple =  get_origin(config[2]) is list
+            component_class = config[2] if not multiple else get_args(config[2])[0]
 
         locator = (by_type, selector)
         wait = WebDriverWait(self.root_element, self.timeout)
@@ -105,11 +102,6 @@ class PageFactory:
                 f"in context {self.__class__.__name__}"
             ) from e
 
-    def _get_element(self, name: str) -> Any:
-        return self._resolve(name, multiple=False)
-
-    def _get_elements(self, name: str) -> Any:
-        return self._resolve(name, multiple=True)
 
 
 __all__ = [

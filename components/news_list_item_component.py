@@ -23,7 +23,7 @@ class NewsListItemComponent(BaseComponent):
     locators: LocatorsTable = {
         "news_image": (By.CSS_SELECTOR, ".list-image-content"),
         "bookmark_btn": (By.CSS_SELECTOR, ".favourite-button"),
-        "tags": (By.CSS_SELECTOR, ".filter-tag div"),
+        "tags": (By.CSS_SELECTOR, ".filter-tag div", List[WebElement]),
         "title": (By.CSS_SELECTOR, ".title-list"),
         "news_text": (By.CSS_SELECTOR, ".list-text"),
         "creation_date": (By.CSS_SELECTOR, ".text-nowrap>span"),
@@ -32,11 +32,6 @@ class NewsListItemComponent(BaseComponent):
         "likes_count": (By.XPATH, ".//img[contains(@alt, 'likes')]/parent::*/span"),
         "overlay_backdrop": (By.CSS_SELECTOR, ".cdk-overlay-backdrop-showing")
     }
-
-    def __init__(self, driver):
-        """ Initialize the news card of the EcoNews page. """
-        super().__init__(driver)
-        self.news_id: int = 0
 
     @allure.step("Click bookmark button")
     def click_bookmark(self) -> "NewsPage":
