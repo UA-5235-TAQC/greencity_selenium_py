@@ -59,7 +59,6 @@ class BasePage(PageFactory):
 
     @allure.step("Get snackbar message text")
     def get_message_text(self) -> str:
-        self.wait_for_message_appear()
         return self.message.text
 
     def get_base_host(self) -> str:
@@ -72,3 +71,10 @@ class BasePage(PageFactory):
     def open_telegram_chat(self):
         """Open Telegram chat by clicking the chat button."""
         self.telegram.click()
+
+    @allure.step("Wait for a custom lambda condition.")
+    def wait_for(self, condition, timeout=None):
+        """Wait for a custom lambda condition."""
+        t = timeout or self.timeout
+        return WebDriverWait(self.driver, t).until(condition)
+
