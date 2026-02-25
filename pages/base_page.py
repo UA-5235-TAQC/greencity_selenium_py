@@ -2,13 +2,13 @@ from urllib.parse import urlparse
 
 import allure
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 from components.footer_component import FooterComponent
 from components.header_component import HeaderComponent
 from data.config import Config
 from utils.page_factory import (PageFactory, LocatorsTable, By)
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 
 class BasePage(PageFactory):
@@ -60,6 +60,7 @@ class BasePage(PageFactory):
 
     @allure.step("Get snackbar message text")
     def get_message_text(self) -> str:
+        self.wait_for_message_appear()
         return self.message.text
 
     def get_base_host(self) -> str:
@@ -70,8 +71,8 @@ class BasePage(PageFactory):
 
     @allure.step("Open Telegram chat")
     def open_telegram_chat(self):
-        """Open Telegram chat by clicking the chat button."""
-        self.telegram.click()
+        """Open Telegram chat by clicking the chat button (bottom right corner)"""
+        self._click(self.telegram)
 
     def wait_until_visible(self, element: WebElement, timeout: int = Config.IMPLICITLY_WAIT) -> WebElement:
         """ Waits for the element to become visible on the page. """
