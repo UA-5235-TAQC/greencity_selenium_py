@@ -1,7 +1,9 @@
+from selenium.webdriver.support import expected_conditions as EC
 from urllib.parse import urlparse
 
 import allure
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support.wait import WebDriverWait
 
 from components.footer_component import FooterComponent
 from components.header_component import HeaderComponent
@@ -57,6 +59,7 @@ class BasePage(PageFactory):
 
     @allure.step("Get snackbar message text")
     def get_message_text(self) -> str:
+        self.wait_for_message_appear()
         return self.message.text
 
     def get_base_host(self) -> str:

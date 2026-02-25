@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import time
 from typing import Tuple
 
 from selenium.webdriver.common.by import By
@@ -41,6 +42,7 @@ class HeaderComponent(BaseComponent):
         "user_dropdown" : (By.CSS_SELECTOR, "ul.dropdown-list")
     }
 
+    __auth_modal_locator = (By.CSS_SELECTOR, "app-auth-modal")
 
     @allure.step("Click header logo")
     def click_logo(self) -> "HomePage":
@@ -61,7 +63,8 @@ class HeaderComponent(BaseComponent):
     def click_sign_in_link(self) -> SignInModal:
         """ Click on the Sign In link in the header. """
         self.sign_in.click()
-        return SignInModal(self.driver)
+        modal = self.driver.find_element(*self.__auth_modal_locator)
+        return SignInModal(modal)
 
     @allure.step("Click 'My Space' link in header")
     def click_my_space_link(self) -> "MySpaceHabitsTabPage":
@@ -74,7 +77,8 @@ class HeaderComponent(BaseComponent):
     def click_sign_up_link(self) -> SignUpModal:
         """Click on the Sign Up link in the header."""
         self.sign_up.click()
-        return SignUpModal(self.driver)
+        modal = self.driver.find_element(*self.__auth_modal_locator)
+        return SignUpModal(modal)
 
     @allure.step("Click search button in header")
     def click_search_btn(self):
