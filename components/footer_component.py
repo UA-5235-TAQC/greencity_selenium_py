@@ -1,7 +1,9 @@
+from __future__ import annotations
 import allure
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 from components.base_component import BaseComponent
-
+from utils.page_factory import LocatorsTable
 from pages.home_page import HomePage
 from pages.eco_news_page import EcoNewsPage
 from pages.events_page import EventsPage
@@ -12,85 +14,121 @@ from pages.ubs_courier_page import UbsCourierPage
 
 
 class FooterComponent(BaseComponent):
-    _logo_link = (By.CSS_SELECTOR, "a[href='#/greenCity'] img.logo")
-    _news_link = (By.XPATH, ".//a[contains(@href, '#/greenCity/news')]")
-    _events_link = (By.XPATH, ".//a[contains(@href, '#/greenCity/events')]")
-    _places_link = (By.XPATH, ".//a[contains(@href, '#/greenCity/places')]")
-    _about_link = (By.XPATH, ".//a[contains(@href, '#/greenCity/about')]")
-    _my_space_link = (By.XPATH, ".//a[contains(@href, '#/greenCity/profile')]")
-    _ubs_link = (By.XPATH, ".//a[contains(@href, '#/ubs')]")
+    """Component representing the footer section present across the application."""
 
-    _twitter_icon = (By.CSS_SELECTOR, ".footer_social-link img[src*='twitter']")
-    _linkedin_icon = (By.CSS_SELECTOR, ".footer_social-link img[src*='linkedin']")
-    _facebook_icon = (By.CSS_SELECTOR, ".footer_social-link img[src*='facebook']")
-    _instagram_icon = (By.CSS_SELECTOR, ".footer_social-link img[src*='instagram']")
-    _youtube_icon = (By.CSS_SELECTOR, ".footer_social-link img[src*='youtube']")
+    logo_link: WebElement
+    news_link: WebElement
+    events_link: WebElement
+    places_link: WebElement
+    about_link: WebElement
+    my_space_link: WebElement
+    ubs_link: WebElement
+    twitter_icon: WebElement
+    linkedin_icon: WebElement
+    facebook_icon: WebElement
+    instagram_icon: WebElement
+    youtube_icon: WebElement
+    follow_us_text_element: WebElement
+    copyright_label: WebElement
 
-    _follow_us_text = (By.CSS_SELECTOR, ".footer_follow-us span")
-    _copyright_label = (By.ID, "copyright-label")
+    locators: LocatorsTable = {
+        "logo_link": (By.CSS_SELECTOR, "a[href='#/greenCity'] img.logo"),
+        "news_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/news')]"),
+        "events_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/events')]"),
+        "places_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/places')]"),
+        "about_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/about')]"),
+        "my_space_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/profile')]"),
+        "ubs_link": (By.XPATH, ".//a[contains(@href, '#/ubs')]"),
+        "twitter_icon": (By.CSS_SELECTOR, ".footer_social-link img[src*='twitter']"),
+        "linkedin_icon": (By.CSS_SELECTOR, ".footer_social-link img[src*='linkedin']"),
+        "facebook_icon": (By.CSS_SELECTOR, ".footer_social-link img[src*='facebook']"),
+        "instagram_icon": (By.CSS_SELECTOR, ".footer_social-link img[src*='instagram']"),
+        "youtube_icon": (By.CSS_SELECTOR, ".footer_social-link img[src*='youtube']"),
+        "follow_us_text_element": (By.CSS_SELECTOR, ".footer_follow-us span"),
+        "copyright_label": (By.ID, "copyright-label")
+    }
 
-    def __init__(self, root, driver, timeout=None):
-        super().__init__(root, driver, timeout)
+    def __init__(self, context):
+        super().__init__(context)
 
     @allure.step("Click on footer logo")
     def click_logo_link(self):
-        self.root.find_element(*self._logo_link).click()
+        """Clicks the logo in the footer to navigate to the Home Page."""
+        self.logo_link.click()
         return HomePage(self.driver)
 
     @allure.step("Click on 'Eco news' link in footer")
     def click_news_link(self):
-        self.root.find_element(*self._news_link).click()
+        """Clicks the 'Eco news' link in the footer."""
+        self.news_link.click()
         return EcoNewsPage(self.driver)
 
     @allure.step("Click on 'Events' link in footer")
     def click_events_link(self):
-        self.root.find_element(*self._events_link).click()
+        """Clicks the 'Events' link in the footer."""
+        self.events_link.click()
         return EventsPage(self.driver)
 
     @allure.step("Click on 'Places' link in footer")
     def click_places_link(self):
-        self.root.find_element(*self._places_link).click()
+        """Clicks the 'Places' link in the footer."""
+        self.places_link.click()
         return PlacesPage(self.driver)
 
     @allure.step("Click on 'About Us' link in footer")
     def click_about_link(self):
-        self.root.find_element(*self._about_link).click()
+        """Clicks the 'About Us' link in the footer."""
+        self.about_link.click()
         return AboutUsPage(self.driver)
 
     @allure.step("Click on 'My Space' link in footer")
     def click_my_space_link(self):
-        self.root.find_element(*self._my_space_link).click()
+        """Clicks the 'My Space' (profile) link in the footer."""
+        self.my_space_link.click()
         return MySpaceBasePage(self.driver)
 
     @allure.step("Click on 'UBS Courier' link in footer")
     def click_ubs_link(self):
-        self.root.find_element(*self._ubs_link).click()
+        """Clicks the 'UBS Courier' link in the footer."""
+        self.ubs_link.click()
         return UbsCourierPage(self.driver)
 
     @allure.step("Click on Twitter icon")
     def click_twitter_icon(self):
-        self.root.find_element(*self._twitter_icon).click()
+        """Clicks the Twitter social media icon."""
+        self.twitter_icon.click()
+        return self
 
     @allure.step("Click on LinkedIn icon")
     def click_linkedin_icon(self):
-        self.root.find_element(*self._linkedin_icon).click()
+        """Clicks the LinkedIn social media icon."""
+        self.linkedin_icon.click()
+        return self
 
     @allure.step("Click on Facebook icon")
     def click_facebook_icon(self):
-        self.root.find_element(*self._facebook_icon).click()
+        """Clicks the Facebook social media icon."""
+        self.facebook_icon.click()
+        return self
 
     @allure.step("Click on Instagram icon")
     def click_instagram_icon(self):
-        self.root.find_element(*self._instagram_icon).click()
+        """Clicks the Instagram social media icon."""
+        self.instagram_icon.click()
+        return self
 
     @allure.step("Click on YouTube icon")
     def click_youtube_icon(self):
-        self.root.find_element(*self._youtube_icon).click()
+        """Clicks the YouTube social media icon."""
+        self.youtube_icon.click()
+        return self
 
     @allure.step("Get 'Follow us' text from footer")
     def get_follow_us_text(self) -> str:
-        return self.root.find_element(*self._follow_us_text).text.strip()
+        """Returns the trimmed text from the 'Follow us' section."""
+        return self.follow_us_text_element.text.strip()
 
     @allure.step("Get copyright text from footer")
     def get_copyright_text(self) -> str:
-        return self.root.find_element(*self._copyright_label).text.strip()
+        """Returns the trimmed copyright text from the footer."""
+        return self.copyright_label.text.strip()
