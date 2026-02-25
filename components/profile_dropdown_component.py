@@ -12,8 +12,6 @@ class ProfileDropdownComponent(BaseComponent):
         "link_elements": (By.CSS_SELECTOR, "a")
     }
 
-    def __init__(self, context):
-        super().__init__(context)
 
     def _get_link_elements(self) -> list[WebElement]:
         """Internal helper to find all link elements within the dropdown context."""

@@ -45,9 +45,6 @@ class CreateEditNewsPage(BasePage):
         "cancel_modal": (By.CSS_SELECTOR, "mat-dialog-container app-warning-pop-up", CancelModalComponent)
     }
 
-    def __init__(self, driver):
-        super().__init__(driver)
-
     @allure.step("Clear input element")
     def _clear_element(self, element: WebElement):
         """Internal method to fully clear an input field."""

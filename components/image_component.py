@@ -32,8 +32,6 @@ class ImageComponent(BaseComponent):
         "submit_cropper_btn": (By.CSS_SELECTOR, "div.cropper-buttons button.primary-global-button")
     }
 
-    def __init__(self, context):
-        super().__init__(context)
 
     @allure.step("Check if Cancel button in image cropper is visible")
     def is_cancel_cropper_button_visible(self) -> bool:
@@ -125,7 +123,7 @@ class ImageComponent(BaseComponent):
         """Returns the text of the 'Browse' link element."""
         return self.browse_link.text.strip()
 
-    @allure.step("Change image: upload new file and submit crop")
+    @allure.step("Change image: upload new file {file_path} and submit crop")
     def change_image(self, file_path: str):
         """Full flow: cancels current crop, uploads new file, and submits the crop."""
         self.cancel_crop()

@@ -22,8 +22,6 @@ class ContentComponent(BaseComponent):
         "content_message": (By.CSS_SELECTOR, ".title-wrapper p.field-info")
     }
 
-    def __init__(self, context):
-        super().__init__(context)
 
     def _clear_element_by_keyboard(self, element: WebElement):
         """Internal helper to clear the content editor using keyboard shortcuts."""

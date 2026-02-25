@@ -24,8 +24,6 @@ class CancelModalComponent(BaseComponent):
         "warning_subtitle": (By.CSS_SELECTOR, ".warning-subtitle")
     }
 
-    def __init__(self, context):
-        super().__init__(context)
 
     @allure.step("Get cancel modal message text")
     def get_message(self) -> str:

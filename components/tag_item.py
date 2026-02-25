@@ -16,9 +16,6 @@ class TagItem(BaseComponent):
         "close_icon": (By.CSS_SELECTOR, "a.global-tag div")
     }
 
-    def __init__(self, context):
-        super().__init__(context)
-
     @allure.step("Get tag name")
     def get_name(self) -> str:
         """Returns the visible text name of the tag."""

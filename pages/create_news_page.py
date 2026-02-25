@@ -14,8 +14,6 @@ class CreateNewsPage(CreateEditNewsPage):
         "publish_btn": (By.XPATH, "//button[@type='submit' and contains(@class,'primary-global-button')]")
     }
 
-    def __init__(self, driver):
-        super().__init__(driver)
 
     @allure.step("Check if Publish button is visible")
     def is_publish_button_visible(self) -> bool:

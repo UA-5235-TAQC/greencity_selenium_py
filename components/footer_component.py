@@ -4,13 +4,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable
-from pages.home_page import HomePage
-from pages.eco_news_page import EcoNewsPage
-from pages.events_page import EventsPage
-from pages.places_page import PlacesPage
-from pages.about_us_page import AboutUsPage
-from pages.my_space_base_page import MySpaceBasePage
-from pages.ubs_courier_page import UbsCourierPage
 
 
 class FooterComponent(BaseComponent):
@@ -48,50 +41,54 @@ class FooterComponent(BaseComponent):
         "copyright_label": (By.ID, "copyright-label")
     }
 
-    def __init__(self, context):
-        super().__init__(context)
-
     @allure.step("Click on footer logo")
     def click_logo_link(self):
         """Clicks the logo in the footer to navigate to the Home Page."""
         self.logo_link.click()
+        from pages.home_page import HomePage
         return HomePage(self.driver)
 
     @allure.step("Click on 'Eco news' link in footer")
     def click_news_link(self):
         """Clicks the 'Eco news' link in the footer."""
         self.news_link.click()
-        return EcoNewsPage(self.driver)
+        from pages.news_page import NewsPage
+        return NewsPage(self.driver)
 
     @allure.step("Click on 'Events' link in footer")
     def click_events_link(self):
         """Clicks the 'Events' link in the footer."""
         self.events_link.click()
-        return EventsPage(self.driver)
+        # from pages.events_page import EventsPage
+        # return EventsPage(self.driver)
 
     @allure.step("Click on 'Places' link in footer")
     def click_places_link(self):
         """Clicks the 'Places' link in the footer."""
         self.places_link.click()
-        return PlacesPage(self.driver)
+        # from pages.places_page import PlacesPage
+        # return PlacesPage(self.driver)
 
     @allure.step("Click on 'About Us' link in footer")
     def click_about_link(self):
         """Clicks the 'About Us' link in the footer."""
         self.about_link.click()
-        return AboutUsPage(self.driver)
+        # from pages.about_us_page import AboutUsPage
+        # return AboutUsPage(self.driver)
 
     @allure.step("Click on 'My Space' link in footer")
     def click_my_space_link(self):
         """Clicks the 'My Space' (profile) link in the footer."""
         self.my_space_link.click()
-        return MySpaceBasePage(self.driver)
+        # from pages.my_space_base_page import MySpaceBasePage
+        # return MySpaceBasePage(self.driver)
 
     @allure.step("Click on 'UBS Courier' link in footer")
     def click_ubs_link(self):
         """Clicks the 'UBS Courier' link in the footer."""
         self.ubs_link.click()
-        return UbsCourierPage(self.driver)
+        # from pages.ubs_courier_page import UbsCourierPage
+        # return UbsCourierPage(self.driver)
 
     @allure.step("Click on Twitter icon")
     def click_twitter_icon(self):
