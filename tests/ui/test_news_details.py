@@ -57,8 +57,8 @@ class TestNewsDetails:
         page = NewsDetailsPage(get_driver, self.news_id)
         page.open()
         
-        expected_title = "May be interesting for you" 
-        actual_title = page.recommended_news.get_title_text()
+        expected_title = "Може бути цікавим для вас" 
+        actual_title = page.recommended_news_container.get_title_text()
         
         assert actual_title == expected_title, \
             f"Expected title '{expected_title}', but got '{actual_title}'"
@@ -70,7 +70,7 @@ class TestNewsDetails:
         page = NewsDetailsPage(get_driver, self.news_id)
         page.open()
         
-        cards = page.recommended_news.get_all_cards()
+        cards = page.recommended_news_container.get_all_cards()
         
         assert len(cards) == 3, f"Expected 3 cards, but found {len(cards)}"
 
@@ -80,7 +80,7 @@ class TestNewsDetails:
         page = NewsDetailsPage(get_driver, self.news_id)
         page.open()
         
-        first_card = page.recommended_news.get_card_by_index(0)
+        first_card = page.recommended_news_container.get_card_by_index(0)
         
         first_card.click()
         

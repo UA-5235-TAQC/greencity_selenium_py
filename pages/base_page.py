@@ -6,6 +6,7 @@ from selenium.webdriver.remote.webelement import WebElement
 from components.footer_component import FooterComponent
 from components.header_component import HeaderComponent
 from utils.page_factory import (PageFactory, LocatorsTable, By)
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 class BasePage(PageFactory):
@@ -69,4 +70,10 @@ class BasePage(PageFactory):
     def open_telegram_chat(self):
         """Open Telegram chat by clicking the chat button."""
         self.telegram.click()
+
+    @allure.step("Wait for a custom lambda condition.")
+    def wait_for(self, condition, timeout=None):
+        """Wait for a custom lambda condition."""
+        t = timeout or self.timeout
+        return WebDriverWait(self.driver, t).until(condition)
 
