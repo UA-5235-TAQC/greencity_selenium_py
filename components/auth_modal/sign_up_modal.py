@@ -16,7 +16,6 @@ class SignUpModal(ModalBasePage):
     sign_in_link: WebElement
 
     locators = {
-        **ModalBasePage.locators,
         "username_field": (By.ID, "firstName"),
         "password_field": (By.ID, "password"),
         "repeat_password_field": (By.ID, "repeatPassword"),
@@ -55,7 +54,7 @@ class SignUpModal(ModalBasePage):
     def click_sign_in_link(self) -> "SignInModal":
         from components.auth_modal.sign_in_modal import SignInModal
         self.sign_in_link.click()
-        return SignInModal(self.root)
+        return SignInModal(self.auth_modal)
 
     @allure.step("Enter email, username, password, confirm password values")
     def sign_up(self, *, email: str, username: str, password: str, confirm_password: str) -> None:
@@ -102,5 +101,5 @@ class SignUpModal(ModalBasePage):
         return is_valid
 
     def __get_password_icon(self) -> list[WebElement]:
-        elements = self.root.find_elements(*self.locators["show_password_icon"])
+        elements = self.root_element.find_elements(*self.locators["show_password_icon"])
         return elements

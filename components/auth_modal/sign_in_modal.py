@@ -15,7 +15,6 @@ class SignInModal(ModalBasePage):
     sign_up_link: WebElement
 
     locators = {
-        **ModalBasePage.locators,
         "password_field": (By.ID, "password"),
         "forgot_password_link": (By.CSS_SELECTOR, "a.forgot-password"),
         "show_password_icon": (By.CSS_SELECTOR, ".image-show-hide-password"),
@@ -23,9 +22,6 @@ class SignInModal(ModalBasePage):
     }
 
     __password_field_error_locator = (By.CSS_SELECTOR, "#pass-err-msg div")
-
-    def __init__(self, root: WebElement):
-        super().__init__(root)
 
     @allure.step("Enter value in password field")
     def enter_password(self, password: str) -> SignInModal:
@@ -44,7 +40,7 @@ class SignInModal(ModalBasePage):
     def click_sign_up_link(self) -> "SignUpModal":
         from components.auth_modal.sign_up_modal import SignUpModal
         self.sign_up_link.click()
-        return SignUpModal(self.root)
+        return SignUpModal(self.auth_modal)
 
     @allure.step("Enter email and password values")
     def sign_in(self, *, email: str, password: str) -> None:

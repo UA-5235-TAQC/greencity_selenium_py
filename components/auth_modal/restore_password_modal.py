@@ -10,11 +10,10 @@ class ForgotPasswordModal(ModalBasePage):
     back_to_sign_in: WebElement
 
     locators = {
-        **ModalBasePage.locators,
         "back_to_sign_in": (By.CLASS_NAME, "green-link")
     }
 
     @allure.step("Click back to sign in link")
     def click_back_to_sign_in(self) -> SignInModal:
         self.back_to_sign_in.click()
-        return SignInModal(self.root)
+        return SignInModal(self.auth_modal)
