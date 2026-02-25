@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from typing_extensions import override
 
-from components.auth_modal.modal_base_page import ModalBasePage
+from components.auth_modal_pages.modal_base_page import ModalBasePage
 
 
 class SignInModal(ModalBasePage):
@@ -33,7 +33,7 @@ class SignInModal(ModalBasePage):
 
     @allure.step("Click sign up link")
     def click_sign_up_link(self) -> "SignUpModal":
-        from components.auth_modal.sign_up_modal import SignUpModal
+        from components.auth_modal_pages.sign_up_modal import SignUpModal
         self.root.find_element(*self.__sign_up_link_locator).click()
         return SignUpModal(self.root)
 

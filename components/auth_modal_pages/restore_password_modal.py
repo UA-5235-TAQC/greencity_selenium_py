@@ -1,8 +1,8 @@
 import allure
 from selenium.webdriver.common.by import By
 
-from components.auth_modal.modal_base_page import ModalBasePage
-from components.auth_modal.sign_in_modal import SignInModal
+from components.auth_modal_pages.modal_base_page import ModalBasePage
+from components.auth_modal_pages.sign_in_modal import SignInModal
 
 
 class ForgotPasswordModal(ModalBasePage):
