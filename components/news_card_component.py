@@ -5,7 +5,7 @@ class NewsCardComponent(BaseComponent):
 
     @allure.step("Click on news card")
     def click(self):
-        self.root.click()
+        self.root_element.click()
 
     @allure.step("Get title of news card")
     def get_title(self) -> str:

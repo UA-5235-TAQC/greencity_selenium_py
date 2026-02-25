@@ -31,7 +31,6 @@ class NewsDetailsPage(BasePage):
     news_image: WebElement
 
     locators: LocatorsTable = {
-        "root": (By.CSS_SELECTOR, "main-content app-container"),
         "back_to_news_button": (By.CSS_SELECTOR, ".button-link"),
         "delete_button": (By.CSS_SELECTOR, ".secondary-global-button.delete-news-button"),
         "edit_button": (By.XPATH, "//a[div[@class='edit-news']]"),
@@ -83,7 +82,7 @@ class NewsDetailsPage(BasePage):
     def click_edit_button(self):
         """Click the edit button and return the EditNewsPage object."""
         self.edit_button.click()
-        return EditNewsPage(self.driver, self.news_id)
+        return EditNewsPage(self.driver)
     
     @allure.step("Check if Edit button is enabled")
     def is_edit_button_enabled(self) -> bool:

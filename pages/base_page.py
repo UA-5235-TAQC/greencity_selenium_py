@@ -1,12 +1,13 @@
+from selenium.webdriver.support import expected_conditions as EC
 from urllib.parse import urlparse
 
 import allure
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support.wait import WebDriverWait
 
 from components.footer_component import FooterComponent
 from components.header_component import HeaderComponent
 from utils.page_factory import (PageFactory, LocatorsTable, By)
-from selenium.webdriver.support.ui import WebDriverWait
 
 
 class BasePage(PageFactory):
