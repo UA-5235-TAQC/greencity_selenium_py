@@ -1,75 +1,89 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+import allure
+from selenium.webdriver.remote.webelement import WebElement
 
+from utils.page_factory import LocatorsTable, By
 from components.base_component import BaseComponent
 
 
 class CancelModalComponent(BaseComponent):
 
-    # locators (relative to root)
-    MESSAGE_CONTAINER = (By.CSS_SELECTOR, ".warning-text")
-    YES_CANCEL_BTN = (By.CSS_SELECTOR, ".buttons-container .primary-global-button")
-    CONTINUE_EDITING_BTN = (By.CSS_SELECTOR, ".buttons-container .secondary-global-button")
-    CLOSE_BTN = (By.CSS_SELECTOR, ".close")
-    WARNING_TITLE = (By.CSS_SELECTOR, ".warning-title")
-    WARNING_SUBTITLE = (By.CSS_SELECTOR, ".warning-subtitle")
+    # ---------- elements ----------
 
-    # ---------- helpers ----------
+    message_container: WebElement
+    yes_cancel_btn: WebElement
+    continue_editing_btn: WebElement
+    close_btn: WebElement
+    warning_title: WebElement
+    warning_subtitle: WebElement
+    root: WebElement
 
-    def _find(self, locator):
-        return self.root.find_element(*locator)
-
-    def _find_all(self, locator):
-        return self.root.find_elements(*locator)
-
-    # ---------- getters ----------
-
-    def get_message(self) -> str:
-        return self._find(self.MESSAGE_CONTAINER).text.strip()
-
-    def get_warning_title_text(self) -> str:
-        return self._find(self.WARNING_TITLE).text.strip()
-
-    def get_warning_subtitle_text(self) -> str:
-        return self._find(self.WARNING_SUBTITLE).text.strip()
-
-    def get_yes_cancel_button_text(self) -> str:
-        return self._find(self.YES_CANCEL_BTN).text.strip()
-
-    def get_continue_editing_button_text(self) -> str:
-        return self._find(self.CONTINUE_EDITING_BTN).text.strip()
-
-    # ---------- actions ----------
-
-    def click_yes_cancel(self):
-        from pages.ubs_courier_page import UbsCourierPage
-        self._find(self.YES_CANCEL_BTN).click()
-        return UbsCourierPage(self.get_driver())
-
-    def click_continue_editing(self):
-        self._find(self.CONTINUE_EDITING_BTN).click()
-
-    def click_close(self):
-        self._find(self.CLOSE_BTN).click()
+    locators: LocatorsTable = {
+        "message_container": (By.CSS_SELECTOR, ".warning-text"),
+        "yes_cancel_btn": (By.CSS_SELECTOR, ".buttons-container .primary-global-button"),
+        "continue_editing_btn": (By.CSS_SELECTOR, ".buttons-container .secondary-global-button"),
+        "close_btn": (By.CSS_SELECTOR, ".close"),
+        "warning_title": (By.CSS_SELECTOR, ".warning-title"),
+        "warning_subtitle": (By.CSS_SELECTOR, ".warning-subtitle"),
+        "root": (By.CSS_SELECTOR, ".ubs-body, .warning-modal, body"),  # fallback root
+    }
 
     # ---------- state ----------
 
-    def is_cancel_button_visible(self) -> bool:
-        return self._find(self.YES_CANCEL_BTN).is_displayed()
+    @allure.step("Check cancel modal is visible")
+    def is_visible(self) -> bool:
+        return self.warning_title.is_displayed()
 
-    def is_continue_editing_button_visible(self) -> bool:
-        return self._find(self.CONTINUE_EDITING_BTN).is_displayed()
-
-    # ---------- waits ----------
-
-    def wait_until_visible(self, timeout=10):
-        WebDriverWait(self.get_driver(), timeout).until(
-            EC.visibility_of(self.root)
-        )
+    @allure.step("Wait until cancel modal is visible")
+    def wait_until_visible(self):
+        _ = self.warning_title
         return self
 
-    def wait_until_closed(self, timeout=10):
-        WebDriverWait(self.get_driver(), timeout).until(
-            EC.invisibility_of_element(self.root)
-        )
+    # ---------- getters ----------
+
+    @allure.step("Get modal message")
+    def get_message(self) -> str:
+        return self.message_container.text.strip()
+
+    @allure.step("Get warning title text")
+    def get_warning_title_text(self) -> str:
+        return self.warning_title.text.strip()
+
+    @allure.step("Get warning subtitle text")
+    def get_warning_subtitle_text(self) -> str:
+        return self.warning_subtitle.text.strip()
+
+    @allure.step("Get Yes Cancel button text")
+    def get_yes_cancel_button_text(self) -> str:
+        return self.yes_cancel_btn.text.strip()
+
+    @allure.step("Get Continue Editing button text")
+    def get_continue_editing_button_text(self) -> str:
+        return self.continue_editing_btn.text.strip()
+
+    # ---------- actions ----------
+
+    @allure.step("Click Yes Cancel button")
+    def click_yes_cancel(self):
+        from pages.ubs_courier_page import UbsCourierPage
+        self.yes_cancel_btn.click()
+        return UbsCourierPage(self.driver)
+
+    @allure.step("Click Continue Editing button")
+    def click_continue_editing(self):
+        self.continue_editing_btn.click()
+        return self
+
+    @allure.step("Click Close button")
+    def click_close(self):
+        self.close_btn.click()
+        return self
+
+    # ---------- state checks ----------
+
+    @allure.step("Check Yes Cancel button visible")
+    def is_cancel_button_visible(self) -> bool:
+        return self.yes_cancel_btn.is_displayed()
+
+    @allure.step("Check Continue Editing button visible")
+    def is_continue_editing_button_visible(self) -> bool:
+        return self.continue_editing_btn.is_displayed()

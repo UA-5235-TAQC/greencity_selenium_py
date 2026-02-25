@@ -1,33 +1,71 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from urllib.parse import urlparse
 
+import allure
+from selenium.webdriver.remote.webelement import WebElement
+
+from components.footer_component import FooterComponent
 from components.header_component import HeaderComponent
+from utils.page_factory import (PageFactory, LocatorsTable, By)
 
 
-class BasePage:
-    driver: WebDriver
+class BasePage(PageFactory):
+    """ Base page class that provides common functionality for all pages. """
+
     header: HeaderComponent
-    header_locator = (By.XPATH, "//app-header")
+    footer: FooterComponent
+    telegram: WebElement
+    message: WebElement
 
-    def __init__(self, driver: WebDriver):
-        self.driver = driver
-        _header = self.driver.find_element(*self.header_locator)
-        self.header = HeaderComponent(_header)
+    locators: LocatorsTable = {
+        "header": (By.XPATH, "//app-header", HeaderComponent),
+        "footer": (By.XPATH, "//app-footer", FooterComponent),
+        "telegram": (By.CSS_SELECTOR, "button.chat-pop-up"),
+        "message": (By.CSS_SELECTOR, ".mat-mdc-snack-bar-label")
+    }
 
-    def get_title(self)-> str:
+    def __init__(self, driver):
+        all_locators = {}
+        for cls in reversed(self.__class__.mro()):
+            if hasattr(cls, 'locators'):
+                all_locators.update(cls.locators)
+
+        self.locators = all_locators
+
+        super().__init__(driver)
+
+    @allure.step("Get the title of the current page")
+    def get_title(self) -> str:
+        """Return the title of the current page."""
         return self.driver.title
 
-    def get_current_url(self)-> str:
+    @allure.step("Get the current URL of the page")
+    def get_current_url(self) -> str:
+        """Return the current URL of the page."""
         return self.driver.current_url
 
-    def wait_until_visible(self, locator, timeout=10):
-        return WebDriverWait(self.driver, timeout).until(
-            EC.visibility_of_element_located(locator)
-        )
+    @allure.step("Open page")
+    def open(self):
+        raise NotImplementedError
 
-    def wait_until_clickable(self, locator, timeout=10):
-        return WebDriverWait(self.driver, timeout).until(
-            EC.element_to_be_clickable(locator)
-        )
+    @allure.step("Check that page is opened")
+    def is_page_opened(self):
+        raise NotImplementedError
+
+    @allure.step("Wait until page is fully opened")
+    def wait_until_opened(self):
+        raise NotImplementedError
+
+    @allure.step("Get snackbar message text")
+    def get_message_text(self) -> str:
+        return self.message.text
+
+    def get_base_host(self) -> str:
+        """ Get the base host URL with protocol and hostname for the GreenCity application. """
+        current_url = self.driver.current_url
+        parsed_url = urlparse(current_url)
+        return f"{parsed_url.scheme}://{parsed_url.hostname}/#/greenCity"
+
+    @allure.step("Open Telegram chat")
+    def open_telegram_chat(self):
+        """Open Telegram chat by clicking the chat button."""
+        self.telegram.click()
