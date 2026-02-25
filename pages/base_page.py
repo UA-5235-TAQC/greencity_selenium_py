@@ -71,8 +71,8 @@ class BasePage(PageFactory):
 
     @allure.step("Open Telegram chat")
     def open_telegram_chat(self):
-        """Open Telegram chat by clicking the chat button (bottom right corner)"""
-        self._click(self.telegram)
+        """Open Telegram chat by clicking the chat button."""
+        self.telegram.click()
 
     def wait_until_visible(self, element: WebElement, timeout: int = Config.IMPLICITLY_WAIT) -> WebElement:
         """ Waits for the element to become visible on the page. """
