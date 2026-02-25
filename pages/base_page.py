@@ -70,29 +70,5 @@ class BasePage(PageFactory):
 
     @allure.step("Open Telegram chat")
     def open_telegram_chat(self):
-        """Open Telegram chat by clicking the chat button (bottom right corner)"""
-        self._click(self.telegram)
-
-    def _wait_until_clickable(self, element: WebElement) -> WebElement:
-        """Wait for the element to be interactable"""
-        return WebDriverWait(self.driver, self.timeout).until(
-            EC.element_to_be_clickable(element))
-
-    def _click(self, element: WebElement):
-        """Perform a click after ensuring the element is clickable"""
-        self._wait_until_clickable(element)
-        element.click()
-
-    @allure.step("Wait for snackbar to be visible")
-    def wait_for_message_appear(self):
-        """Pause execution until the snackbar notification is displayed"""
-        WebDriverWait(self.driver, self.timeout).until(
-            EC.visibility_of(self.message))
-        return self
-
-    @allure.step("Wait for snackbar to disappear")
-    def wait_for_message_disappear(self):
-        """Wait until the snackbar notification is removed from the DOM"""
-        WebDriverWait(self.driver, self.timeout).until(
-            EC.staleness_of(self.message))
-        return self
+        """Open Telegram chat by clicking the chat button."""
+        self.telegram.click()

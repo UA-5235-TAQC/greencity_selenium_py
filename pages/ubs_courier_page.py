@@ -1,5 +1,7 @@
-from base_page import BasePage
+from pages.base_page import BasePage
+
 
 class UbsCourierPage(BasePage):
-    """Ubs courier page."""
-    pass
+
+    def is_page_opened(self) -> bool:
+        return True
