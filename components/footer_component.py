@@ -80,15 +80,15 @@ class FooterComponent(BaseComponent):
     def click_my_space_link(self):
         """Clicks the 'My Space' (profile) link in the footer."""
         self.my_space_link.click()
-        # from pages.my_space_base_page import MySpaceBasePage
-        # return MySpaceBasePage(self.driver)
+        from pages.my_space.my_space_habits_tab_page import MySpaceHabitsTabPage
+        return MySpaceHabitsTabPage(self.driver)
 
     @allure.step("Click on 'UBS Courier' link in footer")
     def click_ubs_link(self):
         """Clicks the 'UBS Courier' link in the footer."""
         self.ubs_link.click()
-        # from pages.ubs_courier_page import UbsCourierPage
-        # return UbsCourierPage(self.driver)
+        from pages.ubs_courier_page import UbsCourierPage
+        return UbsCourierPage(self.driver)
 
     @allure.step("Click on Twitter icon")
     def click_twitter_icon(self):
