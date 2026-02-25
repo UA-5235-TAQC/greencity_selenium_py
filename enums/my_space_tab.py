@@ -5,20 +5,25 @@ from enums.language import Language
 
 
 class MySpaceTab(Enum):
+    """ Enum representing the main tabs in the My Space page. """
+
     HABITS = ("My habits", "Мої звички")
     NEWS = ("My news", "Мої новини")
     EVENTS = ("My events", "Мої події")
 
     def __init__(self, en: str, ua: str):
+        """ Initialize a MySpaceTab enum member with English and Ukrainian names. """
         self._en = en
         self._ua = ua
 
     @property
     def en(self) -> str:
+        """Return the English name of the tab."""
         return self._en
 
     @property
     def ua(self) -> str:
+        """Return the Ukrainian name of the tab."""
         return self._ua
 
     def get_by_locale(self, language: Language) -> str:

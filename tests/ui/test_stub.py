@@ -6,6 +6,7 @@ def test_greencity_is_work(get_driver):
     title = get_driver.title
     assert title.startswith("GreenCity")
 
+
 def test_base_navigate(get_driver):
     page = HomePage(get_driver).open()
     assert page.get_title().startswith("GreenCity")

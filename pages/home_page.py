@@ -16,11 +16,9 @@ class HomePage(BasePage):
         "root": (By.CSS_SELECTOR, ".main-content")
     }
 
-
     @allure.step("Open home page")
     def open(self) -> HomePage:
         """Open the HomePage URL."""
         self.driver.get(self.get_base_host())
         self.root.is_displayed()
         return self
-

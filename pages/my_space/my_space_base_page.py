@@ -1,17 +1,18 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webdriver import WebDriver
+from typing import List
+
 import allure
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
-from typing import Tuple
+
 from components.my_space.profile_panel_component import ProfilePanelComponent
 from enums.my_space_tab import MySpaceTab
 from pages.base_page import BasePage
 from utils.page_factory import LocatorsTable
-from selenium.common.exceptions import NoSuchElementException
-from typing import List
 
 
 class MySpaceBasePage(BasePage):
+    """ Base Page Object for the 'My Space' (Profile) page in the application. """
 
     profile_panel: WebElement
     tabs_container: WebElement
@@ -39,11 +40,6 @@ class MySpaceBasePage(BasePage):
         "todo_count_element": (By.XPATH, "(//div[@class='items-count'])[2]"),
     }
 
-
-    def __init__(self, driver: WebDriver):
-        super().__init__(driver)
-
-
     @allure.step("Open My Space Page")
     def open(self) -> "MySpaceBasePage":
         """ Navigate to the My Space (Profile) page. """
@@ -53,7 +49,7 @@ class MySpaceBasePage(BasePage):
     @allure.step("Check if My Space Page is opened")
     def is_page_opened(self) -> bool:
         """ Verify that the My Space page is opened. """
-        return self.profile_panel.is_displayed()
+        return self.profile_panel.is_component_visible()
 
     @allure.step("Wait until My Space Page is loaded")
     def wait_until_opened(self) -> "MySpaceBasePage":
@@ -89,10 +85,8 @@ class MySpaceBasePage(BasePage):
     @allure.step("Get list of to-do items")
     def get_to_do_items(self) -> List[str]:
         """Checks the task counter and returns a list of task names if available."""
-        # PageFactory automatically waits for todo_count_element visibility
         count_text = self.todo_count_element.text
 
-        # Clean the text to get only digits
         digits_only = "".join(char for char in count_text if char.isdigit())
         total = int(digits_only) if digits_only else 0
 
@@ -106,7 +100,6 @@ class MySpaceBasePage(BasePage):
     def get_tab_list(self) -> List[str]:
         """Returns a list of all visible tab names in the profile navigation bar"""
         self.tabs_container.is_displayed()
-
         tabs = self.driver.find_elements(*self.tab_list_locator)
         return [tab.text.strip() for tab in tabs if tab.is_displayed()]
 

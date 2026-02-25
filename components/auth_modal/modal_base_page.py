@@ -3,6 +3,7 @@ from __future__ import annotations
 import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
+
 from components.base_component import BaseComponent
 
 
@@ -26,7 +27,6 @@ class ModalBasePage(BaseComponent):
     }
 
     __email_field_error_locator = (By.CSS_SELECTOR, "#email-err-msg div")
-
 
     @allure.step("Get modal window title")
     def get_title(self) -> str:

@@ -1,12 +1,13 @@
-from selenium.webdriver.support import expected_conditions as EC
 from urllib.parse import urlparse
 
 import allure
 from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 from components.footer_component import FooterComponent
 from components.header_component import HeaderComponent
+from data.config import Config
 from utils.page_factory import (PageFactory, LocatorsTable, By)
 
 
@@ -78,3 +79,7 @@ class BasePage(PageFactory):
         t = timeout or self.timeout
         return WebDriverWait(self.driver, t).until(condition)
 
+    @allure.step("Wait until element is visible {element} {timeout}s")
+    def wait_until_visible(self, element: WebElement, timeout: int = Config.EXPLICITLY_WAIT) -> WebElement:
+        """ Waits for the element to become visible on the page. """
+        return WebDriverWait(self.driver, timeout).until(EC.visibility_of(element))

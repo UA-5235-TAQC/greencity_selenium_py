@@ -1,6 +1,6 @@
-from typing import Any, Type, Union, Dict, Tuple, Optional
+from typing import Any, Type, Union, Dict, Tuple, Optional, get_origin, get_args
 
-from selenium.common.exceptions import (NoSuchElementException, TimeoutException)
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
@@ -49,42 +49,59 @@ class PageFactory:
     def __getattr__(self, name: str) -> Any:
         """ Overrides attribute access to provide lazy loading of elements defined in 'locators'. """
         if name in self.locators:
-            return self._get_element(name)
+            return self._resolve(name)
         raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
 
-    def _get_element(self, name: str) -> Any:
-        """ Resolves an element based on the locator configuration defined in 'locators'. """
+    def _resolve(self, name: str, multiple: bool = False) -> Any:
+        """Universal resolver for single or multiple elements."""
+
         config = self.locators[name]
         by_type = config[0]
         selector = config[1]
-        component_class = config[2] if len(config) > 2 else None
+        multiple = False
+        component_class = None
+        if len(config) > 2:
+            multiple =  get_origin(config[2]) is list
+            component_class = config[2] if not multiple else get_args(config[2])[0]
 
         locator = (by_type, selector)
-
         wait = WebDriverWait(self.root_element, self.timeout)
 
         try:
-            wait.until(EC.presence_of_element_located(locator))
-        except (TimeoutException, NoSuchElementException) as e:
-            raise ElementNotFoundException(
-                f"Element '{name}' not found using locator {locator} in context {self.__class__.__name__}") from e
+            if multiple:
+                elements = wait.until(
+                    EC.presence_of_all_elements_located(locator)
+                )
+                elements = [el for el in elements if el.is_displayed()]
 
-        try:
-            element = wait.until(EC.visibility_of_element_located(locator))
+                if not elements:
+                    raise ElementNotVisibleException(
+                        f"Elements '{name}' found using locator {locator}, "
+                        f"but none are visible in context {self.__class__.__name__}"
+                    )
+
+                if component_class:
+                    return [component_class(el) for el in elements]
+
+                return elements
+
+            else:
+                wait.until(EC.presence_of_element_located(locator))
+                element = wait.until(
+                    EC.visibility_of_element_located(locator)
+                )
+
+                if component_class:
+                    return component_class(element)
+
+                return element
+
         except TimeoutException as e:
-            raise ElementNotVisibleException(
-                f"Element '{name}' found using locator {locator}, but it did not become visible in context {self.__class__.__name__}"
-            ) from e
-
-        except NoSuchElementException as e:
             raise ElementNotFoundException(
-                f"Element '{name}' not found using locator {locator} in context {self.__class__.__name__}"
+                f"Element(s) '{name}' not found using locator {locator} "
+                f"in context {self.__class__.__name__}"
             ) from e
 
-        if component_class:
-            return component_class(element)
-
-        return element
 
 
 __all__ = [

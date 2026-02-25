@@ -1,12 +1,16 @@
-from pages.base_page import BasePage
-from data.config import Config
 import allure
+
 from typing import List
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.common.by import By
+
+from data.config import Config
 from components.news_details_content_component import NewsDetailsContentComponent
-from pages.edit_news_page import EditNewsPage
+from pages.base_page import BasePage
+from pages.create_edit_news.edit_news_page import EditNewsPage
 from pages.news_page import NewsPage
-from utils.page_factory import (LocatorsTable, By)
+from utils.page_factory import LocatorsTable
+
 
 class NewsDetailsPage(BasePage):
     """
@@ -45,27 +49,25 @@ class NewsDetailsPage(BasePage):
         "post_date": (By.CSS_SELECTOR, ".news-info-date"),
         "author_name": (By.CSS_SELECTOR, ".news-info-author"),
         "content": (By.CSS_SELECTOR, ".ql-editor"),
-        "news_image": (By.CSS_SELECTOR, "img.news-image-img"),
-    }
-
-    def __init__(self, driver, news_id: int):
-        """
-        Initialize the News Details Page.
-        
-        Args:
-            driver: WebDriver instance.
-            news_id: Unique identifier for the news article.
-        """
-        super().__init__(driver)
-        self.news_id = news_id
+        "news_image": (By.CSS_SELECTOR, "img.news-image-img"), }
 
     @allure.step("Open news details page with ID")
-    def open(self):
+    def open(self, news_id: int):
         """Open the news article page using its ID."""
-        url = f"{Config.BASE_UI_GREEN_CITY_URL}/news/{self.news_id}"
+        url = f"{Config.BASE_UI_GREEN_CITY_URL}/news/{news_id}"
         self.driver.get(url)
         return self
-    
+
+    @allure.step("Extract news ID from URL")
+    def get_news_id(self) -> int:
+        """Extract and return the news ID from the current URL."""
+        url = self.driver.current_url
+        try:
+            news_id_str = url.rstrip('/').split('/')[-1]
+            return int(news_id_str)
+        except (IndexError, ValueError):
+            raise ValueError(f"Unable to extract news ID from URL: {url}")
+
     @allure.step("Click 'Back to news' button")
     def click_back_to_news_button(self):
         """Click the link to return to the main news list."""
@@ -83,7 +85,7 @@ class NewsDetailsPage(BasePage):
         """Click the edit button and return the EditNewsPage object."""
         self.edit_button.click()
         return EditNewsPage(self.driver)
-    
+
     @allure.step("Check if Edit button is enabled")
     def is_edit_button_enabled(self) -> bool:
         """Return True if the edit button is interactive."""
@@ -103,12 +105,12 @@ class NewsDetailsPage(BasePage):
             self.click_like_button()
             self.wait_for_likes_to_change(initial_count - 1)
         return self
-    
+
     @allure.step("Wait until likes count changes to expected value: {expected_count}")
     def wait_for_likes_to_change(self, expected_count: int):
         """Wait until the likes counter text matches the expected integer."""
         self.wait_for(lambda _: self.get_likes_count() == expected_count, timeout=5)
-    
+
     @allure.step("Check if like is active on the page")
     def is_like_active(self) -> bool:
         """Check the 'src' attribute of the like button to see if it is in 'liked' state."""
@@ -157,3 +159,8 @@ class NewsDetailsPage(BasePage):
     def get_news_image_src(self) -> str:
         """Return the source URL of the main news image."""
         return self.news_image.get_attribute("src")
+
+    @allure.step("Check that News Details page is opened")
+    def is_page_opened(self) -> bool:
+        """ Verify that the News Details page is opened. """
+        return self.news_title_text.is_displayed()

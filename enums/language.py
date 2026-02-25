@@ -2,6 +2,8 @@ from enum import Enum
 
 
 class Language(Enum):
+    """ Enum representing supported languages/locales in the application. """
+
     EN = "En"
     UK = "Uk"
 
