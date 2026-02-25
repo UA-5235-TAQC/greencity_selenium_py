@@ -60,7 +60,6 @@ class BasePage(PageFactory):
 
     @allure.step("Get snackbar message text")
     def get_message_text(self) -> str:
-        self.wait_for_message_appear()
         return self.message.text
 
     def get_base_host(self) -> str:
@@ -74,6 +73,13 @@ class BasePage(PageFactory):
         """Open Telegram chat by clicking the chat button."""
         self.telegram.click()
 
-    def wait_until_visible(self, element: WebElement, timeout: int = Config.IMPLICITLY_WAIT) -> WebElement:
+    @allure.step("Wait for a custom lambda condition.")
+    def wait_for(self, condition, timeout=None):
+        """Wait for a custom lambda condition."""
+        t = timeout or self.timeout
+        return WebDriverWait(self.driver, t).until(condition)
+
+    @allure.step("Wait until element is visible {element} {timeout}s")
+    def wait_until_visible(self, element: WebElement, timeout: int = Config.EXPLICITLY_WAIT) -> WebElement:
         """ Waits for the element to become visible on the page. """
         return WebDriverWait(self.driver, timeout).until(EC.visibility_of(element))
