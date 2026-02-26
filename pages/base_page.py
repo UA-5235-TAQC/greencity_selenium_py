@@ -1,6 +1,7 @@
 from urllib.parse import urlparse
 
 import allure
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -83,3 +84,11 @@ class BasePage(PageFactory):
     def wait_until_visible(self, element: WebElement, timeout: int = Config.EXPLICITLY_WAIT) -> WebElement:
         """ Waits for the element to become visible on the page. """
         return WebDriverWait(self.driver, timeout).until(EC.visibility_of(element))
+
+
+    def clear_element_by_keyboard(self, element: WebElement):
+        """Internal helper to clear the content editor using keyboard shortcuts."""
+        element.send_keys(Keys.CONTROL + "a")
+        element.send_keys(Keys.BACKSPACE)
+        return self
+

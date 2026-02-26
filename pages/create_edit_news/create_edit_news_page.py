@@ -235,3 +235,14 @@ class CreateEditNewsPage(BasePage):
         """Refreshes the page via the driver."""
         self.driver.refresh()
         return self
+
+    def get_title_input(self):
+        return self.title_input
+
+    def clear_title_field(self):
+        self.title_input.clear()
+        return self
+
+
+    def is_title_valid(self) -> bool:
+        self.title_input.get_attribute("ng-invalid")

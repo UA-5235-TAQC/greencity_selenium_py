@@ -3,9 +3,11 @@ from __future__ import annotations
 import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support.wait import WebDriverWait
 from typing_extensions import override
 
 from components.auth_modal.modal_base_page import ModalBasePage
+from data.config import Config
 
 
 class SignInModal(ModalBasePage):
@@ -43,9 +45,15 @@ class SignInModal(ModalBasePage):
         return SignUpModal(self.auth_modal)
 
     @allure.step("Enter email and password values")
-    def sign_in(self, *, email: str, password: str) -> None:
-        self.enter_email(email) \
-            .enter_password(password)
+    def sign_in(self, email: str, password: str) -> None:
+        self.enter_email(email)
+        self.enter_password(password)
+        self.click_submit()
+
+        from pages.my_space.my_space_habits_tab_page import MySpaceHabitsTabPage
+        habits_page = MySpaceHabitsTabPage(self.driver)
+        habits_page.wait_until_opened()
+
 
     @allure.step("Get password field value")
     def get_password_field_value(self) -> str:

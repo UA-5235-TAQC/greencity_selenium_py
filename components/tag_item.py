@@ -8,7 +8,7 @@ from utils.page_factory import LocatorsTable, ElementNotFoundException
 class TagItem(BaseComponent):
     """Component representing an individual tag item (e.g., in news or search filters)."""
 
-    name_element: WebElement
+    name: WebElement
     close_icon: WebElement
 
     locators: LocatorsTable = {
@@ -19,7 +19,7 @@ class TagItem(BaseComponent):
     @allure.step("Get tag name")
     def get_name(self) -> str:
         """Returns the visible text name of the tag."""
-        return self.name_element.text.strip()
+        return self.name.text.strip()
 
     @allure.step("Verify if tag is selected")
     def is_selected(self) -> bool:
