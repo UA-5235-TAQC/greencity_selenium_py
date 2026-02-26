@@ -1,34 +1,51 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webdriver import WebDriver
-
-from base import Base
-
-from components.header_component import HeaderComponent
-from components.footer_component import FooterComponent
-
-from selenium.webdriver.support import expected_conditions as EC
-import allure
 from urllib.parse import urlparse
 
+import allure
+from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
-class BasePage(Base):
-    driver: WebDriver
-    header_locator = (By.XPATH, "//app-header")
-    footer_locator = (By.XPATH, "//app-footer")
-    message_locator = (By.CSS_SELECTOR, ".mat-mdc-snack-bar-label")
+from components.base_page.footer_component import FooterComponent
+from components.base_page.header_component import HeaderComponent
+from data.config import Config
+from utils.page_factory import (PageFactory, LocatorsTable)
+from selenium.webdriver.common.by import By
 
-    def __init__(self, driver: WebDriver):
+
+class BasePage(PageFactory):
+    """ Base page class that provides common functionality for all pages. """
+
+    header: HeaderComponent
+    footer: FooterComponent
+    telegram: WebElement
+    message: WebElement
+
+    locators: LocatorsTable = {
+        "header": (By.XPATH, "//app-header", HeaderComponent),
+        "footer": (By.XPATH, "//app-footer", FooterComponent),
+        "telegram": (By.CSS_SELECTOR, "button.chat-pop-up"),
+        "message": (By.CSS_SELECTOR, ".mat-mdc-snack-bar-label")
+    }
+
+    def __init__(self, driver):
+        """ Initialize the base page with a WebDriver instance and merge all declared locators. """
+        all_locators = {}
+        for cls in reversed(self.__class__.mro()):
+            if hasattr(cls, 'locators'):
+                all_locators.update(cls.locators)
+
+        self.locators = all_locators
+
         super().__init__(driver)
-        _header = self.driver.find_element(*self.header_locator)
-        _footer = self.driver.find_element(*self.footer_locator)
 
-        self.header = HeaderComponent(_header)
-        self.footer = FooterComponent(_footer)
-
-    def get_title(self)-> str:
+    @allure.step("Get the title of the current page")
+    def get_title(self) -> str:
+        """Return the title of the current page."""
         return self.driver.title
 
-    def get_current_url(self)-> str:
+    @allure.step("Get the current URL of the page")
+    def get_current_url(self) -> str:
+        """Return the current URL of the page."""
         return self.driver.current_url
 
     @allure.step("Open page")
@@ -43,43 +60,28 @@ class BasePage(Base):
     def wait_until_opened(self):
         raise NotImplementedError
 
-    # components
-    @allure.step("Get header component")
-    def get_header(self):
-        return self.header
-
-    @allure.step("Get footer component")
-    def get_footer(self):
-        return self.footer
-
-    # helpers
-    @allure.step("Click on web element")
-    def click(self, element):
-        clickable = self.wait.until(EC.element_to_be_clickable(element))
-        clickable.click()
-
-    @allure.step("Get text from web element")
-    def get_text(self, element):
-        return self.wait.until(EC.visibility_of(element)).text
-
-    # snackbar message
-    @allure.step("Wait for snackbar message to appear")
-    def wait_for_message_appear(self):
-        self.wait.until(EC.visibility_of_element_located(self.message_locator))
-        return self
-
-    @allure.step("Wait for snackbar message to disappear")
-    def wait_for_message_disappear(self):
-        self.wait.until(EC.invisibility_of_element_located(self.message_locator))
-        return self
-
     @allure.step("Get snackbar message text")
-    def get_message_text(self):
-        self.wait_for_message_appear()
-        return self.driver.find_element(*self.message_locator).text
+    def get_message_text(self) -> str:
+        return self.message.text
 
     def get_base_host(self) -> str:
         """ Get the base host URL with protocol and hostname for the GreenCity application. """
         current_url = self.driver.current_url
         parsed_url = urlparse(current_url)
         return f"{parsed_url.scheme}://{parsed_url.hostname}/#/greenCity"
+
+    @allure.step("Open Telegram chat")
+    def open_telegram_chat(self):
+        """Open Telegram chat by clicking the chat button."""
+        self.telegram.click()
+
+    @allure.step("Wait for a custom lambda condition.")
+    def wait_for(self, condition, timeout=None):
+        """Wait for a custom lambda condition."""
+        t = timeout or self.timeout
+        return WebDriverWait(self.driver, t).until(condition)
+
+    @allure.step("Wait until element is visible {element} {timeout}s")
+    def wait_until_visible(self, element: WebElement, timeout: int = Config.EXPLICITLY_WAIT) -> WebElement:
+        """ Waits for the element to become visible on the page. """
+        return WebDriverWait(self.driver, timeout).until(EC.visibility_of(element))
