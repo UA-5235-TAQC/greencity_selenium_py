@@ -29,7 +29,6 @@ class HeaderComponent(BaseComponent):
     user_name: WebElement
     user_dropdown: WebElement
 
-    # Визначення атрибутів для PageFactory
     auth_modal_sign_in: SignInModal
     auth_modal_sign_up: SignUpModal
 
