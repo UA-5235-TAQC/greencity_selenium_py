@@ -2,7 +2,7 @@
 
 Selenium + pytest UI test suite for the GreenCity web app.
 
-<a href="https://UA-5235-TAQC.github.io/greencity_selenium_py/main" target="_blank">
+<a href="https://UA-5235-TAQC.github.io/greencity_selenium_py" target="_blank">
   <img src="https://img.shields.io/badge/Allure%20Report-main-green" alt="Allure Report">
 </a>
 

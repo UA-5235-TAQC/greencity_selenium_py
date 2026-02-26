@@ -1,5 +1,5 @@
 
-from components.tag_item import TagItem
+from components.tag_component import TagItem
 from pages.home_page import HomePage
 from pages.create_edit_news.create_news_page import CreateNewsPage
 from data.config import Config
