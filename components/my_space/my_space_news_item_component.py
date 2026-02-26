@@ -1,34 +1,40 @@
+from typing import List
+
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
+
 from components.base_component import BaseComponent
-from pages.news_details_page import NewsDetailsPage
 from utils.page_factory import LocatorsTable
-from typing import List
-import allure
 
 
 class MySpaceNewsItemComponent(BaseComponent):
+    """ Component representing the profile news card on the MySpace page. """
 
     news_container: WebElement
-    image_element: WebElement
-    title_element: WebElement
-    creation_date_element: WebElement
-    author_name_element: WebElement
-    tags_locator: tuple[str, str] = (By.CSS_SELECTOR, ".tags .tag-btn")
+    image: WebElement
+    title: WebElement
+    tags: List[WebElement]
+    creation_date: WebElement
+    creation_date_icon: WebElement
+    author_name: WebElement
+    author_icon: WebElement
 
     locators: LocatorsTable = {
         "news_container": (By.CSS_SELECTOR, "div.news"),
-        "image_element": (By.CSS_SELECTOR, ".news-image"),
-        "title_element": (By.CSS_SELECTOR, ".title h3"),
-        "creation_date_element": (By.CSS_SELECTOR, ".user-info-date p"),
-        "author_name_element": (By.CSS_SELECTOR, ".user-info-icon p"),
+        "image": (By.CSS_SELECTOR, ".news-image"),
+        "title": (By.CSS_SELECTOR, ".news-content .title h3"),
+        "tags": (By.CSS_SELECTOR, ".news-content .tags .tag-btn", List[WebElement]),
+        "creation_date": (By.CSS_SELECTOR, ".user-info-date p"),
+        "creation_date_icon": (By.CSS_SELECTOR, ".user-info-date img"),
+        "author_name": (By.CSS_SELECTOR, ".user-info-icon p"),
+        "author_icon": (By.CSS_SELECTOR, ".user-info-icon img")
     }
 
-
     def __init__(self, root_element: WebElement, news_id: int):
+        """ Initialize the My Space News Item component for the specified news ID. """
         super().__init__(root_element)
         self.news_id = news_id
-
 
     @allure.step("Get news id")
     def get_id(self) -> int:
@@ -47,7 +53,8 @@ class MySpaceNewsItemComponent(BaseComponent):
 
     @allure.step("Get tag elements")
     def get_tag_elements(self) -> List[WebElement]:
-        return self.root_element.find_elements(*self.tags_locator)
+        """ Get tag elements. """
+        return self.tags
 
     @allure.step("Get tags text")
     def get_tags(self) -> List[str]:
@@ -64,7 +71,7 @@ class MySpaceNewsItemComponent(BaseComponent):
 
     @allure.step("Get elements title ")
     def get_title(self) -> str:
-        """Gets the text content of the news title."""
+        """Gets the news title text."""
         return self.title_element.text.strip()
 
     @allure.step("Get creation date element")
@@ -87,8 +94,7 @@ class MySpaceNewsItemComponent(BaseComponent):
         """Gets the text content of the author's name"""
         return self.author_name_element.text.strip()
 
-    @allure.step("Open news details page")
-    def click(self) -> NewsDetailsPage:
-        """Clicks on the news card and navigates to the details page."""
-        self.news_container.click()
-        return NewsDetailsPage(self.driver, self.news_id)
+    @allure.step("Check if card is visible")
+    def is_displayed(self) -> bool:
+        """ Return True if the cards is visible. """
+        return self.news_container.is_displayed()

@@ -7,6 +7,8 @@ from components.auth_modal.sign_in_modal import SignInModal
 
 
 class ForgotPasswordModal(ModalBasePage):
+    """ Component representing the "Forgot Password" modal window. """
+
     back_to_sign_in: WebElement
 
     locators = {
@@ -15,5 +17,6 @@ class ForgotPasswordModal(ModalBasePage):
 
     @allure.step("Click back to sign in link")
     def click_back_to_sign_in(self) -> SignInModal:
+        """ Click the "Back to Sign In" link. """
         self.back_to_sign_in.click()
         return SignInModal(self.auth_modal)

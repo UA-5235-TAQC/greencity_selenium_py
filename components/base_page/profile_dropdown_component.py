@@ -1,3 +1,5 @@
+from typing import List
+
 import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
@@ -8,12 +10,13 @@ from utils.page_factory import LocatorsTable
 class ProfileDropdownComponent(BaseComponent):
     """Component representing the user profile dropdown menu."""
 
+    link_elements: List[WebElement]
+
     locators: LocatorsTable = {
-        "link_elements": (By.CSS_SELECTOR, "a")
+        "link_elements": (By.CSS_SELECTOR, "a", List[WebElement])
     }
 
-
-    def _get_link_elements(self) -> list[WebElement]:
+    def _get_link_elements(self) -> List[WebElement]:
         """Internal helper to find all link elements within the dropdown context."""
         locator = self.locators["link_elements"][:2]
         return self.root_element.find_elements(*locator)

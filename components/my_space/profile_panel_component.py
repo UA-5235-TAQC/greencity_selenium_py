@@ -59,3 +59,8 @@ class ProfilePanelComponent(BaseComponent):
     def add_friend(self):
         """Click the add friend button."""
         self.add_friend_btn.click()
+
+    @allure.step("Check profile panel is visible")
+    def is_visible(self) -> bool:
+        """ Check profile panel is visible. """
+        return self.name.is_displayed()

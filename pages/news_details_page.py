@@ -4,8 +4,10 @@ from typing import List
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
 
+from components.news_details.comment_form_component import CommentFormComponent
+from components.news_details.comment_item_component import CommentItemComponent
+from components.news_details.news_card_component import NewsCardComponent
 from data.config import Config
-from components.news_details_content_component import NewsDetailsContentComponent
 from pages.base_page import BasePage
 from pages.create_edit_news.edit_news_page import EditNewsPage
 from pages.news_page import NewsPage
@@ -25,14 +27,15 @@ class NewsDetailsPage(BasePage):
     likes_count: WebElement
     social_links: List[WebElement]
     tags: List[WebElement]
-    comments_container: WebElement
-    comments_form: WebElement
-    recommended_news_container: NewsDetailsContentComponent
+    comments: List[CommentItemComponent]
+    comments_form: CommentFormComponent
     news_title_text: WebElement
     post_date: WebElement
     author_name: WebElement
     content: WebElement
     news_image: WebElement
+    news_list_title: WebElement
+    news_cards: List[NewsCardComponent]
 
     locators: LocatorsTable = {
         "back_to_news_button": (By.CSS_SELECTOR, ".button-link"),
@@ -40,16 +43,18 @@ class NewsDetailsPage(BasePage):
         "edit_button": (By.XPATH, "//a[div[@class='edit-news']]"),
         "like_button": (By.CSS_SELECTOR, "img.news_like"),
         "likes_count": (By.CSS_SELECTOR, ".like_wr .numerosity_likes"),
-        "social_links": (By.CSS_SELECTOR, ".news-links-images img"),
-        "tags": (By.CSS_SELECTOR, ".tags .tags-item"),
-        "comments_container": (By.XPATH, "(//app-comments-container)[1]"),
-        "comments_form": (By.CSS_SELECTOR, ".app-add-comment form"),
-        "recommended_news_container": (By.CSS_SELECTOR, "app-eco-news-widget", NewsDetailsContentComponent),
+        "social_links": (By.CSS_SELECTOR, ".news-links-images img", List[WebElement]),
+        "tags": (By.CSS_SELECTOR, ".tags .tags-item", List[WebElement]),
+        "comments": (By.CSS_SELECTOR, ".app-comments-list", List[CommentItemComponent]),
+        "comments_form": (By.CSS_SELECTOR, ".app-add-comment form", CommentFormComponent),
         "news_title_text": (By.CSS_SELECTOR, ".news-title-container .news-title"),
         "post_date": (By.CSS_SELECTOR, ".news-info-date"),
         "author_name": (By.CSS_SELECTOR, ".news-info-author"),
         "content": (By.CSS_SELECTOR, ".ql-editor"),
-        "news_image": (By.CSS_SELECTOR, "img.news-image-img"), }
+        "news_image": (By.CSS_SELECTOR, "img.news-image-img"),
+        "news_list_title": (By.CSS_SELECTOR, ".wrapper p"),
+        "news_cards": (By.CSS_SELECTOR, "app-news-list-gallery-view", List[NewsCardComponent]),
+    }
 
     @allure.step("Open news details page with ID")
     def open(self, news_id: int):
@@ -84,7 +89,7 @@ class NewsDetailsPage(BasePage):
     def click_edit_button(self):
         """Click the edit button and return the EditNewsPage object."""
         self.edit_button.click()
-        return EditNewsPage(self.driver)
+        return EditNewsPage(self.driver, self.get_news_id())
 
     @allure.step("Check if Edit button is enabled")
     def is_edit_button_enabled(self) -> bool:
@@ -126,8 +131,7 @@ class NewsDetailsPage(BasePage):
     @allure.step("Get news tags")
     def get_tags(self) -> List[str]:
         """Return a list of strings containing the names of all tags attached to the news."""
-        elements = self.driver.find_elements(*self.locators["tags"][:2])
-        return [el.text for el in elements]
+        return [el.text for el in self.tags]
 
     @allure.step("Get title text")
     def get_title_value(self) -> str:
@@ -145,11 +149,6 @@ class NewsDetailsPage(BasePage):
         text = self.author_name.text
         return text[3:].strip() if len(text) > 3 else text.strip()
 
-    @allure.step("Get news ID")
-    def get_id(self) -> int:
-        """Return the ID of the current news article."""
-        return self.news_id
-
     @allure.step("Get content text")
     def get_content_text(self) -> str:
         """Return the body text of the news article."""
@@ -164,3 +163,16 @@ class NewsDetailsPage(BasePage):
     def is_page_opened(self) -> bool:
         """ Verify that the News Details page is opened. """
         return self.news_title_text.is_displayed()
+
+    @allure.step("Get title text of recommended news section")
+    def get_title_text(self) -> str:
+        """Return the header text of the recommended news section."""
+        return self.news_list_title.text
+
+    @allure.step("Get recommended card by index: {index}")
+    def get_card_by_index(self, index: int) -> NewsCardComponent:
+        """ Return a NewsCardComponent at the specified index. """
+        cards = self.news_cards
+        if 0 <= index < len(cards):
+            return cards[index]
+        raise IndexError(f"Card with index {index} is not found. Total cards: {len(cards)}")
