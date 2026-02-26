@@ -1,4 +1,5 @@
 from typing import Optional, override
+from typing import Optional, override
 
 import allure
 from selenium.webdriver.common.by import By
@@ -11,7 +12,7 @@ from utils.page_factory import LocatorsTable
 class MySpaceHabitsTabPage(MySpaceBasePage):
     """ Page Object representing the 'My habits' tab in My Space page. """
 
-    add_habit_btn: WebElement
+    add_habit_button: WebElement
     image: WebElement
     title: WebElement
     description: WebElement
@@ -20,7 +21,7 @@ class MySpaceHabitsTabPage(MySpaceBasePage):
         "image": (By.CSS_SELECTOR, ".picture img"),
         "title": (By.CSS_SELECTOR, ".description__title h2"),
         "description": (By.CSS_SELECTOR, ".description__advise p"),
-        "add_habit_btn": (By.ID, "create-button-add-new-habit")
+        "add_habit_button": (By.ID, "create-button-add-new-habit")
     }
 
     @override
@@ -47,3 +48,8 @@ class MySpaceHabitsTabPage(MySpaceBasePage):
         """
         src = self.image.get_attribute("src") if self.image else None
         return src.strip() if src else None
+
+    @allure.step("Click Add Habit button")
+    def click_add_habit(self):
+        self.add_habit_button.click()
+        return self
