@@ -1,4 +1,4 @@
-# greencity_selenium_py
+# greencity + selenium + python
 
 Selenium + pytest UI test suite for the GreenCity web app.
 
@@ -64,3 +64,4 @@ If you use Allure, you can generate a report after a test run:
 pytest -q --alluredir=allure-results
 allure serve allure-results
 ```
+
