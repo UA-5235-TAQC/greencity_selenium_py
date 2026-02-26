@@ -6,10 +6,11 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from components.footer_component import FooterComponent
-from components.header_component import HeaderComponent
+from components.base_page.footer_component import FooterComponent
+from components.base_page.header_component import HeaderComponent
 from data.config import Config
-from utils.page_factory import (PageFactory, LocatorsTable, By)
+from utils.page_factory import (PageFactory, LocatorsTable)
+from selenium.webdriver.common.by import By
 
 
 class BasePage(PageFactory):
@@ -28,6 +29,7 @@ class BasePage(PageFactory):
     }
 
     def __init__(self, driver):
+        """ Initialize the base page with a WebDriver instance and merge all declared locators. """
         all_locators = {}
         for cls in reversed(self.__class__.mro()):
             if hasattr(cls, 'locators'):
@@ -84,11 +86,3 @@ class BasePage(PageFactory):
     def wait_until_visible(self, element: WebElement, timeout: int = Config.EXPLICITLY_WAIT) -> WebElement:
         """ Waits for the element to become visible on the page. """
         return WebDriverWait(self.driver, timeout).until(EC.visibility_of(element))
-
-
-    def clear_element_by_keyboard(self, element: WebElement):
-        """Internal helper to clear the content editor using keyboard shortcuts."""
-        element.send_keys(Keys.CONTROL + "a")
-        element.send_keys(Keys.BACKSPACE)
-        return self
-

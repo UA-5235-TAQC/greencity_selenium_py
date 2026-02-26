@@ -13,7 +13,7 @@ import allure
 from enums.language import Language
 from utils.page_factory import LocatorsTable
 
-from components.profile_dropdown_component import ProfileDropdownComponent
+from components.base_page.profile_dropdown_component import ProfileDropdownComponent
 
 
 class HeaderComponent(BaseComponent):
@@ -27,7 +27,7 @@ class HeaderComponent(BaseComponent):
     search_btn: WebElement
     language_dropdown: WebElement
     user_name: WebElement
-    user_dropdown: WebElement
+    user_dropdown: ProfileDropdownComponent
 
     auth_modal_sign_in: SignInModal
     auth_modal_sign_up: SignUpModal
@@ -41,7 +41,7 @@ class HeaderComponent(BaseComponent):
         "search_btn": (By.CSS_SELECTOR, "li.search-icon"),
         "language_dropdown": (By.CSS_SELECTOR, "ul.header_lang-switcher-wrp"),
         "user_name": (By.CSS_SELECTOR, ".body-2"),
-        "user_dropdown": (By.CSS_SELECTOR, "ul.dropdown-list"),
+        "user_dropdown": (By.CSS_SELECTOR, "ul.dropdown-list", ProfileDropdownComponent),
         "auth_modal_sign_in": (By.XPATH, "//app-auth-modal", SignInModal),
         "auth_modal_sign_up": (By.XPATH, "//app-auth-modal", SignUpModal)
     }
@@ -60,9 +60,9 @@ class HeaderComponent(BaseComponent):
         from pages.news_page import NewsPage
         return NewsPage(self.driver).wait_until_opened()
 
-
     @allure.step("Click 'Sign In' link in header")
     def click_sign_in_link(self) -> SignInModal:
+        """ Click on the Sign In link in the header. """
         self.sign_in.click()
         return self.auth_modal_sign_in
 

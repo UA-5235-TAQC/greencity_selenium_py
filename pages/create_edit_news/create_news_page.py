@@ -15,11 +15,6 @@ class CreateNewsPage(CreateEditNewsPage):
                         "//button[@type='submit' and contains(@class,'primary-global-button')]")
     }
 
-    @allure.step("Click Publish button")
-    def click_publish(self):
-        """ Click Publish button. """
-        self.publish_btn.click()
-
     @allure.step("Check if Publish button is visible")
     def is_publish_button_visible(self) -> bool:
         """Checks if the Publish button is displayed on the page."""
@@ -53,12 +48,12 @@ class CreateNewsPage(CreateEditNewsPage):
         self.enter_title(title)
         self.select_tags(tags)
 
-        self.content_root.enter_content(content)
+        self.content_component.enter_content(content)
 
         if source:
             self.enter_source(source)
 
         if image_path:
-            self.image_root.upload_image(image_path).submit_crop()
+            self.image_component.upload_image(image_path).submit_crop()
 
         return self

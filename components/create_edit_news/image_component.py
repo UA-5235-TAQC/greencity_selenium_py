@@ -1,6 +1,7 @@
 import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
+
 from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable, ElementNotFoundException
 
@@ -31,7 +32,6 @@ class ImageComponent(BaseComponent):
         "cancel_cropper_btn": (By.CSS_SELECTOR, "div.cropper-buttons button.secondary-global-button"),
         "submit_cropper_btn": (By.CSS_SELECTOR, "div.cropper-buttons button.primary-global-button")
     }
-
 
     @allure.step("Check if Cancel button in image cropper is visible")
     def is_cancel_cropper_button_visible(self) -> bool:

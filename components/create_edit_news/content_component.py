@@ -1,14 +1,16 @@
-import allure
 import re
+
+import allure
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webelement import WebElement
+
 from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable, ElementNotFoundException
+from utils.web_element_utils import clear_element_by_keyboard
 
 
 class ContentComponent(BaseComponent):
-    """Component representing the Rich Text Editor (Quill) for news content."""
+    """ Component representing the news content editor."""
 
     content_editor: WebElement
     content_toolbar: WebElement
@@ -22,17 +24,10 @@ class ContentComponent(BaseComponent):
         "content_message": (By.CSS_SELECTOR, ".title-wrapper p.field-info")
     }
 
-
-    def _clear_element_by_keyboard(self, element: WebElement):
-        """Internal helper to clear the content editor using keyboard shortcuts."""
-        element.send_keys(Keys.CONTROL + "a")
-        element.send_keys(Keys.BACKSPACE)
-        return self
-
     @allure.step("Clear content text")
     def clear_content(self):
         """Clears all text from the rich text editor."""
-        self._clear_element_by_keyboard(self.content_editor)
+        clear_element_by_keyboard(self.content_editor)
         return self
 
     @allure.step("Clear and enter content text: {text}")
@@ -120,7 +115,7 @@ class ContentComponent(BaseComponent):
 
         number = int(match.group())
         # if content length lower than 20, massage format is "Not enough characters. Left: X "
-        if "Left"  in text:
+        if "Left" in text:
             return 20 - number
 
         return number

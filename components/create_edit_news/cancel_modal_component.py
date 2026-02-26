@@ -1,8 +1,7 @@
 import allure
-from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
-from utils.page_factory import LocatorsTable, By
+from selenium.webdriver.common.by import By
 from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable
 from pages.ubs_courier_page import UbsCourierPage
@@ -29,32 +28,38 @@ class CancelModalComponent(BaseComponent):
 
     @allure.step("Check cancel modal is visible")
     def is_visible(self) -> bool:
+        """ Check cancel modal is visible. """
         return self.warning_title.is_displayed()
 
     @allure.step("Wait until cancel modal is visible")
     def wait_until_visible(self):
+        """ Wait until cancel modal is visible. """
         _ = self.warning_title
         return self
 
     @allure.step("Get cancel modal message text")
     def get_message(self) -> str:
-        """Returns the text content of the warning message."""
+        """ Returns the warning message text. """
         return self.message_container.text.strip()
 
     @allure.step("Get warning title text")
     def get_warning_title_text(self) -> str:
+        """ Get warning title text. """
         return self.warning_title.text.strip()
 
     @allure.step("Get warning subtitle text")
     def get_warning_subtitle_text(self) -> str:
+        """ Get warning subtitle text. """
         return self.warning_subtitle.text.strip()
 
     @allure.step("Get Yes Cancel button text")
     def get_yes_cancel_button_text(self) -> str:
+        """ Get Yes Cancel button text. """
         return self.yes_cancel_btn.text.strip()
 
     @allure.step("Get Continue Editing button text")
     def get_continue_editing_button_text(self) -> str:
+        """ Get Continue Editing button text. """
         return self.continue_editing_btn.text.strip()
 
     @allure.step("Click 'Yes, cancel' button in cancel modal")
