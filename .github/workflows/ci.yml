@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
   pull_request:
-    types: [ opened, synchronize, reopened, ready_for_review ]
+    types: [opened, synchronize, reopened, ready_for_review]
     branches: [ main ]
 
 permissions:
@@ -13,7 +13,6 @@ permissions:
   contents: write
 
 jobs:
-
   pytest-and-report:
     if: github.event.pull_request.draft == false || github.event_name == 'push'
     runs-on: ubuntu-latest
@@ -36,17 +35,16 @@ jobs:
         run: |
           pytest -v
         env:
-          BASE_GREEN_CITY_API_URL: { { secrets.BASE_GREEN_CITY_API_URL } }
-          BASE_GREEN_CITY_USER_API_URL: { { secrets.BASE_GREEN_CITY_USER_API_URL } }
-          BASE_UI_GREEN_CITY_URL: { { secrets.BASE_UI_GREEN_CITY_URL } }
-          HEADLESS_MODE: { { secrets.HEADLESS_MODE } }
-          IMPLICITLY_WAIT: { { secrets.IMPLICITLY_WAIT } }
-          USER_EMAIL: { { secrets.USER_EMAIL } }
-          USER_ID: { { secrets.USER_ID } }
-          USER_LOCATION: { { secrets.USER_LOCATION } }
-          USER_NAME: { { secrets.USER_NAME } }
-          USER_PASSWORD: { { secrets.USER_PASSWORD } }
-
+          BASE_GREEN_CITY_API_URL: ${{ secrets.BASE_GREEN_CITY_API_URL }}
+          BASE_GREEN_CITY_USER_API_URL: ${{ secrets.BASE_GREEN_CITY_USER_API_URL }}
+          BASE_UI_GREEN_CITY_URL: ${{ secrets.BASE_UI_GREEN_CITY_URL }}
+          HEADLESS_MODE: ${{ secrets.HEADLESS_MODE }}
+          IMPLICITLY_WAIT: ${{ secrets.IMPLICITLY_WAIT }}
+          USER_EMAIL: ${{ secrets.USER_EMAIL }}
+          USER_ID: ${{ secrets.USER_ID }}
+          USER_LOCATION: ${{ secrets.USER_LOCATION }}
+          USER_NAME: ${{ secrets.USER_NAME }}
+          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
 
       - name: Get Allure history
         uses: actions/checkout@v4
@@ -154,6 +152,6 @@ jobs:
         with:
           message: |
             📊 **Allure Test Report for PR-${{ github.event.number }}**
-            Ви можете переглянути звіт за посиланням:
+            You can view the report at the following link:
             https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr-${{ github.event.number }}/
           comment_tag: allure-report-link
