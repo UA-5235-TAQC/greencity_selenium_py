@@ -1,46 +1,64 @@
-import re
+from typing import List
+import allure
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchElementException
 from pages.my_space.my_space_base_page import MySpaceBasePage
+from utils.page_factory import LocatorsTable
+from utils.web_element_utils import get_int_from_text
 
 class MySpaceNewsTabPage(MySpaceBasePage):
 
-    _PAGE_TITLE = (By.CSS_SELECTOR, ".header app-set-count")
-    _NEWS_LIST = (By.CSS_SELECTOR, "ul.news-list > li")
-    _TAGS = (By.CSS_SELECTOR, ".tag-button .text")
-    _ADD_NEWS_BUTTON = (By.ID, "create-button-news")
-    _NEWS_COUNT_LABEL = (By.CSS_SELECTOR, ".header app-set-count span.ng-star-inserted")
-    _FAVOURITES_BUTTON = (By.CSS_SELECTOR, ".buttons-wrapper .favourites")
+    page_title: WebElement
+    add_news_button: WebElement
+    favourites_button: WebElement
+    news_count_label: WebElement
+    news_items: List[WebElement]
+    tags: List[WebElement]
 
+    locators: LocatorsTable = {
+        "page_title": (By.CSS_SELECTOR, ".header app-set-count"),
+        "add_news_button": (By.ID, "create-button-news"),
+        "favourites_button": (By.CSS_SELECTOR, ".buttons-wrapper .favourites"),
+        "news_count_label": (By.CSS_SELECTOR, ".header app-set-count span.ng-star-inserted"),
+        "news_items": (By.CSS_SELECTOR, "ul.news-list > li"),
+        "tags": (By.CSS_SELECTOR, "button.tag-button"),
+    }
+
+    @allure.step("Get page title")
     def get_page_title(self) -> str:
-        el = self.wait.until(EC.visibility_of_element_located(self._PAGE_TITLE))
-        return el.text.split("\n")[0].strip()
+        return self.page_title.text.split("\n")[0].strip()
 
-    def get_news_list(self):
-        return self.driver.find_elements(*self._NEWS_LIST)
+    @allure.step("Get news list")
+    def get_news_list(self) -> List[WebElement]:
+        return self.news_items
 
-    def get_all_tags(self):
-        tags = self.driver.find_elements(*self._TAGS)
-        return [t.text.strip() for t in tags if t.text.strip()]
+    @allure.step("Get all tags")
+    def get_all_tags(self) -> List[str]:
+        tags_list = []
+        for tag in self.tags:
+            text = tag.text.strip()
+            if text:
+                tags_list.append(text)
+        return tags_list
 
+    @allure.step("Filter by tag: {tag}")
     def filter_by_tag(self, tag: str):
-        for t in self.driver.find_elements(*self._TAGS):
-            self.wait.until(EC.visibility_of(t))
+        for t in self.tags:
             if t.text.strip() == tag:
                 t.click()
                 return self
-        raise NoSuchElementException(f"Tag '{tag}' not found")
+        raise ValueError(f"Tag '{tag}' not found")
 
+    @allure.step("Click Add News button")
     def click_add_news(self):
-        self.wait.until(EC.element_to_be_clickable(self._ADD_NEWS_BUTTON)).click()
+        self.add_news_button.click()
         return self
 
+    @allure.step("Get news count")
     def get_news_count(self) -> int:
-        text = self.wait.until(EC.visibility_of_element_located(self._NEWS_COUNT_LABEL)).text
-        digits = re.sub(r"\D+", "", text)
-        return int(digits) if digits else 0
+        return get_int_from_text(self.news_count_label)
 
+    @allure.step("Click Favourites button")
     def click_favourites(self):
-        self.wait.until(EC.element_to_be_clickable(self._FAVOURITES_BUTTON)).click()
+        self.favourites_button.click()
         return self
