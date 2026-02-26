@@ -1,9 +1,12 @@
 from typing import List
+
 import allure
-from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
+
 from pages.my_space.my_space_base_page import MySpaceBasePage
 from utils.page_factory import LocatorsTable
+
 
 class MySpaceEventsTabPage(MySpaceBasePage):
     events_header: WebElement
