@@ -1,0 +1,159 @@
+name: PR Lint and Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    types: [ opened, synchronize, reopened, ready_for_review ]
+    branches: [ main ]
+
+permissions:
+  pull-requests: write
+  checks: write
+  contents: write
+
+jobs:
+
+  pytest-and-report:
+    if: github.event.pull_request.draft == false || github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests
+        run: |
+          pytest -v
+        env:
+          BASE_GREEN_CITY_API_URL: { { secrets.BASE_GREEN_CITY_API_URL } }
+          BASE_GREEN_CITY_USER_API_URL: { { secrets.BASE_GREEN_CITY_USER_API_URL } }
+          BASE_UI_GREEN_CITY_URL: { { secrets.BASE_UI_GREEN_CITY_URL } }
+          HEADLESS_MODE: { { secrets.HEADLESS_MODE } }
+          IMPLICITLY_WAIT: { { secrets.IMPLICITLY_WAIT } }
+          USER_EMAIL: { { secrets.USER_EMAIL } }
+          USER_ID: { { secrets.USER_ID } }
+          USER_LOCATION: { { secrets.USER_LOCATION } }
+          USER_NAME: { { secrets.USER_NAME } }
+          USER_PASSWORD: { { secrets.USER_PASSWORD } }
+
+
+      - name: Get Allure history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Allure Report action from marketplace
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
+        with:
+          allure_results: allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
+          subfolder: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.number) || 'main' }}
+
+      - name: Fix ownership
+        if: always()
+        run: sudo chown -R $USER:$USER allure-history
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Fail PR if tests failed
+        if: always() && github.event_name == 'pull_request'
+        run: |
+          SUMMARY_FILE="allure-history/pr-${{ github.event.number }}/widgets/summary.json"
+
+          if [ -f "$SUMMARY_FILE" ]; then
+            FAILED=$(jq '.statistic.failed' "$SUMMARY_FILE")
+            echo "Failed tests: $FAILED"
+
+            if [ "$FAILED" -gt 0 ]; then
+              echo "❌ Tests failed"
+              exit 1
+            else
+              echo "✅ All tests passed"
+            fi
+          else
+            echo "⚠️ Summary file not found. Skipping fail check."
+          fi
+
+      - name: Generate simple index.html with report links
+        if: always()
+        run: |
+          REPORT_DIR="allure-history"
+          INDEX_FILE="$REPORT_DIR/index.html"
+
+          echo "<!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset='UTF-8'>
+            <title>Allure Reports</title>
+            <style>
+              body { font-family: Arial; padding: 40px; background: #f4f6f9; }
+              h1 { color: #2c3e50; }
+              ul { list-style: none; padding: 0; }
+              li { margin-bottom: 10px; }
+              a {
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: bold;
+                color: #3498db;
+              }
+              a:hover { text-decoration: underline; }
+              .date { color: gray; margin-bottom: 20px; }
+            </style>
+          </head>
+          <body>
+          <h1>📊 Allure Reports</h1>
+          <div class='date'>Last updated: $(date)</div>
+          <ul>" > $INDEX_FILE
+
+          # 1️⃣ Спочатку додаємо main (якщо існує)
+          if [ -d "$REPORT_DIR/main" ]; then
+            echo "<li><a href='./main/'>main</a></li>" >> "$INDEX_FILE"
+          fi
+
+          # 2️⃣ Додаємо всі pr-* папки (без .git і main)
+          find "$REPORT_DIR" -maxdepth 1 -type d -name "pr-*" \
+            -printf '%T@ %f\n' 2>/dev/null | \
+            sort -nr | \
+            cut -d' ' -f2- | \
+            while read dir; do
+              echo "<li><a href='./$dir/'>$dir</a></li>" >> "$INDEX_FILE"
+            done
+
+          echo "</ul></body></html>" >> "$INDEX_FILE"
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
+
+      - name: Post link to Allure Report
+        if: always() && github.event_name == 'pull_request'
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            📊 **Allure Test Report for PR-${{ github.event.number }}**
+            Ви можете переглянути звіт за посиланням:
+            https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr-${{ github.event.number }}/
+          comment_tag: allure-report-link

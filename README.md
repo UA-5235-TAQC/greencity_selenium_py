@@ -2,6 +2,10 @@
 
 Selenium + pytest UI test suite for the GreenCity web app.
 
+<a href="https://UA-5235-TAQC.github.io/greencity_selenium_py/main" target="_blank">
+  <img src="https://img.shields.io/badge/Allure%20Report-main-green" alt="Allure Report">
+</a>
+
 ## Project layout
 - `pages/`: Page Object classes (e.g., `home_page.py`, `news_page.py`).
 - `components/`: Reusable UI components (e.g., header, base component).
