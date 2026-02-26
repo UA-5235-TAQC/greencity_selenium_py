@@ -6,7 +6,7 @@ from selenium.webdriver.remote.webelement import WebElement
 
 from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable, ElementNotFoundException
-from utils.web_element_utils import clear_element_by_keyboard, enter_text
+from utils.web_element_utils import clear_element_by_keyboard
 
 
 class ContentComponent(BaseComponent):
@@ -26,14 +26,15 @@ class ContentComponent(BaseComponent):
 
     @allure.step("Clear content text")
     def clear_content(self):
-        """ Clear text inside the content editor. """
+        """Clears all text from the rich text editor."""
         clear_element_by_keyboard(self.content_editor)
         return self
 
     @allure.step("Clear and enter content text: {text}")
     def enter_content(self, text: str):
-        """ Clear editor and enter new content text. """
-        enter_text(self.content_editor, text)
+        """Clears the editor and enters new content text."""
+        self.clear_content()
+        self.content_editor.send_keys(text)
         return self
 
     @allure.step("Enter content text without clearing: {text}")
@@ -113,7 +114,8 @@ class ContentComponent(BaseComponent):
             return 0
 
         number = int(match.group())
-        if "Left"  in text:
+        # if content length lower than 20, massage format is "Not enough characters. Left: X "
+        if "Left" in text:
             return 20 - number
 
         return number

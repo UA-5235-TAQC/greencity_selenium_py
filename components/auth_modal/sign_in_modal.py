@@ -49,10 +49,14 @@ class SignInModal(ModalBasePage):
         return SignUpModal(self.auth_modal)
 
     @allure.step("Enter email and password values")
-    def sign_in(self, *, email: str, password: str) -> None:
-        """ Enter email and password values. """
-        self.enter_email(email) \
-            .enter_password(password)
+    def sign_in(self, email: str, password: str) -> None:
+        self.enter_email(email)
+        self.enter_password(password)
+        self.click_submit()
+
+        from pages.my_space.my_space_habits_tab_page import MySpaceHabitsTabPage
+        habits_page = MySpaceHabitsTabPage(self.driver)
+        habits_page.wait_until_opened()
 
     @allure.step("Get password field value")
     def get_password_field_value(self) -> str:
@@ -69,9 +73,6 @@ class SignInModal(ModalBasePage):
     def is_form_valid(self) -> bool:
         """ Check if entered data is valid. """
         self._trigger_errors()
-        status = [
-            self.is_invalid_email_error_displayed(),
-            self.is_invalid_password_error_displayed(),
-        ]
+        status = [self.is_invalid_email_error_displayed(), self.is_invalid_password_error_displayed(), ]
         is_valid = all(x == False for x in status)
         return is_valid

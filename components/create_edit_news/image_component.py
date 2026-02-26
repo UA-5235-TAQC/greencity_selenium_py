@@ -7,7 +7,7 @@ from utils.page_factory import LocatorsTable, ElementNotFoundException
 
 
 class ImageComponent(BaseComponent):
-    """ Component representing the news image component."""
+    """Component for handling image uploading, cropping, and previewing."""
 
     upload_input: WebElement
     drop_zone: WebElement

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Tuple
+from typing import Tuple, Any
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
@@ -29,6 +29,9 @@ class HeaderComponent(BaseComponent):
     user_name: WebElement
     user_dropdown: ProfileDropdownComponent
 
+    auth_modal_sign_in: SignInModal
+    auth_modal_sign_up: SignUpModal
+
     locators: LocatorsTable = {
         "logo": (By.CSS_SELECTOR, 'a.header_logo'),
         "news_link": (By.XPATH, "//a[contains(@href, '#/greenCity/news')]"),
@@ -38,7 +41,9 @@ class HeaderComponent(BaseComponent):
         "search_btn": (By.CSS_SELECTOR, "li.search-icon"),
         "language_dropdown": (By.CSS_SELECTOR, "ul.header_lang-switcher-wrp"),
         "user_name": (By.CSS_SELECTOR, ".body-2"),
-        "user_dropdown": (By.CSS_SELECTOR, "ul.dropdown-list", ProfileDropdownComponent)
+        "user_dropdown": (By.CSS_SELECTOR, "ul.dropdown-list", ProfileDropdownComponent),
+        "auth_modal_sign_in": (By.XPATH, "//app-auth-modal", SignInModal),
+        "auth_modal_sign_up": (By.XPATH, "//app-auth-modal", SignUpModal)
     }
 
     @allure.step("Click header logo")
@@ -59,8 +64,12 @@ class HeaderComponent(BaseComponent):
     def click_sign_in_link(self) -> SignInModal:
         """ Click on the Sign In link in the header. """
         self.sign_in.click()
-        modal = self.driver.find_element(*self.__auth_modal_locator)
-        return SignInModal(modal)
+        return self.auth_modal_sign_in
+
+    @allure.step("Click 'Sign Up' link in header")
+    def click_sign_up_link(self) -> SignUpModal:
+        self.sign_up.click()
+        return self.auth_modal_sign_up
 
     @allure.step("Click 'My Space' link in header")
     def click_my_space_link(self) -> "MySpaceHabitsTabPage":
@@ -71,10 +80,9 @@ class HeaderComponent(BaseComponent):
 
     @allure.step("Click 'Sign Up' link in header")
     def click_sign_up_link(self) -> SignUpModal:
-        """Click on the Sign Up link in the header."""
+        """Click on the Sign Up link and return SignUpModal."""
         self.sign_up.click()
-        modal = self.driver.find_element(*self.__auth_modal_locator)
-        return SignUpModal(modal)
+        return self.auth_modal_sign_up
 
     @allure.step("Click search button in header")
     def click_search_btn(self):

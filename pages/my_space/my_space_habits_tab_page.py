@@ -1,9 +1,9 @@
 from typing import Optional, override
-from typing import Optional, override
 
 import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support.wait import WebDriverWait
 
 from pages.my_space.my_space_base_page import MySpaceBasePage
 from utils.page_factory import LocatorsTable
@@ -52,4 +52,13 @@ class MySpaceHabitsTabPage(MySpaceBasePage):
     @allure.step("Click Add Habit button")
     def click_add_habit(self):
         self.add_habit_button.click()
+        return self
+
+    @allure.step("Wait until My Space Habits tab is fully opened")
+    def wait_until_opened(self, timeout=10) -> "MySpaceHabitsTabPage":
+        """ Wait until My Space Habits tab is fully opened. """
+        WebDriverWait(self.driver, timeout).until(
+            lambda d: self.is_page_opened(),
+            message=f"Page {self.__class__.__name__} after {timeout} seconds is not opened"
+        )
         return self
