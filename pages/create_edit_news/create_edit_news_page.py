@@ -93,7 +93,12 @@ class CreateEditNewsPage(BasePage):
             target = next((t for t in self.tags if t.get_name().lower() == name.lower()), None)
             if target and not target.is_selected():
                 target.click_tag()
-        return self
+
+    @allure.step("Clear all selected tags")
+    def select_tag(self, tag_name: str):
+        for tag in self.tags:
+            if tag.get_name().lower() == tag_name.lower():
+                tag.click_tag()
 
     @allure.step("Unselect tag: {tag_name}")
     def unselect_tag(self, tag_name: str):
@@ -150,13 +155,20 @@ class CreateEditNewsPage(BasePage):
         self.driver.refresh()
         return self
 
-    def get_title_input(self):
-        return self.title_input
+    @allure.step("Get title characters count")
+    def get_title_characters_count(self) -> int:
+        return int(self.title_character_counter.text.split("/")[0])
 
-    def clear_title_field(self):
-        self.title_input.clear()
-        return self
-
-
+    @allure.step("Check is title valid")
     def is_title_valid(self) -> bool:
-        self.title_input.get_attribute("ng-invalid")
+        classes = self.title_character_counter.get_attribute("class")
+        return "ng-valid" in classes
+
+    @allure.step("Check is title invalid")
+    def is_title_invalid(self) -> bool:
+        classes = self.title_input.get_attribute("class")
+        return "ng-invalid" in classes
+
+    @allure.step("Get tags elements list")
+    def get_tags(self) -> List[TagItem]:
+        return self.tags
