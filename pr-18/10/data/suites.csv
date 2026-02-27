@@ -1,0 +1,21 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Checks that the count of recommended cards equals 3","0","Verify that 3 recommended news cards are displayed","tests.ui","Fri Feb 27 01:55:46 UTC 2026","skipped","Fri Feb 27 01:55:46 UTC 2026","TestNewsDetails","test_news_details","",""
+"
+    Test publishing news with predefined NewsTestData for one or multiple tags.
+    Language param selects English ('en') or Ukrainian ('ua') data.
+    ","1895","test_tag_selection[chrome-en]","tests.ui","Fri Feb 27 01:55:25 UTC 2026","passed","Fri Feb 27 01:55:27 UTC 2026","","tag_selection_test","",""
+"","0","Verify like functionality","tests.ui","Fri Feb 27 01:55:46 UTC 2026","skipped","Fri Feb 27 01:55:46 UTC 2026","TestNewsDetails","test_news_details","",""
+"","420","test_base_navigate[chrome]","tests.ui","Fri Feb 27 01:55:50 UTC 2026","passed","Fri Feb 27 01:55:51 UTC 2026","","test_stub","",""
+"","0","Verify navigation and UI state","tests.ui","Fri Feb 27 01:55:46 UTC 2026","skipped","Fri Feb 27 01:55:46 UTC 2026","TestNewsDetails","test_news_details","",""
+"","0","Verify 'Recommended News' section title","tests.ui","Fri Feb 27 01:55:46 UTC 2026","skipped","Fri Feb 27 01:55:46 UTC 2026","TestNewsDetails","test_news_details","",""
+"
+    Test publishing news with predefined NewsTestData for one or multiple tags.
+    Language param selects English ('en') or Ukrainian ('ua') data.
+    ","1706","test_tag_selection[chrome-ua]","tests.ui","Fri Feb 27 01:55:32 UTC 2026","passed","Fri Feb 27 01:55:34 UTC 2026","","tag_selection_test","",""
+"","4","test_greencity_is_work[chrome]","tests.ui","Fri Feb 27 01:55:48 UTC 2026","passed","Fri Feb 27 01:55:48 UTC 2026","","test_stub","",""
+"Test that selecting a fourth tag is blocked (max 3 tags selectable).","1633","test_four_tags_selection_blocked[chrome]","tests.ui","Fri Feb 27 01:55:18 UTC 2026","passed","Fri Feb 27 01:55:20 UTC 2026","","tag_selection_test","",""
+"","2299","test_title_field_validation[chrome]","tests.ui.create_news_tests","Fri Feb 27 01:55:11 UTC 2026","passed","Fri Feb 27 01:55:13 UTC 2026","","title_field_validation_test","",""
+"","0","Verify news details elements and content","tests.ui","Fri Feb 27 01:55:46 UTC 2026","skipped","Fri Feb 27 01:55:46 UTC 2026","TestNewsDetails","test_news_details","",""
+"","0","Verify navigation to a recommended news card","tests.ui","Fri Feb 27 01:55:46 UTC 2026","skipped","Fri Feb 27 01:55:46 UTC 2026","TestNewsDetails","test_news_details","",""
+"Test creating news with exactly three tags.","1416","test_three_tags_selection[chrome]","tests.ui","Fri Feb 27 01:55:44 UTC 2026","passed","Fri Feb 27 01:55:46 UTC 2026","","tag_selection_test","",""
+"Test creating news with a single tag.","1269","test_single_tag_selection[chrome]","tests.ui","Fri Feb 27 01:55:38 UTC 2026","passed","Fri Feb 27 01:55:40 UTC 2026","","tag_selection_test","",""
