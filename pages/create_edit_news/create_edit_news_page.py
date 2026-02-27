@@ -10,7 +10,7 @@ from components.create_edit_news.image_component import ImageComponent
 from components.tag_component import TagItem
 from pages.base_page import BasePage
 from pages.create_edit_news.news_preview_page import NewsPreviewPage
-from utils.page_factory import LocatorsTable
+from utils.page_factory import ElementNotFoundException, LocatorsTable
 from selenium.webdriver.remote.webelement import WebElement
 
 from utils.web_element_utils import enter_text, clear_element_by_keyboard
@@ -61,7 +61,10 @@ class CreateEditNewsPage(BasePage):
     @allure.step("Check if Create/Edit News page is opened")
     def is_page_opened(self) -> bool:
         """Check if the Create/Edit News is visible."""
-        return self.title_input.is_displayed()
+        try:
+            return self.title_input.is_displayed()
+        except ElementNotFoundException:
+            return False
 
     @allure.step("Enter news title: {title}")
     def enter_title(self, title: str):
