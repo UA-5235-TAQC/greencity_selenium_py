@@ -22,7 +22,7 @@ class TestNewsDetails:
         4. Verify navigation back to the creation page.
     """)
     @allure.testcase("https://github.com/UA-5235-TAQC/greencity_selenium5235/issues/10")
-    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.severity(allure.severity_level.MINOR)
     def test_news_preview_check(self, get_driver):
         create_news_page = CreateNewsPage(get_driver)
         news_page = NewsPage(get_driver)

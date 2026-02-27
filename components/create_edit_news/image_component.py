@@ -51,7 +51,8 @@ class ImageComponent(BaseComponent):
     @allure.step("Upload image from file absolute path: {file_absolute_path}")
     def upload_image(self, file_absolute_path: str):
         """Uploads an image file by sending the file path to the hidden file input."""
-        self.upload_input.send_keys(file_absolute_path)
+        input_element = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
+        input_element.send_keys(file_absolute_path)
         return self
 
     @allure.step("Get image input field value")
@@ -97,7 +98,10 @@ class ImageComponent(BaseComponent):
     @allure.step("Check if uploaded image (blob:) is displayed")
     def is_uploaded_image_present(self) -> bool:
         """Checks if the displayed image is a blob URL (indicating a successful local upload)."""
-        return self._has_image_src_prefix(self.uploaded_image, "blob:")
+        try:
+            return self._has_image_src_prefix(self.uploaded_image, "blob:")
+        except (ElementNotFoundException, Exception):
+            return False
 
     @allure.step("Click Submit crop")
     def submit_crop(self):
