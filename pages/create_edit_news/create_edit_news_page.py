@@ -96,6 +96,7 @@ class CreateEditNewsPage(BasePage):
 
     @allure.step("Clear all selected tags")
     def select_tag(self, tag_name: str):
+        """ Selects a tag by its name. """
         for tag in self.tags:
             if tag.get_name().lower() == tag_name.lower():
                 tag.click_tag()
@@ -157,18 +158,38 @@ class CreateEditNewsPage(BasePage):
 
     @allure.step("Get title characters count")
     def get_title_characters_count(self) -> int:
+        """Returns the number of characters currently entered in the title field."""
         return int(self.title_character_counter.text.split("/")[0])
 
     @allure.step("Check is title valid")
     def is_title_valid(self) -> bool:
+        """Checks if the title field is valid based on its CSS class."""
         classes = self.title_character_counter.get_attribute("class")
         return "ng-valid" in classes
 
     @allure.step("Check is title invalid")
     def is_title_invalid(self) -> bool:
+        """Checks if the title field is invalid based on its CSS class."""
         classes = self.title_input.get_attribute("class")
         return "ng-invalid" in classes
 
     @allure.step("Get tags elements list")
     def get_tags(self) -> List[TagItem]:
+        """Returns the list of TagItem components available on the page."""
         return self.tags
+
+    @allure.step("Enter content field")
+    def enter_content(self, content: str):
+        """Enters text into the news content field using the content component."""
+        self.content_component.enter_content(content)
+        return self
+
+    @allure.step("Check content field is not valid")
+    def is_content_field_valid(self) -> bool:
+        """Checks if the content field meets validation requirements."""
+        return self.content_component.is_content_field_valid()
+
+    @allure.step("Check content field invalid")
+    def is_content_field_invalid(self) -> bool:
+        """Checks if the content field is marked as invalid."""
+        return self.content_component.is_content_invalid()
