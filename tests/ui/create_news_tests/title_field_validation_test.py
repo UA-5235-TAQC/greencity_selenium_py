@@ -13,7 +13,7 @@ TAG : TagItem = TagItem(EcoNewsTag)
 def login_user(driver):
     home_page = HomePage(driver).open()
     sign_in_modal = home_page.header.click_sign_in_link()
-    sign_in_modal.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
+    sign_in_modal.sign_in()
 
 def test_title_field_validation(get_driver):
     login_user(get_driver)

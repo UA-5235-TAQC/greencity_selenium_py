@@ -8,10 +8,12 @@ from pages.news_page import NewsPage
 
 @allure.epic("UI Tests")
 @allure.feature("News Creation")
-@allure.story("News Preview Functionality")
+@allure.story("News image size validation")
 @pytest.mark.usefixtures("sign_in")
 class TestNewsImageSizeValidation:
-
+    
+    @allure.title("Validation of error message when uploading an image larger than 10MB")
+    @allure.severity(allure.severity_level.NORMAL)
     def test_image_size_validation(self, get_driver):
         create_news_page = CreateNewsPage(get_driver)
         news_page = NewsPage(get_driver)
