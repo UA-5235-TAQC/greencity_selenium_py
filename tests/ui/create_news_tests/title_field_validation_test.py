@@ -1,10 +1,10 @@
-import allure
 from typing import List
+
+import allure
 
 from data.config import Config
 from enums.news_tag import EcoNewsTag
 from pages.create_edit_news.create_news_page import CreateNewsPage
-from pages.home_page import HomePage
 
 NEWS_TITLE: str = "Test News"
 NEWS_CONTENT: str = "Description for test news Description for test news"

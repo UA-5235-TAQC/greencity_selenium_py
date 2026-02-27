@@ -19,6 +19,7 @@ class TagItem(BaseComponent):
 
     @allure.step("Get tag name")
     def get_name(self) -> str:
+        """Returns the tag name."""
         return self.name.text.strip()
 
     @allure.step("Verify if tag is selected")
@@ -32,4 +33,5 @@ class TagItem(BaseComponent):
 
     @allure.step("Click on tag")
     def click_tag(self):
+        """Click on tag button."""
         self.name.click()
