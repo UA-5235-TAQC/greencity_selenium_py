@@ -5,6 +5,7 @@ from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 import allure
 from selenium.webdriver.remote.webelement import WebElement
+from pages.create_edit_news.create_news_page import CreateNewsPage
 from utils.page_factory import LocatorsTable
 from utils.web_element_utils import get_int_from_text
 
@@ -98,7 +99,7 @@ class NewsPage(BasePage):
         return get_int_from_text(self.remaining_count_text)
 
     @allure.step("Click on Create News button")
-    def click_create_news(self) -> "CreateNewsPage":
+    def click_create_news(self) -> CreateNewsPage:
         """ Click the 'Create News' button and return the CreateNewsPage instance. """
         self.create_news_btn.click()
         from pages.create_edit_news.create_news_page import CreateNewsPage

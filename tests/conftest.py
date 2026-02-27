@@ -1,5 +1,8 @@
 from pytest import fixture
+import pytest
 
+from components.auth_modal.sign_in_modal import SignInModal
+from components.base_page.header_component import HeaderComponent
 from data.config import Config
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
@@ -36,3 +39,16 @@ def get_driver(request):
     yield driver
     # after test execution, quit the driver
     driver.quit()
+
+@pytest.fixture(scope="function")
+def sign_in(get_driver):
+    """ Fixture for user login before tests """
+    sign_in = SignInModal(get_driver)
+    header = HeaderComponent(get_driver)
+
+    header.click_sign_in_link()
+    sign_in.sign_in()
+    
+    yield 
+    
+    get_driver.delete_all_cookies()

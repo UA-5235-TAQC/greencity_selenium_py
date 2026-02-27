@@ -6,6 +6,7 @@ from selenium.webdriver.remote.webelement import WebElement
 from typing_extensions import override
 
 from components.auth_modal.modal_base_page import ModalBasePage
+from data.config import Config
 
 
 class SignInModal(ModalBasePage):
@@ -49,9 +50,9 @@ class SignInModal(ModalBasePage):
         return SignUpModal(self.auth_modal)
 
     @allure.step("Enter email and password values")
-    def sign_in(self, email: str, password: str) -> None:
-        self.enter_email(email)
-        self.enter_password(password)
+    def sign_in(self) -> None:
+        self.enter_email(Config.USER_EMAIL)
+        self.enter_password(Config.USER_PASSWORD)
         self.click_submit()
 
         from pages.my_space.my_space_habits_tab_page import MySpaceHabitsTabPage
