@@ -6,7 +6,7 @@ from selenium.webdriver.remote.webelement import WebElement
 
 from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable, ElementNotFoundException
-from utils.web_element_utils import clear_element_by_keyboard
+from utils.web_element_utils import clear_element_by_keyboard, enter_text
 
 
 class ContentComponent(BaseComponent):
@@ -33,8 +33,7 @@ class ContentComponent(BaseComponent):
     @allure.step("Clear and enter content text: {text}")
     def enter_content(self, text: str):
         """Clears the editor and enters new content text."""
-        self.clear_content()
-        self.content_editor.send_keys(text)
+        enter_text(self.content_editor, text)
         return self
 
     @allure.step("Enter content text without clearing: {text}")
@@ -114,7 +113,6 @@ class ContentComponent(BaseComponent):
             return 0
 
         number = int(match.group())
-        # if content length lower than 20, massage format is "Not enough characters. Left: X "
         if "Left" in text:
             return 20 - number
 
@@ -140,3 +138,19 @@ class ContentComponent(BaseComponent):
     def remove_first_content_chars(self, count: int):
         """Removes the specified number of characters from the start of the text."""
         return self._remove_content_chars(count, from_start=True)
+
+    @allure.step("Check if content counter is visible")
+    def is_content_counter_visible(self) -> bool:
+        """ Check if content counter is visible. """
+        try:
+            return self.content_counter.is_displayed()
+        except ElementNotFoundException:
+            return False
+
+    @allure.step("Check if content message is visible")
+    def is_content_message_visible(self) -> bool:
+        """ Check if content message is visible. """
+        try:
+            return self.content_message.is_displayed()
+        except ElementNotFoundException:
+            return False

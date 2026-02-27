@@ -51,6 +51,7 @@ class MySpaceHabitsTabPage(MySpaceBasePage):
 
     @allure.step("Click Add Habit button")
     def click_add_habit(self):
+        """ Click Add Habit button. """
         self.add_habit_button.click()
         return self
 

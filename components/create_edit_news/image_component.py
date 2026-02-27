@@ -146,3 +146,13 @@ class ImageComponent(BaseComponent):
             return self.preview_image.is_displayed()
         except ElementNotFoundException:
             return False
+
+    @allure.step("Get text of Cancel cropper button")
+    def get_cancel_cropper_text(self) -> str:
+        """Returns the visible text of the Cancel button in the cropper."""
+        return self.cancel_cropper_btn.text.strip()
+
+    @allure.step("Get text of Submit cropper button")
+    def get_submit_cropper_text(self) -> str:
+        """Returns the visible text of the Submit button in the cropper."""
+        return self.submit_cropper_btn.text.strip()

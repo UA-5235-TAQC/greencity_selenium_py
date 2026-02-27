@@ -66,11 +66,6 @@ class HeaderComponent(BaseComponent):
         self.sign_in.click()
         return self.auth_modal_sign_in
 
-    @allure.step("Click 'Sign Up' link in header")
-    def click_sign_up_link(self) -> SignUpModal:
-        self.sign_up.click()
-        return self.auth_modal_sign_up
-
     @allure.step("Click 'My Space' link in header")
     def click_my_space_link(self) -> "MySpaceHabitsTabPage":
         """ Click on the My Space link in the header. """

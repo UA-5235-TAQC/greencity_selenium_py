@@ -1,14 +1,25 @@
 from pytest import fixture
+import allure
 
+from components.news_list_item_component import NewsListItemComponent
 from data.config import Config
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from allure_commons.types import Severity
+from typing import Generator
+from pages.create_edit_news.create_news_page import CreateNewsPage
+from pages.create_edit_news.edit_news_page import EditNewsPage
+from pages.home_page import HomePage
+from pages.news_details_page import NewsDetailsPage
+from pages.news_page import NewsPage
+from tests.utils.ui_news_test_data import NewsTestData
 
 
 @fixture(scope="function", params=["chrome"])
 def get_driver(request):
-    # before test execution, initialize the driver based on the browser parameter
+    """ Pytest fixture that initializes and provides a Selenium WebDriver instance. """
+    allure.dynamic.parameter("browser", request.param)
     browser = request.param
     headless = Config.HEADLESS_MODE
 
@@ -18,7 +29,7 @@ def get_driver(request):
         case "chrome":
             options = ChromeOptions()
             if headless:
-                options.add_argument("--headless")
+                options.add_argument("--headless=new")
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-gpu")
             options.add_argument("--window-size=1920,1080")
@@ -34,5 +45,111 @@ def get_driver(request):
     driver.get(Config.BASE_UI_GREEN_CITY_URL)
 
     yield driver
-    # after test execution, quit the driver
+
     driver.quit()
+
+
+@fixture(scope="function")
+def driver_with_login(get_driver):
+    """Fixture that logs in the user before yielding the driver."""
+
+    allure.dynamic.severity(Severity.CRITICAL)
+
+    with allure.step(f"Login as user: {Config.USER_EMAIL}"):
+        sign_in_modal = (
+            HomePage(get_driver)
+            .open()
+            .header
+            .click_sign_in_link()
+        )
+
+        sign_in_modal.sign_in()
+
+    yield get_driver
+
+
+@fixture(scope="function")
+def eco_news_page(driver_with_login) -> Generator[NewsPage, None, None]:
+    """
+    Fixture that opens the EcoNews page after login.
+    Ensures the page is fully loaded before yielding.
+    """
+    with allure.step("Open EcoNews page after login"):
+        eco_page = NewsPage(driver_with_login).open()
+        with allure.step("Verify Eco News page is opened"):
+            assert eco_page.is_page_opened(), "EcoNews page should be opened"
+    yield eco_page
+
+    with allure.step("Clear selected tags"):
+        eco_page.remove_all_selected_tags()
+
+
+@fixture(scope="function", params=["en", "ua"])
+def create_news_page(driver_with_login, request) -> CreateNewsPage:
+    """
+    Fixture: open Create News page with selected language.
+    Param `request.param` should be 'en' or 'ua'.
+    """
+    language = request.param
+    with allure.step(f"Switch language to {language.upper()} and open Create News page"):
+        header = HomePage(driver_with_login).header
+
+        if language == "en":
+            header.change_to_en()
+        elif language == "ua":
+            header.change_to_uk()
+        else:
+            raise ValueError(f"Unsupported language: {language}")
+
+        create_news_page = header.click_news_link().click_create_news()
+        with allure.step("Verify Create News page is opened"):
+            assert create_news_page.is_page_opened(), "Create News page should be opened"
+
+    return create_news_page
+
+
+@fixture(scope="function", params=["en", "ua"])
+def edit_news_page(driver_with_login, create_news_page, request) -> EditNewsPage:
+    """
+    Fixture: create a news item, open its edit page, and return EditNewsPage.
+    Param `request.param` is 'en' or 'ua'.
+    """
+    language = request.param
+    news_test_data = NewsTestData()
+
+    with allure.step(f"Apply news test data and publish news in {language.upper()}"):
+        if language == "en":
+            news_test_data.apply_to_en(create_news_page)
+        elif language == "ua":
+            news_test_data.apply_to_ua(create_news_page)
+        else:
+            raise ValueError(f"Unsupported language: {language}")
+
+        create_news_page.click_publish()
+
+    with allure.step("Open EcoNews page and get first news details"):
+        eco_news_page = NewsPage(driver_with_login)
+
+        if language == "en":
+            eco_news_page.get_header().change_to_en()
+        else:
+            eco_news_page.get_header().change_to_uk()
+
+        news_card: NewsListItemComponent = eco_news_page.get_news_card_by_index(0)
+        news_details_page: NewsDetailsPage = news_card.click_image()
+        news_details_page.wait_until_opened()
+        with allure.step("Verify news details page is opened"):
+            assert news_details_page.is_page_opened(), "News details page should be opened"
+
+        news_details_page.click_edit_button()
+        eco_news_id = news_details_page.get_news_id()
+
+    with allure.step("Open Edit News page"):
+        edit_news_page = EditNewsPage(driver_with_login, eco_news_id)
+
+        if language == "en":
+            edit_news_page.get_header().change_to_en()
+        else:
+            edit_news_page.get_header().change_to_uk()
+
+    return edit_news_page

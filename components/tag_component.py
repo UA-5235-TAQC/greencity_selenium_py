@@ -20,13 +20,16 @@ class TagItem(BaseComponent):
     @allure.step("Get tag name")
     def get_name(self) -> str:
         """ Return the visible text of the tag. """
-        return self.name.text
+        return self.name.text.strip()
 
     @allure.step("Verify if tag is selected")
     def is_selected(self) -> bool:
         """Check if the tag is selected."""
-        classes = self.close_icon.get_attribute("class")
-        return classes is not None and "global-tag-close-icon" in classes
+        try:
+            classes = self.close_icon.get_attribute("class")
+            return classes is not None and "global-tag-close-icon" in classes
+        except Exception:
+            return False
 
     @allure.step("Click on tag")
     def click_tag(self):

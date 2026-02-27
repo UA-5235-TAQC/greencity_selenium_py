@@ -32,7 +32,6 @@ class CreateNewsPage(CreateEditNewsPage):
     def click_publish(self):
         """Performs a click action on the Publish button."""
         self.publish_btn.click()
-        return self
 
     @allure.step("Get Publish button text")
     def get_publish_button_text(self) -> str:

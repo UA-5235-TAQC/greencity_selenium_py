@@ -80,15 +80,14 @@ class PageFactory:
                         f"but none are visible in context {self.__class__.__name__}"
                     )
 
-                if component_class:
+                if component_class and component_class is not WebElement:
                     return [component_class(el) for el in elements]
 
                 return elements
 
             else:
-                wait.until(EC.presence_of_element_located(locator))
                 element = wait.until(
-                    EC.visibility_of_element_located(locator)
+                    EC.presence_of_element_located(locator)
                 )
 
                 if component_class:

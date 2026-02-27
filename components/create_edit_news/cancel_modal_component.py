@@ -26,16 +26,10 @@ class CancelModalComponent(BaseComponent):
         "warning_subtitle": (By.CSS_SELECTOR, ".warning-subtitle")
     }
 
-    @allure.step("Check cancel modal is visible")
-    def is_visible(self) -> bool:
-        """ Check cancel modal is visible. """
-        return self.warning_title.is_displayed()
-
     @allure.step("Wait until cancel modal is visible")
     def wait_until_visible(self):
         """ Wait until cancel modal is visible. """
-        _ = self.warning_title
-        return self
+        return self.warning_title.is_displayed()
 
     @allure.step("Get cancel modal message text")
     def get_message(self) -> str:

@@ -48,7 +48,7 @@ class CreateEditNewsPage(BasePage):
         "title_character_counter": (By.CSS_SELECTOR, ".title-block div span.field-info"),
         "post_date": (By.CSS_SELECTOR, "div.date p:nth-of-type(1) span:last-child"),
         "author_name": (By.CSS_SELECTOR, "div.date p:nth-of-type(2) span:last-child"),
-        "cancel_modal": (By.CSS_SELECTOR, "mat-dialog-container app-warning-pop-up", CancelModalComponent)
+        "cancel_modal": (By.CSS_SELECTOR, "mat-dialog-container.mdc-dialog--open", CancelModalComponent)
     }
 
     @allure.step("Open Create News page")
@@ -62,11 +62,15 @@ class CreateEditNewsPage(BasePage):
         """Check if the Create/Edit News is visible."""
         return self.title_input.is_displayed()
 
-    @allure.step("Enter news title: {title}")
-    def enter_title(self, title: str):
-        """ Enter title into the news title input field. """
-        enter_text(self.title_input, title)
-        return self
+    @allure.step("Check if tag buttons are visible")
+    def are_tags_visible(self) -> bool:
+        """ Check if tag buttons are visible. """
+        return all(tag.root_element.is_displayed() for tag in self.tags)
+
+    @allure.step("Returns names of all tags")
+    def get_all_tags(self) -> List[str]:
+        """ Returns names of all tags. """
+        return [tag.get_name() for tag in self.tags]
 
     def _get_tag_by_name(self, tag_name: str) -> TagItem:
         """ Find tag by its name (case-insensitive). """
@@ -110,6 +114,11 @@ class CreateEditNewsPage(BasePage):
             self.unselect_tag(tag_name)
         return self
 
+    @allure.step("Check if source input is visible")
+    def is_source_visible(self) -> bool:
+        """ Check if source input is visible. """
+        return self.source_input.is_displayed()
+
     @allure.step("Enter news source: {url}")
     def enter_source(self, url: str):
         """ Enter source into the news source input field. """
@@ -122,41 +131,137 @@ class CreateEditNewsPage(BasePage):
         clear_element_by_keyboard(self.source_input)
         return self
 
-    @allure.step("Get title value")
-    def get_title_value(self) -> str:
-        """Returns the current text entered in the title field."""
-        return self.title_input.get_attribute("value")
+    @allure.step("Get source value")
+    def get_source(self) -> str:
+        """ Get source value. """
+        return (self.source_input.get_attribute("value") or "").strip()
+
+    @allure.step("Get source placeholder")
+    def get_source_placeholder(self) -> str:
+        """ Get source placeholder. """
+        return (self.source_input.get_attribute("placeholder") or "").strip()
 
     @allure.step("Get source message text")
     def get_source_message_text(self) -> str:
         """Returns the hint or error text below the source field."""
         return self.source_message.text.strip()
 
-    @allure.step("Get cancel modal component")
-    def get_cancel_modal(self) -> CancelModalComponent:
-        """Returns the modal component that appears when 'Cancel' is clicked."""
-        return self.cancel_modal
+    @allure.step("Clear title input")
+    def clear_title_field(self):
+        """ Clear title input. """
+        clear_element_by_keyboard(self.title_input)
+        return self
+
+    @allure.step("Enter news title: {title}")
+    def enter_title(self, title: str):
+        """ Enter title into the news title input field. """
+        enter_text(self.title_input, title)
+        return self
+
+    @allure.step("Get title value")
+    def get_title_value(self) -> str:
+        """Returns the current text entered in the title field."""
+        return self.title_input.get_attribute("value")
+
+    @allure.step("Get title length")
+    def get_title_length(self) -> int:
+        return len(self.get_title_value() or "")
+
+    @allure.step("Check if title input is valid")
+    def is_title_valid(self) -> bool:
+        """ Return True if title input is valid, False otherwise. """
+        invalid_attr = self.title_input.get_attribute("ng-invalid")
+        return invalid_attr is None
+
+    @allure.step("Get title counter text")
+    def get_title_counter_text(self) -> str:
+        """ Get title counter text. """
+        return self.title_character_counter.text
+
+    @allure.step("Append text to title: {additional_text}")
+    def append_title(self, additional_text: str):
+        """ Append the given text to the current title input. """
+        self.title_input.send_keys(additional_text)
+        return self
 
     @allure.step("Prepend text to title: {text}")
     def prepend_title(self, text: str):
         """Prepends the specified text to the existing title."""
-        current = self.get_title_value()
-        self.enter_title(text + (current if current else ""))
-        return self
+        current = self.get_title_value() or ""
+        return enter_text(self.title_input, text + current)
 
-    @allure.step("Reload create news page")
-    def reload(self):
-        """Refreshes the page via the driver."""
-        self.driver.refresh()
-        return self
+    def _remove_title_chars(self, count: int, from_start: bool):
+        """ Remove the 'count' characters from the title input. """
+        current = self.get_title_value() or ""
+        if len(current) <= count:
+            return enter_text(self.title_input, "")
+        if from_start:
+            return enter_text(self.title_input, current[count:])
+        return enter_text(self.title_input, current[:-count])
 
-    def get_title_input(self):
-        return self.title_input
+    @allure.step("Remove first {count} characters from title")
+    def remove_first_title_chars(self, count: int):
+        """ Remove first 'count' characters from title. """
+        return self._remove_title_chars(count, True)
 
-    def clear_title_field(self):
-        self.title_input.clear()
-        return self
+    @allure.step("Remove last {count} characters from title")
+    def remove_last_title_chars(self, count: int):
+        """ Remove the last 'count' characters from the title input. """
+        return self._remove_title_chars(count, False)
 
+    @allure.step("Check if Cancel button is visible")
+    def is_cancel_button_visible(self) -> bool:
+        return self.cancel_btn.is_displayed()
 
-    def is_title_valid(self) -> bool:
-        self.title_input.get_attribute("ng-invalid")
+    @allure.step("Get Cancel button text")
+    def get_cancel_button_text(self) -> str:
+        """ Return the visible text of the Cancel button. """
+        return self.cancel_btn.text.strip()
+
+    @allure.step("Click Cancel button")
+    def click_cancel(self) -> CancelModalComponent:
+        """ Click the Cancel button on the Create/Edit News page. """
+        self.cancel_btn.click()
+        return CancelModalComponent(self.driver)
+
+    @allure.step("Check if Preview button is visible")
+    def is_preview_button_visible(self) -> bool:
+        """ Check if Preview button is visible. """
+        return self.preview_btn.is_displayed()
+
+    @allure.step("Get Preview button text")
+    def get_preview_button_text(self) -> str:
+        """ Return the visible text of the Preview button. """
+        return self.preview_btn.text.strip()
+
+    @allure.step("Click Preview button")
+    def click_preview(self) -> "NewsPreviewPage":
+        """ Click the Preview button to go to the news preview page. """
+        self.preview_btn.click()
+        from pages.create_edit_news.news_preview_page import NewsPreviewPage
+        return NewsPreviewPage(self.driver)
+
+    @allure.step("Get author name")
+    def get_author(self) -> str:
+        """ Return the author name displayed on the page. """
+        return self.author_name.text.strip()
+
+    @allure.step("Check if author is visible")
+    def is_author_visible(self) -> bool:
+        """ Return True if the author element is displayed, else False. """
+        return self.author_name.is_displayed()
+
+    @allure.step("Get post date")
+    def get_post_date(self) -> str:
+        """ Return the post date displayed on the page. """
+        return self.post_date.text.strip()
+
+    @allure.step("Check if post date is visible")
+    def is_post_date_visible(self) -> bool:
+        """ Return True if the post date element is visible, else False. """
+        return self.post_date.is_displayed()
+
+    @allure.step("Check if page header is visible after clicking Back from NewsPreviewPage")
+    def is_page_opened_after_preview_click_back(self) -> bool:
+        """ Check if page header is visible after clicking Back from NewsPreviewPage. """
+        return self.page_title_header.is_displayed()
