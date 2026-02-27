@@ -1,0 +1,18 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","0","Verify news details elements and content","tests.ui","Fri Feb 27 18:38:01 UTC 2026","skipped","Fri Feb 27 18:38:01 UTC 2026","TestNewsDetails","test_news_details","",""
+"","10367","Validation of error message when uploading an image larger than 10MB","tests.ui.create_news_tests","Fri Feb 27 18:37:30 UTC 2026","passed","Fri Feb 27 18:37:40 UTC 2026","TestNewsImageSizeValidation","test_image_size_validation","",""
+"Checks that the count of recommended cards equals 3","0","Verify that 3 recommended news cards are displayed","tests.ui","Fri Feb 27 18:38:01 UTC 2026","skipped","Fri Feb 27 18:38:01 UTC 2026","TestNewsDetails","test_news_details","",""
+"","0","Verify like functionality","tests.ui","Fri Feb 27 18:38:01 UTC 2026","skipped","Fri Feb 27 18:38:01 UTC 2026","TestNewsDetails","test_news_details","",""
+"","0","Verify navigation to a recommended news card","tests.ui","Fri Feb 27 18:38:01 UTC 2026","skipped","Fri Feb 27 18:38:01 UTC 2026","TestNewsDetails","test_news_details","",""
+"","4","test_greencity_is_work[chrome]","tests.ui","Fri Feb 27 18:38:04 UTC 2026","passed","Fri Feb 27 18:38:04 UTC 2026","","test_stub","",""
+"","540","test_base_navigate[chrome]","tests.ui","Fri Feb 27 18:38:07 UTC 2026","passed","Fri Feb 27 18:38:07 UTC 2026","","test_stub","",""
+"
+        Test goals:
+        1. Navigate to 'Create News' page.
+        2. Fill title and content.
+        3. Verify preview page data (title, text, date, author).
+        4. Verify navigation back to the creation page.
+    ","11003","Verify news preview content and navigation back to edit","tests.ui","Fri Feb 27 18:37:50 UTC 2026","failed","Fri Feb 27 18:38:01 UTC 2026","TestNewsDetails","test_basic_preview_functionality","",""
+"","2739","test_title_field_validation[chrome]","tests.ui.create_news_tests","Fri Feb 27 18:37:43 UTC 2026","passed","Fri Feb 27 18:37:46 UTC 2026","","title_field_validation_test","",""
+"","0","Verify 'Recommended News' section title","tests.ui","Fri Feb 27 18:38:01 UTC 2026","skipped","Fri Feb 27 18:38:01 UTC 2026","TestNewsDetails","test_news_details","",""
+"","0","Verify navigation and UI state","tests.ui","Fri Feb 27 18:38:01 UTC 2026","skipped","Fri Feb 27 18:38:01 UTC 2026","TestNewsDetails","test_news_details","",""
