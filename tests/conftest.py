@@ -1,10 +1,14 @@
+import allure
 from pytest import fixture
 
+from components.auth_modal.sign_in_modal import SignInModal
+from components.base_page.header_component import HeaderComponent
 from data.config import Config
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
+from pages.create_edit_news.create_news_page import CreateNewsPage
 
 @fixture(scope="function", params=["chrome"])
 def get_driver(request):
@@ -36,3 +40,18 @@ def get_driver(request):
     yield driver
     # after test execution, quit the driver
     driver.quit()
+
+
+@fixture(scope="function")
+def create_news(get_driver):
+    """ Fixture to create news and login before tests """
+    sign_in = SignInModal(get_driver)
+    header = HeaderComponent(get_driver)
+
+    header.click_sign_in_link()
+    sign_in.sign_in(email=Config.USER_EMAIL, password=Config.USER_PASSWORD)
+
+    news = header.click_news_link()
+    news.click_create_news()
+
+    return CreateNewsPage(get_driver)
