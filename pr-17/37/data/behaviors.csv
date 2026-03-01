@@ -1,0 +1,6 @@
+"BROKEN","EPIC","FAILED","FEATURE","PASSED","SKIPPED","STORY","UNKNOWN"
+"0","Eco News","0","News Management","1","0","Create and Delete News Workflow","0"
+"0","","0","News Details","0","6","","0"
+"1","","0","Create News","0","0","Title field validation","0"
+"0","","0","","2","0","","0"
+"1","","0","Edit News","0","0","Content field validation","0"
