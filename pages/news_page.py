@@ -1,6 +1,10 @@
 from typing import List
+
+from selenium.webdriver.support.wait import WebDriverWait
+
 from components.news_list_item_component import NewsListItemComponent
 from components.tag_component import TagItem
+from data.config import Config
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 import allure
@@ -36,7 +40,7 @@ class NewsPage(BasePage):
         "grid_view_btn": (By.CSS_SELECTOR, "[aria-label='table view']"),
         "list_view_btn": (By.CSS_SELECTOR, "[aria-label='list view']"),
         "remaining_count_text": (By.CSS_SELECTOR, "h2"),
-        "news_card_items": (By.CSS_SELECTOR, "ul.list li", NewsListItemComponent),
+        "news_card_items": (By.CSS_SELECTOR, "ul.list li", List[NewsListItemComponent]),
         "tags": (By.CSS_SELECTOR, "button.tag-button", TagItem),
     }
 
@@ -126,4 +130,26 @@ class NewsPage(BasePage):
     def wait_until_opened(self):
         """Wait until Eco News page title becomes visible."""
         self.wait_until_visible(self.page_title)
+        return self
+
+    @allure.step("Get ID of latest created news")
+    def get_latest_news_id(self) -> int:
+        """Get the latest news ID."""
+        self.wait_for(lambda _: len(self.news_card_items) > 0, Config.EXPLICITLY_WAIT)
+        first_card = self.news_card_items[0]
+
+        link_element = first_card.root_element.find_element(By.CSS_SELECTOR, "a.link")
+        href = link_element.get_attribute("href")
+
+        try:
+            news_id = href.rstrip('/').split('/')[-1]
+            return int(news_id)
+        except (ValueError, IndexError) as e:
+            raise ValueError(f"Can`t parse href: {href}. Error: {e}")
+
+    @allure.step("Reload the page and wait for it to be ready")
+    def reload(self):
+        """Reload the page and wait for it to be ready"""
+        self.driver.refresh()
+        self.wait_for(lambda _: self.is_page_opened(), Config.EXPLICITLY_WAIT)
         return self

@@ -68,6 +68,16 @@ class CreateEditNewsPage(BasePage):
         enter_text(self.title_input, title)
         return self
 
+    @allure.step("Check if tag buttons are visible")
+    def are_tags_visible(self) -> bool:
+        """ Check if tag buttons are visible. """
+        return all(tag.root_element.is_displayed() for tag in self.tags)
+
+    @allure.step("Returns names of all tags")
+    def get_all_tags(self) -> List[str]:
+        """ Returns names of all tags. """
+        return [tag.get_name() for tag in self.tags]
+
     def _get_tag_by_name(self, tag_name: str) -> TagItem:
         """ Find tag by its name (case-insensitive). """
         for tag in self.tags:
@@ -93,13 +103,7 @@ class CreateEditNewsPage(BasePage):
             target = next((t for t in self.tags if t.get_name().lower() == name.lower()), None)
             if target and not target.is_selected():
                 target.click_tag()
-
-    @allure.step("Clear all selected tags")
-    def select_tag(self, tag_name: str):
-        """ Selects a tag by its name. """
-        for tag in self.tags:
-            if tag.get_name().lower() == tag_name.lower():
-                tag.click_tag()
+        return self
 
     @allure.step("Unselect tag: {tag_name}")
     def unselect_tag(self, tag_name: str):
