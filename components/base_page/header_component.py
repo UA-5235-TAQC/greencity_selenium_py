@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Tuple, Any
+from typing import Tuple
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
@@ -105,6 +105,7 @@ class HeaderComponent(BaseComponent):
             return self
         self.language_dropdown.click()
         self.driver.find_element(*self._language_option_locator(lang)).click()
+        self.wait_for(lambda d: self.get_current_locale() == lang)
         return self
 
     @allure.step("Change language to English")

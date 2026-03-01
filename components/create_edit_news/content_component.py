@@ -100,6 +100,14 @@ class ContentComponent(BaseComponent):
         except ElementNotFoundException:
             return False
 
+    def is_content_message_invalid(self) -> bool:
+        """
+        Check if informational validation message is highlighted in red
+        because character count is less than 20.
+        """
+        class_attr = self.content_message.get_attribute("class")
+        return "warning" in class_attr
+
     @allure.step("Get actual content character count")
     def get_actual_content_length(self) -> int:
         """

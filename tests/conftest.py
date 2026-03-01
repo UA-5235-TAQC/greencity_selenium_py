@@ -8,6 +8,8 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from allure_commons.types import Severity
 from typing import Generator
+
+from enums.language import Language
 from pages.create_edit_news.create_news_page import CreateNewsPage
 from pages.create_edit_news.edit_news_page import EditNewsPage
 from pages.home_page import HomePage
@@ -32,14 +34,14 @@ def get_driver(request):
                 options.add_argument("--headless=new")
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-gpu")
-            options.add_argument("--window-size=1920,1080")
+            options.add_argument("--window-size=2560,1440")
             driver = webdriver.Chrome(options=options)
         case "firefox":
 
             options = FirefoxOptions()
             if headless:
                 options.add_argument("--headless")
-            options.add_argument("--window-size=1920,1080")
+            options.add_argument("--window-size=2560,1440")
             driver = webdriver.Firefox(options=options)
     driver.implicitly_wait(Config.IMPLICITLY_WAIT)
     driver.get(Config.BASE_UI_GREEN_CITY_URL)
@@ -55,101 +57,63 @@ def driver_with_login(get_driver):
 
     allure.dynamic.severity(Severity.CRITICAL)
 
-    with allure.step(f"Login as user: {Config.USER_EMAIL}"):
-        sign_in_modal = (
-            HomePage(get_driver)
-            .open()
-            .header
-            .click_sign_in_link()
-        )
+    sign_in_modal = (
+        HomePage(get_driver)
+        .open()
+        .header.change_to_en()
+        .click_sign_in_link()
+    )
 
-        sign_in_modal.sign_in()
+    sign_in_modal.sign_in()
 
     yield get_driver
 
 
 @fixture(scope="function")
-def eco_news_page(driver_with_login) -> Generator[NewsPage, None, None]:
-    """
-    Fixture that opens the EcoNews page after login.
-    Ensures the page is fully loaded before yielding.
-    """
-    with allure.step("Open EcoNews page after login"):
-        eco_page = NewsPage(driver_with_login).open()
-        with allure.step("Verify Eco News page is opened"):
-            assert eco_page.is_page_opened(), "EcoNews page should be opened"
+def eco_page(driver_with_login) -> Generator[NewsPage, None, None]:
+    """ Fixture that opens the EcoNews page after login. """
+    eco_page = NewsPage(driver_with_login).open()
+    assert eco_page.is_page_opened(), "EcoNews page should be opened"
     yield eco_page
 
-    with allure.step("Clear selected tags"):
-        eco_page.remove_all_selected_tags()
+    eco_page.remove_all_selected_tags()
 
 
-@fixture(scope="function", params=["en", "ua"])
+@fixture(scope="function")
 def create_news_page(driver_with_login, request) -> CreateNewsPage:
-    """
-    Fixture: open Create News page with selected language.
-    Param `request.param` should be 'en' or 'ua'.
-    """
-    language = request.param
-    with allure.step(f"Switch language to {language.upper()} and open Create News page"):
-        header = HomePage(driver_with_login).header
-
-        if language == "en":
-            header.change_to_en()
-        elif language == "ua":
-            header.change_to_uk()
-        else:
-            raise ValueError(f"Unsupported language: {language}")
-
-        create_news_page = header.click_news_link().click_create_news()
-        with allure.step("Verify Create News page is opened"):
-            assert create_news_page.is_page_opened(), "Create News page should be opened"
-
+    """ Fixture: open Create News page. """
+    header = HomePage(driver_with_login).header
+    create_news_page: CreateNewsPage = header.click_news_link().click_create_news()
+    assert create_news_page.is_page_opened(), "Create News page should be opened"
     return create_news_page
 
 
-@fixture(scope="function", params=["en", "ua"])
-def edit_news_page(driver_with_login, create_news_page, request) -> EditNewsPage:
+@fixture(scope="function", params=[Language.EN, Language.UK])
+def edit_news_page_with_language(driver_with_login, create_news_page, request) -> EditNewsPage:
     """
     Fixture: create a news item, open its edit page, and return EditNewsPage.
     Param `request.param` is 'en' or 'ua'.
     """
     language = request.param
-    news_test_data = NewsTestData()
+    if language == Language.EN:
+        create_news_page.header.change_to_en()
+        NewsTestData.apply_to_en(create_news_page)
+    else:
+        create_news_page.header.change_to_uk()
+        NewsTestData.apply_to_ua(create_news_page)
 
-    with allure.step(f"Apply news test data and publish news in {language.upper()}"):
-        if language == "en":
-            news_test_data.apply_to_en(create_news_page)
-        elif language == "ua":
-            news_test_data.apply_to_ua(create_news_page)
-        else:
-            raise ValueError(f"Unsupported language: {language}")
+    eco_news_page = create_news_page.click_publish()
+    eco_news_page.header.change_to_en() if language == Language.EN else eco_news_page.header.change_to_uk()
 
-        create_news_page.click_publish()
+    news_card: NewsListItemComponent = eco_news_page.get_news_card_by_index(0)
+    news_details_page: NewsDetailsPage = news_card.click_image()
+    assert news_details_page.is_page_opened(), "News details page should be opened"
 
-    with allure.step("Open EcoNews page and get first news details"):
-        eco_news_page = NewsPage(driver_with_login)
+    news_details_page.header.change_to_en() if language == Language.EN else news_details_page.header.change_to_uk()
 
-        if language == "en":
-            eco_news_page.get_header().change_to_en()
-        else:
-            eco_news_page.get_header().change_to_uk()
+    news_details_page.click_edit_button()
+    eco_news_id = news_details_page.get_news_id()
 
-        news_card: NewsListItemComponent = eco_news_page.get_news_card_by_index(0)
-        news_details_page: NewsDetailsPage = news_card.click_image()
-        news_details_page.wait_until_opened()
-        with allure.step("Verify news details page is opened"):
-            assert news_details_page.is_page_opened(), "News details page should be opened"
-
-        news_details_page.click_edit_button()
-        eco_news_id = news_details_page.get_news_id()
-
-    with allure.step("Open Edit News page"):
-        edit_news_page = EditNewsPage(driver_with_login, eco_news_id)
-
-        if language == "en":
-            edit_news_page.get_header().change_to_en()
-        else:
-            edit_news_page.get_header().change_to_uk()
-
+    edit_news_page = EditNewsPage(driver_with_login, eco_news_id)
+    assert edit_news_page.is_page_opened(), "Edit News page should be opened"
     return edit_news_page

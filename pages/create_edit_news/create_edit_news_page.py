@@ -1,8 +1,9 @@
-from typing import List
+from typing import List, override
 
 import allure
-from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 
 from components.create_edit_news.cancel_modal_component import CancelModalComponent
 from components.create_edit_news.content_component import ContentComponent
@@ -10,8 +11,6 @@ from components.create_edit_news.image_component import ImageComponent
 from components.tag_component import TagItem
 from pages.base_page import BasePage
 from utils.page_factory import LocatorsTable
-from selenium.webdriver.remote.webelement import WebElement
-
 from utils.web_element_utils import enter_text, clear_element_by_keyboard
 
 
@@ -191,13 +190,19 @@ class CreateEditNewsPage(BasePage):
         return enter_text(self.title_input, text + current)
 
     def _remove_title_chars(self, count: int, from_start: bool):
-        """ Remove the 'count' characters from the title input. """
+        """Remove 'count' characters from the title input."""
         current = self.get_title_value() or ""
+
         if len(current) <= count:
-            return enter_text(self.title_input, "")
+            enter_text(self.title_input, "")
+            return self
+
         if from_start:
-            return enter_text(self.title_input, current[count:])
-        return enter_text(self.title_input, current[:-count])
+            enter_text(self.title_input, current[count:])
+        else:
+            enter_text(self.title_input, current[:-count])
+
+        return self
 
     @allure.step("Remove first {count} characters from title")
     def remove_first_title_chars(self, count: int):
@@ -222,7 +227,7 @@ class CreateEditNewsPage(BasePage):
     def click_cancel(self) -> CancelModalComponent:
         """ Click the Cancel button on the Create/Edit News page. """
         self.cancel_btn.click()
-        return CancelModalComponent(self.driver)
+        return self.cancel_modal
 
     @allure.step("Check if Preview button is visible")
     def is_preview_button_visible(self) -> bool:
@@ -265,3 +270,10 @@ class CreateEditNewsPage(BasePage):
     def is_page_opened_after_preview_click_back(self) -> bool:
         """ Check if page header is visible after clicking Back from NewsPreviewPage. """
         return self.page_title_header.is_displayed()
+
+    @override
+    @allure.step("Wait until Create/Edit News page is fully opened")
+    def wait_until_opened(self):
+        """ Wait until Create/Edit News page is fully opened. """
+        self.wait_until_visible(self.post_date)
+        return self

@@ -1,10 +1,12 @@
 from typing import List
+
+import allure
+from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
+
 from components.news_list_item_component import NewsListItemComponent
 from components.tag_component import TagItem
 from pages.base_page import BasePage
-from selenium.webdriver.common.by import By
-import allure
-from selenium.webdriver.remote.webelement import WebElement
 from utils.page_factory import LocatorsTable
 from utils.web_element_utils import get_int_from_text
 
@@ -133,7 +135,7 @@ class NewsPage(BasePage):
     @allure.step("Click on tag by name: {tag_name}")
     def click_tag_by_name(self, tag_name: str):
         """ Click a tag by its visible name (case-insensitive). """
-        for tag in self.get_all_tags():
+        for tag in self.tags:
             if tag.get_name().strip().lower() == tag_name.strip().lower():
                 tag.click_tag()
                 return self

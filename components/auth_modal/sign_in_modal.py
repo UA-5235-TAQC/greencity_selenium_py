@@ -55,6 +55,7 @@ class SignInModal(ModalBasePage):
         self.enter_email(email)
         self.enter_password(password)
         self.click_submit()
+        self.wait_until_closed()
 
         from pages.my_space.my_space_habits_tab_page import MySpaceHabitsTabPage
         habits_page = MySpaceHabitsTabPage(self.driver)
