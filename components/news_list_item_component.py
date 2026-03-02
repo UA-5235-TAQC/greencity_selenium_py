@@ -23,7 +23,7 @@ class NewsListItemComponent(BaseComponent):
     locators: LocatorsTable = {
         "news_image": (By.CSS_SELECTOR, ".list-image-content"),
         "bookmark_btn": (By.CSS_SELECTOR, ".favourite-button"),
-        "tags": (By.CSS_SELECTOR, ".filter-tag div", List[WebElement]),
+        "tags": (By.CSS_SELECTOR, ".filter-tag div"),
         "title": (By.CSS_SELECTOR, ".title-list"),
         "news_text": (By.CSS_SELECTOR, ".list-text"),
         "creation_date": (By.CSS_SELECTOR, ".text-nowrap>span"),
@@ -38,7 +38,6 @@ class NewsListItemComponent(BaseComponent):
         """ Click the bookmark button of the news item. """
         self.bookmark_btn.click()
         from pages.news_page import NewsPage
-        return NewsPage(self.driver)
 
     @allure.step("Click news item")
     def click_image(self) -> "NewsDetailsPage":
@@ -49,14 +48,21 @@ class NewsListItemComponent(BaseComponent):
 
     @allure.step("Verify news item has expected tags")
     def has_tags(self, tag_names: List[str]) -> bool:
+        # Get locator (By, Selector) to bypass PageFactory single-element return
+        locator = self.locators["tags"]
+
+        # Unpack tuple with * to ensure we get a list of WebElements
+        tags_elements = self.root_element.find_elements(*locator)
+
         """ Verify that the news item contains expected tags. """
         displayed_tags = [
             tag.text.replace("|", "").strip()
-            for tag in self.tags
+            for tag in tags_elements
         ]
 
         expected_tags = [tag.upper() for tag in tag_names]
 
+        # Check if all expected tags are present in the results
         return (
                 len(displayed_tags) == len(expected_tags)
                 and all(tag in displayed_tags for tag in expected_tags)

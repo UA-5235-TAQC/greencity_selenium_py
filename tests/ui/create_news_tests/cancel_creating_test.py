@@ -23,7 +23,6 @@ def test_cancel_button_behavior(log_in_user):
     create_news_page.enter_title(TEST_TITLE_EN)
     create_news_page.content_component.enter_content(TEST_CONTENT_EN)
 
-    # Click Cancel button
     create_news_page.cancel_btn.click()
 
     # Interaction with the modal
