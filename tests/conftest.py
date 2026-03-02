@@ -64,7 +64,7 @@ def driver_with_login(get_driver):
         .click_sign_in_link()
     )
 
-    sign_in_modal.sign_in()
+    sign_in_modal.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
 
     yield get_driver
 
@@ -86,6 +86,16 @@ def create_news_page(driver_with_login, request) -> CreateNewsPage:
     create_news_page: CreateNewsPage = header.click_news_link().click_create_news()
     assert create_news_page.is_page_opened(), "Create News page should be opened"
     return create_news_page
+
+@fixture(scope="function")
+def eco_news_details_page(driver_with_login, create_news_page, request) -> NewsDetailsPage:
+    """ Fixture: create a news item, open its news details page. """
+    NewsTestData.apply_to_en(create_news_page)
+    eco_news_page = create_news_page.click_publish()
+    news_card: NewsListItemComponent = eco_news_page.get_news_card_by_index(0)
+    news_details_page: NewsDetailsPage = news_card.click_image()
+    assert news_details_page.is_page_opened(), "News details page should be opened"
+    return news_details_page
 
 
 @fixture(scope="function", params=[Language.EN, Language.UK])

@@ -51,7 +51,7 @@ class SignInModal(ModalBasePage):
         return SignUpModal(self.auth_modal)
 
     @allure.step("Enter email and password values")
-    def sign_in(self, email: str = Config.USER_EMAIL, password: str = Config.USER_PASSWORD) -> None:
+    def sign_in(self, email: str, password: str) -> None:
         self.enter_email(email)
         self.enter_password(password)
         self.click_submit()

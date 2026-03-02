@@ -170,3 +170,11 @@ class ImageComponent(BaseComponent):
                 self.uploaded_image.is_displayed()
                 and self.get_uploaded_image_src() != ""
         )
+
+    @allure.step("Check if image preview is displayed")
+    def is_preview_image(self) -> bool:
+        """Returns True if the preview image element exists and is displayed, False if it does not exist."""
+        try:
+            return self.preview_image.is_displayed()
+        except ElementNotFoundException:
+            return False

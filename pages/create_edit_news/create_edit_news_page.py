@@ -166,11 +166,11 @@ class CreateEditNewsPage(BasePage):
     def get_title_length(self) -> int:
         return len(self.get_title_value() or "")
 
-    @allure.step("Check if title input is valid")
-    def is_title_valid(self) -> bool:
-        """ Return True if title input is valid, False otherwise. """
-        invalid_attr = self.title_input.get_attribute("ng-invalid")
-        return invalid_attr is None
+    @allure.step("Check if title field is highlighted in red because it's empty")
+    def is_title_invalid(self) -> bool:
+        """Return True if title input has 'ng-invalid' class (empty/invalid field)."""
+        class_attr = self.title_input.get_attribute("class") or ""
+        return "ng-invalid" in class_attr
 
     @allure.step("Get title counter text")
     def get_title_counter_text(self) -> str:

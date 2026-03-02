@@ -12,6 +12,7 @@ from pages.base_page import BasePage
 from pages.create_edit_news.edit_news_page import EditNewsPage
 from pages.news_page import NewsPage
 from utils.page_factory import LocatorsTable
+from utils.page_factory import ElementNotFoundException
 
 
 class NewsDetailsPage(BasePage):
@@ -249,10 +250,13 @@ class NewsDetailsPage(BasePage):
         """ Check if the Delete button is visible. """
         return self.delete_button.is_displayed()
 
-    @allure.step("Check if 'Edit news' button is visible")
+    @allure.step("Check if Edit button is visible")
     def is_edit_button_visible(self) -> bool:
-        """ Check if the Edit button is visible. """
-        return self.edit_button.is_displayed()
+        """Check if the Edit button is visible. Return False if element does not exist."""
+        try:
+            return self.edit_button.is_displayed()
+        except ElementNotFoundException:
+            return False
 
     @allure.step("Check if likes count is visible")
     def is_likes_count_visible(self) -> bool:
