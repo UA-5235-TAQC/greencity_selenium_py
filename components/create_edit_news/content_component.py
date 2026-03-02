@@ -88,6 +88,16 @@ class ContentComponent(BaseComponent):
         """Returns the text of the informational message/warning below the editor."""
         return self.content_message.text.strip()
 
+    @allure.step("Get content validation message text")
+    def get_content_warning_text(self) -> str:
+        """Returns validation warning message text."""
+        return self.content_message.text.strip()
+
+    @allure.step("Get content warning message color")
+    def get_content_warning_color(self) -> str:
+        """Returns CSS color of validation message."""
+        return self.content_message.value_of_css_property("color")
+
     @allure.step("Get content placeholder text")
     def get_content_placeholder(self) -> str:
         """Returns the placeholder text of the rich text editor."""

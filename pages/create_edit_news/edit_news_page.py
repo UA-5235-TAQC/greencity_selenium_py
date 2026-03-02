@@ -6,6 +6,7 @@ from typing_extensions import override
 from pages.create_edit_news.create_edit_news_page import CreateEditNewsPage
 from utils.page_factory import LocatorsTable
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 class EditNewsPage(CreateEditNewsPage):
@@ -87,3 +88,17 @@ class EditNewsPage(CreateEditNewsPage):
     def get_id(self) -> int:
         """ Get the ID of the news being edited. """
         return self.news_id
+
+    @allure.step("Click Cancel button")
+    def click_cancel(self):
+        self.cancel_btn.click()
+        return self
+
+    @allure.step("Check if Edit page is opened (safe)")
+    def is_page_opened_safe(self) -> bool:
+        try:
+            return self.title_input.is_displayed()
+        except Exception:
+            return False
+
+

@@ -1,4 +1,5 @@
-from typing import Optional, override
+from typing import Optional
+from typing_extensions import override
 
 import allure
 from selenium.webdriver.common.by import By
