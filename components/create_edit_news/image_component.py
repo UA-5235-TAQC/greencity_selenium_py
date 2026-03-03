@@ -1,7 +1,7 @@
 import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
-
+from pathlib import Path
 from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable, ElementNotFoundException
 
@@ -49,8 +49,14 @@ class ImageComponent(BaseComponent):
         return self.image_message.text.strip()
 
     @allure.step("Upload image from file absolute path: {file_absolute_path}")
-    def upload_image(self, file_absolute_path: str):
-        """Uploads an image file by sending the file path to the hidden file input."""
+    def upload_image(self, file_absolute_path: str | Path):
+        """
+        Uploads an image file by sending the file path to the hidden file input.
+        Accepts both string and Path objects.
+        """
+        if isinstance(file_absolute_path, Path):
+            file_absolute_path = str(file_absolute_path)
+
         self.upload_input.send_keys(file_absolute_path)
         return self
 
@@ -68,11 +74,6 @@ class ImageComponent(BaseComponent):
     def is_image_visible(self) -> bool:
         """Checks if the main uploaded image is displayed in the cropper or preview."""
         return self.uploaded_image.is_displayed()
-
-    @allure.step("Check if preview image is visible")
-    def is_preview_image_visible(self) -> bool:
-        """Checks if the final cropped preview image is displayed."""
-        return self.preview_image.is_displayed()
 
     @allure.step("Get source URL of the uploaded image")
     def get_uploaded_image_src(self) -> str:
@@ -98,6 +99,11 @@ class ImageComponent(BaseComponent):
     def is_uploaded_image_present(self) -> bool:
         """Checks if the displayed image is a blob URL (indicating a successful local upload)."""
         return self._has_image_src_prefix(self.uploaded_image, "blob:")
+
+    @allure.step("Check if preview image (blob:) is displayed")
+    def is_preview_image_present(self) -> bool:
+        """Checks if the preview image is a blob URL."""
+        return self._has_image_src_prefix(self.preview_image, "data:image")
 
     @allure.step("Click Submit crop")
     def submit_crop(self):
@@ -140,8 +146,34 @@ class ImageComponent(BaseComponent):
         return "warning-color" in class_attr if class_attr else False
 
     @allure.step("Check if image preview is present")
-    def is_preview_image_present(self) -> bool:
+    def is_preview_image_visible(self) -> bool:
         """Safely checks if the preview image element exists and is displayed."""
+        try:
+            return self.preview_image.is_displayed()
+        except ElementNotFoundException:
+            return False
+
+    @allure.step("Get text of Cancel cropper button")
+    def get_cancel_cropper_text(self) -> str:
+        """Returns the visible text of the Cancel button in the cropper."""
+        return self.cancel_cropper_btn.text.strip()
+
+    @allure.step("Get text of Submit cropper button")
+    def get_submit_cropper_text(self) -> str:
+        """Returns the visible text of the Submit button in the cropper."""
+        return self.submit_cropper_btn.text.strip()
+
+    @allure.step("Check that saved image is displayed with non-empty source")
+    def is_saved_image_displayed(self) -> bool:
+        """ Verifies that the image element is visible on the page. """
+        return (
+                self.uploaded_image.is_displayed()
+                and self.get_uploaded_image_src() != ""
+        )
+
+    @allure.step("Check if image preview is displayed")
+    def is_preview_image(self) -> bool:
+        """Returns True if the preview image element exists and is displayed, False if it does not exist."""
         try:
             return self.preview_image.is_displayed()
         except ElementNotFoundException:

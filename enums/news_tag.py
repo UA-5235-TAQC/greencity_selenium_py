@@ -58,9 +58,19 @@ class EcoNewsTag(Enum):
         return cls.get_by_locale_list(tags, Language.EN)
 
     @classmethod
+    def get_en_upper(cls, tags: List["EcoNewsTag"]) -> List[str]:
+        """ Return list of English tag names in UPPERCASE. """
+        return [tag.en.upper() for tag in tags]
+
+    @classmethod
     def get_ua(cls, tags: List["EcoNewsTag"]) -> List[str]:
         """ Return a list of Ukrainian names for the given list of tags. """
         return cls.get_by_locale_list(tags, Language.UK)
+
+    @classmethod
+    def get_ua_upper(cls, tags: List["EcoNewsTag"]) -> List[str]:
+        """ Return list of Ukrainian tag names in UPPERCASE. """
+        return [tag.ua.upper() for tag in tags]
 
     @classmethod
     def map_strings_to_locale(cls, tag_strings: Optional[List[str]], locale: Language) -> List[str]:

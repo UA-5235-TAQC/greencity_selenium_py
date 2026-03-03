@@ -23,7 +23,7 @@ class NewsListItemComponent(BaseComponent):
     locators: LocatorsTable = {
         "news_image": (By.CSS_SELECTOR, ".list-image-content"),
         "bookmark_btn": (By.CSS_SELECTOR, ".favourite-button"),
-        "tags": (By.CSS_SELECTOR, ".filter-tag div",  List[WebElement]),
+        "tags": (By.CSS_SELECTOR, ".filter-tag div", List[WebElement]),
         "title": (By.CSS_SELECTOR, ".title-list"),
         "news_text": (By.CSS_SELECTOR, ".list-text"),
         "creation_date": (By.CSS_SELECTOR, ".text-nowrap>span"),
@@ -45,23 +45,24 @@ class NewsListItemComponent(BaseComponent):
         """ Click the news image to open the news details page. """
         self.news_image.click()
         from pages.news_details_page import NewsDetailsPage
-        return NewsDetailsPage(self.driver, self.news_id)
+        return NewsDetailsPage(self.driver)
+
+    @allure.step("Get list of tag texts for this news item")
+    def get_tags(self) -> List[str]:
+        """ Return a list of tag names as text, cleaned from extra characters like '|'. """
+        return [
+            tag.text.replace("|", "").strip()
+            for tag in self.tags
+        ]
 
     @allure.step("Verify news item has expected tags")
     def has_tags(self, tag_names: List[str]) -> bool:
 
         """ Verify that the news item contains expected tags. """
-        displayed_tags = [
-            tag.text.replace("|", "").strip()
-            for tag in self.tags
-        ]
-
-        expected_tags = [tag.upper() for tag in tag_names]
-
-        # Check if all expected tags are present in the results
+        displayed_tags = self.get_tags()
         return (
-                len(displayed_tags) == len(expected_tags)
-                and all(tag in displayed_tags for tag in expected_tags)
+                len(displayed_tags) == len(tag_names)
+                and all(tag in displayed_tags for tag in tag_names)
         )
 
     @allure.step("Get news title text")
@@ -93,11 +94,6 @@ class NewsListItemComponent(BaseComponent):
     def get_likes_count(self) -> int:
         """ Get number of likes. """
         return int(self.likes_count.text)
-
-    @allure.step("Get news ID")
-    def get_news_id(self) -> int:
-        """ Get news ID. """
-        return self.news_id
 
     @allure.step("Get bookmark button text")
     def get_bookmark_button_text(self) -> str:

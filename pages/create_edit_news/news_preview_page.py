@@ -1,6 +1,6 @@
 import allure
 from typing import List
-
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
 from utils.page_factory import LocatorsTable
@@ -8,6 +8,8 @@ from pages.base_page import BasePage
 
 
 class NewsPreviewPage(BasePage):
+    """Page object for News Preview page."""
+
     back_to_create_news_btn: WebElement
     public_news_btn: WebElement
     news_title: WebElement
@@ -23,7 +25,7 @@ class NewsPreviewPage(BasePage):
         "back_to_create_news_btn": (By.CSS_SELECTOR, ".button-link"),
         "public_news_btn": (By.CSS_SELECTOR, ".submit-form"),
         "news_title": (By.CSS_SELECTOR, ".news-title"),
-        "tags": (By.CSS_SELECTOR, ".tags", List[WebElement]),
+        "tags": (By.CSS_SELECTOR, ".tags-item", List[WebElement]),
         "news_creating_date": (By.CSS_SELECTOR, ".news-info-date"),
         "author_name": (By.CSS_SELECTOR, ".news-info-author"),
         "news_image": (By.CSS_SELECTOR, ".news-image-img"),
@@ -42,8 +44,7 @@ class NewsPreviewPage(BasePage):
     @allure.step("Wait until preview page is opened")
     def wait_until_opened(self):
         """ Wait until preview page is opened. """
-        _ = self.news_title
-        return self
+        return self.wait_until_visible(self.news_title)
 
     # ---------- actions ----------
 
@@ -56,6 +57,7 @@ class NewsPreviewPage(BasePage):
     def click_back_to_create_news_btn(self):
         """ Click 'Back to create news'. """
         from pages.create_edit_news.create_news_page import CreateNewsPage
+        self.wait_for(lambda driver: EC.element_to_be_clickable(self.back_to_create_news_btn)(driver))
         self.back_to_create_news_btn.click()
         return CreateNewsPage(self.driver)
 
@@ -96,15 +98,10 @@ class NewsPreviewPage(BasePage):
 
     # ---------- tags ----------
 
-    @allure.step("Get tag elements")
-    def get_tag_elements(self) -> List[WebElement]:
-        """ Get tag elements. """
-        return self.tags
-
     @allure.step("Get tag texts")
     def get_tag_texts(self) -> List[str]:
         """ Get tag texts. """
-        return [tag.text.strip() for tag in self.get_tag_elements()]
+        return [tag.text.strip() for tag in self.tags]
 
     # ---------- image ----------
 
@@ -118,3 +115,40 @@ class NewsPreviewPage(BasePage):
     def get_preview_image_src(self) -> str:
         """ Get preview image src. """
         return self.news_image.get_attribute("src")
+
+    # ---------- visibility checks ----------
+
+    @allure.step("Check if 'Back to editing' button is visible")
+    def is_back_to_create_news_btn_visible(self) -> bool:
+        """ Check if 'Back to editing' button is visible. """
+        return self.back_to_create_news_btn.is_displayed()
+
+    @allure.step("Check if 'Publish' button is visible")
+    def is_public_news_btn_visible(self) -> bool:
+        """ Check if 'Publish' button is visible. """
+        return self.public_news_btn.is_displayed()
+
+    @allure.step("Check if tags are visible")
+    def are_tags_visible(self) -> bool:
+        """ Check if tags are visible. """
+        return bool(self.tags) and all(tag.is_displayed() for tag in self.tags)
+
+    @allure.step("Check if news creating date is visible")
+    def is_news_creating_date_visible(self) -> bool:
+        """ Check if news creating date is visible. """
+        return self.news_creating_date.is_displayed()
+
+    @allure.step("Check if author name is visible")
+    def is_author_name_visible(self) -> bool:
+        """ Check if author name is visible. """
+        return self.author_name.is_displayed()
+
+    @allure.step("Check if news text is visible")
+    def is_news_text_visible(self) -> bool:
+        """ Check if news text is visible. """
+        return self.news_text.is_displayed()
+
+    @allure.step("Check if news source is visible")
+    def is_news_source_visible(self) -> bool:
+        """ Check if news source is visible. """
+        return self.news_source.is_displayed()

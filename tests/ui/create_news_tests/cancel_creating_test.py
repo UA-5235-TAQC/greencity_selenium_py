@@ -12,10 +12,10 @@ TEST_CONTENT_EN = "Test content with 20 chars."
     "Verify that clicking the Cancel button triggers a confirmation modal, "
     "and selecting 'Yes, cancel' closes the form and redirects away"
 )
-def test_cancel_button_behavior(log_in_user):
+def test_cancel_button_behavior(driver_with_login):
 
     # Open the page and change language
-    create_news_page = CreateNewsPage(log_in_user)
+    create_news_page = CreateNewsPage(driver_with_login)
     create_news_page.open().header.change_to_en()
     assert create_news_page.is_page_opened(), "Create News page was not opened"
 
@@ -26,7 +26,7 @@ def test_cancel_button_behavior(log_in_user):
     create_news_page.cancel_btn.click()
 
     # Interaction with the modal
-    cancel_modal = create_news_page.get_cancel_modal()
+    cancel_modal = create_news_page.cancel_modal
     assert cancel_modal.is_visible(), "Confirmation modal should be visible"
 
     assert cancel_modal.get_warning_title_text() == "All created content will be lost."
@@ -42,5 +42,5 @@ def test_cancel_button_behavior(log_in_user):
         "Should be redirected to UBS Courier page after cancellation"
 
     # Check that URL has changed
-    assert "/news/create-news" not in log_in_user.current_url, \
+    assert "/news/create-news" not in driver_with_login.current_url, \
         "User is still on the Create News URL"

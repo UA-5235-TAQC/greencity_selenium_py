@@ -1,10 +1,12 @@
 from typing import List
+
+import allure
+from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
+
 from components.news_list_item_component import NewsListItemComponent
 from components.tag_component import TagItem
 from pages.base_page import BasePage
-from selenium.webdriver.common.by import By
-import allure
-from selenium.webdriver.remote.webelement import WebElement
 from utils.page_factory import LocatorsTable
 from utils.web_element_utils import get_int_from_text
 
