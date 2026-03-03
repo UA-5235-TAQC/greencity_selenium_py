@@ -23,7 +23,7 @@ class NewsListItemComponent(BaseComponent):
     locators: LocatorsTable = {
         "news_image": (By.CSS_SELECTOR, ".list-image-content"),
         "bookmark_btn": (By.CSS_SELECTOR, ".favourite-button"),
-        "tags": (By.CSS_SELECTOR, ".filter-tag div", List[WebElement]),
+        "tags": (By.CSS_SELECTOR, ".filter-tag div",  List[WebElement]),
         "title": (By.CSS_SELECTOR, ".title-list"),
         "news_text": (By.CSS_SELECTOR, ".list-text"),
         "creation_date": (By.CSS_SELECTOR, ".text-nowrap>span"),
@@ -49,6 +49,7 @@ class NewsListItemComponent(BaseComponent):
 
     @allure.step("Verify news item has expected tags")
     def has_tags(self, tag_names: List[str]) -> bool:
+
         """ Verify that the news item contains expected tags. """
         displayed_tags = [
             tag.text.replace("|", "").strip()
@@ -57,6 +58,7 @@ class NewsListItemComponent(BaseComponent):
 
         expected_tags = [tag.upper() for tag in tag_names]
 
+        # Check if all expected tags are present in the results
         return (
                 len(displayed_tags) == len(expected_tags)
                 and all(tag in displayed_tags for tag in expected_tags)

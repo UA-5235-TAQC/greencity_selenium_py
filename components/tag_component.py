@@ -20,15 +20,16 @@ class TagItem(BaseComponent):
     @allure.step("Get tag name")
     def get_name(self) -> str:
         """ Return the visible text of the tag. """
-        return self.name.text
+        return self.name.text.strip()
 
     @allure.step("Verify if tag is selected")
     def is_selected(self) -> bool:
         """Check if the tag is selected."""
-        classes = self.close_icon.get_attribute("class")
-        return classes is not None and "global-tag-close-icon" in classes
+        # Use root_element to avoid WebDriverWait timeouts for non-existent close_icon
+        classes = self.root_element.get_attribute("class")
+        return "global-tag-close-icon" in classes if classes else False
 
     @allure.step("Click on tag")
     def click_tag(self):
         """ Click on the tag's name element. """
-        self.name.click()
+        self.root_element.click()
