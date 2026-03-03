@@ -57,6 +57,7 @@ class NewsListItemComponent(BaseComponent):
 
     @allure.step("Verify news item has expected tags")
     def has_tags(self, tag_names: List[str]) -> bool:
+
         """ Verify that the news item contains expected tags. """
         displayed_tags = self.get_tags()
         return (

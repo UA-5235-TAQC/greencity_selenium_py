@@ -34,4 +34,4 @@ class TagItem(BaseComponent):
     @allure.step("Click on tag")
     def click_tag(self):
         """ Click on the tag's name element. """
-        self.name.click()
+        self.root_element.click()

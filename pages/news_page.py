@@ -108,6 +108,7 @@ class NewsPage(BasePage):
 
     @allure.step("Remove all selected tags")
     def remove_all_selected_tags(self):
+        """Deselects all active tags by checking their state via root_element"""
         self.wait_until_opened()
         selected_tags = [tag for tag in self.tags if tag.is_selected()]
         if not selected_tags:
@@ -134,7 +135,7 @@ class NewsPage(BasePage):
 
     @allure.step("Click on tag by name: {tag_name}")
     def click_tag_by_name(self, tag_name: str):
-        """ Click a tag by its visible name (case-insensitive). """
+        """ Click a tag by its visible name """
         for tag in self.tags:
             if tag.get_name().strip().lower() == tag_name.strip().lower():
                 tag.click_tag()

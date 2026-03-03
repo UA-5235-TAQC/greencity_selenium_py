@@ -60,8 +60,9 @@ class PageFactory:
         selector = config[1]
         multiple = False
         component_class = None
+
         if len(config) > 2:
-            multiple =  get_origin(config[2]) is list
+            multiple = get_origin(config[2]) is list
             component_class = config[2] if not multiple else get_args(config[2])[0]
 
         locator = (by_type, selector)
