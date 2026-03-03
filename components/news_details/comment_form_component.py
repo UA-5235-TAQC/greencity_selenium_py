@@ -24,7 +24,7 @@ class CommentFormComponent(BaseComponent):
     @allure.step("Enter comment text: {text}")
     def enter_comment(self, text: str) -> None:
         """Type text into the comment textarea."""
-        enter_text(self.comment_input)
+        enter_text(self.comment_input, text)
 
     @allure.step("Submit comment")
     def submit_comment(self) -> None:

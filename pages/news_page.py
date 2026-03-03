@@ -1,10 +1,12 @@
 from typing import List
+
+import allure
+from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
+
 from components.news_list_item_component import NewsListItemComponent
 from components.tag_component import TagItem
 from pages.base_page import BasePage
-from selenium.webdriver.common.by import By
-import allure
-from selenium.webdriver.remote.webelement import WebElement
 from utils.page_factory import LocatorsTable
 from utils.web_element_utils import get_int_from_text
 
@@ -36,8 +38,8 @@ class NewsPage(BasePage):
         "grid_view_btn": (By.CSS_SELECTOR, "[aria-label='table view']"),
         "list_view_btn": (By.CSS_SELECTOR, "[aria-label='list view']"),
         "remaining_count_text": (By.CSS_SELECTOR, "h2"),
-        "news_card_items": (By.CSS_SELECTOR, "ul.list li", NewsListItemComponent),
-        "tags": (By.CSS_SELECTOR, "button.tag-button", TagItem),
+        "news_card_items": (By.CSS_SELECTOR, "ul.list li", List[NewsListItemComponent]),
+        "tags": (By.CSS_SELECTOR, "button.tag-button", List[TagItem]),
     }
 
     @allure.step("Open Eco News page")
@@ -106,15 +108,18 @@ class NewsPage(BasePage):
 
     @allure.step("Remove all selected tags")
     def remove_all_selected_tags(self):
-        """ Click all tags that are currently selected to remove their selection. """
-        for tag in self.tags:
-            if tag.is_selected():
-                tag.click_tag()
+        """Deselects all active tags by checking their state via root_element"""
+        self.wait_until_opened()
+        selected_tags = [tag for tag in self.tags if tag.is_selected()]
+        if not selected_tags:
+            return
+        for tag in selected_tags:
+            tag.click_tag()
 
     @allure.step("Get a news card by index: {index}")
     def get_news_card_by_index(self, index: int) -> NewsListItemComponent:
         """ Get a news card by its index. """
-        cards = self.get_news_cards()
+        cards = self.news_card_items
         if index < 0 or index >= len(cards):
             raise IndexError(
                 f"Invalid news card index: {index}. "
@@ -127,3 +132,13 @@ class NewsPage(BasePage):
         """Wait until Eco News page title becomes visible."""
         self.wait_until_visible(self.page_title)
         return self
+
+    @allure.step("Click on tag by name: {tag_name}")
+    def click_tag_by_name(self, tag_name: str):
+        """ Click a tag by its visible name """
+        for tag in self.tags:
+            if tag.get_name().strip().lower() == tag_name.strip().lower():
+                tag.click_tag()
+                return self
+
+        raise ValueError(f"Tag not found: {tag_name}")
