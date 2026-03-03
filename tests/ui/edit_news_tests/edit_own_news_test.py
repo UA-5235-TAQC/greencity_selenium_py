@@ -7,7 +7,7 @@ from enums.news_tag import EcoNewsTag
 from pages.create_edit_news.edit_news_page import EditNewsPage
 from pages.news_details_page import NewsDetailsPage
 from pages.news_page import NewsPage
-from tests.utils.ui_news_test_data import NewsTestData
+from data.ui_news_test_data import NewsTestData
 
 
 @allure.tag("Edit News")

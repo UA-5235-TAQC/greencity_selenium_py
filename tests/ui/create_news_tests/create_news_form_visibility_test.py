@@ -6,8 +6,8 @@ from enums.language import Language
 from pages.create_edit_news.create_news_page import CreateNewsPage
 from pages.create_edit_news.news_preview_page import NewsPreviewPage
 from pages.news_page import NewsPage
-from tests.utils.language_data import CREATE_NEWS_LANGUAGE_DATA
-from tests.utils.ui_news_test_data import NewsTestData
+from data.language_data import CREATE_NEWS_LANGUAGE_DATA
+from data.ui_news_test_data import NewsTestData
 import pytest_check as check
 
 

@@ -2,7 +2,7 @@ import allure
 from allure_commons.types import Severity
 from components.create_edit_news.image_component import ImageComponent
 from pages.create_edit_news.create_news_page import CreateNewsPage
-from tests.utils.ui_news_test_data import NewsTestData
+from data.ui_news_test_data import NewsTestData
 import pytest_check as check
 
 

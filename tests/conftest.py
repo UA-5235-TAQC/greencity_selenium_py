@@ -15,8 +15,7 @@ from pages.create_edit_news.create_news_page import CreateNewsPage
 from pages.create_edit_news.edit_news_page import EditNewsPage
 from pages.home_page import HomePage
 from pages.news_details_page import NewsDetailsPage
-from pages.news_page import NewsPage
-from tests.utils.ui_news_test_data import NewsTestData
+from data.ui_news_test_data import NewsTestData
 
 from pages.news_page import NewsPage
 
@@ -71,6 +70,7 @@ def driver_with_login(get_driver):
 
     yield get_driver
 
+    get_driver.delete_all_cookies()
 
 @fixture(scope="function")
 def eco_page(driver_with_login) -> Generator[NewsPage, None, None]:
@@ -133,18 +133,9 @@ def edit_news_page_with_language(driver_with_login, create_news_page, request) -
 
 
 @fixture(scope="function")
-def log_in_user(get_driver):
-    header = HeaderComponent(get_driver)
-    sign_in_modal = header.click_sign_in_link()
-    sign_in_modal.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
-    yield get_driver
-    get_driver.delete_all_cookies()
-
-
-@fixture(scope="function")
-def tag_selection_environment(log_in_user):
+def tag_selection_environment(driver_with_login):
     # Initialize the driver and navigate to Create News page
-    driver = log_in_user
+    driver = driver_with_login
     news_page = NewsPage(driver).open()
     news_page.header.change_to_en()
     create_news_page = news_page.click_create_news()

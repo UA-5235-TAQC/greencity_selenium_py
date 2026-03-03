@@ -16,13 +16,13 @@ class NewsTestData:
 
     TEST_TAGS = [EcoNewsTag.NEWS, EcoNewsTag.EVENTS]
 
-    ROOT_DIR = Path(__file__).parent.parent.parent
-    TEST_FILE = (ROOT_DIR / "tests/images/test.jfif").resolve()
-    TEST2_FILE = (ROOT_DIR / "tests/images/test2.png").resolve()
+    ROOT_DIR = Path(__file__).parent.parent
+    TEST_FILE = (ROOT_DIR / "data/images/test.jfif").resolve()
+    TEST2_FILE = (ROOT_DIR / "data/images/test2.png").resolve()
 
-    TOO_LARGE_IMAGE = (ROOT_DIR / "tests/images/UploadImageTest/Andromeda_Galaxy.jpg").resolve()
-    SMALL_PNG_IMAGE = (ROOT_DIR / "tests/images/UploadImageTest/Small PNG.png").resolve()
-    GIF_IMAGE = (ROOT_DIR / "tests/images/UploadImageTest/cactus.gif").resolve()
+    TOO_LARGE_IMAGE = (ROOT_DIR / "data/images/UploadImageTest/Andromeda_Galaxy.jpg").resolve()
+    SMALL_PNG_IMAGE = (ROOT_DIR / "data/images/UploadImageTest/Small PNG.png").resolve()
+    GIF_IMAGE = (ROOT_DIR / "data/images/UploadImageTest/cactus.gif").resolve()
 
     VALID_CONTENT = "This is a valid content with more than 20 characters for the news item."
 

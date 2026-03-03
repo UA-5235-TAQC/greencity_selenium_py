@@ -1,7 +1,7 @@
 from enums.language import Language
 from enums.news_tag import EcoNewsTag
 from utils.date_utils import DateUtils
-from tests.utils.ui_news_test_data import NewsTestData
+from data.ui_news_test_data import NewsTestData
 
 CREATE_NEWS_LANGUAGE_DATA = {
     Language.EN: {

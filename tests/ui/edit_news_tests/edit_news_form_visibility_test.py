@@ -6,9 +6,9 @@ from enums.news_tag import EcoNewsTag
 from pages.create_edit_news.edit_news_page import EditNewsPage
 from pages.create_edit_news.news_preview_page import NewsPreviewPage
 from pages.news_page import NewsPage
-from tests.utils.language_data import EDIT_NEWS_LANGUAGE_DATA
+from data.language_data import EDIT_NEWS_LANGUAGE_DATA
 from tests.utils.merge_tags import merge_tags_unique
-from tests.utils.ui_news_test_data import NewsTestData
+from data.ui_news_test_data import NewsTestData
 from utils.date_utils import DateUtils
 
 

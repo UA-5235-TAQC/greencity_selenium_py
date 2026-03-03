@@ -3,7 +3,7 @@ from selenium.webdriver.remote.webelement import WebElement
 
 from selenium.webdriver.common.by import By
 from components.base_component import BaseComponent
-from utils.page_factory import LocatorsTable
+from utils.page_factory import LocatorsTable, ElementNotFoundException
 from pages.ubs_courier_page import UbsCourierPage
 
 
@@ -29,7 +29,8 @@ class CancelModalComponent(BaseComponent):
     @allure.step("Wait until cancel modal is visible")
     def wait_until_visible(self):
         """ Wait until cancel modal is visible. """
-        return self.warning_title.is_displayed()
+        self.warning_title.is_displayed()
+        return self
 
     @allure.step("Get cancel modal message text")
     def get_message(self) -> str:
@@ -97,9 +98,15 @@ class CancelModalComponent(BaseComponent):
     @allure.step("Check if 'Yes, cancel' button is visible")
     def is_cancel_button_visible(self) -> bool:
         """Checks if the cancel confirmation button is displayed."""
-        return self.yes_cancel_btn.is_displayed()
+        try:
+            return self.yes_cancel_btn.is_displayed()
+        except ElementNotFoundException:
+            return False
 
     @allure.step("Check Continue Editing button visible")
     def is_continue_editing_button_visible(self) -> bool:
         """Checks if the button to return to editing is displayed."""
-        return self.continue_editing_btn.is_displayed()
+        try:
+            return self.continue_editing_btn.is_displayed()
+        except ElementNotFoundException:
+            return False

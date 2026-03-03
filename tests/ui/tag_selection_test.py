@@ -6,7 +6,7 @@ from enums.news_tag import EcoNewsTag
 from pages.create_edit_news.create_news_page import CreateNewsPage
 from pages.news_page import NewsPage
 from components.news_list_item_component import NewsListItemComponent
-from tests.utils.ui_news_test_data import NewsTestData
+from data.ui_news_test_data import NewsTestData
 import pytest_check as check
 from allure_commons.types import Severity
 
