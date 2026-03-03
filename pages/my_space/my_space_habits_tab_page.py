@@ -29,6 +29,7 @@ class MySpaceHabitsTabPage(MySpaceBasePage):
     @allure.step("Verify that My Space Habits tab is opened")
     def is_page_opened(self) -> bool:
         """  Check if the Habits tab is opened by verifying visibility of Add Habit button. """
+        self.wait_until_visible(self.image)
         return self.image.is_displayed()
 
     @allure.step("Get 'No Data' placeholder title text")
@@ -52,6 +53,7 @@ class MySpaceHabitsTabPage(MySpaceBasePage):
 
     @allure.step("Click Add Habit button")
     def click_add_habit(self):
+        """ Click Add Habit button. """
         self.add_habit_button.click()
         return self
 

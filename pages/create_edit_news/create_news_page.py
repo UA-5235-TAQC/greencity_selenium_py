@@ -3,6 +3,7 @@ import allure
 from pages.create_edit_news.create_edit_news_page import CreateEditNewsPage
 from utils.page_factory import LocatorsTable, ElementNotFoundException
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support import expected_conditions as EC
 
 
 
@@ -30,10 +31,13 @@ class CreateNewsPage(CreateEditNewsPage):
         return self.publish_btn.is_enabled()
 
     @allure.step("Click Publish button")
-    def click_publish(self):
+    def click_publish(self) -> "NewsPage":
         """Performs a click action on the Publish button."""
+        publish_btn_locator: tuple[str, str] = self.locators["publish_btn"][:2]
+        self.wait_for(lambda d: EC.element_to_be_clickable(publish_btn_locator)(d))
         self.publish_btn.click()
-        return self
+        from pages.news_page import NewsPage
+        return NewsPage(self.driver)
 
     @allure.step("Get Publish button text")
     def get_publish_button_text(self) -> str:

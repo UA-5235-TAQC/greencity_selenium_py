@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Tuple, Any
+from typing import Tuple
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
@@ -66,11 +66,6 @@ class HeaderComponent(BaseComponent):
         self.sign_in.click()
         return self.auth_modal_sign_in
 
-    @allure.step("Click 'Sign Up' link in header")
-    def click_sign_up_link(self) -> SignUpModal:
-        self.sign_up.click()
-        return self.auth_modal_sign_up
-
     @allure.step("Click 'My Space' link in header")
     def click_my_space_link(self) -> "MySpaceHabitsTabPage":
         """ Click on the My Space link in the header. """
@@ -110,6 +105,7 @@ class HeaderComponent(BaseComponent):
             return self
         self.language_dropdown.click()
         self.driver.find_element(*self._language_option_locator(lang)).click()
+        self.wait_for(lambda d: self.get_current_locale() == lang)
         return self
 
     @allure.step("Change language to English")
