@@ -9,7 +9,6 @@ from components.auth_modal.modal_base_page import ModalBasePage
 from data.config import Config
 from utils.web_element_utils import enter_text
 
-
 class SignInModal(ModalBasePage):
     """ Component representing the Sign In modal window. """
 

@@ -48,6 +48,7 @@ def check_tags(edit_news_page, get_all_tags_fn, test_tags, new_tags, tags_to_sel
 @allure.description("Verify that the Create News form contains the particular fields.")
 def test_verify_edit_news_form_fields_visibility(edit_news_page_with_language: EditNewsPage):
     """ Verify that the Edit News form contains the particular fields. """
+    edit_news_page_with_language.set_window_size(2560, 1440)
     edit_news_page = edit_news_page_with_language
     current_locale = edit_news_page.header.get_current_locale()
     data = EDIT_NEWS_LANGUAGE_DATA[current_locale]

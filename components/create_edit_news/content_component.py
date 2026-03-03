@@ -87,6 +87,16 @@ class ContentComponent(BaseComponent):
         """Returns the text of the informational message/warning below the editor."""
         return self.content_message.text.strip()
 
+    @allure.step("Get content validation message text")
+    def get_content_warning_text(self) -> str:
+        """Returns validation warning message text."""
+        return self.content_message.text.strip()
+
+    @allure.step("Get content warning message color")
+    def get_content_warning_color(self) -> str:
+        """Returns CSS color of validation message."""
+        return self.content_message.value_of_css_property("color")
+
     @allure.step("Get content placeholder text")
     def get_content_placeholder(self) -> str:
         """Returns the placeholder text of the rich text editor."""
@@ -162,3 +172,15 @@ class ContentComponent(BaseComponent):
             return self.content_message.is_displayed()
         except ElementNotFoundException:
             return False
+
+    @allure.step("Enter content text via JS: {text}")
+    def set_content_via_js(self, text: str):
+        self.driver.execute_script(
+            """
+            const quill = document.querySelector('.ql-editor');
+            if (quill) {
+                quill.innerHTML = arguments[0];
+            }
+            """,
+            text
+        )

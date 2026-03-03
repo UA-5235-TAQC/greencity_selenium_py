@@ -98,6 +98,10 @@ class CreateEditNewsPage(BasePage):
                 target.click_tag()
         return self
 
+    @allure.step("Select tag: {tag_name}")
+    def select_tag(self, tag_name: str):
+        """ Selects a tag by its name. """
+        return self.click_tag_by_name(tag_name)
     @allure.step("Unselect tag: {tag_name}")
     def unselect_tag(self, tag_name: str):
         """ Unselect a tag by its name. """

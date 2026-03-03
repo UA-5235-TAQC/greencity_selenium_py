@@ -21,6 +21,7 @@ import pytest_check as check
 @pytest.mark.parametrize("language", [Language.EN, Language.UK])
 def test_verify_create_news_form_fields_visibility(create_news_page: CreateNewsPage, language: Language):
     """ Verify that the Create News form contains the particular fields. """
+    create_news_page.set_window_size(2560, 1440)
     create_news_page.header.change_to_en() if language == Language.EN else create_news_page.header.change_to_uk()
     # 1. Title
     title_counter = create_news_page.get_title_counter_text()

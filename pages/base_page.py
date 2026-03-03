@@ -95,3 +95,9 @@ class BasePage(PageFactory):
         """Refreshes the page via the driver."""
         self.driver.refresh()
         return self
+
+    @allure.step("Set browser window size to {width}x{height}")
+    def set_window_size(self, width: int, height: int):
+        """Set the browser window size."""
+        self.driver.set_window_size(width, height)
+        return self
