@@ -44,5 +44,5 @@ def logged_in_user(get_driver):
     """Returns a driver with a logged-in user"""
     home_page = HomePage(get_driver).open()
     sign_in_modal = home_page.header.click_sign_in_link()
-    sign_in_modal.sign_in()
+    sign_in_modal.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
     return get_driver

@@ -6,7 +6,6 @@ from selenium.webdriver.remote.webelement import WebElement
 from typing_extensions import override
 
 from components.auth_modal.modal_base_page import ModalBasePage
-from data.config import Config
 
 class SignInModal(ModalBasePage):
     """ Component representing the Sign In modal window. """
@@ -49,7 +48,7 @@ class SignInModal(ModalBasePage):
         return SignUpModal(self.auth_modal)
 
     @allure.step("Enter email and password values")
-    def sign_in(self, email: str = Config.USER_EMAIL, password: str = Config.USER_PASSWORD) -> None:
+    def sign_in(self, email: str, password: str) -> None:
         self.enter_email(email)
         self.enter_password(password)
         self.click_submit()
