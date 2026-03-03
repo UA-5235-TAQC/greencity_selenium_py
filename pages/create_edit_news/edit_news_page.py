@@ -6,7 +6,7 @@ from typing_extensions import override
 from pages.create_edit_news.create_edit_news_page import CreateEditNewsPage
 from utils.page_factory import LocatorsTable
 from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.support.ui import WebDriverWait
+
 
 
 class EditNewsPage(CreateEditNewsPage):
