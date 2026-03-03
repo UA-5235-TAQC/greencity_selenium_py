@@ -3,7 +3,6 @@ import allure
 from pages.create_edit_news.create_news_page import CreateNewsPage
 import re
 
-MIN_ERROR_TEXT = "Must be a minimum of 20 and a maximum of 63,206 symbols."
 VALID_CONTENT = "This is a valid test content"
 
 
@@ -40,7 +39,7 @@ def test_main_text_field_validation(driver_with_login):
 
     with allure.step("Enter content longer than 63,206 characters"):
         too_long_content = "A" * 63207
-        create_news_page.content_component.enter_content(too_long_content)
+        create_news_page.content_component.set_content_via_js(too_long_content)
 
     with allure.step("Verify error message is displayed for too long content"):
         assert create_news_page.content_component.is_content_warning_displayed()

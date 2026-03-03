@@ -172,3 +172,15 @@ class ContentComponent(BaseComponent):
             return self.content_message.is_displayed()
         except ElementNotFoundException:
             return False
+
+    @allure.step("Enter content text via JS: {text}")
+    def set_content_via_js(self, text: str):
+        self.driver.execute_script(
+            """
+            const quill = document.querySelector('.ql-editor');
+            if (quill) {
+                quill.innerHTML = arguments[0];
+            }
+            """,
+            text
+        )
