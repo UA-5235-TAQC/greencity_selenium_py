@@ -7,7 +7,7 @@ from selenium.webdriver.remote.webelement import WebElement
 from components.news_list_item_component import NewsListItemComponent
 from components.tag_component import TagItem
 from pages.base_page import BasePage
-from utils.page_factory import LocatorsTable
+from utils.page_factory import LocatorsTable, ElementNotFoundException
 from utils.web_element_utils import get_int_from_text
 
 
@@ -51,7 +51,10 @@ class NewsPage(BasePage):
     @allure.step("Verify Eco News page is opened")
     def is_page_opened(self) -> bool:
         """Return True if Eco News page title is visible."""
-        return self.page_title.is_displayed()
+        try:
+            return self.page_title.is_displayed()
+        except ElementNotFoundException:
+            return False
 
     @allure.step("Get Eco News page title")
     def get_page_title(self) -> str:

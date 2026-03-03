@@ -1,28 +1,22 @@
-import allure
-from pytest import fixture
-import allure
+from typing import Generator
 
-from components.news_list_item_component import NewsListItemComponent
-from components.base_page.header_component import HeaderComponent
-from components.auth_modal.sign_in_modal import SignInModal
-from components.base_page.header_component import HeaderComponent
-from data.config import Config
+import allure
+from allure_commons.types import Severity
+from pytest import fixture
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
-from allure_commons.types import Severity
-from typing import Generator
 
+from components.news_list_item_component import NewsListItemComponent
+from data.config import Config
+from data.ui_news_test_data import NewsTestData
 from enums.language import Language
 from pages.create_edit_news.create_news_page import CreateNewsPage
 from pages.create_edit_news.edit_news_page import EditNewsPage
 from pages.home_page import HomePage
 from pages.news_details_page import NewsDetailsPage
-from data.ui_news_test_data import NewsTestData
-
 from pages.news_page import NewsPage
 
-from pages.create_edit_news.create_news_page import CreateNewsPage
 
 @fixture(scope="function", params=["chrome"])
 def get_driver(request):
@@ -63,18 +57,14 @@ def driver_with_login(get_driver):
 
     allure.dynamic.severity(Severity.CRITICAL)
 
-    sign_in_modal = (
-        HomePage(get_driver)
-        .open()
-        .header.change_to_en()
-        .click_sign_in_link()
-    )
+    sign_in_modal = (HomePage(get_driver).open().header.change_to_en().click_sign_in_link())
 
     sign_in_modal.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
 
     yield get_driver
 
     get_driver.delete_all_cookies()
+
 
 @fixture(scope="function")
 def eco_page(driver_with_login) -> Generator[NewsPage, None, None]:
@@ -93,6 +83,7 @@ def create_news_page(driver_with_login, request) -> CreateNewsPage:
     create_news_page: CreateNewsPage = header.click_news_link().click_create_news()
     assert create_news_page.is_page_opened(), "Create News page should be opened"
     return create_news_page
+
 
 @fixture(scope="function")
 def eco_news_details_page(driver_with_login, create_news_page, request) -> NewsDetailsPage:
@@ -149,17 +140,3 @@ def tag_selection_environment(driver_with_login):
     news_page.open()
     # Reset any applied tag filters to avoid affecting subsequent tests
     news_page.remove_all_selected_tags()
-
-@fixture(scope="function")
-def create_news(get_driver):
-    """ Fixture to create news and login before tests """
-    sign_in = SignInModal(get_driver)
-    header = HeaderComponent(get_driver)
-
-    header.click_sign_in_link()
-    sign_in.sign_in(email=Config.USER_EMAIL, password=Config.USER_PASSWORD)
-
-    news = header.click_news_link()
-    news.click_create_news()
-
-    return CreateNewsPage(get_driver)

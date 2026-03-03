@@ -1,6 +1,7 @@
 import allure
 
 from enums.news_tag import EcoNewsTag
+from pages.create_edit_news.create_news_page import CreateNewsPage
 from pages.news_page import NewsPage
 
 
@@ -14,7 +15,9 @@ TAGS = [EcoNewsTag.NEWS.en, EcoNewsTag.ADS.en]
 @allure.epic("UI Tests")
 @allure.feature("News Creation")
 @allure.story("Source Field Validation")
-def test_source_field_validation(create_news):
+def test_source_field_validation(driver_with_login):
+
+    create_news = NewsPage(driver_with_login).open().click_create_news()
 
     with allure.step("Create news with mandatory fields"):
         create_news.create_news(title=NEWS_TITLE,
