@@ -1,0 +1,8 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","1009","Check selection of one tag","tests.ui.create_news_tests","Tue Mar 03 14:45:10 UTC 2026","failed","Tue Mar 03 14:45:11 UTC 2026","TestTagSelection","tag_selection_test","",""
+"","1212","Check selection of three tags","tests.ui.create_news_tests","Tue Mar 03 14:45:17 UTC 2026","failed","Tue Mar 03 14:45:18 UTC 2026","TestTagSelection","tag_selection_test","",""
+"","1936","test_source_field_validation[chrome]","tests.ui.create_news_tests","Tue Mar 03 14:45:29 UTC 2026","passed","Tue Mar 03 14:45:31 UTC 2026","","test_source_field","",""
+"Verify that the Create News form contains the particular fields.","5738","test_verify_create_news_form_fields_visibility[chrome-Language.EN]","tests.ui.create_news_tests","Tue Mar 03 14:44:49 UTC 2026","passed","Tue Mar 03 14:44:55 UTC 2026","","create_news_form_visibility_test","",""
+"Verify that clicking the Cancel button triggers a confirmation modal, and selecting 'Yes, cancel' closes the form and redirects away","1205","test_cancel_button_behavior[chrome]","tests.ui.create_news_tests","Tue Mar 03 14:44:43 UTC 2026","passed","Tue Mar 03 14:44:44 UTC 2026","","cancel_creating_test","",""
+"","889","Verify that selecting a 4th tag is blocked","tests.ui.create_news_tests","Tue Mar 03 14:45:24 UTC 2026","passed","Tue Mar 03 14:45:24 UTC 2026","TestTagSelection","tag_selection_test","",""
+"Verify that the Create News form contains the particular fields.","5522","test_verify_create_news_form_fields_visibility[chrome-Language.UK]","tests.ui.create_news_tests","Tue Mar 03 14:45:00 UTC 2026","passed","Tue Mar 03 14:45:05 UTC 2026","","create_news_form_visibility_test","",""
