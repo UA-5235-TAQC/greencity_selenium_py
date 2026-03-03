@@ -10,10 +10,10 @@ VALID_CONTENT = "This is a valid test content"
 @allure.feature("Create News")
 @allure.issue("7")
 @allure.story("Main Text field validation")
-def test_main_text_field_validation(logged_in_user):
+def test_main_text_field_validation(driver_with_login):
 
     with allure.step("Login and open create news page"):
-        create_news_page = CreateNewsPage(logged_in_user)
+        create_news_page = CreateNewsPage(driver_with_login)
         create_news_page.open().header.change_to_en()
         assert "/news/create-news" in create_news_page.get_current_url()
 

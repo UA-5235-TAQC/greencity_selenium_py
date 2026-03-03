@@ -8,8 +8,8 @@ MODIFIED_TEXT = "Modified text for cancel test"
 @allure.feature("Edit News")
 @allure.issue("18")
 @allure.story("Cancel editing behavior")
-def test_cancel_editing_discards_changes(logged_in_user):
-    driver = logged_in_user
+def test_cancel_editing_discards_changes(driver_with_login):
+    driver = driver_with_login
 
     with allure.step("Open Edit News page"):
         edit_page = EditNewsPage(driver, news_id=EXISTING_NEWS_ID)
