@@ -71,5 +71,5 @@ class TestTagSelection:
 
         # Cleanup: Handle Cancel and Modal for the non-publish flow
         create_news_page.cancel_btn.click()
-        create_news_page.get_cancel_modal().click_yes_cancel()
+        create_news_page.cancel_modal.click_yes_cancel()
         assert news_page.is_page_opened(), "Should return to News page after cancellation"
