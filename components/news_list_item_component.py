@@ -68,7 +68,7 @@ class NewsListItemComponent(BaseComponent):
     @allure.step("Get news title text")
     def get_title(self) -> str:
         """ Get title text of the news item. """
-        return self.title.text
+        return self.title.text.strip()
 
     @allure.step("Get news text")
     def get_news_text(self) -> str:
@@ -99,3 +99,8 @@ class NewsListItemComponent(BaseComponent):
     def get_bookmark_button_text(self) -> str:
         """ Get bookmark button text. """
         return self.bookmark_btn.text
+
+    @allure.step("Open news by clicking card")
+    def open_news_by_card(self):
+        """ Open news by clicking card. """
+        self.root_element.click()

@@ -42,3 +42,8 @@ class DeleteNewsModal(BaseComponent):
     def get_warning_text(self):
         """Get delete news warning text"""
         return self.warning_text.text.strip()
+
+    @allure.step("Check if delete news modal is visible")
+    def is_component_visible(self) -> bool:
+        """Check if delete news modal is visible."""
+        return self.is_visible()
