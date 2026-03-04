@@ -1,13 +1,10 @@
-from jsonschema import validate
-
 from clients.eco_new_client import EcoNewsClient
 from data.config import Config
 from enums.news_tag import EcoNewsTag
 from schemas.eco_news_response_schema import eco_news_page_schema, eco_news_item_schema
-
+from tests.utils.validators import validate_json
 
 def test_create_and_verify_news(auth_token):
-
     eco_news_client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
 
     news_payload = {
@@ -32,13 +29,14 @@ def test_create_and_verify_news(auth_token):
     )
 
     assert get_news_response.status_code == 200
-    news_list = get_news_response.json().get("page", [])
+    full_response_json = get_news_response.json()
+    news_list = full_response_json.get("page", [])
 
     actual_news = next((item for item in news_list if item["id"] == new_id), None)
-
-    validate(instance=actual_news, schema=eco_news_item_schema)
-
     assert actual_news is not None, f"News with ID {new_id} not found in the list!"
+
+    is_valid, msg = validate_json(actual_news, eco_news_item_schema)
+    assert is_valid, msg
 
     assert actual_news["title"] == news_payload["title"]
     assert actual_news["content"] == news_payload["text"]
@@ -48,15 +46,22 @@ def test_create_and_verify_news(auth_token):
     for tag in news_payload["tags"]:
         assert tag in actual_news["tagsEn"], f"Tag {tag} missing in response"
 
-    validate(instance=get_news_response.json(), schema=eco_news_page_schema)
+    is_valid_page, page_msg = validate_json(full_response_json, eco_news_page_schema)
+    assert is_valid_page, page_msg
 
 def test_get_news_success(auth_token):
     eco_news_client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
-    get_created_news = eco_news_client.find_eco_news_by_page(tags=[EcoNewsTag.NEWS.en, EcoNewsTag.ADS.en],
-                                                             author_id=Config.USER_ID,
-                                                             sort=["title"],
-                                                             )
+    get_created_news = eco_news_client.find_eco_news_by_page(
+        tags=[EcoNewsTag.NEWS.en, EcoNewsTag.ADS.en],
+        author_id=Config.USER_ID,
+        sort=["title"],
+    )
 
-    assert get_created_news.status_code == 200, f"Expected 200, but got {get_created_news.status_code}"
+    assert get_created_news.status_code == 200
+    response_json = get_created_news.json()
 
-    validate(instance=get_created_news, schema=eco_news_page_schema)
+    is_valid, msg = validate_json(response_json, eco_news_page_schema)
+    assert is_valid, msg
+
+    author = response_json["page"][0]["author"]["name"]
+    assert author == Config.USER_NAME, f"Expected author {Config.USER_NAME}, but got {author}"
