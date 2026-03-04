@@ -8,6 +8,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
+from clients.own_security_client import OwnSecurityClient
 from components.news_list_item_component import NewsListItemComponent
 from data.config import Config
 from data.ui_news_test_data import NewsTestData
@@ -141,3 +142,15 @@ def tag_selection_environment(driver_with_login):
     news_page.open()
     # Reset any applied tag filters to avoid affecting subsequent tests
     news_page.remove_all_selected_tags()
+
+
+@fixture(scope="session")
+def auth_token():
+    """Get auth token."""
+    auth_client = OwnSecurityClient(Config.BASE_GREEN_CITY_USER_API_URL)
+    login_response = auth_client.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
+
+    assert login_response.status_code == 200, f"Fixture: Login failed with {login_response.status_code}"
+
+    token = login_response.json().get("accessToken")
+    return token
