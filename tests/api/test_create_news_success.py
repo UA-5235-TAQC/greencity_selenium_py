@@ -16,7 +16,7 @@ def test_create_and_verify_news(auth_token):
     }
     image_path = "data/images/test2.png"
 
-    create_response = eco_news_client.add_eco_news(news_payload, image_path)
+    create_response, news_id = eco_news_client.add_eco_news(news_payload, image_path)
     assert create_response.status_code == 201
 
     created_news_data = create_response.json()
@@ -48,6 +48,9 @@ def test_create_and_verify_news(auth_token):
 
     is_valid_page, page_msg = validate_json(full_response_json, eco_news_page_schema)
     assert is_valid_page, page_msg
+
+    delete_news_response = eco_news_client.delete_eco_news_by_id(news_id)
+    assert delete_news_response.status_code == 200
 
 def test_get_news_success(auth_token):
     eco_news_client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
