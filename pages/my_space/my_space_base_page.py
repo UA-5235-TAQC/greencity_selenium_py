@@ -41,7 +41,7 @@ class MySpaceBasePage(BasePage):
     @allure.step("Check if My Space Page is opened")
     def is_page_opened(self) -> bool:
         """ Verify that the My Space page is opened. """
-        return self.profile_panel.is_component_visible()
+        return self.profile_panel.is_visible()
 
     @allure.step("Wait until My Space Page is loaded")
     def wait_until_opened(self) -> "MySpaceBasePage":

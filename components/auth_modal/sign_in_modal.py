@@ -7,7 +7,7 @@ from typing_extensions import override
 
 from components.auth_modal.modal_base_page import ModalBasePage
 from data.config import Config
-
+from utils.web_element_utils import enter_text
 
 class SignInModal(ModalBasePage):
     """ Component representing the Sign In modal window. """
@@ -29,7 +29,7 @@ class SignInModal(ModalBasePage):
     @allure.step("Enter value in password field")
     def enter_password(self, password: str) -> SignInModal:
         """ Enter value in password field. """
-        self.password_field.send_keys(password)
+        enter_text(self.password_field, password)
         return self
 
     @allure.step("Click show password icon")
@@ -50,10 +50,11 @@ class SignInModal(ModalBasePage):
         return SignUpModal(self.auth_modal)
 
     @allure.step("Enter email and password values")
-    def sign_in(self, email: str = Config.USER_EMAIL, password: str = Config.USER_PASSWORD) -> None:
+    def sign_in(self, email: str, password: str) -> None:
         self.enter_email(email)
         self.enter_password(password)
         self.click_submit()
+        self.wait_until_closed()
 
         from pages.my_space.my_space_habits_tab_page import MySpaceHabitsTabPage
         habits_page = MySpaceHabitsTabPage(self.driver)

@@ -1,15 +1,13 @@
 from typing import List
 
-from selenium.webdriver.support.wait import WebDriverWait
+import allure
+from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 
 from components.news_list_item_component import NewsListItemComponent
 from components.tag_component import TagItem
-from data.config import Config
 from pages.base_page import BasePage
-from selenium.webdriver.common.by import By
-import allure
-from selenium.webdriver.remote.webelement import WebElement
-from utils.page_factory import LocatorsTable
+from utils.page_factory import LocatorsTable, ElementNotFoundException
 from utils.web_element_utils import get_int_from_text
 
 
@@ -41,7 +39,7 @@ class NewsPage(BasePage):
         "list_view_btn": (By.CSS_SELECTOR, "[aria-label='list view']"),
         "remaining_count_text": (By.CSS_SELECTOR, "h2"),
         "news_card_items": (By.CSS_SELECTOR, "ul.list li", List[NewsListItemComponent]),
-        "tags": (By.CSS_SELECTOR, "button.tag-button", TagItem),
+        "tags": (By.CSS_SELECTOR, "button.tag-button", List[TagItem]),
     }
 
     @allure.step("Open Eco News page")
@@ -53,7 +51,10 @@ class NewsPage(BasePage):
     @allure.step("Verify Eco News page is opened")
     def is_page_opened(self) -> bool:
         """Return True if Eco News page title is visible."""
-        return self.page_title.is_displayed()
+        try:
+            return self.page_title.is_displayed()
+        except ElementNotFoundException:
+            return False
 
     @allure.step("Get Eco News page title")
     def get_page_title(self) -> str:
@@ -110,15 +111,18 @@ class NewsPage(BasePage):
 
     @allure.step("Remove all selected tags")
     def remove_all_selected_tags(self):
-        """ Click all tags that are currently selected to remove their selection. """
-        for tag in self.tags:
-            if tag.is_selected():
-                tag.click_tag()
+        """Deselects all active tags by checking their state via root_element"""
+        self.wait_until_opened()
+        selected_tags = [tag for tag in self.tags if tag.is_selected()]
+        if not selected_tags:
+            return
+        for tag in selected_tags:
+            tag.click_tag()
 
     @allure.step("Get a news card by index: {index}")
     def get_news_card_by_index(self, index: int) -> NewsListItemComponent:
         """ Get a news card by its index. """
-        cards = self.get_news_cards()
+        cards = self.news_card_items
         if index < 0 or index >= len(cards):
             raise IndexError(
                 f"Invalid news card index: {index}. "
@@ -132,24 +136,12 @@ class NewsPage(BasePage):
         self.wait_until_visible(self.page_title)
         return self
 
-    @allure.step("Get ID of latest created news")
-    def get_latest_news_id(self) -> int:
-        """Get the latest news ID."""
-        self.wait_for(lambda _: len(self.news_card_items) > 0, Config.EXPLICITLY_WAIT)
-        first_card = self.news_card_items[0]
+    @allure.step("Click on tag by name: {tag_name}")
+    def click_tag_by_name(self, tag_name: str):
+        """ Click a tag by its visible name """
+        for tag in self.tags:
+            if tag.get_name().strip().lower() == tag_name.strip().lower():
+                tag.click_tag()
+                return self
 
-        link_element = first_card.root_element.find_element(By.CSS_SELECTOR, "a.link")
-        href = link_element.get_attribute("href")
-
-        try:
-            news_id = href.rstrip('/').split('/')[-1]
-            return int(news_id)
-        except (ValueError, IndexError) as e:
-            raise ValueError(f"Can`t parse href: {href}. Error: {e}")
-
-    @allure.step("Reload the page and wait for it to be ready")
-    def reload(self):
-        """Reload the page and wait for it to be ready"""
-        self.driver.refresh()
-        self.wait_for(lambda _: self.is_page_opened(), Config.EXPLICITLY_WAIT)
-        return self
+        raise ValueError(f"Tag not found: {tag_name}")

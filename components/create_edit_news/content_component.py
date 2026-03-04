@@ -6,7 +6,7 @@ from selenium.webdriver.remote.webelement import WebElement
 
 from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable, ElementNotFoundException
-from utils.web_element_utils import clear_element_by_keyboard
+from utils.web_element_utils import clear_element_by_keyboard, enter_text
 
 
 class ContentComponent(BaseComponent):
@@ -33,8 +33,7 @@ class ContentComponent(BaseComponent):
     @allure.step("Clear and enter content text: {text}")
     def enter_content(self, text: str):
         """Clears the editor and enters new content text."""
-        self.clear_content()
-        self.content_editor.send_keys(text)
+        enter_text(self.content_editor, text)
         return self
 
     @allure.step("Enter content text without clearing: {text}")
@@ -88,6 +87,16 @@ class ContentComponent(BaseComponent):
         """Returns the text of the informational message/warning below the editor."""
         return self.content_message.text.strip()
 
+    @allure.step("Get content validation message text")
+    def get_content_warning_text(self) -> str:
+        """Returns validation warning message text."""
+        return self.content_message.text.strip()
+
+    @allure.step("Get content warning message color")
+    def get_content_warning_color(self) -> str:
+        """Returns CSS color of validation message."""
+        return self.content_message.value_of_css_property("color")
+
     @allure.step("Get content placeholder text")
     def get_content_placeholder(self) -> str:
         """Returns the placeholder text of the rich text editor."""
@@ -100,6 +109,14 @@ class ContentComponent(BaseComponent):
             return self.content_message.is_displayed()
         except ElementNotFoundException:
             return False
+
+    def is_content_message_invalid(self) -> bool:
+        """
+        Check if informational validation message is highlighted in red
+        because character count is less than 20.
+        """
+        class_attr = self.content_message.get_attribute("class")
+        return "warning" in class_attr
 
     @allure.step("Get actual content character count")
     def get_actual_content_length(self) -> int:
@@ -114,7 +131,6 @@ class ContentComponent(BaseComponent):
             return 0
 
         number = int(match.group())
-        # if content length lower than 20, massage format is "Not enough characters. Left: X "
         if "Left" in text:
             return 20 - number
 
@@ -140,3 +156,31 @@ class ContentComponent(BaseComponent):
     def remove_first_content_chars(self, count: int):
         """Removes the specified number of characters from the start of the text."""
         return self._remove_content_chars(count, from_start=True)
+
+    @allure.step("Check if content counter is visible")
+    def is_content_counter_visible(self) -> bool:
+        """ Check if content counter is visible. """
+        try:
+            return self.content_counter.is_displayed()
+        except ElementNotFoundException:
+            return False
+
+    @allure.step("Check if content message is visible")
+    def is_content_message_visible(self) -> bool:
+        """ Check if content message is visible. """
+        try:
+            return self.content_message.is_displayed()
+        except ElementNotFoundException:
+            return False
+
+    @allure.step("Enter content text via JS: {text}")
+    def set_content_via_js(self, text: str):
+        self.driver.execute_script(
+            """
+            const quill = document.querySelector('.ql-editor');
+            if (quill) {
+                quill.innerHTML = arguments[0];
+            }
+            """,
+            text
+        )
