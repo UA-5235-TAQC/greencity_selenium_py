@@ -8,6 +8,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
+from clients.comments_client import CommentsClient
+from clients.own_security_client import OwnSecurityClient
 from components.news_list_item_component import NewsListItemComponent
 from data.config import Config
 from data.ui_news_test_data import NewsTestData
@@ -141,3 +143,13 @@ def tag_selection_environment(driver_with_login):
     news_page.open()
     # Reset any applied tag filters to avoid affecting subsequent tests
     news_page.remove_all_selected_tags()
+
+
+@fixture(scope="function")
+def comments_client():
+    own = OwnSecurityClient(Config.BASE_GREEN_CITY_USER_API_URL)
+    response = own.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
+
+    token = response.json()["accessToken"]
+    client = CommentsClient(Config.BASE_GREEN_CITY_API_URL, access_token=token)
+    return client
