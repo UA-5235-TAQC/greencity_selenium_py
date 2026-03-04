@@ -2,12 +2,13 @@ from typing import Generator
 
 import allure
 from allure_commons.types import Severity
-from jsonschema import validate, ValidationError
+from schemas.greencity_user.own_security import success_sign_in_schema
 from pytest import fixture
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
+from clients.own_security_client import OwnSecurityClient
 from components.news_list_item_component import NewsListItemComponent
 from data.config import Config
 from data.ui_news_test_data import NewsTestData
@@ -17,6 +18,7 @@ from pages.create_edit_news.edit_news_page import EditNewsPage
 from pages.home_page import HomePage
 from pages.news_details_page import NewsDetailsPage
 from pages.news_page import NewsPage
+from tests.utils.validators import validate_json
 
 
 @fixture(scope="function", params=["chrome"])
@@ -65,6 +67,19 @@ def driver_with_login(get_driver):
     yield get_driver
 
     get_driver.delete_all_cookies()
+
+
+@fixture(scope="function")
+def sign_in_api():
+    """Fixture that performs API sign-in and yields the response JSON containing the access token."""
+    
+    client = OwnSecurityClient(Config.BASE_GREEN_CITY_USER_API_URL)
+    response = client.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
+    assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
+    is_valid, error = validate_json(response.json(), success_sign_in_schema)
+    assert is_valid, f"Response JSON does not match the expected schema: {error}"
+
+    yield response.json()
 
 
 @fixture(scope="function")
