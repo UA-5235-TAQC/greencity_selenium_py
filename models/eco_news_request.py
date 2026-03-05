@@ -14,4 +14,6 @@ class EcoNewsRequest:
 
     def to_json(self) -> str:
         """ Convert the DTO into a JSON string. """
-        return json.dumps(asdict(self), ensure_ascii=False)
+        data = asdict(self)
+        data["shortInfo"] = data.pop("short_info")  # Rename field for API compatibility
+        return json.dumps(data, ensure_ascii=False)

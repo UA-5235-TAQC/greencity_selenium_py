@@ -46,7 +46,7 @@ class EcoNewClient(BaseClient):
     @allure.step("Post new EcoNews with image: {image_path}")
     def post_eco_news_with_image(self, body: EcoNewsRequest, image_path: str) -> Response:
         """Create EcoNews with image."""
-        dto_json = json.dumps(asdict(body), ensure_ascii=False)
+        dto_json = body.to_json()
         files = {
             "addEcoNewsDtoRequest": ("addEcoNewsDtoRequest", dto_json, "application/json")
         }

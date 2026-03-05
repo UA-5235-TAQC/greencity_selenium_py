@@ -1,23 +1,25 @@
-from clients.eco_new_client import EcoNewsClient
+from clients.eco_new_client import EcoNewClient
 from data.config import Config
 from enums.news_tag import EcoNewsTag
+from models.eco_news_query import EcoNewsQuery
+from models.eco_news_request import EcoNewsRequest
 from schemas.eco_news_response_schema import eco_news_page_schema, eco_news_item_schema
 from tests.utils.validators import validate_json
 
 def test_create_and_verify_news(auth_token):
-    eco_news_client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
+    eco_news_client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, token=auth_token)
 
-    news_payload = {
-        "title": "Eco title " + str(Config.USER_ID),
-        "text": "Test content with more than 20 characters",
-        "tags": [EcoNewsTag.NEWS.en, EcoNewsTag.ADS.en],
-        "source": "https://chatgpt.com/",
-        "shortInfo": "short description 12341"
-    }
+    news_payload:EcoNewsRequest = EcoNewsRequest(
+        title= "Eco title " + str(Config.USER_ID),
+        text= "Test content with more than 20 characters",
+        tags= [EcoNewsTag.NEWS.en, EcoNewsTag.ADS.en],
+        source= "https://chatgpt.com/",
+        short_info="short description 12341"
+    )
 
     image_path = "data/images/test2.png"
 
-    create_response = eco_news_client.add_eco_news(news_payload, image_path)
+    create_response = eco_news_client.post_eco_news_with_image(news_payload, image_path)
 
     assert create_response.status_code == 201
 
@@ -25,12 +27,12 @@ def test_create_and_verify_news(auth_token):
     news_id = created_news_data.get("id")
 
     assert news_id is not None, "News ID was not returned!"
-
-    get_news_response = eco_news_client.find_eco_news_by_page(
-        title=news_payload["title"],
+    query:EcoNewsQuery = EcoNewsQuery(
+        title=news_payload.title,
         author_id=Config.USER_ID,
-        sort=["id,desc"]
+        sort="id,desc"
     )
+    get_news_response = eco_news_client.get_eco_news_by_query(query)
 
     assert get_news_response.status_code == 200
 
@@ -44,12 +46,12 @@ def test_create_and_verify_news(auth_token):
     is_valid, msg = validate_json(actual_news, eco_news_item_schema)
     assert is_valid, msg
 
-    assert actual_news["title"] == news_payload["title"]
-    assert actual_news["content"] == news_payload["text"]
-    assert actual_news["source"] == news_payload["source"]
-    assert actual_news["shortInfo"] == news_payload["shortInfo"]
+    assert actual_news["title"] == news_payload.title
+    assert actual_news["content"] == news_payload.text
+    assert actual_news["source"] == news_payload.source
+    assert actual_news["shortInfo"] == news_payload.short_info
 
-    for tag in news_payload["tags"]:
+    for tag in news_payload.tags:
         assert tag in actual_news["tagsEn"], f"Tag {tag} missing in response"
 
     is_valid_page, page_msg = validate_json(full_response_json, eco_news_page_schema)
@@ -59,12 +61,13 @@ def test_create_and_verify_news(auth_token):
     assert delete_news_response.status_code == 200
 
 def test_get_news_success(auth_token):
-    eco_news_client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
-    get_created_news = eco_news_client.find_eco_news_by_page(
+    eco_news_client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, token=auth_token)
+    query: EcoNewsQuery = EcoNewsQuery(
         tags=[EcoNewsTag.NEWS.en, EcoNewsTag.ADS.en],
         author_id=Config.USER_ID,
-        sort=["title"],
+        sort="title"
     )
+    get_created_news = eco_news_client.get_eco_news_by_query(query)
 
     assert get_created_news.status_code == 200
     response_json = get_created_news.json()
