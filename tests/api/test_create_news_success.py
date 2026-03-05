@@ -14,13 +14,13 @@ def test_create_and_verify_news(auth_token):
         "source": "https://chatgpt.com/",
         "shortInfo": "short description 12341"
     }
+
     image_path = "data/images/test2.png"
 
     create_response, news_id = eco_news_client.add_eco_news(news_payload, image_path)
-    assert create_response.status_code == 201
 
-    created_news_data = create_response.json()
-    new_id = created_news_data.get("id")
+    assert create_response.status_code == 201
+    assert news_id is not None, "News ID was not returned!"
 
     get_news_response = eco_news_client.find_eco_news_by_page(
         title=news_payload["title"],
@@ -29,11 +29,13 @@ def test_create_and_verify_news(auth_token):
     )
 
     assert get_news_response.status_code == 200
+
     full_response_json = get_news_response.json()
     news_list = full_response_json.get("page", [])
 
-    actual_news = next((item for item in news_list if item["id"] == new_id), None)
-    assert actual_news is not None, f"News with ID {new_id} not found in the list!"
+    actual_news = next((item for item in news_list if item["id"] == news_id), None)
+
+    assert actual_news is not None, f"News with ID {news_id} not found in the list!"
 
     is_valid, msg = validate_json(actual_news, eco_news_item_schema)
     assert is_valid, msg
