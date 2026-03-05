@@ -56,6 +56,7 @@ jobs:
           USER_LOCATION: ${{ secrets.USER_LOCATION }}
           USER_NAME: ${{ secrets.USER_NAME }}
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+          FAVORITE_NEWS_ID: ${{ secrets.FAVORITE_NEWS_ID }}
 
       - name: Get Allure history
         uses: actions/checkout@v4

@@ -37,7 +37,7 @@ class CreateNewsPage(CreateEditNewsPage):
         self.wait_for(lambda d: EC.element_to_be_clickable(publish_btn_locator)(d))
         self.publish_btn.click()
         from pages.news_page import NewsPage
-        return NewsPage(self.driver)
+        return NewsPage(self.driver).wait_until_opened()
 
     @allure.step("Get Publish button text")
     def get_publish_button_text(self) -> str:
