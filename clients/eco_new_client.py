@@ -44,3 +44,12 @@ class EcoNewClient(BaseClient):
             params["sort"] = ",".join(sort)
 
         return self._request("GET", "", params=params)
+
+    @allure.step("Get eco news tags with language: {lang}")
+    def get_tags(self, lang: str = "en") -> Response:
+        """Get eco news tags by language."""
+        return self._request(
+            "GET",
+            "/tags",
+            params={"lang": lang}
+        )
