@@ -4,16 +4,16 @@ from pages.create_edit_news.edit_news_page import EditNewsPage
 
 NEWS_TITLE: str = "Test News Updated"
 NOT_VALID_CONTENT = "Not valid content(("
-EXISTING_NEWS_ID = 3588
+
 
 
 @allure.feature("Edit News")
 @allure.story("Content field validation")
-def test_edit_content_not_shorter_than_20_chars_not_accepted(driver_with_login):
-    driver = driver_with_login
-
-    with allure.step(f"Open Edit News page for news ID: {EXISTING_NEWS_ID}"):
-        edit_news_page = EditNewsPage(driver, news_id=EXISTING_NEWS_ID)
+def test_edit_content_not_shorter_than_20_chars_not_accepted(eco_news_details_page):
+    driver = eco_news_details_page.driver
+    existing_news_id = eco_news_details_page.get_news_id()
+    with allure.step(f"Open Edit News page for news ID: {existing_news_id}"):
+        edit_news_page = EditNewsPage(driver, news_id=existing_news_id)
         edit_news_page.open()
         edit_news_page.header.change_to_en()
 
