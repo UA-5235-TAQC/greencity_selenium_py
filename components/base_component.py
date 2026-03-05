@@ -9,16 +9,6 @@ from selenium.webdriver.support import expected_conditions as EC
 class BaseComponent(PageFactory):
     """ Base class for page components. """
 
-    def __init__(self, driver):
-        """ Initialize the base component with a WebDriver instance and merge all declared locators. """
-        all_locators = {}
-        for cls in reversed(self.__class__.mro()):
-            if hasattr(cls, 'locators'):
-                all_locators.update(cls.locators)
-
-        self.locators = all_locators
-        super().__init__(driver)
-
     @allure.step("Check if the component is enabled")
     def is_enabled(self) -> bool:
         """Check if the component is enabled."""

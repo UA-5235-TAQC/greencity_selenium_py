@@ -4,6 +4,7 @@ import allure
 from dataclasses import asdict
 from typing import Optional
 import json
+
 from requests import Response
 from clients.base_client import BaseClient
 from models.eco_news_query import EcoNewsQuery
@@ -141,3 +142,13 @@ class EcoNewClient(BaseClient):
     def get_eco_news_by_id_with_lang(self, eco_news_id: int, lang: str) -> Response:
         """Get EcoNews by ID with language."""
         return self.get(self.get_path(eco_news_id), params={"lang": lang})
+
+    @allure.step("Add news {news_id} to favorites")
+    def add_to_favorites(self, news_id: int) -> Response:
+        """Endpoint: POST .../eco-news/{id}/favorites"""
+        return self.post(f"{news_id}/favorites")
+
+    @allure.step("Remove news {news_id} from favorites")
+    def remove_from_favorites(self, news_id: int) -> Response:
+        """Endpoint: DELETE .../eco-news/{id}/favorites"""
+        return self.delete(f"{news_id}/favorites")
