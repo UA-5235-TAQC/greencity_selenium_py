@@ -75,9 +75,15 @@ def refresh_auth_token(_auth_tokens):
         _auth_tokens["access_token"] = body["accessToken"]
         _auth_tokens["refresh_token"] = body.get("refreshToken", _auth_tokens["refresh_token"])
     else:
-        # Refresh failed (e.g. refresh token also expired) – fall back to a
+        # Refresh failed (e.g. refresh token also expired) - fall back to a
         # full re-login so the test can still proceed.
-        with allure.step("Refresh token expired; performing full re-login"):
+        allure.attach(
+            f"status={refresh_response.status_code} body={refresh_response.text[:500]}",
+            name="refresh_token failure details",
+        )
+        with allure.step(
+            f"Refresh token failed (HTTP {refresh_response.status_code}); performing full re-login"
+        ):
             login_response = auth_client.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
             assert_ok(login_response)
             body = login_response.json()
