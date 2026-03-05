@@ -35,15 +35,15 @@ eco_news_response_schema = {
         },
         "likes": {"type": "integer"},
         "countComments": {"type": "integer"},
-        "countOfEcoNews": {"type": "integer"},
+        "countOfEcoNews": {"type": "integer", "default": 1},
         "favorite": {"type": "boolean"},
         "dislikes": {"type": "integer", "default": 0},
         "hidden": {"type": "boolean", "default": False}
     },
     "required": [
         "id", "title", "content", "shortInfo", "author",
-        "creationDate", "imagePath", "source", "tagsUk", "tagsEn",
-        "likes", "countComments", "countOfEcoNews", "favorite"
+        "creationDate", "imagePath", "tagsUk", "tagsEn",
+        "likes", "countComments"
     ],
     "additionalProperties": False
 }

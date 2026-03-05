@@ -26,6 +26,4 @@ class UpdateEcoNewsRequest:
 
     def to_json(self) -> str:
         """ Convert DTO to JSON string. """
-        data = asdict(self)
-        data["shortInfo"] = data.pop("short_info")
-        return json.dumps(data, ensure_ascii=False)
+        return json.dumps(asdict(self), ensure_ascii=False)
