@@ -3,6 +3,7 @@ import allure
 from requests import request, Response
 from clients.base_client import BaseClient
 from data.config import Config
+import os
 
 
 class CommentsClient(BaseClient):
@@ -90,10 +91,11 @@ class CommentsClient(BaseClient):
 
         """Add comment to news or reply another comment"""
 
-        endpoint = f"/eco-news/{news_id}/comments"
+        endpoint = f"/{news_id}/comments"
         base_image_url = "./data/images/test2.png"
-        headers = {"Authorization": "Bearer " + self.access_token}
-        img_url = image_url if image_url is not None else base_image_url
+        headers = {"Content-Type": None}
+        img_url = image_url if image_url else base_image_url
+        file_name = os.path.basename(image_url or base_image_url)
 
         with open(img_url, "rb") as img:
             files = {
@@ -101,10 +103,10 @@ class CommentsClient(BaseClient):
                     "text": comment_message,
                     "parentCommentId": parent_id
                 })),
-                "images": None if not select_default_image else ["test_image.jpeg", img, "image/jpeg"]
+                "images": None if not select_default_image else [file_name, img, "image/jpeg"]
             }
 
-            return request(method="POST",
-                           url=f"{Config.BASE_GREEN_CITY_API_URL}{endpoint}",
-                           files=files,
-                           headers=headers)
+            return self._request(method="POST",
+                                 endpoint=endpoint,
+                                 files=files,
+                                 headers=headers)
