@@ -1,9 +1,7 @@
 import json
 import allure
-from requests import request, Response
+from requests import Response
 from clients.base_client import BaseClient
-from data.config import Config
-import os
 
 
 class CommentsClient(BaseClient):
