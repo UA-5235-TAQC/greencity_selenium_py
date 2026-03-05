@@ -29,12 +29,10 @@ class TestNewsComments:
         assert is_valid, f"Response JSON does not match the expected schema: {error}"
 
     @allure.severity(Severity.NORMAL)
-    def test_like_comment(self, sign_in_api):
+    def test_like_comment(self, auth_token):
         """Test: Like a comment."""
-
-        access_token = sign_in_api["accessToken"]
         comment_id = 2651  # TODO Replace with a dynamic comment ID, need second test user
-        comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token)
+        comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, auth_token)
 
         response = comment_client.like_comment(comment_id)
 
@@ -55,10 +53,9 @@ class TestNewsComments:
 
     @allure.severity(Severity.TRIVIAL)
     @pytest.mark.dependency(depends=["add_comment_to_eco_news"])
-    def test_delete_comment_by_id(self, sign_in_api):
+    def test_delete_comment_by_id(self, auth_token):
         """Test: Delete a comment by its ID."""
-        access_token = sign_in_api["accessToken"]
-        comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token)
+        comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, auth_token)
 
         response = comment_client.delete_comment_by_id(TestNewsComments.created_comment_id)
         assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"

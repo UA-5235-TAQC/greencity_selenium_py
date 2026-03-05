@@ -1,14 +1,21 @@
+from typing import Any
+
 from pytest import fixture
 import allure
+from requests import Response
 
 from clients.comments_client import CommentsClient
 from clients.eco_new_client import EcoNewClient
+from clients.eco_news_client import EcoNewsClient
 from clients.own_security_client import OwnSecurityClient
 from data.api_news_test_data import EcoNewsDtoFactory
 from data.config import Config
 from data.ui_news_test_data import NewsTestData
+from enums.news_tag import EcoNewsTag
 from models.eco_news_request import EcoNewsRequest
+from schemas.greencity_user.own_security import success_sign_in_schema
 from tests.api.utils.api_test_assertions import assert_ok, assert_created
+from tests.utils.validators import validate_json
 
 
 @fixture(scope="session")
@@ -131,3 +138,50 @@ def auth_client_favorite(request):
 def comments_client(auth_token):
     client = CommentsClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
     return client
+
+
+@fixture(scope="session")
+def get_auth_token():
+    """Get auth token."""
+    auth_client = OwnSecurityClient(Config.BASE_GREEN_CITY_USER_API_URL)
+    login_response = auth_client.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
+
+    assert login_response.status_code == 200, f"Fixture: Login failed with {login_response.status_code}"
+
+    # Validate response schema to ensure required fields (including accessToken) are present
+    validate_json(login_response.json(), success_sign_in_schema)
+
+    token = login_response.json().get("accessToken")
+    assert token, "Fixture: Login response does not contain 'accessToken'"
+    return token
+
+@fixture(scope="session")
+def eco_news_client_with_auth_token(get_auth_token) -> EcoNewsClient:
+    return EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, get_auth_token)
+
+@fixture(scope="function")
+def create_eco_news(get_auth_token, eco_news_client_with_auth_token) -> tuple[Any, Any]:
+    news_payload = {
+        "title": "Eco title ",
+        "text": "Test content with more than 20 characters",
+        "tags": [EcoNewsTag.NEWS.en, EcoNewsTag.ADS.en],
+        "source": "https://chatgpt.com/",
+        "shortInfo": "short description 12341"
+    }
+    response = eco_news_client_with_auth_token.add_eco_news(news_payload)
+    assert 200 <= response.status_code < 300, (
+        f"Fixture: Failed to create eco news, status code {response.status_code}"
+    )
+    news_response = response.json()
+    return get_auth_token, news_response
+
+@fixture(scope="function")
+def create_delete_news_with_token(create_eco_news, eco_news_client_with_auth_token):
+    with allure.step("Creating news for test and capturing its ID"):
+        auth_token, news_response = create_eco_news
+        news_id = news_response["id"]
+
+    yield auth_token, news_response
+
+    with allure.step(f"Cleanup: Deleting news ID {news_id}"):
+        eco_news_client_with_auth_token.delete_eco_news_by_id(news_id)

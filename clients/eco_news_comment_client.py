@@ -36,12 +36,12 @@ class EcoNewsCommentClient(BaseClient):
                     'request': (None, json.dumps(request_data), 'application/json'),
                     'images': (file_name, image_file, mime_type),
                 }
-                return self._request("POST", endpoint, files=files, headers=headers)
+                return self.post(endpoint, files=files, headers=headers)
         else:
             files = {
                 'request': (None, json.dumps(request_data), 'application/json')
             }
-            return self._request("POST", endpoint, files=files, headers=headers)
+            return self.post(endpoint, files=files, headers=headers)
     
         
     
@@ -51,18 +51,18 @@ class EcoNewsCommentClient(BaseClient):
         """Likes a comment. The parameter is passed as a Query string."""
         endpoint = "/comments/like"
         params = { "commentId": comment_id }
-        return self._request("POST", endpoint, params=params)
+        return self.post(endpoint, params=params)
     
 
     @allure.step("Getting comment by Id")
     def get_comment_by_id(self, comment_id: int):
         """Gets a comment by its ID."""
         endpoint = f"/comments/{comment_id}"
-        return self._request("GET", endpoint)
+        return self.get(endpoint)
     
     @allure.step("Deleting comment by Id")
     def delete_comment_by_id(self, comment_id: int):
         """Deletes a comment by its ID."""
         endpoint = f"/comments/{comment_id}"
-        return self._request("DELETE", endpoint)
+        return self.delete(endpoint)
         

@@ -37,8 +37,7 @@ class EcoNewsClient(BaseClient):
                 'addEcoNewsDtoRequest': (None, json.dumps(news_data), 'application/json')
             }
 
-            return self._request(
-                "POST",
+            return self.post(
                 endpoint,
                 headers={"Content-Type": None},
                 files=files
@@ -47,4 +46,4 @@ class EcoNewsClient(BaseClient):
 
     @allure.step("Delete Eco News by id: {news_id}")
     def delete_eco_news_by_id(self, news_id: int):
-        return self._request("DELETE", f"/{news_id}")
+        return self.delete(f"/{news_id}")
