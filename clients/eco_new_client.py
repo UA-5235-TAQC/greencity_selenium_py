@@ -1,3 +1,5 @@
+import mimetypes
+
 import allure
 from dataclasses import asdict
 from typing import Optional
@@ -7,6 +9,7 @@ from clients.base_client import BaseClient
 from models.eco_news_query import EcoNewsQuery
 from models.eco_news_request import EcoNewsRequest
 from models.update_eco_news_request import UpdateEcoNewsRequest
+from pathlib import Path
 
 
 class EcoNewClient(BaseClient):
@@ -42,16 +45,19 @@ class EcoNewClient(BaseClient):
     @allure.step("Post new EcoNews with image: {image_path}")
     def post_eco_news_with_image(self, body: EcoNewsRequest, image_path: str) -> Response:
         """Create EcoNews with image."""
+        dto_json = json.dumps(asdict(body), ensure_ascii=False)
         files = {
-            "addEcoNewsDtoRequest": (
-                "addEcoNewsDtoRequest",
-                json.dumps(asdict(body), ensure_ascii=False),
-                "application/json"
-            )
+            "addEcoNewsDtoRequest": ("addEcoNewsDtoRequest", dto_json, "application/json")
         }
-        self.attach_file_to_request(files, image_path)
         headers = {"Content-Type": None}
-        return self.post(self.resource_path, files=files, headers=headers)
+
+        image_path = Path(image_path)
+        mime_type, _ = mimetypes.guess_type(image_path)
+        mime_type = mime_type or "application/octet-stream"
+
+        with open(image_path, "rb") as img_file:
+            files["image"] = (image_path.name, img_file, mime_type)
+            return self.post(self.resource_path, files=files, headers=headers)
 
     @allure.step("Get EcoNews by ID: {eco_news_id}")
     def get_eco_news_by_id(self, eco_news_id: int) -> Response:
@@ -72,13 +78,13 @@ class EcoNewClient(BaseClient):
     def get_eco_news_by_query(self, query: EcoNewsQuery) -> Response:
         """Get EcoNews using EcoNewsQuery object."""
         params = {}
-        if query.author_id:
+        if query.author_id is not None:
             params["author-id"] = query.author_id
-        if query.favorite:
+        if query.favorite is not None:
             params["favorite"] = query.favorite
-        if query.page:
+        if query.page is not None:
             params["page"] = query.page
-        if query.size:
+        if query.size is not None:
             params["size"] = query.size
         return self.get(self.resource_path, params=params)
 
@@ -118,9 +124,17 @@ class EcoNewClient(BaseClient):
         files = {
             "updateEcoNewsDto": ("updateEcoNewsDto", dto_json, "application/json")
         }
-        if image_path:
-            self.attach_file_to_request(files, image_path)
         headers = {"Content-Type": None}
+
+        if image_path:
+            image_path = Path(image_path)
+            mime_type, _ = mimetypes.guess_type(image_path)
+            mime_type = mime_type or "application/octet-stream"
+
+            with open(image_path, "rb") as img_file:
+                files["image"] = (image_path.name, img_file, mime_type)
+                return self.put(self.get_path(eco_news_id), files=files, headers=headers)
+
         return self.put(self.get_path(eco_news_id), files=files, headers=headers)
 
     @allure.step("Get EcoNews by ID with language: {lang}")

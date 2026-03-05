@@ -54,6 +54,15 @@ def created_eco_news_without_image(auth_token):
 
 
 @fixture(scope="module")
+def created_eco_news_without_image_cleanup(created_eco_news_without_image):
+    """Create EcoNews and delete it after all tests in the module."""
+    yield created_eco_news_without_image
+    client = created_eco_news_without_image["client"]
+    eco_news_id = created_eco_news_without_image["eco_news_id"]
+    client.delete_eco_news_by_id(eco_news_id)
+
+
+@fixture(scope="module")
 def created_eco_news(auth_token):
     """Create EcoNews with image."""
     client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, token=auth_token)

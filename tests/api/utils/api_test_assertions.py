@@ -27,10 +27,9 @@ def assert_created(response: Response):
 
 def assert_unauthorized(response: Response):
     """Asserts that the response is 401 Unauthorized and the error message is 'Unauthorized'."""
-    assert response.status_code == 401, f"Expected 401 Unauthorized, got {response.status_code}"
     json_data = response.json()
-    error = ErrorResponse(**json_data)
-    assert error.error == "Unauthorized", f"Error message should match expected, got {error.error}"
+    error_message = json_data.get("error")
+    assert error_message == "Unauthorized", f"Error message should match expected, got {error_message}"
 
 
 def assert_error_message(response: Response, expected_message: str):

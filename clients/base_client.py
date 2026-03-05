@@ -31,6 +31,8 @@ class BaseClient:
 
         if headers:
             request_headers.update(headers)
+            if request_headers.get("Content-Type") is None:
+                request_headers.pop("Content-Type")
 
         return request_headers
 

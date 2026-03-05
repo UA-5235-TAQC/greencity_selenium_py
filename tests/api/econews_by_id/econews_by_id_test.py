@@ -54,10 +54,10 @@ class TestEcoNewsById:
 
     @allure.story("Update EcoNews without image")
     @allure.description("Verify that updating EcoNews without providing an image works correctly")
-    def test_update_eco_news_by_id_without_image(self, created_eco_news_without_image):
+    def test_update_eco_news_by_id_without_image(self, created_eco_news_without_image_cleanup):
         """ Test for updating EcoNews without providing an image. """
-        client: EcoNewClient = created_eco_news_without_image["client"]
-        eco_news_id: int = created_eco_news_without_image["eco_news_id"]
+        client: EcoNewClient = created_eco_news_without_image_cleanup["client"]
+        eco_news_id: int = created_eco_news_without_image_cleanup["eco_news_id"]
 
         dto_factory = EcoNewsDtoFactory(eco_news_id)
         update_dto: UpdateEcoNewsRequest = dto_factory.update_dto_uk()
@@ -192,32 +192,43 @@ class TestEcoNewsByIdWithImage:
     @allure.description(
         "Verify that updating EcoNews with invalid id, tag, title, content returns 400 Bad Request"
     )
-    def test_update_eco_news_by_id_should_return_400(self, created_eco_news_without_image):
+    def test_update_eco_news_by_id_should_return_400(self, created_eco_news_without_image_cleanup):
         """Test updating EcoNews with invalid ID, tags, title, or content."""
-        client = created_eco_news_without_image["client"]
-        eco_news_id = created_eco_news_without_image["eco_news_id"]
+        client = created_eco_news_without_image_cleanup["client"]
+
+        dto_factory = EcoNewsDtoFactory(created_eco_news_without_image_cleanup["eco_news_id"])
+        first_news_request = dto_factory.create_news_uk()
+        first_news_response = client.post_eco_news(first_news_request)
+        first_news = first_news_response.json()
+
+        second_news_request = dto_factory.create_news_uk()
+        second_news_response = client.post_eco_news(second_news_request)
+        second_news = second_news_response.json()
+
         tags = EcoNewsTag.get_ua(EcoNewsDtoFactory.TEST_TAGS)
+
         update_dto = UpdateEcoNewsRequest(
-            id=eco_news_id + 1,
+            id=second_news["id"],
             title=EcoNewsDtoFactory.TITLE_UK,
             content=EcoNewsDtoFactory.CONTENT_UK,
             short_info="Short info",
             tags=tags,
+            source=EcoNewsDtoFactory.SOURCE_UK
         )
-        response = client.update_eco_news_by_id(eco_news_id, update_dto)
+        response = client.update_eco_news_by_id(first_news["id"], update_dto)
         assert_bad_request(
             response,
             "Eco news id in path param and eco news id in entity not equal"
         )
 
-        update_dto.id = eco_news_id
+        update_dto.id = second_news["id"]
         update_dto.tags = ["string"]
-        response = client.update_eco_news_by_id(eco_news_id, update_dto)
+        response = client.update_eco_news_by_id(second_news["id"], update_dto)
         assert_bad_request(response, "There should be at least one valid tag")
 
         update_dto.tags = tags
         update_dto.title = ""
-        response = client.update_eco_news_by_id(eco_news_id, update_dto)
+        response = client.update_eco_news_by_id(second_news["id"], update_dto)
         errors = [ErrorResponse(**e) for e in response.json()]
         check.equal(response.status_code, 400, "Expected status code 400")
         check.is_true(
@@ -231,7 +242,7 @@ class TestEcoNewsByIdWithImage:
 
         update_dto.title = EcoNewsDtoFactory.TITLE_UK
         update_dto.content = ""
-        response = client.update_eco_news_by_id(eco_news_id, update_dto)
+        response = client.update_eco_news_by_id(second_news["id"], update_dto)
         errors = [ErrorResponse(**e) for e in response.json()]
         check.equal(response.status_code, 400, "Expected status code 400")
         check.is_true(
