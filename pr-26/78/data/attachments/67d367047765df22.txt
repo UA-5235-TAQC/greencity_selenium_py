@@ -1,0 +1,24 @@
+[INFO] EcoNews ID: 4582
+[INFO] Update DTO prepared:
+       title: Ласкаво просимо до Вікіпедії
+       content: Осип Тадейович Назарук (1883 — 1940) — український громадський і політичний діяч, письменник, журналіст, воєнний кореспондент, публіцист, адвокат.
+       short_info: Головна сторінка Вікіпедії українською
+       source: https://uk.wikipedia.org/wiki/Main_Page
+       tags: ['Новини', 'Освіта']
+[INFO] Response status code: 200
+[INFO] Response text: {"id":4582,"title":"Ласкаво просимо до Вікіпедії","content":"Осип Тадейович Назарук (1883 — 1940) — український громадський і політичний діяч, письменник, журналіст, воєнний кореспондент, публіцист, адвокат.","shortInfo":"Головна сторінка Вікіпедії українською","author":{"id":149,"name":"NameForTest611"},"creationDate":"2026-03-05T01:20:41.027858Z","imagePath":"https://csb10032000a548f571.blob.core.windows.net/allfiles/5b46803f-c454-4a2a-ad42-f07a0ac7354atest.jfif","source":"https://uk.wikipedia.org/wiki/Main_Page","tagsUk":["Новини","Освіта"],"tagsEn":["News","Education"],"likes":0,"countComments":0,"countOfEcoNews":654,"favorite":false}
+[INFO] Response JSON parsed:
+       id: 4582
+       title: Ласкаво просимо до Вікіпедії
+       content: Осип Тадейович Назарук (1883 — 1940) — український громадський і політичний діяч, письменник, журналіст, воєнний кореспондент, публіцист, адвокат.
+       shortInfo: Головна сторінка Вікіпедії українською
+       author: {'id': 149, 'name': 'NameForTest611'}
+       creationDate: 2026-03-05T01:20:41.027858Z
+       imagePath: https://csb10032000a548f571.blob.core.windows.net/allfiles/5b46803f-c454-4a2a-ad42-f07a0ac7354atest.jfif
+       source: https://uk.wikipedia.org/wiki/Main_Page
+       tagsUk: ['Новини', 'Освіта']
+       tagsEn: ['News', 'Education']
+       likes: 0
+       countComments: 0
+       countOfEcoNews: 654
+       favorite: False
