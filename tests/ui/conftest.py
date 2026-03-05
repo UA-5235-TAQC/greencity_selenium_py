@@ -2,11 +2,15 @@ from typing import Generator
 
 import allure
 from allure_commons.types import Severity
+from requests import Response
+from enums.news_tag import EcoNewsTag
+from schemas.greencity_user.own_security import success_sign_in_schema
 from pytest import fixture
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
+from clients.own_security_client import OwnSecurityClient
 from components.news_list_item_component import NewsListItemComponent
 from data.config import Config
 from data.ui_news_test_data import NewsTestData
@@ -16,6 +20,8 @@ from pages.create_edit_news.edit_news_page import EditNewsPage
 from pages.home_page import HomePage
 from pages.news_details_page import NewsDetailsPage
 from pages.news_page import NewsPage
+from tests.utils.validators import validate_json
+from clients.eco_news_client import EcoNewsClient
 
 
 @fixture(scope="function", params=["chrome"])

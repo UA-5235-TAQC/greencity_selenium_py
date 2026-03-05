@@ -12,7 +12,7 @@ class CommentsClient(BaseClient):
     def __init__(self, base_url, access_token=None):
         """Client for interacting with the News Comments API,
         extending BaseClient for common functionality."""
-        super().__init__(base_api_url=f"{base_url}/eco-news", token=access_token)
+        super().__init__(base_api_url=f"{base_url}/eco-news", access_token=access_token)
 
     @allure.step("Get comments count")
     def get_comments_count(self, news_id: int) -> Response:
