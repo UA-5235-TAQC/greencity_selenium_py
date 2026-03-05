@@ -189,8 +189,9 @@ def create_eco_news(get_auth_token, eco_news_client_with_auth_token) -> Response
 
 @fixture(scope="function")
 def create_delete_news_with_token(create_eco_news, eco_news_client_with_auth_token):
-    auth_token, news_response = create_eco_news
-    news_id = news_response["id"]
+    with allure.step("Creating news for test and capturing its ID"):
+        auth_token, news_response = create_eco_news
+        news_id = news_response["id"]
     
     yield auth_token, news_response
 
