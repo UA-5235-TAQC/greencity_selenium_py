@@ -22,7 +22,6 @@ class ElementNotFoundException(PageFactoryException):
 
 class ElementNotVisibleException(PageFactoryException):
     """Raised when an element is found but not visible within the specified timeout."""
-    pass
 
 
 class PageFactory:
@@ -43,6 +42,13 @@ class PageFactory:
             self.driver = context.parent
         else:
             self.driver = context
+
+        all_locators = {}
+        for cls in reversed(self.__class__.mro()):
+            if hasattr(cls, 'locators'):
+                all_locators.update(cls.locators)
+
+        self.locators = all_locators
 
     def __getattr__(self, name: str) -> Any:
         """ Overrides attribute access to provide lazy loading of elements defined in 'locators'. """
@@ -99,7 +105,6 @@ class PageFactory:
                 f"Element(s) '{name}' not found using locator {locator} "
                 f"in context {self.__class__.__name__}"
             ) from e
-
 
 
 __all__ = [
