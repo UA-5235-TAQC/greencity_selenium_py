@@ -154,8 +154,8 @@ def auth_client_favorite(request):
     # Create a client
     client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, access_token=token)
     # Getting news_id from class
-    news_id = getattr(request.cls, "news_id", None)
-
+    news_id = request.param
+    client.news_id = news_id
     if news_id:
         with allure.step(f"Pre-test cleanup: Removing news {news_id} from favorites"):
             try:
