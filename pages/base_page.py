@@ -1,3 +1,4 @@
+from typing import Self
 from urllib.parse import urlparse
 
 import allure
@@ -38,15 +39,15 @@ class BasePage(PageFactory):
         return self.driver.current_url
 
     @allure.step("Open page")
-    def open(self):
+    def open(self) -> Self:
         raise NotImplementedError
 
     @allure.step("Check that page is opened")
-    def is_page_opened(self):
+    def is_page_opened(self) -> bool:
         raise NotImplementedError
 
     @allure.step("Wait until page is fully opened")
-    def wait_until_opened(self):
+    def wait_until_opened(self) -> Self:
         raise NotImplementedError
 
     @allure.step("Get snackbar message text")
@@ -64,7 +65,7 @@ class BasePage(PageFactory):
         return f"{parsed_url.scheme}://{parsed_url.hostname}/#/greenCity"
 
     @allure.step("Open Telegram chat")
-    def open_telegram_chat(self):
+    def open_telegram_chat(self) -> None:
         """Open Telegram chat by clicking the chat button."""
         self.telegram.click()
 
@@ -80,13 +81,13 @@ class BasePage(PageFactory):
         return WebDriverWait(self.driver, timeout).until(EC.visibility_of(element))
 
     @allure.step("Reload page")
-    def reload(self):
+    def reload(self) -> Self:
         """Refreshes the current page and returns the page object."""
         self.driver.refresh()
         return self
 
     @allure.step("Set browser window size to {width}x{height}")
-    def set_window_size(self, width: int, height: int):
+    def set_window_size(self, width: int, height: int) -> Self:
         """Set the browser window size."""
         self.driver.set_window_size(width, height)
         return self

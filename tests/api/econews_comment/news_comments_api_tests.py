@@ -1,6 +1,6 @@
 import allure
 
-from clients.comments_client import CommentsClient
+from clients.eco_news_comment_client import EcoNewsCommentClient
 from data.config import Config
 
 NEWS_ID = 4044
@@ -12,7 +12,9 @@ COMMENT_ID_UPDATE = 2636
 @allure.epic("APITests")
 @allure.feature("Comments")
 @allure.story("Get News Comments Count")
-def test_get_news_comments_count(comments_client: CommentsClient):
+def test_get_news_comments_count(comments_client: EcoNewsCommentClient):
+    comments_client.news_id = NEWS_ID
+
     with allure.step("Get comments count response and verify status code"):
         response = comments_client.get_comments_count(news_id=NEWS_ID)
         assert response.status_code == 200, "Response status code should be 200"
@@ -20,22 +22,21 @@ def test_get_news_comments_count(comments_client: CommentsClient):
     with allure.step("Get comments count"):
         comments_count = response.json()
 
-    with allure.step("Add new comment and verify status code"):
-        response = comments_client.add_comment(news_id=NEWS_ID, comment_message=COMMENT_MESSAGE,
-                                               select_default_image=True)
+    with allure.step("Add a new comment"):
+        response = comments_client.add_comment(text=COMMENT_MESSAGE)
         assert response.status_code == 201, "Response status code should be 201"
 
-    with allure.step("Get new comments count and verify result"):
+    with allure.step("Get updated comments count"):
         response = comments_client.get_comments_count(news_id=NEWS_ID)
-        updated_comments_count = response.json()
         assert response.status_code == 200, "Response status code should be 200"
-        assert updated_comments_count == comments_count + 1, "Comments count should be equal"
+        updated_comments_count = response.json()
+        assert updated_comments_count == comments_count + 1, "Comments count should increment by 1"
 
 
 @allure.epic("APITests")
 @allure.feature("Comments")
 @allure.story("Dislike Comment")
-def test_dislike_comment(comments_client: CommentsClient):
+def test_dislike_comment(comments_client: EcoNewsCommentClient):
     with allure.step("Get comment by id and verify status"):
         response = comments_client.get_comment_by_id(comment_id=COMMENT_ID)
         assert response.status_code == 200, "Response status code should be 200"
@@ -55,7 +56,7 @@ def test_dislike_comment(comments_client: CommentsClient):
 @allure.epic("APITests")
 @allure.feature("Comments")
 @allure.story("Update Comment")
-def test_update_comment(comments_client: CommentsClient):
+def test_update_comment(comments_client: EcoNewsCommentClient):
     with allure.step("Update comment and verify status"):
         response = comments_client.update_comment(comment_id=COMMENT_ID_UPDATE, text=COMMENT_MESSAGE)
         assert response.status_code == 200, "Response status code should be 200"

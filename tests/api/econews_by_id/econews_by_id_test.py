@@ -3,7 +3,7 @@ import allure
 from allure_commons.types import Severity
 import pytest_check as check
 from clients.eco_new_client import EcoNewClient
-from data.api_news_test_data import EcoNewsDtoFactory
+from data.eco_news_factory import EcoNewsDtoFactory
 from data.ui_news_test_data import NewsTestData
 from enums.news_tag import EcoNewsTag
 from models.update_eco_news_request import UpdateEcoNewsRequest

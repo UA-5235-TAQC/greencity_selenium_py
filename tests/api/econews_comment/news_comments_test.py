@@ -1,10 +1,11 @@
 import allure
 from allure_commons.types import Severity
 import pytest
+
+from clients.eco_new_client import EcoNewClient
 from data.config import Config
 from data.ui_news_test_data import NewsTestData
-from schemas.greencity.get_comment_by_id_response_schema import get_comment_by_id_response_schema
-from schemas.greencity.comment_creation_schema import comment_creation_schema
+from schemas.greencity.comment import comment_schema
 from tests.utils.validators import validate_json
 from clients.eco_news_comment_client import EcoNewsCommentClient
 
@@ -13,19 +14,28 @@ class TestNewsComments:
 
     @allure.severity(Severity.NORMAL)
     @pytest.mark.dependency(name="add_comment_to_eco_news")
-    def test_add_comment_to_eco_news(self, create_delete_news_with_token):
+    def test_add_comment_to_eco_news(self, created_eco_news_without_image_cleanup):
         """Test: Add a comment to eco news."""
+        client: EcoNewClient = created_eco_news_without_image_cleanup["client"]
+        news_id: int = created_eco_news_without_image_cleanup["eco_news_id"]
 
-        access_token, news_response = create_delete_news_with_token
-        news_id = news_response["id"]
-        comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token, news_id)
+        comment_client = EcoNewsCommentClient(
+            Config.BASE_GREEN_CITY_API_URL,
+            client.access_token,
+            news_id
+        )
 
-        response = comment_client.add_comment("This is a test comment.", NewsTestData.TEST2_FILE)
+        response = comment_client.add_comment(
+            "This is a test comment.",
+            image_paths=[str(NewsTestData.TEST2_FILE)]
+        )
 
-        assert response.status_code == 201, f"Expected status code 201, but got {response.status_code}"
-        
+        assert response.status_code == 201, \
+            f"Expected status code 201, but got {response.status_code}"
+
         TestNewsComments.created_comment_id = response.json()["id"]
-        is_valid, error = validate_json(response.json(), comment_creation_schema)
+
+        is_valid, error = validate_json(response.json(), comment_schema)
         assert is_valid, f"Response JSON does not match the expected schema: {error}"
 
     @allure.severity(Severity.NORMAL)
@@ -48,7 +58,7 @@ class TestNewsComments:
 
         response = comment_client.get_comment_by_id(comment_id)
         assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
-        is_valid, error = validate_json(response.json(), get_comment_by_id_response_schema)
+        is_valid, error = validate_json(response.json(), comment_schema)
         assert is_valid, f"Response JSON does not match the expected schema: {error}"
 
     @allure.severity(Severity.TRIVIAL)

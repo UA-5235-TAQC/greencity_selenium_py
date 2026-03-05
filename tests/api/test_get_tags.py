@@ -9,7 +9,6 @@ from schemas.greencity.eco_news_tags_schema import eco_news_tags_schema
 @allure.feature("Eco News API")
 @allure.story("Get eco news tags")
 def test_get_tags():
-
     client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL)
 
     with allure.step("Send request to get tags"):

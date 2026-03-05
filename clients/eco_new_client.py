@@ -7,7 +7,7 @@ import json
 
 from requests import Response
 from clients.base_client import BaseClient
-from models.eco_news_query import EcoNewsQuery
+from models.queries import EcoNewsQuery
 from models.eco_news_request import EcoNewsRequest
 from models.update_eco_news_request import UpdateEcoNewsRequest
 from pathlib import Path

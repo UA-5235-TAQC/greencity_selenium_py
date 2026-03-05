@@ -1,19 +1,20 @@
 from clients.eco_new_client import EcoNewClient
 from data.config import Config
 from enums.news_tag import EcoNewsTag
-from models.eco_news_query import EcoNewsQuery
+from models.queries import EcoNewsQuery
 from models.eco_news_request import EcoNewsRequest
 from schemas.eco_news_response_schema import eco_news_page_schema, eco_news_item_schema
 from tests.utils.validators import validate_json
 
+
 def test_create_and_verify_news(auth_token):
     eco_news_client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
 
-    news_payload:EcoNewsRequest = EcoNewsRequest(
-        title= "Eco title " + str(Config.USER_ID),
-        text= "Test content with more than 20 characters",
-        tags= [EcoNewsTag.NEWS.en, EcoNewsTag.ADS.en],
-        source= "https://chatgpt.com/",
+    news_payload: EcoNewsRequest = EcoNewsRequest(
+        title="Eco title " + str(Config.USER_ID),
+        text="Test content with more than 20 characters",
+        tags=[EcoNewsTag.NEWS.en, EcoNewsTag.ADS.en],
+        source="https://chatgpt.com/",
         short_info="short description 12341"
     )
 
@@ -27,7 +28,7 @@ def test_create_and_verify_news(auth_token):
     news_id = created_news_data.get("id")
 
     assert news_id is not None, "News ID was not returned!"
-    query:EcoNewsQuery = EcoNewsQuery(
+    query: EcoNewsQuery = EcoNewsQuery(
         title=news_payload.title,
         author_id=Config.USER_ID,
         sort="id,desc"
@@ -59,6 +60,7 @@ def test_create_and_verify_news(auth_token):
 
     delete_news_response = eco_news_client.delete_eco_news_by_id(news_id)
     assert delete_news_response.status_code == 200
+
 
 def test_get_news_success(auth_token):
     eco_news_client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)

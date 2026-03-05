@@ -7,6 +7,8 @@ cffi==2.0.0
 charset-normalizer==3.4.4
 colorama==0.4.6
 dill==0.4.1
+execnet==2.1.1
+Faker==40.8.0
 h11==0.16.0
 idna==3.11
 iniconfig==2.3.0
@@ -25,6 +27,7 @@ pylint-pytest==1.1.8
 PySocks==1.7.1
 pytest==8.2.0
 pytest-check==2.7.0
+pytest-xdist==3.6.1
 python-dotenv==1.2.1
 referencing==0.37.0
 requests==2.32.5
