@@ -12,10 +12,12 @@ from pages.news_details_page import NewsDetailsPage
 @allure.severity(Severity.NORMAL)
 @allure.issue("15")
 @allure.description(
-    "Verify that the Edit News page disables the Edit button and highlights the title field when the title is empty"
+    "Verify that the Edit News page disables the Edit button and"
+    " highlights the title field when the title is empty"
 )
 def test_empty_title_field(eco_news_details_page: NewsDetailsPage):
-    """ Verify that the Edit News page disables the Edit button and highlights the title field when the title is empty. """
+    """ Verify that the Edit News page disables the Edit
+    button and highlights the title field when the title is empty. """
     eco_news_details_page.header.change_to_en()
     eco_news_details_page.click_edit_button()
     eco_news_id = eco_news_details_page.get_news_id()

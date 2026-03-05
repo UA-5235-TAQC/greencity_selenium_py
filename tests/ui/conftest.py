@@ -2,12 +2,12 @@ from typing import Generator
 
 import allure
 from allure_commons.types import Severity
-from jsonschema import validate, ValidationError
 from pytest import fixture
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
+from clients.own_security_client import OwnSecurityClient
 from clients.comments_client import CommentsClient
 from clients.own_security_client import OwnSecurityClient
 from components.news_list_item_component import NewsListItemComponent

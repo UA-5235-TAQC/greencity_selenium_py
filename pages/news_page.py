@@ -145,3 +145,7 @@ class NewsPage(BasePage):
                 return self
 
         raise ValueError(f"Tag not found: {tag_name}")
+
+    def get_latest_created_news(self) -> NewsListItemComponent:
+        self.wait_for(lambda _: len(self.news_card_items) > 0)
+        return self.news_card_items[0]
