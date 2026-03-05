@@ -1,5 +1,7 @@
 from pytest import fixture
 import allure
+
+from clients.comments_client import CommentsClient
 from clients.eco_new_client import EcoNewClient
 from clients.own_security_client import OwnSecurityClient
 from data.api_news_test_data import EcoNewsDtoFactory
@@ -122,3 +124,10 @@ def auth_client_favorite(request):
                     str(exc),
                     name=f"Post-test cleanup failed for news {news_id}",
                 )
+
+
+
+@fixture(scope="function")
+def comments_client(auth_token):
+    client = CommentsClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
+    return client
