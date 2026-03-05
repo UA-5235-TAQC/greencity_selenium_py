@@ -1,0 +1,2 @@
+Мій токен: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MjcyMzEyNiwidXNlcklkIjoxNDksImlhdCI6MTc3MjcxNTkyNn0.Drq6DRm8uRBrb7szkBvIzuLdc-gewrCNFf6ZelMfQVA
+Мій ID новини: 5078
