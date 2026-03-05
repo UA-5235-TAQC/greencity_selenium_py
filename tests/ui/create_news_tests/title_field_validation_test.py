@@ -16,9 +16,9 @@ TAGS_TO_SELECT: List[str] = [
 
 @allure.feature("Create News")
 @allure.story("Title field validation")
-def test_title_field_validation(get_driver, logged_in_user):
+def test_title_field_validation(logged_in_user):
     with allure.step("Login and open create news page"):
-        create_news_page = CreateNewsPage(get_driver)
+        create_news_page = CreateNewsPage(logged_in_user)
         create_news_page.open().header.change_to_en()
         assert create_news_page.get_current_url() == f"{Config.BASE_UI_GREEN_CITY_URL}/news/create-news"
 

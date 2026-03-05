@@ -1,5 +1,5 @@
 import allure
-import pytest
+
 
 from data.config import Config
 from enums.news_tag import EcoNewsTag
@@ -60,4 +60,6 @@ def test_create_and_delete_news(driver_with_login) -> None:
         news_page.reload()
         if len(news_page.news_card_items) > 0:
             latest_news = news_page.get_latest_created_news()
-            assert latest_news.get_title != news_data["title"], f"News with title '{news_data['title']}' still exists!"
+            assert latest_news.get_title() != news_data["title"], f"News with title '{news_data['title']}' still exists as the latest news card!"
+            for card in news_page.news_card_items:
+                assert card.get_title() != news_data["title"], f"News with title '{news_data['title']}' still exists in the news list!"

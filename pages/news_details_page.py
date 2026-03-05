@@ -315,29 +315,3 @@ class NewsDetailsPage(BasePage):
             WebDriverWait(self.driver, Config.EXPLICITLY_WAIT).until(lambda d: modal.is_component_visible())
             modal.click_yes_button()
             WebDriverWait(self.driver, Config.EXPLICITLY_WAIT).until(EC.url_contains("/news"))
-
-    @allure.step("Extract news ID from URL")
-    def get_news_id(self) -> int:
-        """Extract and return the news ID from the current URL."""
-        url = self.driver.current_url
-        parsed_url = urlparse(url)
-
-        query_params = parse_qs(parsed_url.query)
-        if "id" in query_params:
-            return int(query_params["id"][0])
-
-        if parsed_url.fragment:
-            fragment_path = parsed_url.fragment.split("?")[0]
-            parts = fragment_path.rstrip("/").split("/")
-            last_part = parts[-1]
-
-            if last_part.isdigit():
-                return int(last_part)
-
-            if "?" in parsed_url.fragment:
-                fragment_query = parsed_url.fragment.split("?", 1)[1]
-                fragment_params = parse_qs(fragment_query)
-                if "id" in fragment_params:
-                    return int(fragment_params["id"][0])
-
-        raise ValueError(f"Unable to extract news ID from URL: {url}")
