@@ -11,7 +11,7 @@ class CommentsClient(BaseClient):
         extending BaseClient for common functionality."""
         super().__init__(base_url=f"{base_url}/eco-news", access_token=access_token)
 
-    @allure.step("Add comment")
+    @allure.step("Get comments count")
     def get_comments_count(self, news_id: int) -> Response:
         """Get comments count for a particular news"""
         endpoint = f"/{news_id}/comments/count"
