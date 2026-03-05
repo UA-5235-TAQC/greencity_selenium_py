@@ -153,15 +153,27 @@ def auth_client_favorite(request):
     token = login_resp.json()["accessToken"]
     # Create a client
     client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, access_token=token)
-    # 3. Getting news_id from class
+    # Getting news_id from class
     news_id = getattr(request.cls, "news_id", None)
 
     if news_id:
         with allure.step(f"Pre-test cleanup: Removing news {news_id} from favorites"):
-            client.remove_from_favorites(news_id)
+            try:
+                client.remove_from_favorites(news_id)
+            except Exception as exc:
+                allure.attach(
+                    str(exc),
+                    name=f"Pre-test cleanup failed for news {news_id}",
+                )
 
     yield client
 
     if news_id:
         with allure.step(f"Post-test cleanup: Removing news {news_id} from favorites"):
-            client.remove_from_favorites(news_id)
+            try:
+                client.remove_from_favorites(news_id)
+            except Exception as exc:
+                allure.attach(
+                    str(exc),
+                    name=f"Post-test cleanup failed for news {news_id}",
+                )

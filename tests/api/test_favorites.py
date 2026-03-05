@@ -8,7 +8,7 @@ class TestFavoriteEcoNews:
     @allure.title("Add and remove news from favorites (Authorized)")
     def test_add_remove_favorites_authorized(self, auth_client_favorite):
         # Adding to favorites
-        add_resp =auth_client_favorite.add_to_favorites(self.news_id)
+        add_resp = auth_client_favorite.add_to_favorites(self.news_id)
         assert add_resp.status_code == 200
 
         # Removing from favorites

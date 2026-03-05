@@ -2,7 +2,7 @@
 import allure
 from requests import Response
 from clients.base_client import BaseClient
-import json
+
 
 class EcoNewClient(BaseClient):
     """Client for interacting with the Eco News API,
