@@ -169,7 +169,11 @@ def get_auth_token():
 
     assert login_response.status_code == 200, f"Fixture: Login failed with {login_response.status_code}"
 
+    # Validate response schema to ensure required fields (including accessToken) are present
+    validate_json(login_response.json(), success_sign_in_schema)
+
     token = login_response.json().get("accessToken")
+    assert token, "Fixture: Login response does not contain 'accessToken'"
     return token
 
 @fixture(scope="session")
@@ -185,7 +189,12 @@ def create_eco_news(get_auth_token, eco_news_client_with_auth_token) -> Response
         "source": "https://chatgpt.com/",
         "shortInfo": "short description 12341"
     }
-    return get_auth_token, eco_news_client_with_auth_token.add_eco_news(news_payload).json()
+    response = eco_news_client_with_auth_token.add_eco_news(news_payload)
+    assert 200 <= response.status_code < 300, (
+        f"Fixture: Failed to create eco news, status code {response.status_code}"
+    )
+    news_response = response.json()
+    return get_auth_token, news_response
 
 @fixture(scope="function")
 def create_delete_news_with_token(create_eco_news, eco_news_client_with_auth_token):

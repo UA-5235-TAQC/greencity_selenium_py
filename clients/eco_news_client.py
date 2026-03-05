@@ -16,22 +16,33 @@ class EcoNewsClient(BaseClient):
     def add_eco_news(self, news_data: dict, image_path: str = None):
         endpoint = ""
 
-        files = {
-            'addEcoNewsDtoRequest': (None, json.dumps(news_data), 'application/json')
-        }
-
         if image_path:
             file_name = os.path.basename(image_path)
-
             mime_type,  = mimetypes.guess_type(image_path)
-            files['image'] = (file_name, open(image_path, 'rb'), mime_type)
 
-        return self._request(
-            "POST",
-            endpoint,
-            headers={"Content-Type": None},
-            files=files
-        )
+            with open(image_path, 'rb') as image_file:
+                files = {
+                    'addEcoNewsDtoRequest': (None, json.dumps(news_data), 'application/json'),
+                    'image': (file_name, image_file, mime_type),
+                }
+
+                return self._request(
+                    "POST",
+                    endpoint,
+                    headers={"Content-Type": None},
+                    files=files
+                )
+        else:
+            files = {
+                'addEcoNewsDtoRequest': (None, json.dumps(news_data), 'application/json')
+            }
+
+            return self._request(
+                "POST",
+                endpoint,
+                headers={"Content-Type": None},
+                files=files
+            )
     
 
     @allure.step("Delete Eco News by id: {news_id}")

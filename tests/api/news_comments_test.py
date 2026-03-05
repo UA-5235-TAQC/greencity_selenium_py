@@ -55,15 +55,14 @@ class TestNewsComments:
         assert is_valid, f"Response JSON does not match the expected schema: {error}"
 
     @allure.severity(Severity.TRIVIAL)
-    def test_delete_comment_by_id(self, create_delete_news_with_token):
+    def test_delete_comment_by_id(self, sign_in_api):
         """Test: Delete a comment by its ID."""
 
         if TestNewsComments.created_comment_id is None:
             pytest.fail("Comment ID was not captured!")
 
-        access_token, news_response = create_delete_news_with_token
-        news_id = news_response["id"]
-        comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token, news_id)
+        access_token = sign_in_api["accessToken"]
+        comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token)
 
         response = comment_client.delete_comment_by_id(TestNewsComments.created_comment_id)
         assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"

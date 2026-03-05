@@ -13,6 +13,8 @@ class EcoNewsCommentClient(BaseClient):
     @allure.step("Add a comment to eco news with Id")
     def add_comment(self, text: str, image_path: str = None):
         """Adds a comment. If image_path is specified, it adds it with the photo, if not, it adds it without."""
+        if self.news_id is None:
+            raise ValueError("news_id must be set on EcoNewsCommentClient before adding a comment.")
         endpoint = f"/{self.news_id}/comments"
     
         request_data = {
@@ -20,22 +22,26 @@ class EcoNewsCommentClient(BaseClient):
             "parentCommentId": 0
         }
 
-        files = {
-            'request': (None, json.dumps(request_data), 'application/json')
-        }
+        headers = {"Content-Type": None}
 
         if image_path:
             file_name = Path(image_path).name
-            
+
             mime_type, _ = mimetypes.guess_type(image_path)
             if not mime_type:
                 mime_type = 'application/octet-stream'
 
-            files['images'] = (file_name, open(image_path, 'rb'), mime_type)
-
-        headers = {"Content-Type": None}
-    
-        return self._request("POST", endpoint, files=files, headers=headers)
+            with open(image_path, 'rb') as image_file:
+                files = {
+                    'request': (None, json.dumps(request_data), 'application/json'),
+                    'images': (file_name, image_file, mime_type),
+                }
+                return self._request("POST", endpoint, files=files, headers=headers)
+        else:
+            files = {
+                'request': (None, json.dumps(request_data), 'application/json')
+            }
+            return self._request("POST", endpoint, files=files, headers=headers)
     
         
     
