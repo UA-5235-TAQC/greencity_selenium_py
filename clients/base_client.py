@@ -1,33 +1,111 @@
+import json
+import mimetypes
+from dataclasses import asdict
+from typing import Optional, List
+
 import requests
 from requests import Response
 
+from models.update_eco_news_request import UpdateEcoNewsRequest
+
 
 class BaseClient:
-    def __init__(self, base_url, access_token=None):
-        self.base_url = base_url
-        self.access_token = access_token
-        self.session = requests.Session()
-        self.session.headers.update({
-            "Content-Type": "application/json",
-            "accept": "*/*",
-            })
-        if self.access_token:
-            self.session.headers.update({
-                "Authorization": "Bearer " + self.access_token,
-            })
+    """Base API client similar to Java RestAssured implementation."""
 
+    def __init__(self, base_api_url: str, token: Optional[str] = None):
+        self.base_api_url = base_api_url
+        self.token = token
+        self.content_type = "application/json"
 
+    def prepare_request(self, headers: Optional[dict] = None) -> dict:
+        """ Prepare request headers. """
+        request_headers = {
+            "Accept": "*/*",
+        }
 
-    def _request(self,method, endpoint, headers=None, **kwargs)->Response:
-        url = f"{self.base_url}{endpoint}"
+        if self.content_type:
+            request_headers["Content-Type"] = self.content_type
+
+        if self.token:
+            request_headers["Authorization"] = f"Bearer {self.token}"
 
         if headers:
-            self.session.headers.update(headers)
+            request_headers.update(headers)
 
-        response = self.session.request(
-            method=method,
-            url=url,
-            **kwargs
+        return request_headers
+
+    def prepare_multipart_request(self, update_request: UpdateEcoNewsRequest) -> dict:
+        """ Prepare multipart request with EcoNews DTO. """
+        dto_json = json.dumps(asdict(update_request), ensure_ascii=False)
+        files = {
+            "updateEcoNewsDto": ("updateEcoNewsDto", dto_json, "application/json")
+        }
+        return files
+
+    def get(self, path: str, params: Optional[dict] = None, headers: Optional[dict] = None) -> Response:
+        """Execute GET request."""
+        request_headers = self.prepare_request(headers)
+        return requests.get(
+            f"{self.base_api_url}/{path}",
+            headers=request_headers,
+            params=params
         )
 
+    def post(self, path: str, json: Optional[dict] = None, data: Optional[dict] = None,
+            files: Optional[dict] = None, params: Optional[dict] = None, headers: Optional[dict] = None
+    ) -> Response:
+        """ Execute POST request. """
+        request_headers = self.prepare_request(headers)
+        return requests.post(
+            f"{self.base_api_url}/{path}",
+            headers=request_headers,
+            json=json,
+            data=data,
+            files=files,
+            params=params
+        )
+
+    def put(self, path: str, json_put: Optional[dict] = None, files: Optional[dict] = None,
+            headers: Optional[dict] = None) -> Response:
+        """Execute PUT request."""
+        request_headers = self.prepare_request(headers)
+        return requests.put(
+            f"{self.base_api_url}/{path}",
+            headers=request_headers,
+            json=json_put,
+            files=files
+        )
+
+    def delete(self, path: str) -> Response:
+        """  Execute DELETE request. """
+        headers = self.prepare_request()
+        response = requests.delete(
+            f"{self.base_api_url}/{path}",
+            headers=headers
+        )
         return response
+
+    def attach_file_to_request(self, files: dict, image_path: Optional[str]) -> None:
+        """ Attach single image to multipart request. """
+        if not image_path:
+            return
+        mime_type, _ = mimetypes.guess_type(image_path)
+        mime_type = mime_type or "application/octet-stream"
+        files["image"] = (image_path, open(image_path, "rb"), mime_type)
+
+    def attach_images_to_multipart(self, files: dict, control_name: str,
+                                   image_paths: Optional[List[str]]) -> None:
+        """ Attach several images to multipart request. """
+        if not image_paths:
+            files[control_name] = ("", "", "application/octet-stream")
+            return
+        for path in image_paths:
+            if path:
+                mime_type, _ = mimetypes.guess_type(path)
+                mime_type = mime_type or "application/octet-stream"
+
+                files.setdefault(control_name, [])
+
+                files[control_name].append(
+                    (path, open(path, "rb"), mime_type)
+                )
