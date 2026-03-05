@@ -14,12 +14,10 @@ LocatorsTable = Dict[str, LocatorStrategy]
 
 class PageFactoryException(Exception):
     """Base exception for PageFactory-related errors."""
-    pass
 
 
 class ElementNotFoundException(PageFactoryException):
     """Raised when an element cannot be found within the specified timeout."""
-    pass
 
 
 class ElementNotVisibleException(PageFactoryException):
