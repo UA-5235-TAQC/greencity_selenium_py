@@ -56,21 +56,12 @@ class EcoNewsClient(BaseClient):
             mime_type, _ = mimetypes.guess_type(image_path)
             files['image'] = (file_name, open(image_path, 'rb'), mime_type)
 
-        response = self._request(
+        return self._request(
             "POST",
             endpoint,
             headers={"Content-Type": None},
             files=files
         )
-
-        news_id = None
-        if response.status_code == 201:
-            try:
-                news_id = response.json().get("id")
-            except Exception:
-                news_id = None
-
-        return response, news_id
 
     @allure.step("Delete Eco News by id: {news_id}")
     def delete_eco_news_by_id(self, news_id: int):

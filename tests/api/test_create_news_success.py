@@ -17,9 +17,13 @@ def test_create_and_verify_news(auth_token):
 
     image_path = "data/images/test2.png"
 
-    create_response, news_id = eco_news_client.add_eco_news(news_payload, image_path)
+    create_response = eco_news_client.add_eco_news(news_payload, image_path)
 
     assert create_response.status_code == 201
+
+    created_news_data = create_response.json()
+    news_id = created_news_data.get("id")
+
     assert news_id is not None, "News ID was not returned!"
 
     get_news_response = eco_news_client.find_eco_news_by_page(
