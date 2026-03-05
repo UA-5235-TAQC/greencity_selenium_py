@@ -101,6 +101,8 @@ class NewsListItemComponent(BaseComponent):
         return self.bookmark_btn.text
 
     @allure.step("Open news by clicking card")
-    def open_news_by_card(self):
+    def open_news_by_card(self) -> "NewsDetailsPage":
         """ Open news by clicking card. """
         self.root_element.click()
+        from pages.news_details_page import NewsDetailsPage
+        return NewsDetailsPage(self.driver)

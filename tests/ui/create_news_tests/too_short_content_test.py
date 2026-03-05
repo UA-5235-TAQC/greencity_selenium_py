@@ -18,9 +18,9 @@ def test_edit_content_not_shorter_than_20_chars_not_accepted(driver_with_login):
         edit_news_page.header.change_to_en()
 
     with allure.step("Enter invalid content (<20 chars) while editing"):
-        edit_news_page.enter_content(NOT_VALID_CONTENT)
+        edit_news_page.content_component.enter_content(NOT_VALID_CONTENT)
 
-        assert edit_news_page.is_content_field_invalid(), "Content field should be marked as invalid"
+        assert edit_news_page.content_component.is_content_invalid(), "Content field should be marked as invalid"
 
     with allure.step("Enter valid title and select tag"):
         edit_news_page.enter_title(NEWS_TITLE)
