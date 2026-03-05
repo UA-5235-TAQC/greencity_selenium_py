@@ -19,11 +19,10 @@ def test_get_tags():
         assert response.status_code == 200
 
     with allure.step("Verify response schema"):
-        validate(instance=response.json(), schema=eco_news_tags_schema)
+        tags = response.json()
+        validate(instance=tags, schema=eco_news_tags_schema)
 
     with allure.step("Verify response content"):
-        tags = response.json()
-
         assert len(tags) > 0
 
         first_tag = tags[0]

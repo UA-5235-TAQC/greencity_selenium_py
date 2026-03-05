@@ -2,12 +2,12 @@ from typing import Generator
 
 import allure
 from allure_commons.types import Severity
-from jsonschema import validate, ValidationError
 from pytest import fixture
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
+from clients.own_security_client import OwnSecurityClient
 from components.news_list_item_component import NewsListItemComponent
 from data.config import Config
 from data.ui_news_test_data import NewsTestData
@@ -141,3 +141,4 @@ def tag_selection_environment(driver_with_login):
     news_page.open()
     # Reset any applied tag filters to avoid affecting subsequent tests
     news_page.remove_all_selected_tags()
+
