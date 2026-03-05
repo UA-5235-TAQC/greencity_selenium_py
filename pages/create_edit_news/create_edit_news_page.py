@@ -1,4 +1,5 @@
-from typing import List, override
+from typing import List
+from typing_extensions import override
 
 import allure
 from selenium.common.exceptions import NoSuchElementException

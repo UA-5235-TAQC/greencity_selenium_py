@@ -73,19 +73,6 @@ def driver_with_login(get_driver):
 
 
 @fixture(scope="function")
-def sign_in_api():
-    """Fixture that performs API sign-in and yields the response JSON containing the access token."""
-
-    client = OwnSecurityClient(Config.BASE_GREEN_CITY_USER_API_URL)
-    response = client.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
-    assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
-    is_valid, error = validate_json(response.json(), success_sign_in_schema)
-    assert is_valid, f"Response JSON does not match the expected schema: {error}"
-
-    yield response.json()
-
-
-@fixture(scope="function")
 def eco_page(driver_with_login) -> Generator[NewsPage, None, None]:
     """ Fixture that opens the EcoNews page after login. """
     eco_page = NewsPage(driver_with_login).open()
@@ -201,7 +188,7 @@ def create_delete_news_with_token(create_eco_news, eco_news_client_with_auth_tok
     with allure.step("Creating news for test and capturing its ID"):
         auth_token, news_response = create_eco_news
         news_id = news_response["id"]
-    
+
     yield auth_token, news_response
 
     with allure.step(f"Cleanup: Deleting news ID {news_id}"):
