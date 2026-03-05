@@ -84,8 +84,8 @@ class CommentsClient(BaseClient):
     def add_comment(self, news_id: int,
                     comment_message: str,
                     image_url=None,
-                    parent_id: int=0,
-                    select_default_image: bool=False) -> Response:
+                    parent_id: int = 0,
+                    select_default_image: bool = False) -> Response:
 
         """Add comment to news or reply another comment"""
 
