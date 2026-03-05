@@ -12,13 +12,12 @@ class TestNewsComments:
     created_comment_id = None
 
     @allure.severity(Severity.NORMAL)
+    @pytest.mark.dependency(name="add_comment_to_eco_news")
     def test_add_comment_to_eco_news(self, create_delete_news_with_token):
         """Test: Add a comment to eco news."""
 
         access_token, news_response = create_delete_news_with_token
         news_id = news_response["id"]
-        print(f"Мій токен: {access_token}")
-        print(f"Мій ID новини: {news_id}")
         comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token, news_id)
 
         response = comment_client.add_comment("This is a test comment.", NewsTestData.TEST2_FILE)
@@ -55,12 +54,9 @@ class TestNewsComments:
         assert is_valid, f"Response JSON does not match the expected schema: {error}"
 
     @allure.severity(Severity.TRIVIAL)
+    @pytest.mark.dependency(depends=["add_comment_to_eco_news"])
     def test_delete_comment_by_id(self, sign_in_api):
         """Test: Delete a comment by its ID."""
-
-        if TestNewsComments.created_comment_id is None:
-            pytest.fail("Comment ID was not captured!")
-
         access_token = sign_in_api["accessToken"]
         comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token)
 
