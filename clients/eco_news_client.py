@@ -26,8 +26,7 @@ class EcoNewsClient(BaseClient):
                     'image': (file_name, image_file, mime_type),
                 }
 
-                return self._request(
-                    "POST",
+                return self.post(
                     endpoint,
                     headers={"Content-Type": None},
                     files=files

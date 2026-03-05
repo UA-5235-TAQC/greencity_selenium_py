@@ -16,14 +16,14 @@ from pathlib import Path
 class EcoNewClient(BaseClient):
     """Client for interacting with EcoNews API."""
 
-    resource_path = "eco-news"
+    resource_path = "/eco-news"
 
-    def __init__(self, base_url: str, token: Optional[str] = None):
-        super().__init__(base_url, token)
+    def __init__(self, base_url: str, access_token: Optional[str] = None):
+        super().__init__(base_url, access_token)
 
     def get_path(self, eco_news_id: int) -> str:
         """Return EcoNews path by ID."""
-        return f"{self.resource_path}/{eco_news_id}"
+        return f"/{self.resource_path}/{eco_news_id}"
 
     @allure.step("Get EcoNews with query parameters: {query_params}")
     def get_eco_news(self, query_params: dict) -> Response:
@@ -92,7 +92,7 @@ class EcoNewClient(BaseClient):
     @allure.step("Get tags with language: {lang}")
     def get_tags(self, lang: str) -> Response:
         """Get EcoNews tags."""
-        return self.get(f"{self.resource_path}/tags", params={"lang": lang})
+        return self.get(f"/{self.resource_path}/tags", params={"lang": lang})
 
     @allure.step("Add EcoNews to favorites: {eco_news_id}")
     def add_to_favorites(self, eco_news_id: int) -> Response:
@@ -143,12 +143,3 @@ class EcoNewClient(BaseClient):
         """Get EcoNews by ID with language."""
         return self.get(self.get_path(eco_news_id), params={"lang": lang})
 
-    @allure.step("Add news {news_id} to favorites")
-    def add_to_favorites(self, news_id: int) -> Response:
-        """Endpoint: POST .../eco-news/{id}/favorites"""
-        return self.post(f"{news_id}/favorites")
-
-    @allure.step("Remove news {news_id} from favorites")
-    def remove_from_favorites(self, news_id: int) -> Response:
-        """Endpoint: DELETE .../eco-news/{id}/favorites"""
-        return self.delete(f"{news_id}/favorites")

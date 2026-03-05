@@ -7,7 +7,7 @@ from schemas.eco_news_response_schema import eco_news_page_schema, eco_news_item
 from tests.utils.validators import validate_json
 
 def test_create_and_verify_news(auth_token):
-    eco_news_client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, token=auth_token)
+    eco_news_client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
 
     news_payload:EcoNewsRequest = EcoNewsRequest(
         title= "Eco title " + str(Config.USER_ID),
@@ -61,7 +61,7 @@ def test_create_and_verify_news(auth_token):
     assert delete_news_response.status_code == 200
 
 def test_get_news_success(auth_token):
-    eco_news_client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, token=auth_token)
+    eco_news_client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
     query: EcoNewsQuery = EcoNewsQuery(
         tags=[EcoNewsTag.NEWS.en, EcoNewsTag.ADS.en],
         author_id=Config.USER_ID,

@@ -13,9 +13,9 @@ from models.update_eco_news_request import UpdateEcoNewsRequest
 class BaseClient:
     """Base API client similar to Java RestAssured implementation."""
 
-    def __init__(self, base_api_url: str, token: Optional[str] = None):
+    def __init__(self, base_api_url: str, access_token: Optional[str] = None):
         self.base_api_url = base_api_url
-        self.token = token
+        self.access_token = access_token
         self.content_type = "application/json"
 
     def prepare_request(self, headers: Optional[dict] = None) -> dict:
@@ -27,8 +27,8 @@ class BaseClient:
         if self.content_type:
             request_headers["Content-Type"] = self.content_type
 
-        if self.token:
-            request_headers["Authorization"] = f"Bearer {self.token}"
+        if self.access_token:
+            request_headers["Authorization"] = f"Bearer {self.access_token}"
 
         if headers:
             request_headers.update(headers)
