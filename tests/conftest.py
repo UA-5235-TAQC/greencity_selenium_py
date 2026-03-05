@@ -2,7 +2,6 @@ from typing import Generator
 
 import allure
 from allure_commons.types import Severity
-from jsonschema import validate, ValidationError
 from pytest import fixture
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions

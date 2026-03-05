@@ -92,7 +92,7 @@ class BasePage(PageFactory):
 
     @allure.step("Reload page")
     def reload(self):
-        """Refreshes the page via the driver."""
+        """Refreshes the current page and returns the page object."""
         self.driver.refresh()
         return self
 
