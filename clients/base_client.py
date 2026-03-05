@@ -3,6 +3,7 @@ import mimetypes
 from dataclasses import asdict
 from typing import Optional, List
 
+import allure
 import requests
 from requests import Response
 
@@ -47,11 +48,13 @@ class BaseClient:
     def get(self, path: str, params: Optional[dict] = None, headers: Optional[dict] = None) -> Response:
         """Execute GET request."""
         request_headers = self.prepare_request(headers)
-        return requests.get(
-            f"{self.base_api_url}/{path}",
-            headers=request_headers,
-            params=params
-        )
+        url = f"{self.base_api_url}{path}"
+        with allure.step(f"Execute GET request to {url} with params {params} and headers {request_headers}"):
+            return requests.get(
+                url,
+                headers=request_headers,
+                params=params
+            )
 
     def post(self, path: str, json: Optional[dict] = None, data: Optional[dict] = None,
             files: Optional[dict] = None, params: Optional[dict] = None, headers: Optional[dict] = None
@@ -59,7 +62,7 @@ class BaseClient:
         """ Execute POST request. """
         request_headers = self.prepare_request(headers)
         return requests.post(
-            f"{self.base_api_url}/{path}",
+            f"{self.base_api_url}{path}",
             headers=request_headers,
             json=json,
             data=data,
@@ -72,17 +75,28 @@ class BaseClient:
         """Execute PUT request."""
         request_headers = self.prepare_request(headers)
         return requests.put(
-            f"{self.base_api_url}/{path}",
+            f"{self.base_api_url}{path}",
             headers=request_headers,
             json=json_put,
             files=files
+        )
+    def patch(self, path: str, json_patch = None, files: Optional[dict] = None,
+            headers: Optional[dict] = None, params:dict=None) -> Response:
+        """Execute PATCH request."""
+        request_headers = self.prepare_request(headers)
+        return requests.patch(
+            f"{self.base_api_url}{path}",
+            headers=request_headers,
+            json=json_patch,
+            files=files,
+            params=params
         )
 
     def delete(self, path: str) -> Response:
         """  Execute DELETE request. """
         headers = self.prepare_request()
         response = requests.delete(
-            f"{self.base_api_url}/{path}",
+            f"{self.base_api_url}{path}",
             headers=headers
         )
         return response

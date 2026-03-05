@@ -1,4 +1,5 @@
 import allure
+
 from clients.comments_client import CommentsClient
 from data.config import Config
 
@@ -20,8 +21,7 @@ def test_get_news_comments_count(comments_client: CommentsClient):
         comments_count = response.json()
 
     with allure.step("Add new comment and verify status code"):
-        response = comments_client.add_comment(news_id=NEWS_ID,
-                                               comment_message=COMMENT_MESSAGE,
+        response = comments_client.add_comment(news_id=NEWS_ID, comment_message=COMMENT_MESSAGE,
                                                select_default_image=True)
         assert response.status_code == 201, "Response status code should be 201"
 
@@ -56,7 +56,6 @@ def test_dislike_comment(comments_client: CommentsClient):
 @allure.feature("Comments")
 @allure.story("Update Comment")
 def test_update_comment(comments_client: CommentsClient):
-
     with allure.step("Update comment and verify status"):
         response = comments_client.update_comment(comment_id=COMMENT_ID_UPDATE, text=COMMENT_MESSAGE)
         assert response.status_code == 200, "Response status code should be 200"

@@ -17,4 +17,4 @@ class OwnSecurityClient(BaseClient):
             "password": password,
             "projectName": "GREENCITY"
         }
-        return self.post("signIn", json=payload)
+        return self.post("/signIn", json=payload)
