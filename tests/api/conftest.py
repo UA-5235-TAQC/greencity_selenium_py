@@ -29,15 +29,63 @@ def eco_news_setup():
 
 
 @fixture(scope="session")
-def auth_token():
-    """Get auth token."""
+def _auth_tokens():
+    """Obtain and store the initial access + refresh token pair for the session.
+
+    Keeping both tokens allows ``refresh_auth_token`` to exchange the refresh
+    token for a new access token when the current one has expired (JWT tokens
+    issued by GreenCityUser have a finite TTL).
+    """
     auth_client = OwnSecurityClient(Config.BASE_GREEN_CITY_USER_API_URL)
     login_response = auth_client.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
 
     assert_ok(login_response)
 
-    token = login_response.json().get("accessToken")
-    return token
+    body = login_response.json()
+    # Store as a mutable dict so downstream fixtures can update the tokens.
+    return {
+        "access_token": body["accessToken"],
+        "refresh_token": body.get("refreshToken", ""),
+    }
+
+
+@fixture(scope="session")
+def auth_token(_auth_tokens):
+    """Return the session-scoped access token.
+
+    Use ``refresh_auth_token`` when you need a guaranteed-fresh token for
+    long-running or sensitive operations.
+    """
+    return _auth_tokens["access_token"]
+
+
+@fixture(scope="function")
+def refresh_auth_token(_auth_tokens):
+    """Return a freshly-obtained access token by exchanging the refresh token.
+
+    Use this fixture (instead of ``auth_token``) in tests that are sensitive
+    to token expiry, for example tests that perform a series of write operations
+    spanning several minutes.
+    """
+    auth_client = OwnSecurityClient(Config.BASE_GREEN_CITY_USER_API_URL)
+    refresh_response = auth_client.refresh_token(_auth_tokens["refresh_token"])
+
+    if refresh_response.status_code == 200:
+        body = refresh_response.json()
+        _auth_tokens["access_token"] = body["accessToken"]
+        _auth_tokens["refresh_token"] = body.get("refreshToken", _auth_tokens["refresh_token"])
+    else:
+        # Refresh failed (e.g. refresh token also expired) – fall back to a
+        # full re-login so the test can still proceed.
+        with allure.step("Refresh token expired; performing full re-login"):
+            login_response = auth_client.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
+            assert_ok(login_response)
+            body = login_response.json()
+            _auth_tokens["access_token"] = body["accessToken"]
+            _auth_tokens["refresh_token"] = body.get("refreshToken", "")
+
+    return _auth_tokens["access_token"]
+
 
 
 @fixture(scope="module")

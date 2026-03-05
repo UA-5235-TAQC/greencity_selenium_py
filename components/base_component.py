@@ -1,3 +1,5 @@
+from typing import Self
+
 import allure
 
 from data.config import Config
@@ -20,7 +22,7 @@ class BaseComponent(PageFactory):
         return self.root_element.is_displayed()
 
     @allure.step("Wait until cancel modal is closed")
-    def wait_until_closed(self, timeout: int = Config.EXPLICITLY_WAIT):
+    def wait_until_closed(self, timeout: int = Config.EXPLICITLY_WAIT) -> Self:
         """ Waits until the cancel modal is no longer visible on the page. """
         WebDriverWait(self.driver, timeout).until(
             EC.invisibility_of_element(self.root_element)

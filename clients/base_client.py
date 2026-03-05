@@ -107,7 +107,8 @@ class BaseClient:
             return
         mime_type, _ = mimetypes.guess_type(image_path)
         mime_type = mime_type or "application/octet-stream"
-        files["image"] = (image_path, open(image_path, "rb"), mime_type)
+        with open(image_path, "rb") as fh:
+            files["image"] = (image_path, fh.read(), mime_type)
 
     def attach_images_to_multipart(self, files: dict, control_name: str,
                                    image_paths: Optional[List[str]]) -> None:
@@ -122,6 +123,7 @@ class BaseClient:
 
                 files.setdefault(control_name, [])
 
-                files[control_name].append(
-                    (path, open(path, "rb"), mime_type)
-                )
+                with open(path, "rb") as fh:
+                    files[control_name].append(
+                        (path, fh.read(), mime_type)
+                    )

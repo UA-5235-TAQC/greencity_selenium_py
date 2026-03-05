@@ -1,15 +1,19 @@
+import logging
 from typing import Any, Type, Union, Dict, Tuple, Optional, get_origin, get_args
 
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver import ActionChains
+from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
+logger = logging.getLogger(__name__)
+
 LocatorStrategy = Tuple[By, str, Optional[Type[Any]]]
 LocatorsTable = Dict[str, LocatorStrategy]
+
+_STALE_RETRY_ATTEMPTS = 3
 
 
 class PageFactoryException(Exception):
@@ -27,14 +31,30 @@ class ElementNotVisibleException(PageFactoryException):
 class PageFactory:
     """
     Base class for all components and pages.
-    Provides access to the driver and logic for finding elements relative to the context.
+
+    Provides access to the driver and logic for finding elements relative to the
+    context (either a ``WebDriver`` or a ``WebElement`` root).
+
+    Thread-safety note
+    ------------------
+    Each attribute access triggers a *fresh* ``WebDriverWait`` lookup, so no
+    resolved ``WebElement`` is stored on the instance.  This means the class is
+    safe to use from multiple threads (e.g. pytest-xdist workers) as long as
+    every worker owns its own ``WebDriver`` instance.
+
+    Stale-element protection
+    ------------------------
+    ``_resolve`` will retry up to ``_STALE_RETRY_ATTEMPTS`` times when a
+    ``StaleElementReferenceException`` is raised, which covers the common
+    Angular/React re-render race condition.
     """
+
     driver: WebDriver
     timeout: int = 10
 
     locators: LocatorsTable = {}
 
-    def __init__(self, context: Union[WebDriver, WebElement]):
+    def __init__(self, context: Union[WebDriver, WebElement]) -> None:
         """ Initializes the PageFactory with a given context (WebDriver or WebElement). """
         self.root_element = context
 
@@ -43,68 +63,108 @@ class PageFactory:
         else:
             self.driver = context
 
-        all_locators = {}
+        all_locators: LocatorsTable = {}
         for cls in reversed(self.__class__.mro()):
-            if hasattr(cls, 'locators'):
+            if hasattr(cls, "locators"):
                 all_locators.update(cls.locators)
 
         self.locators = all_locators
 
     def __getattr__(self, name: str) -> Any:
-        """ Overrides attribute access to provide lazy loading of elements defined in 'locators'. """
+        """Overrides attribute access to provide on-demand element resolution.
+
+        Elements are *not* cached on the instance – every access issues a fresh
+        ``WebDriverWait`` lookup, which prevents ``StaleElementReferenceException``
+        from persisting between interactions.
+        """
         if name in self.locators:
             return self._resolve(name)
         raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
 
-    def _resolve(self, name: str, multiple: bool = False) -> Any:
-        """Universal resolver for single or multiple elements."""
+    def _resolve(self, name: str) -> Any:
+        """Resolve a locator entry to a ``WebElement`` or component instance.
 
+        Determines whether the locator targets a *single* element or a *list* of
+        elements by inspecting the optional third entry in the locator tuple:
+
+        * ``list[SomeComponent]`` → resolve multiple elements and wrap each in
+          ``SomeComponent``.
+        * ``SomeComponent`` → resolve a single element and wrap it.
+        * Absent → resolve a single raw ``WebElement``.
+
+        Retries up to ``_STALE_RETRY_ATTEMPTS`` times on
+        ``StaleElementReferenceException`` to handle transient DOM re-renders.
+        """
         config = self.locators[name]
         by_type = config[0]
         selector = config[1]
+        component_class: Optional[Type[Any]] = None
         multiple = False
-        component_class = None
 
         if len(config) > 2:
             multiple = get_origin(config[2]) is list
             component_class = config[2] if not multiple else get_args(config[2])[0]
 
         locator = (by_type, selector)
-        wait = WebDriverWait(self.root_element, self.timeout)
 
-        try:
-            if multiple:
-                elements = wait.until(
-                    EC.presence_of_all_elements_located(locator)
+        for attempt in range(1, _STALE_RETRY_ATTEMPTS + 1):
+            wait = WebDriverWait(self.root_element, self.timeout)
+            try:
+                if multiple:
+                    elements = wait.until(EC.presence_of_all_elements_located(locator))
+                    visible = [el for el in elements if el.is_displayed()]
+
+                    if not visible:
+                        raise ElementNotVisibleException(
+                            f"Elements '{name}' found using locator {locator}, "
+                            f"but none are visible in context {self.__class__.__name__}"
+                        )
+
+                    if component_class and component_class is not WebElement:
+                        return [component_class(el) for el in visible]
+
+                    return visible
+
+                else:
+                    element = wait.until(EC.presence_of_element_located(locator))
+
+                    if component_class:
+                        return component_class(element)
+
+                    return element
+
+            except StaleElementReferenceException as exc:
+                if attempt == _STALE_RETRY_ATTEMPTS:
+                    raise ElementNotFoundException(
+                        f"Element(s) '{name}' became stale after {_STALE_RETRY_ATTEMPTS} "
+                        f"retries using locator {locator} in context {self.__class__.__name__}"
+                    ) from exc
+                logger.debug(
+                    "StaleElementReferenceException for '%s' (attempt %d/%d), retrying...",
+                    name,
+                    attempt,
+                    _STALE_RETRY_ATTEMPTS,
                 )
-                elements = [el for el in elements if el.is_displayed()]
 
-                if not elements:
-                    raise ElementNotVisibleException(
-                        f"Elements '{name}' found using locator {locator}, "
-                        f"but none are visible in context {self.__class__.__name__}"
-                    )
+            except TimeoutException as exc:
+                raise ElementNotFoundException(
+                    f"Element(s) '{name}' not found using locator {locator} "
+                    f"in context {self.__class__.__name__}"
+                ) from exc
 
-                if component_class and component_class is not WebElement:
-                    return [component_class(el) for el in elements]
+    # ------------------------------------------------------------------
+    # Fluent helpers (return Self so subclasses keep the correct type)
+    # ------------------------------------------------------------------
 
-                return elements
+    def wait_for_element(self, locator: tuple, timeout: Optional[int] = None) -> WebElement:
+        """Wait for a single element to be present and return it."""
+        t = timeout if timeout is not None else self.timeout
+        return WebDriverWait(self.driver, t).until(EC.presence_of_element_located(locator))
 
-            else:
-                element = wait.until(
-                    EC.presence_of_element_located(locator)
-                )
-
-                if component_class:
-                    return component_class(element)
-
-                return element
-
-        except TimeoutException as e:
-            raise ElementNotFoundException(
-                f"Element(s) '{name}' not found using locator {locator} "
-                f"in context {self.__class__.__name__}"
-            ) from e
+    def wait_for_element_visible(self, locator: tuple, timeout: Optional[int] = None) -> WebElement:
+        """Wait for a single element to be *visible* and return it."""
+        t = timeout if timeout is not None else self.timeout
+        return WebDriverWait(self.driver, t).until(EC.visibility_of_element_located(locator))
 
 
 __all__ = [
