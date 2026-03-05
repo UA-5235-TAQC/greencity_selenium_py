@@ -8,6 +8,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
+from clients.eco_new_client import EcoNewClient
+from clients.own_security_client import OwnSecurityClient
 from components.news_list_item_component import NewsListItemComponent
 from data.config import Config
 from data.ui_news_test_data import NewsTestData
@@ -141,3 +143,25 @@ def tag_selection_environment(driver_with_login):
     news_page.open()
     # Reset any applied tag filters to avoid affecting subsequent tests
     news_page.remove_all_selected_tags()
+
+
+@fixture(scope="function")
+def auth_client_favorite(request):
+    """Universal fixture: handles authorization, clears the state for news_id, and performs teardown"""
+    auth_api = OwnSecurityClient(Config.BASE_GREEN_CITY_USER_API_URL)
+    login_resp = auth_api.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
+    token = login_resp.json()["accessToken"]
+    # Create a client
+    client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, access_token=token)
+    # 3. Getting news_id from class
+    news_id = getattr(request.cls, "news_id", None)
+
+    if news_id:
+        with allure.step(f"Pre-test cleanup: Removing news {news_id} from favorites"):
+            client.remove_from_favorites(news_id)
+
+    yield client
+
+    if news_id:
+        with allure.step(f"Post-test cleanup: Removing news {news_id} from favorites"):
+            client.remove_from_favorites(news_id)
