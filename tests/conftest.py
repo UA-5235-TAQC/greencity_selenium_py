@@ -2,6 +2,8 @@ from typing import Generator
 
 import allure
 from allure_commons.types import Severity
+from requests import Response
+from enums.news_tag import EcoNewsTag
 from schemas.greencity_user.own_security import success_sign_in_schema
 from pytest import fixture
 from selenium import webdriver
@@ -19,6 +21,7 @@ from pages.home_page import HomePage
 from pages.news_details_page import NewsDetailsPage
 from pages.news_page import NewsPage
 from tests.utils.validators import validate_json
+from clients.eco_news_client import EcoNewsClient
 
 
 @fixture(scope="function", params=["chrome"])
@@ -72,7 +75,7 @@ def driver_with_login(get_driver):
 @fixture(scope="function")
 def sign_in_api():
     """Fixture that performs API sign-in and yields the response JSON containing the access token."""
-    
+
     client = OwnSecurityClient(Config.BASE_GREEN_CITY_USER_API_URL)
     response = client.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
     assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
@@ -156,3 +159,40 @@ def tag_selection_environment(driver_with_login):
     news_page.open()
     # Reset any applied tag filters to avoid affecting subsequent tests
     news_page.remove_all_selected_tags()
+
+
+@fixture(scope="session")
+def get_auth_token():
+    """Get auth token."""
+    auth_client = OwnSecurityClient(Config.BASE_GREEN_CITY_USER_API_URL)
+    login_response = auth_client.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
+
+    assert login_response.status_code == 200, f"Fixture: Login failed with {login_response.status_code}"
+
+    token = login_response.json().get("accessToken")
+    return token
+
+@fixture(scope="session")
+def eco_news_client_with_auth_token(get_auth_token) -> EcoNewsClient:
+    return EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, get_auth_token)
+
+@fixture(scope="function")
+def create_eco_news(get_auth_token, eco_news_client_with_auth_token) -> Response:
+    news_payload = {
+        "title": "Eco title ",
+        "text": "Test content with more than 20 characters",
+        "tags": [EcoNewsTag.NEWS.en, EcoNewsTag.ADS.en],
+        "source": "https://chatgpt.com/",
+        "shortInfo": "short description 12341"
+    }
+    return get_auth_token, eco_news_client_with_auth_token.add_eco_news(news_payload).json()
+
+@fixture(scope="function")
+def create_delete_news_with_token(create_eco_news, eco_news_client_with_auth_token):
+    auth_token, news_response = create_eco_news
+    news_id = news_response["id"]
+    
+    yield auth_token, news_response
+
+    with allure.step(f"Cleanup: Deleting news ID {news_id}"):
+        eco_news_client_with_auth_token.delete_eco_news_by_id(news_id)

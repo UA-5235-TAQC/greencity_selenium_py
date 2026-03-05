@@ -12,11 +12,13 @@ class TestNewsComments:
     created_comment_id = None
 
     @allure.severity(Severity.NORMAL)
-    def test_add_comment_to_eco_news(self, sign_in_api):
+    def test_add_comment_to_eco_news(self, create_delete_news_with_token):
         """Test: Add a comment to eco news."""
 
-        access_token = sign_in_api["accessToken"]
-        news_id = 4394  # TODO Replace with a valid news ID
+        access_token, news_response = create_delete_news_with_token
+        news_id = news_response["id"]
+        print(f"Мій токен: {access_token}")
+        print(f"Мій ID новини: {news_id}")
         comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token, news_id)
 
         response = comment_client.add_comment("This is a test comment.", NewsTestData.TEST2_FILE)
@@ -32,7 +34,7 @@ class TestNewsComments:
         """Test: Like a comment."""
 
         access_token = sign_in_api["accessToken"]
-        comment_id = 2651  # TODO Replace with a dynamic comment ID
+        comment_id = 2651  # TODO Replace with a dynamic comment ID, need second test user
         comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token)
 
         response = comment_client.like_comment(comment_id)
@@ -44,7 +46,7 @@ class TestNewsComments:
     def test_get_comment_by_id(self):
         """Test: Get a comment by its ID."""
 
-        comment_id = 2651  # TODO Replace with a dynamic comment ID
+        comment_id = 2651  # TODO Replace with a dynamic comment ID, need second test user
         comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL)
 
         response = comment_client.get_comment_by_id(comment_id)
@@ -53,14 +55,14 @@ class TestNewsComments:
         assert is_valid, f"Response JSON does not match the expected schema: {error}"
 
     @allure.severity(Severity.TRIVIAL)
-    def test_delete_comment_by_id(self, sign_in_api):
+    def test_delete_comment_by_id(self, create_delete_news_with_token):
         """Test: Delete a comment by its ID."""
 
         if TestNewsComments.created_comment_id is None:
             pytest.fail("Comment ID was not captured!")
 
-        access_token = sign_in_api["accessToken"]
-        news_id = 4394  # TODO Replace with a valid news ID
+        access_token, news_response = create_delete_news_with_token
+        news_id = news_response["id"]
         comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token, news_id)
 
         response = comment_client.delete_comment_by_id(TestNewsComments.created_comment_id)

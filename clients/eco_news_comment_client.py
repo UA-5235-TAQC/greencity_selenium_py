@@ -35,9 +35,9 @@ class EcoNewsCommentClient(BaseClient):
 
         headers = {"Content-Type": None}
     
-        response = self._request("POST", endpoint, files=files, headers=headers)
+        return self._request("POST", endpoint, files=files, headers=headers)
     
-        return response
+        
     
 
     @allure.step("Like comment")
