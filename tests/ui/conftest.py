@@ -142,14 +142,3 @@ def tag_selection_environment(driver_with_login):
     # Reset any applied tag filters to avoid affecting subsequent tests
     news_page.remove_all_selected_tags()
 
-
-@fixture(scope="session")
-def auth_token():
-    """Get auth token."""
-    auth_client = OwnSecurityClient(Config.BASE_GREEN_CITY_USER_API_URL)
-    login_response = auth_client.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
-
-    assert login_response.status_code == 200, f"Fixture: Login failed with {login_response.status_code}"
-
-    token = login_response.json().get("accessToken")
-    return token
