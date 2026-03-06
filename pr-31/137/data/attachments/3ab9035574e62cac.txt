@@ -1,0 +1,10 @@
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3079 with query params  [parent_comment_id=3079, query=CommentQuery(page=0, size=1, sort=[])]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3079/replies/active with params {'page': 0, 'size': 1} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MjgwNTU2NywidXNlcklkIjoxNDksImlhdCI6MTc3Mjc5ODM2N30.zP1A2Deom2LrFe78MgC1zp1ybVROF-u1DwIzFuiKQfY'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Delete comment with children by ID 3079  [comment_id=3079]
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3079 with query params  [parent_comment_id=3079, query=None]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3079/replies/active with params {} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MjgwNTU2NywidXNlcklkIjoxNDksImlhdCI6MTc3Mjc5ODM2N30.zP1A2Deom2LrFe78MgC1zp1ybVROF-u1DwIzFuiKQfY'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+WARNING  allure.step:logging_config.py:37 STEP FAILED  AttributeError: 'Response' object has no attribute 'get'
