@@ -20,16 +20,12 @@ class MySpaceNewsItemComponent(BaseComponent):
     author_name: WebElement
     author_icon: WebElement
 
-    locators: LocatorsTable = {
-        "news_container": (By.CSS_SELECTOR, "div.news"),
-        "image": (By.CSS_SELECTOR, ".news-image"),
-        "title": (By.CSS_SELECTOR, ".news-content .title h3"),
+    locators: LocatorsTable = {"news_container": (By.CSS_SELECTOR, "div.news"),
+        "image": (By.CSS_SELECTOR, ".news-image"), "title": (By.CSS_SELECTOR, ".news-content .title h3"),
         "tags": (By.CSS_SELECTOR, ".news-content .tags .tag-btn", List[WebElement]),
         "creation_date": (By.CSS_SELECTOR, ".user-info-date p"),
         "creation_date_icon": (By.CSS_SELECTOR, ".user-info-date img"),
-        "author_name": (By.CSS_SELECTOR, ".user-info-icon p"),
-        "author_icon": (By.CSS_SELECTOR, ".user-info-icon img")
-    }
+        "author_name": (By.CSS_SELECTOR, ".user-info-icon p"), "author_icon": (By.CSS_SELECTOR, ".user-info-icon img")}
 
     def __init__(self, root_element: WebElement, news_id: int):
         """ Initialize the My Space News Item component for the specified news ID. """
@@ -49,10 +45,7 @@ class MySpaceNewsItemComponent(BaseComponent):
     @allure.step("Get tags text")
     def get_tags(self) -> List[str]:
         """Returns a list of WebElements for the tags associated with the news"""
-        return [
-            tag.text.strip()
-            for tag in self.tags
-        ]
+        return [tag.text.strip() for tag in self.tags]
 
     @allure.step("Get elements title ")
     def get_title(self) -> str:

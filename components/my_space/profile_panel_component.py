@@ -1,8 +1,9 @@
 from typing import List
 
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
-import allure
+
 from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable
 from utils.web_element_utils import get_int_from_text
@@ -24,16 +25,13 @@ class ProfilePanelComponent(BaseComponent):
     favourite_places: List[WebElement]
     add_friend_btn: WebElement
 
-    locators: LocatorsTable = {
-        "avatar": (By.CSS_SELECTOR, "app-user-profile-image img.profile-avatar"),
-        "name": (By.CSS_SELECTOR, "app-profile-header p.name"),
-        "location": (By.CSS_SELECTOR, "p.location"),
+    locators: LocatorsTable = {"avatar": (By.CSS_SELECTOR, "app-user-profile-image img.profile-avatar"),
+        "name": (By.CSS_SELECTOR, "app-profile-header p.name"), "location": (By.CSS_SELECTOR, "p.location"),
         "rate": (By.CSS_SELECTOR, "div.rate p"),
         "achievements": (By.CSS_SELECTOR, "app-users-achievements .achievements-images img", List[WebElement]),
         "friends_count_label": (By.CSS_SELECTOR, "app-users-friends .text-number"),
         "favourite_places": (By.CSS_SELECTOR, "app-eco-places .eco-place-list li", List[WebElement]),
-        "add_friend_btn": (By.CSS_SELECTOR, "app-users-friends .add-friends a")
-    }
+        "add_friend_btn": (By.CSS_SELECTOR, "app-users-friends .add-friends a")}
 
     @allure.step("Get user full name")
     def get_name(self) -> str:

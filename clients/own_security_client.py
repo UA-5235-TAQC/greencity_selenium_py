@@ -1,5 +1,6 @@
 import allure
 from requests import Response
+
 from clients.base_client import BaseClient
 
 
@@ -12,9 +13,5 @@ class OwnSecurityClient(BaseClient):
     @allure.step("Sign in to the own security service with email: {email}")
     def sign_in(self, email: str, password: str) -> Response:
         """Sign in to the own security service."""
-        payload = {
-            "email": email,
-            "password": password,
-            "projectName": "GREENCITY"
-        }
+        payload = {"email": email, "password": password, "projectName": "GREENCITY"}
         return self.post("/signIn", json=payload)

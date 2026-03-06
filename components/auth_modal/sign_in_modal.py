@@ -6,8 +6,9 @@ from selenium.webdriver.remote.webelement import WebElement
 from typing_extensions import override
 
 from components.auth_modal.modal_base_page import ModalBasePage
-from data.config import Config
+from components.auth_modal.sign_up_modal import SignUpModal
 from utils.web_element_utils import enter_text
+
 
 class SignInModal(ModalBasePage):
     """ Component representing the Sign In modal window. """
@@ -17,12 +18,9 @@ class SignInModal(ModalBasePage):
     show_password_icon: WebElement
     sign_up_link: WebElement
 
-    locators = {
-        "password_field": (By.ID, "password"),
-        "forgot_password_link": (By.CSS_SELECTOR, "a.forgot-password"),
+    locators = {"password_field": (By.ID, "password"), "forgot_password_link": (By.CSS_SELECTOR, "a.forgot-password"),
         "show_password_icon": (By.CSS_SELECTOR, ".image-show-hide-password"),
-        "sign_up_link": (By.CSS_SELECTOR, "a.green-link"),
-    }
+        "sign_up_link": (By.CSS_SELECTOR, "a.green-link"), }
 
     __password_field_error_locator = (By.CSS_SELECTOR, "#pass-err-msg div")
 
@@ -43,9 +41,8 @@ class SignInModal(ModalBasePage):
         self.forgot_password_link.click()
 
     @allure.step("Click sign up link")
-    def click_sign_up_link(self) -> "SignUpModal":
+    def click_sign_up_link(self) -> SignUpModal:
         """ Click sign up link. """
-        from components.auth_modal.sign_up_modal import SignUpModal
         self.sign_up_link.click()
         return SignUpModal(self.auth_modal)
 

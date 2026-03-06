@@ -1,10 +1,10 @@
 import allure
+from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
-from selenium.webdriver.common.by import By
 from components.base_component import BaseComponent
-from utils.page_factory import LocatorsTable, ElementNotFoundException
 from pages.ubs_courier_page import UbsCourierPage
+from utils.page_factory import LocatorsTable, ElementNotFoundException
 
 
 class CancelModalComponent(BaseComponent):
@@ -17,14 +17,11 @@ class CancelModalComponent(BaseComponent):
     warning_title: WebElement
     warning_subtitle: WebElement
 
-    locators: LocatorsTable = {
-        "message_container": (By.CSS_SELECTOR, ".warning-text"),
+    locators: LocatorsTable = {"message_container": (By.CSS_SELECTOR, ".warning-text"),
         "yes_cancel_btn": (By.CSS_SELECTOR, ".buttons-container .primary-global-button"),
         "continue_editing_btn": (By.CSS_SELECTOR, ".buttons-container .secondary-global-button"),
-        "close_btn": (By.CSS_SELECTOR, ".close"),
-        "warning_title": (By.CSS_SELECTOR, ".warning-title"),
-        "warning_subtitle": (By.CSS_SELECTOR, ".warning-subtitle")
-    }
+        "close_btn": (By.CSS_SELECTOR, ".close"), "warning_title": (By.CSS_SELECTOR, ".warning-title"),
+        "warning_subtitle": (By.CSS_SELECTOR, ".warning-subtitle")}
 
     @allure.step("Wait until cancel modal is visible")
     def wait_until_visible(self):

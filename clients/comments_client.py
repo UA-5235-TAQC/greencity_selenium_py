@@ -93,6 +93,6 @@ class CommentsClient(BaseClient):
 
         with open(img_url, "rb") as img:
             files = {"request": (json.dumps({"text": comment_message, "parentCommentId": parent_id})),
-                "images": None if not select_default_image else [file_name, img, "image/jpeg"]}
+                     "images": None if not select_default_image else [file_name, img, "image/jpeg"]}
 
             return self.post(endpoint, files=files, headers=headers)

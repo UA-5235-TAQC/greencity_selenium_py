@@ -17,12 +17,9 @@ class ContentComponent(BaseComponent):
     content_counter: WebElement
     content_message: WebElement
 
-    locators: LocatorsTable = {
-        "content_editor": (By.CSS_SELECTOR, ".ql-editor"),
-        "content_toolbar": (By.CSS_SELECTOR, ".ql-toolbar"),
-        "content_counter": (By.CSS_SELECTOR, "p.quill-counter"),
-        "content_message": (By.CSS_SELECTOR, ".title-wrapper p.field-info")
-    }
+    locators: LocatorsTable = {"content_editor": (By.CSS_SELECTOR, ".ql-editor"),
+        "content_toolbar": (By.CSS_SELECTOR, ".ql-toolbar"), "content_counter": (By.CSS_SELECTOR, "p.quill-counter"),
+        "content_message": (By.CSS_SELECTOR, ".title-wrapper p.field-info")}
 
     @allure.step("Clear content text")
     def clear_content(self):
@@ -175,12 +172,9 @@ class ContentComponent(BaseComponent):
 
     @allure.step("Enter content text via JS: {text}")
     def set_content_via_js(self, text: str):
-        self.driver.execute_script(
-            """
-            const quill = document.querySelector('.ql-editor');
-            if (quill) {
-                quill.innerHTML = arguments[0];
-            }
-            """,
-            text
-        )
+        self.driver.execute_script("""
+                                   const quill = document.querySelector('.ql-editor');
+                                   if (quill) {
+                                       quill.innerHTML = arguments[0];
+                                   }
+                                   """, text)

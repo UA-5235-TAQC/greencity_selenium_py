@@ -1,8 +1,8 @@
 from typing import List
 
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
-import allure
 
 from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable
@@ -20,16 +20,11 @@ class CommentItemComponent(BaseComponent):
     reply_btn: WebElement
     comment_images: List[WebElement]
 
-    locators: LocatorsTable = {
-        "author_name": (By.CSS_SELECTOR, ".author-name"),
-        "comment_text": (By.CSS_SELECTOR, ".comment-text"),
-        "comment_date": (By.CSS_SELECTOR, ".comment-date-month"),
-        "like_amount": (By.CSS_SELECTOR, ".like-amount"),
-        "edit_btn": (By.CSS_SELECTOR, "button.edit"),
-        "delete_btn": (By.CSS_SELECTOR, "button.delete"),
-        "reply_btn": (By.CSS_SELECTOR, "button.reply"),
-        "comment_images": (By.CSS_SELECTOR, ".comment-image", List[WebElement]),
-    }
+    locators: LocatorsTable = {"author_name": (By.CSS_SELECTOR, ".author-name"),
+        "comment_text": (By.CSS_SELECTOR, ".comment-text"), "comment_date": (By.CSS_SELECTOR, ".comment-date-month"),
+        "like_amount": (By.CSS_SELECTOR, ".like-amount"), "edit_btn": (By.CSS_SELECTOR, "button.edit"),
+        "delete_btn": (By.CSS_SELECTOR, "button.delete"), "reply_btn": (By.CSS_SELECTOR, "button.reply"),
+        "comment_images": (By.CSS_SELECTOR, ".comment-image", List[WebElement]), }
 
     @allure.step("Get author name")
     def get_author(self) -> str:
