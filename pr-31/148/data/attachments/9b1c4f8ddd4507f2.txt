@@ -1,0 +1,58 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Open home page
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until home page is loaded
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="554a0ee6f105490e9f65152ab6af961b", element="f.B1772CF41AD6CB2C65ABF8A2379E3CFA.d.C27614A9DB372209E0E2111183E64F58.e.30")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="554a0ee6f105490e9f65152ab6af961b", element="f.B1772CF41AD6CB2C65ABF8A2379E3CFA.d.C27614A9DB372209E0E2111183E64F58.e.30")>, timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Change language to English
+INFO     allure.step:logging_config.py:30 >> STEP  Get current locale
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click 'Sign In' link in header
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Enter email and password values  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+INFO     allure.step:logging_config.py:30 >> STEP  Enter value in email field  [email='testtestovich611@gmail.com']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Enter value in password field  [password='!Testtestovich611!']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click submit button
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until cancel modal is closed  [timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until My Space Habits tab is fully opened  [timeout=10]
+INFO     allure.step:logging_config.py:30 >> STEP  Verify that My Space Habits tab is opened
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="554a0ee6f105490e9f65152ab6af961b", element="f.B1772CF41AD6CB2C65ABF8A2379E3CFA.d.C27614A9DB372209E0E2111183E64F58.e.87")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="554a0ee6f105490e9f65152ab6af961b", element="f.B1772CF41AD6CB2C65ABF8A2379E3CFA.d.C27614A9DB372209E0E2111183E64F58.e.87")>, timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click 'Eco News' link in header
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until Eco News page is opened
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="554a0ee6f105490e9f65152ab6af961b", element="f.B1772CF41AD6CB2C65ABF8A2379E3CFA.d.C27614A9DB372209E0E2111183E64F58.e.103")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="554a0ee6f105490e9f65152ab6af961b", element="f.B1772CF41AD6CB2C65ABF8A2379E3CFA.d.C27614A9DB372209E0E2111183E64F58.e.103")>, timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click on Create News button
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Check if Create/Edit News page is opened
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Upload image from file absolute path: PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/UploadImageTest/Small PNG.png')  [file_absolute_path=PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/UploadImageTest/Small PNG.png')]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Check if image error message is displayed
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Check if uploaded image is visible
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get source URL of the uploaded image
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Check if uploaded image (blob:) is displayed
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Check if Cancel button in image cropper is visible
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Check if Submit button in image cropper is visible
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get image upload error message text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get text of Cancel cropper button
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get text of Submit cropper button
+INFO     allure.step:logging_config.py:35 STEP PASSED

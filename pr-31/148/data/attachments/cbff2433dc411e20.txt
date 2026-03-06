@@ -1,0 +1,12 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Post new EcoNews without image  [body=EcoNewsRequest(title='Ласкаво просимо до Вікіпедії', text='Осип Тадейович Назарук (1883 — 1940) — український громадський і ', source='https://uk.wikipedia.org/wiki/Main_Page', short_info='Головна сторінка Вікіпедії українською', tags=['Новини', 'Освіта'])]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Post new EcoNews without image  [body=EcoNewsRequest(title='Ласкаво просимо до Вікіпедії', text='Осип Тадейович Назарук (1883 — 1940) — український громадський і ', source='https://uk.wikipedia.org/wiki/Main_Page', short_info='Головна сторінка Вікіпедії українською', tags=['Новини', 'Освіта'])]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Update EcoNews by ID: 6328  [eco_news_id=6328, update_dto=UpdateEcoNewsRequest(id=6329, title='Ласкаво просимо до Вікіпедії', content='Осип Тадейович Назарук (1883 — 1940) — український громадський і ', short_info='Short info', tags=['Новини', 'Освіта'], source='https://uk.wikipedia.org/wiki/Main_Page'), image_path=None]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Update EcoNews by ID: 6329  [eco_news_id=6329, update_dto=UpdateEcoNewsRequest(id=6329, title='Ласкаво просимо до Вікіпедії', content='Осип Тадейович Назарук (1883 — 1940) — український громадський і ', short_info='Short info', tags=['string'], source='https://uk.wikipedia.org/wiki/Main_Page'), image_path=None]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Update EcoNews by ID: 6329  [eco_news_id=6329, update_dto=UpdateEcoNewsRequest(id=6329, title='', content='Осип Тадейович Назарук (1883 — 1940) — український громадський і ', short_info='Short info', tags=['Новини', 'Освіта'], source='https://uk.wikipedia.org/wiki/Main_Page'), image_path=None]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Update EcoNews by ID: 6329  [eco_news_id=6329, update_dto=UpdateEcoNewsRequest(id=6329, title='Ласкаво просимо до Вікіпедії', content='', short_info='Short info', tags=['Новини', 'Освіта'], source='https://uk.wikipedia.org/wiki/Main_Page'), image_path=None]
+INFO     allure.step:logging_config.py:35 STEP PASSED

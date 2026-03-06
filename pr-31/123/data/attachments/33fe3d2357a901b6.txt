@@ -1,6 +1,0 @@
-INFO     allure.step:logging_config.py:30 >> STEP  Post new EcoNews with image: '/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif'  [body=EcoNewsRequest(title='Ласкаво просимо до Вікіпедії', text='Осип Тадейович Назарук (1883 — 1940) — український громадський і політичний діяч, письменник, журналіст, воєнний кореспондент, публіцист, адвокат.', source='https://uk.wikipedia.org/wiki/Main_Page', short_info='Головна сторінка Вікіпедії українською', tags=['Новини', 'Освіта']), image_path='/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif']
-INFO     allure.step:logging_config.py:35 STEP PASSED
-INFO     allure.step:logging_config.py:30 >> STEP  Get EcoNews by ID: 5663  [eco_news_id=5663]
-INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua//eco-news/5663 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3Mjc4ODIwNiwidXNlcklkIjoxNDksImlhdCI6MTc3Mjc4MTAwNn0.VjjeSeO93GVbgwqQNxSM50mgPh50WS82RKRVNVkd4dE'}
-INFO     allure.step:logging_config.py:35 STEP PASSED
-INFO     allure.step:logging_config.py:35 STEP PASSED
