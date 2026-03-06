@@ -18,9 +18,6 @@ class EcoNewClient(BaseClient):
 
     resource_path = "/eco-news"
 
-    def __init__(self, base_url: str, access_token: Optional[str] = None):
-        super().__init__(base_url, access_token)
-
     def get_path(self, eco_news_id: int) -> str:
         """Return EcoNews path by ID."""
         return f"/{self.resource_path}/{eco_news_id}"
