@@ -1,9 +1,11 @@
 from typing import List
+
 import allure
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
+
 from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable
-from selenium.webdriver.remote.webelement import WebElement
 
 
 class CalendarComponent(BaseComponent):
@@ -21,16 +23,13 @@ class CalendarComponent(BaseComponent):
     current_day_of_week: WebElement
     day_number: WebElement
 
-    locators: LocatorsTable = {
-        "previous_month_btn": (By.CSS_SELECTOR, "img.arrow-previous"),
+    locators: LocatorsTable = {"previous_month_btn": (By.CSS_SELECTOR, "img.arrow-previous"),
         "next_month_btn": (By.CSS_SELECTOR, "img.arrow-next"),
         "month_and_year_label": (By.CSS_SELECTOR, "button.monthAndYear"),
         "days_of_week": (By.CSS_SELECTOR, ".days-name", List[WebElement]),
         "calendar_days": (By.CSS_SELECTOR, ".calendar-grid-day", List[WebElement]),
         "current_day": (By.CSS_SELECTOR, ".calendar-grid-day.current-day span"),
-        "current_day_of_week": (By.CSS_SELECTOR, ".days-name.current-day-name"),
-        "day_number": (By.TAG_NAME, "span")
-    }
+        "current_day_of_week": (By.CSS_SELECTOR, ".days-name.current-day-name"), "day_number": (By.TAG_NAME, "span")}
 
     @allure.step("Click previous month")
     def click_previous_month(self):

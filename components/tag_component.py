@@ -1,9 +1,9 @@
 import allure
+from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 
 from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable
-from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webelement import WebElement
 
 
 class TagItem(BaseComponent):
@@ -12,10 +12,8 @@ class TagItem(BaseComponent):
     name: WebElement
     close_icon: WebElement
 
-    locators: LocatorsTable = {
-        "name": (By.CSS_SELECTOR, "a.global-tag .text"),
-        "close_icon": (By.CSS_SELECTOR, "a.global-tag div")
-    }
+    locators: LocatorsTable = {"name": (By.CSS_SELECTOR, "a.global-tag .text"),
+        "close_icon": (By.CSS_SELECTOR, "a.global-tag div")}
 
     @allure.step("Get tag name")
     def get_name(self) -> str:

@@ -1,7 +1,9 @@
+from pathlib import Path
+
 import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
-from pathlib import Path
+
 from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable, ElementNotFoundException
 
@@ -20,18 +22,15 @@ class ImageComponent(BaseComponent):
     cancel_cropper_btn: WebElement
     submit_cropper_btn: WebElement
 
-    locators: LocatorsTable = {
-        "upload_input": (By.CSS_SELECTOR, "input[type='file']"),
-        "drop_zone": (By.CSS_SELECTOR, "div.dropzone"),
-        "drop_zone_text_element": (By.CSS_SELECTOR, "div.centered"),
+    locators: LocatorsTable = {"upload_input": (By.CSS_SELECTOR, "input[type='file']"),
+        "drop_zone": (By.CSS_SELECTOR, "div.dropzone"), "drop_zone_text_element": (By.CSS_SELECTOR, "div.centered"),
         "browse_link": (By.CSS_SELECTOR, "div.centered label span"),
         "uploaded_image": (By.CSS_SELECTOR, "img.ngx-ic-source-image"),
         "preview_image": (By.CSS_SELECTOR, "div.image-preview img"),
         "image_message": (By.CSS_SELECTOR, "div.image-block p.warning"),
         "cropper": (By.CSS_SELECTOR, "image-cropper.cropper"),
         "cancel_cropper_btn": (By.CSS_SELECTOR, "div.cropper-buttons button.secondary-global-button"),
-        "submit_cropper_btn": (By.CSS_SELECTOR, "div.cropper-buttons button.primary-global-button")
-    }
+        "submit_cropper_btn": (By.CSS_SELECTOR, "div.cropper-buttons button.primary-global-button")}
 
     @allure.step("Check if Cancel button in image cropper is visible")
     def is_cancel_cropper_button_visible(self) -> bool:
@@ -169,10 +168,7 @@ class ImageComponent(BaseComponent):
     @allure.step("Check that saved image is displayed with non-empty source")
     def is_saved_image_displayed(self) -> bool:
         """ Verifies that the image element is visible on the page. """
-        return (
-                self.uploaded_image.is_displayed()
-                and self.get_uploaded_image_src() != ""
-        )
+        return (self.uploaded_image.is_displayed() and self.get_uploaded_image_src() != "")
 
     @allure.step("Check if image preview is displayed")
     def is_preview_image(self) -> bool:

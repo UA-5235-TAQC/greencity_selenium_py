@@ -1,21 +1,18 @@
 from typing import List
-from typing_extensions import override
 
 import allure
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
+from typing_extensions import override
 
 from components.create_edit_news.cancel_modal_component import CancelModalComponent
 from components.create_edit_news.content_component import ContentComponent
 from components.create_edit_news.image_component import ImageComponent
 from components.tag_component import TagItem
 from pages.base_page import BasePage
-from utils.page_factory import LocatorsTable
 from pages.create_edit_news.news_preview_page import NewsPreviewPage
 from utils.page_factory import ElementNotFoundException, LocatorsTable
-from selenium.webdriver.remote.webelement import WebElement
-
 from utils.web_element_utils import enter_text, clear_element_by_keyboard
 
 
@@ -39,8 +36,7 @@ class CreateEditNewsPage(BasePage):
     author_name: WebElement
     cancel_modal: CancelModalComponent
 
-    locators: LocatorsTable = {
-        "title_input": (By.CSS_SELECTOR, "textarea[formcontrolname='title']"),
+    locators: LocatorsTable = {"title_input": (By.CSS_SELECTOR, "textarea[formcontrolname='title']"),
         "tags": (By.CSS_SELECTOR, "div.tags-box button.tag-button", List[TagItem]),
         "source_input": (By.CSS_SELECTOR, "input[formcontrolname='source']"),
         "image_component": (By.CSS_SELECTOR, "div.image-block", ImageComponent),
@@ -52,8 +48,7 @@ class CreateEditNewsPage(BasePage):
         "title_character_counter": (By.CSS_SELECTOR, ".title-block div span.field-info"),
         "post_date": (By.CSS_SELECTOR, "div.date p:nth-of-type(1) span:last-child"),
         "author_name": (By.CSS_SELECTOR, "div.date p:nth-of-type(2) span:last-child"),
-        "cancel_modal": (By.CSS_SELECTOR, "mat-dialog-container.mdc-dialog--open", CancelModalComponent)
-    }
+        "cancel_modal": (By.CSS_SELECTOR, "mat-dialog-container.mdc-dialog--open", CancelModalComponent)}
 
     @allure.step("Open Create News page")
     def open(self):
@@ -110,6 +105,7 @@ class CreateEditNewsPage(BasePage):
     def select_tag(self, tag_name: str):
         """ Selects a tag by its name. """
         return self.click_tag_by_name(tag_name)
+
     @allure.step("Unselect tag: {tag_name}")
     def unselect_tag(self, tag_name: str):
         """ Unselect a tag by its name. """
@@ -290,12 +286,11 @@ class CreateEditNewsPage(BasePage):
         self.wait_until_visible(self.post_date)
         return self
 
-
     def is_title_valid(self) -> bool:
         self.title_input.get_attribute("ng-invalid")
 
     @allure.step("Click the preview button")
-    def click_preview_button(self)-> NewsPreviewPage:
+    def click_preview_button(self) -> NewsPreviewPage:
         """ Click the preview button. """
         self.preview_btn.click()
         return NewsPreviewPage(self.driver)
