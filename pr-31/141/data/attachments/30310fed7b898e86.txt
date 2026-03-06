@@ -1,0 +1,48 @@
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3163 with query params  [parent_comment_id=3163, query=CommentQuery(page=0, size=1, sort=[])]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3163/replies/active with params {'page': 0, 'size': 1} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MjgxMjQ5NCwidXNlcklkIjoxNDksImlhdCI6MTc3MjgwNTI5NH0.HaliiEn-TwM42KUZS8n0p2-hpTs0Kf2FLx7XIYClAjY'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Getting comment by Id  [comment_id=3165]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3165 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MjgxMjQ5NCwidXNlcklkIjoxNDksImlhdCI6MTc3MjgwNTI5NH0.HaliiEn-TwM42KUZS8n0p2-hpTs0Kf2FLx7XIYClAjY'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Delete comment with children by ID 3163  [comment_id=3163]
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3163 with query params  [parent_comment_id=3163, query=None]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3163/replies/active with params {} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MjgxMjQ5NCwidXNlcklkIjoxNDksImlhdCI6MTc3MjgwNTI5NH0.HaliiEn-TwM42KUZS8n0p2-hpTs0Kf2FLx7XIYClAjY'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Delete comment with children by ID 3165  [comment_id=3165]
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3165 with query params  [parent_comment_id=3165, query=None]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3165/replies/active with params {} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MjgxMjQ5NCwidXNlcklkIjoxNDksImlhdCI6MTc3MjgwNTI5NH0.HaliiEn-TwM42KUZS8n0p2-hpTs0Kf2FLx7XIYClAjY'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Deleting comment by Id  [comment_id=3165]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Deleting comment by Id  [comment_id=3163]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Delete comment with children by ID 3164  [comment_id=3164]
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3164 with query params  [parent_comment_id=3164, query=None]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3164/replies/active with params {} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MjgxMjQ5NCwidXNlcklkIjoxNDksImlhdCI6MTc3MjgwNTI5NH0.HaliiEn-TwM42KUZS8n0p2-hpTs0Kf2FLx7XIYClAjY'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Delete comment with children by ID 3167  [comment_id=3167]
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3167 with query params  [parent_comment_id=3167, query=None]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3167/replies/active with params {} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MjgxMjQ5NCwidXNlcklkIjoxNDksImlhdCI6MTc3MjgwNTI5NH0.HaliiEn-TwM42KUZS8n0p2-hpTs0Kf2FLx7XIYClAjY'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Deleting comment by Id  [comment_id=3167]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Delete comment with children by ID 3166  [comment_id=3166]
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3166 with query params  [parent_comment_id=3166, query=None]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3166/replies/active with params {} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MjgxMjQ5NCwidXNlcklkIjoxNDksImlhdCI6MTc3MjgwNTI5NH0.HaliiEn-TwM42KUZS8n0p2-hpTs0Kf2FLx7XIYClAjY'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Deleting comment by Id  [comment_id=3166]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Deleting comment by Id  [comment_id=3164]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
