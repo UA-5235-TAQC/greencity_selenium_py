@@ -2,8 +2,6 @@ import allure
 
 from clients.base_client import BaseClient
 import json
-import mimetypes
-from pathlib import Path
 
 class EcoNewsCommentClient(BaseClient):
     def __init__(self, base_url, access_token=None, news_id: int = None):
@@ -15,6 +13,7 @@ class EcoNewsCommentClient(BaseClient):
         """Adds a comment. If image_path is specified, it adds it with the photo, if not, it adds it without."""
         if self.news_id is None:
             raise ValueError("news_id must be set on EcoNewsCommentClient before adding a comment.")
+        
         endpoint = f"/{self.news_id}/comments"
     
         request_data = {
@@ -22,47 +21,25 @@ class EcoNewsCommentClient(BaseClient):
             "parentCommentId": 0
         }
 
-        headers = {"Content-Type": None}
+        multi_files = [
+            ('request', (None, json.dumps(request_data), 'application/json'))
+        ]
 
         if image_path:
-            file_name = Path(image_path).name
+            self.attach_images_to_multipart(multi_files, "images", [image_path])
 
-            mime_type, _ = mimetypes.guess_type(image_path)
-            if not mime_type:
-                mime_type = 'application/octet-stream'
-
-            with open(image_path, 'rb') as image_file:
-                files = {
-                    'request': (None, json.dumps(request_data), 'application/json'),
-                    'images': (file_name, image_file, mime_type),
-                }
-                return self.post(endpoint, files=files, headers=headers)
-        else:
-            files = {
-                'request': (None, json.dumps(request_data), 'application/json')
-            }
-            return self.post(endpoint, files=files, headers=headers)
-    
+        return self.post(endpoint, files=multi_files, headers={"Content-Type": None})
         
-    
 
     @allure.step("Like comment")
     def like_comment(self, comment_id: int):
-        """Likes a comment. The parameter is passed as a Query string."""
-        endpoint = "/comments/like"
-        params = { "commentId": comment_id }
-        return self.post(endpoint, params=params)
-    
+        return self.post("/comments/like", params={"commentId": comment_id})
 
     @allure.step("Getting comment by Id")
     def get_comment_by_id(self, comment_id: int):
-        """Gets a comment by its ID."""
-        endpoint = f"/comments/{comment_id}"
-        return self.get(endpoint)
+        return self.get(f"/comments/{comment_id}")
     
     @allure.step("Deleting comment by Id")
     def delete_comment_by_id(self, comment_id: int):
-        """Deletes a comment by its ID."""
-        endpoint = f"/comments/{comment_id}"
-        return self.delete(endpoint)
+        return self.delete(f"/comments/{comment_id}")
         

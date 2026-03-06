@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Generator
 
 import allure
 from pytest import fixture
@@ -6,6 +6,7 @@ from pytest import fixture
 from clients.comments_client import CommentsClient
 from clients.eco_new_client import EcoNewClient
 from clients.eco_news_client import EcoNewsClient
+from clients.eco_news_comment_client import EcoNewsCommentClient
 from clients.own_security_client import OwnSecurityClient
 from data.api_news_test_data import EcoNewsDtoFactory
 from data.config import Config
@@ -161,3 +162,30 @@ def create_delete_news_with_token(create_eco_news, eco_news_client_with_auth_tok
 
     with allure.step(f"Cleanup: Deleting news ID {news_id}"):
         eco_news_client_with_auth_token.delete_eco_news_by_id(news_id)
+
+@fixture(scope="function")
+def create_comment_with_token(create_delete_news_with_token):
+    """Fixture: create a comment using API."""
+
+    token, created_news_response = create_delete_news_with_token
+    news_id = created_news_response["id"]
+    comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, token, news_id)
+
+    comment_response = comment_client.add_comment("This is a test comment.", NewsTestData.TEST2_FILE)
+    assert comment_response.status_code == 201, f"Expected status code 201, but got {comment_response.status_code}"
+
+    yield token, comment_response.json()
+
+
+@fixture(scope="function")
+def create_delete_comment_with_token(create_comment_with_token, create_delete_news_with_token):
+    """Fixture: create a comment using API and delete it after test."""
+
+    token, comment_response = create_comment_with_token
+    _, created_news_response = create_delete_news_with_token
+    comments_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, token, created_news_response["id"])
+
+    yield token, comment_response
+
+    delete_response =comments_client.delete_comment_by_id(comment_response["id"])
+    assert delete_response.status_code == 200, f"Expected status code 200, but got {delete_response.status_code}"

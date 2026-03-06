@@ -1,6 +1,7 @@
 import json
 import mimetypes
 from dataclasses import asdict
+import os
 from typing import Optional, List
 
 import allure
@@ -109,19 +110,19 @@ class BaseClient:
         mime_type = mime_type or "application/octet-stream"
         files["image"] = (image_path, open(image_path, "rb"), mime_type)
 
-    def attach_images_to_multipart(self, files: dict, control_name: str,
+    def attach_images_to_multipart(self, files: list, control_name: str, 
                                    image_paths: Optional[List[str]]) -> None:
-        """ Attach several images to multipart request. """
+        """ Attach several images to multipart request as a list of tuples. """
         if not image_paths:
-            files[control_name] = ("", "", "application/octet-stream")
+            files.append((control_name, ("", "", "application/octet-stream")))
             return
+
         for path in image_paths:
             if path:
+                file_name = os.path.basename(path) 
                 mime_type, _ = mimetypes.guess_type(path)
                 mime_type = mime_type or "application/octet-stream"
-
-                files.setdefault(control_name, [])
-
-                files[control_name].append(
-                    (path, open(path, "rb"), mime_type)
+                
+                files.append(
+                    (control_name, (file_name, open(path, "rb"), mime_type))
                 )
