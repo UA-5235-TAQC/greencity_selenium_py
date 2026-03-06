@@ -1,3 +1,5 @@
+import uuid
+
 import pytest
 import allure
 
@@ -87,23 +89,25 @@ class TestTagSelection:
     def test_single_tag_selection(self, eco_page: NewsPage):
         """ Test creating news with a single tag. """
         create_news_page: CreateNewsPage = eco_page.click_create_news()
-        create_news_page.enter_title(NewsTestData.TEST_TITLE_EN)
+        title = f"{NewsTestData.TEST_TITLE_EN} {uuid.uuid4().hex[:6]}"
+        create_news_page.enter_title(title)
         create_news_page.enter_source(NewsTestData.TEST_SOURCE_EN)
         create_news_page.content_component.enter_content(NewsTestData.VALID_CONTENT)
         tag = EcoNewsTag.get_en_upper([EcoNewsTag.NEWS])
         create_news_page.select_tags(tag)
         create_news_page.click_publish()
 
-        news_card = eco_page.get_latest_created_news()
+        news_card = eco_page.get_news_card_by_title(title)
 
-        check.equal(news_card.get_title(), NewsTestData.TEST_TITLE_EN)
+        check.equal(news_card.get_title(), title)
         check.equal(news_card.get_tags(), tag)
 
     @allure.description("Verify creating news with three tags")
     def test_three_tags_selection(self, eco_page: NewsPage):
         """ Test creating news with exactly three tags. """
         create_news_page: CreateNewsPage = eco_page.click_create_news()
-        create_news_page.enter_title(NewsTestData.TEST_TITLE_EN)
+        title = f"{NewsTestData.TEST_TITLE_EN} {uuid.uuid4().hex[:6]}"
+        create_news_page.enter_title(title)
         create_news_page.enter_source(NewsTestData.TEST_SOURCE_EN)
         create_news_page.content_component.enter_content(NewsTestData.VALID_CONTENT)
 
@@ -116,7 +120,7 @@ class TestTagSelection:
         create_news_page.select_tags(selected_tags)
         create_news_page.click_publish()
 
-        news_card = eco_page.get_latest_created_news()
+        news_card = eco_page.get_news_card_by_title(title)
 
-        check.equal(news_card.get_title(), NewsTestData.TEST_TITLE_EN)
+        check.equal(news_card.get_title(), title)
         check.equal(news_card.get_tags(), selected_tags)

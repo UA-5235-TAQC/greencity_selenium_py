@@ -149,5 +149,19 @@ class NewsPage(BasePage):
     @allure.step("Get the latest created news card")
     def get_latest_created_news(self) -> NewsListItemComponent:
         """Return the most recently created news card from the Eco News list."""
-        self.wait_for(lambda _: len(self.news_card_items) > 0)
+        self.wait_for(self._news_cards_present)
         return self.news_card_items[0]
+
+    def _news_cards_present(self, _=None) -> bool:
+        """Check if there is at least one news card present on the page."""
+        return len(self.news_card_items) > 0
+
+    @allure.step("Get first news card with title: {title}")
+    def get_news_card_by_title(self, title: str) -> NewsListItemComponent:
+        """Return the first news card that matches the given title."""
+        self.wait_for(self._news_cards_present)
+        for card in self.news_card_items:
+            if card.get_title() == title:
+                return card
+
+        raise AssertionError(f"News with title '{title}' not found")

@@ -132,14 +132,11 @@ def edit_news_page_with_language(driver_with_login, create_news_page, request) -
 
 @fixture(scope="function")
 def tag_selection_environment(driver_with_login):
-    # Initialize the driver and navigate to Create News page
+    """Prepare environment for tag selection tests."""
     driver = driver_with_login
     news_page = NewsPage(driver).open()
     news_page.header.change_to_en()
     create_news_page = news_page.click_create_news()
-    # Yield control to the test method, passing the required Page Objects
     yield create_news_page, news_page
-    # Return to the News list page to ensure a clean state
     news_page.open()
-    # Reset any applied tag filters to avoid affecting subsequent tests
     news_page.remove_all_selected_tags()

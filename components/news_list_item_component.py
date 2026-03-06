@@ -61,7 +61,7 @@ class NewsListItemComponent(BaseComponent):
             EC.visibility_of_all_elements_located((by, selector))
         )
         displayed_tags = self.get_tags()
-        return (len(displayed_tags) == len(tag_names) and all(tag in displayed_tags for tag in tag_names))
+        return len(displayed_tags) == len(tag_names) and all(tag in displayed_tags for tag in tag_names)
 
     @allure.step("Get news title text")
     def get_title(self) -> str:
