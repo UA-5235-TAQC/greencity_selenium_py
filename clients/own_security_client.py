@@ -14,7 +14,7 @@ class OwnSecurityClient(BaseClient):
     def sign_in(self, email: str, password: str) -> Response:
         """Sign in to the own security service."""
         payload = {"email": email, "password": password, "projectName": "GREENCITY"}
-        return self.post("/signIn", json=payload)
+        return self.post("/signIn", json_post=payload)
 
     @allure.step("Refresh access token using refresh token")
     def refresh_token(self, refresh_token: str) -> Response:

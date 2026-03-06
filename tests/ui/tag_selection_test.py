@@ -79,7 +79,7 @@ class TestTagSelection:
 
         assert eco_page.is_page_opened(), "Eco News page should be opened after publishing"
 
-        news_card: NewsListItemComponent = eco_page.get_news_card_by_index(0)
+        news_card: NewsListItemComponent = eco_page.get_latest_created_news()
         check.equal(news_card.get_title(), expected_title, f"News should have title '{expected_title}'")
         check.is_true(news_card.has_tags(expected_tags), f"News should have tags {expected_tags}")
 
@@ -94,7 +94,7 @@ class TestTagSelection:
         create_news_page.select_tags(tag)
         create_news_page.click_publish()
 
-        news_card = eco_page.get_news_card_by_index(0)
+        news_card = eco_page.get_latest_created_news()
 
         check.equal(news_card.get_title(), NewsTestData.TEST_TITLE_EN)
         check.equal(news_card.get_tags(), tag)
@@ -116,7 +116,7 @@ class TestTagSelection:
         create_news_page.select_tags(selected_tags)
         create_news_page.click_publish()
 
-        news_card = eco_page.get_news_card_by_index(0)
+        news_card = eco_page.get_latest_created_news()
 
         check.equal(news_card.get_title(), NewsTestData.TEST_TITLE_EN)
         check.equal(news_card.get_tags(), selected_tags)

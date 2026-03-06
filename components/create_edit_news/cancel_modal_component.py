@@ -18,10 +18,11 @@ class CancelModalComponent(BaseComponent):
     warning_subtitle: WebElement
 
     locators: LocatorsTable = {"message_container": (By.CSS_SELECTOR, ".warning-text"),
-        "yes_cancel_btn": (By.CSS_SELECTOR, ".buttons-container .primary-global-button"),
-        "continue_editing_btn": (By.CSS_SELECTOR, ".buttons-container .secondary-global-button"),
-        "close_btn": (By.CSS_SELECTOR, ".close"), "warning_title": (By.CSS_SELECTOR, ".warning-title"),
-        "warning_subtitle": (By.CSS_SELECTOR, ".warning-subtitle")}
+                               "yes_cancel_btn": (By.CSS_SELECTOR, ".buttons-container .primary-global-button"),
+                               "continue_editing_btn": (By.CSS_SELECTOR, ".buttons-container .secondary-global-button"),
+                               "close_btn": (By.CSS_SELECTOR, ".close"),
+                               "warning_title": (By.CSS_SELECTOR, ".warning-title"),
+                               "warning_subtitle": (By.CSS_SELECTOR, ".warning-subtitle")}
 
     @allure.step("Wait until cancel modal is visible")
     def wait_until_visible(self):
@@ -43,11 +44,6 @@ class CancelModalComponent(BaseComponent):
     def get_warning_subtitle_text(self) -> str:
         """ Get warning subtitle text. """
         return self.warning_subtitle.text.strip()
-
-    @allure.step("Get Yes Cancel button text")
-    def get_yes_cancel_button_text(self) -> str:
-        """ Get Yes Cancel button text. """
-        return self.yes_cancel_btn.text.strip()
 
     @allure.step("Get Continue Editing button text")
     def get_continue_editing_button_text(self) -> str:
@@ -71,26 +67,11 @@ class CancelModalComponent(BaseComponent):
         """Returns the text displayed on the cancel confirmation button."""
         return self.yes_cancel_btn.text.strip()
 
-    @allure.step("Get 'Continue editing' button text")
-    def get_continue_editing_button_text(self) -> str:
-        """Returns the text displayed on the button to continue editing."""
-        return self.continue_editing_btn.text.strip()
-
     @allure.step("Click close (X) button in cancel modal")
     def click_close(self):
         """Clicks the close icon (X) in the top corner of the modal."""
         self.close_btn.click()
         return self
-
-    @allure.step("Get cancel modal warning title text")
-    def get_warning_title_text(self) -> str:
-        """Returns the main title text of the warning modal."""
-        return self.warning_title.text.strip()
-
-    @allure.step("Get cancel modal warning subtitle text")
-    def get_warning_subtitle_text(self) -> str:
-        """Returns the subtitle or secondary text of the warning modal."""
-        return self.warning_subtitle.text.strip()
 
     @allure.step("Check if 'Yes, cancel' button is visible")
     def is_cancel_button_visible(self) -> bool:

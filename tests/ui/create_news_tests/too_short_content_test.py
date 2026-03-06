@@ -6,7 +6,6 @@ NEWS_TITLE: str = "Test News Updated"
 NOT_VALID_CONTENT = "Not valid content(("
 
 
-
 @allure.feature("Edit News")
 @allure.story("Content field validation")
 def test_edit_content_not_shorter_than_20_chars_not_accepted(eco_news_details_page):

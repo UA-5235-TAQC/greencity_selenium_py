@@ -9,6 +9,7 @@ from schemas.greencity.comment import comment_schema
 from tests.utils.validators import validate_json
 from clients.eco_news_comment_client import EcoNewsCommentClient
 
+
 class TestNewsComments:
 
     @allure.severity(Severity.NORMAL)
@@ -41,11 +42,10 @@ class TestNewsComments:
     def test_like_comment(self, create_and_cleanup_comment):
         """Test: Like a comment."""
         access_token, _ = create_and_cleanup_comment
-        comment_id = 2864  #TODO Replace with a dynamic comment ID. Need a second test account.
+        comment_id = 2864  # TODO Replace with a dynamic comment ID. Need a second test account.
         comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token)
         response = comment_client.like_comment(comment_id)
         assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
-
 
     @allure.severity(Severity.TRIVIAL)
     def test_get_comment_by_id(self, create_and_cleanup_comment):
@@ -66,4 +66,3 @@ class TestNewsComments:
         comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token)
         response = comment_client.delete_comment_by_id(comment_id)
         assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
-       

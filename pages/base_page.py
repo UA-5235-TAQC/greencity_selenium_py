@@ -5,12 +5,12 @@ import allure
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-
+from selenium.webdriver.common.by import By
 from components.base_page.footer_component import FooterComponent
 from components.base_page.header_component import HeaderComponent
 from data.config import Config
 from utils.page_factory import (PageFactory, LocatorsTable)
-from selenium.webdriver.common.by import By
+
 
 
 class BasePage(PageFactory):
@@ -37,10 +37,6 @@ class BasePage(PageFactory):
     def get_current_url(self) -> str:
         """Return the current URL of the page."""
         return self.driver.current_url
-
-    @allure.step("Open page")
-    def open(self) -> Self:
-        raise NotImplementedError
 
     @allure.step("Check that page is opened")
     def is_page_opened(self) -> bool:

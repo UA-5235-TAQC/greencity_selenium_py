@@ -1,12 +1,10 @@
 import logging
 from typing import Any, Type, Union, Dict, Tuple, Optional, get_origin, get_args
-
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, StaleElementReferenceException
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 logger = logging.getLogger(__name__)
@@ -79,7 +77,7 @@ class PageFactory:
             wait = WebDriverWait(self.root_element, self.timeout)
             try:
                 if multiple:
-                    elements = wait.until(EC.presence_of_all_elements_located(*locator))
+                    elements = wait.until(EC.presence_of_all_elements_located(locator))
                     visible = [el for el in elements if el.is_displayed()]
 
                     if not visible:
@@ -93,13 +91,12 @@ class PageFactory:
 
                     return visible
 
-                else:
-                    element = wait.until(EC.presence_of_element_located(*locator))
+                element = wait.until(EC.presence_of_element_located(locator))
 
-                    if component_class:
-                        return component_class(element)
+                if component_class:
+                    return component_class(element)
 
-                    return element
+                return element
 
             except StaleElementReferenceException as exc:
                 if attempt == _STALE_RETRY_ATTEMPTS:
@@ -118,13 +115,14 @@ class PageFactory:
                     f"Element(s) '{name}' not found using locator {locator} "
                     f"in context {self.__class__.__name__}"
                 ) from exc
+            return None
 
-    def wait_for_element(self, locator: tuple, timeout: Optional[int] = None) -> WebElement:
+    def wait_for_element(self, locator: tuple[By, str], timeout: Optional[int] = None) -> WebElement:
         """Wait for a single element to be present and return it."""
         t = timeout if timeout is not None else self.timeout
         return WebDriverWait(self.driver, t).until(EC.presence_of_element_located(*locator))
 
-    def wait_for_element_visible(self, locator: tuple, timeout: Optional[int] = None) -> WebElement:
+    def wait_for_element_visible(self, locator: tuple[By, str], timeout: Optional[int] = None) -> WebElement:
         """Wait for a single element to be *visible* and return it."""
         t = timeout if timeout is not None else self.timeout
         return WebDriverWait(self.driver, t).until(EC.visibility_of_element_located(*locator))

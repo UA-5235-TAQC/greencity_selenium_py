@@ -18,9 +18,9 @@ class SignUpModal(ModalBasePage):
     sign_in_link: WebElement
 
     locators = {"username_field": (By.ID, "firstName"), "password_field": (By.ID, "password"),
-        "repeat_password_field": (By.ID, "repeatPassword"),
-        "show_password_icon": (By.CSS_SELECTOR, "img.show-password-img"),
-        "sign_in_link": (By.CLASS_NAME, "green-link"), }
+                "repeat_password_field": (By.ID, "repeatPassword"),
+                "show_password_icon": (By.CSS_SELECTOR, "img.show-password-img"),
+                "sign_in_link": (By.CLASS_NAME, "green-link"), }
 
     __password_field_error_locator = (By.CSS_SELECTOR, "p.password-not-valid")
     __confirm_password_field_error_locator = (By.ID, "confirm-err-msg")
@@ -57,7 +57,7 @@ class SignUpModal(ModalBasePage):
     @allure.step("Click on sign in link")
     def click_sign_in_link(self) -> "SignInModal":
         """ Click on sign in link. """
-        from components.auth_modal.sign_in_modal import SignInModal
+        from components.auth_modal.sign_in_modal import SignInModal  # pylint: disable=import-outside-toplevel
         self.sign_in_link.click()
         return SignInModal(self.auth_modal)
 
@@ -103,8 +103,8 @@ class SignUpModal(ModalBasePage):
         """ Check if entered data is valid. """
         self._trigger_errors()
         status = [self.is_invalid_email_error_displayed(), self.is_invalid_username_error_displayed(),
-            self.is_invalid_password_error_displayed(), self.is_invalid_confirm_password_error_displayed(), ]
-        is_valid = all(x == False for x in status)
+                  self.is_invalid_password_error_displayed(), self.is_invalid_confirm_password_error_displayed(), ]
+        is_valid = all(not x for x in status)
         return is_valid
 
     def __get_password_icon(self) -> list[WebElement]:

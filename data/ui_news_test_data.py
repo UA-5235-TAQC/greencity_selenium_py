@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 
 from enums.news_tag import EcoNewsTag

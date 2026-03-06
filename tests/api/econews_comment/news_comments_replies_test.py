@@ -1,11 +1,9 @@
-import pytest
 import allure
+import pytest
 from allure_commons.types import Severity
 from clients.eco_news_comment_client import EcoNewsCommentClient
 from models.queries import CommentQuery
 from tests.api.utils.comment_assertions import assert_comment_response, assert_page_meta
-from datetime import datetime
-import pytest_check as check
 
 
 @allure.epic("EcoNewsComment API")
@@ -24,13 +22,24 @@ class TestEcoNewsCommentReplies:
     sub_comment_id_with_images: int
     sub_comment_id: int
 
-    def _verify_active_replies(self, parent_id: int, expected_comment_id: int,
-            query: CommentQuery = None, reply_index: int = 0):
+    def _verify_active_replies(
+            self,
+            parent_id: int,
+            expected_comment_id: int,
+            query: CommentQuery = None,
+            reply_index: int = 0
+    ):
         """Helper to verify active replies for a given parent comment"""
-        page_response = (self.eco_news_comment_client.get_active_replies(parent_id, query)
-                         if query else
-                         self.eco_news_comment_client.get_active_replies_default(parent_id))
-        assert page_response is not None, "Response should not be None"
+
+        response = (
+            self.eco_news_comment_client.get_active_replies(parent_id, query)
+        )
+
+        assert response.status_code == 200, f"Expected 200 OK, got {response.status_code}"
+
+        page_response = response.json()
+
+        assert page_response is not None, "Response JSON should not be None"
 
         page = page_response.get("page")
         assert page is not None, "Page list should not be None"
@@ -43,8 +52,10 @@ class TestEcoNewsCommentReplies:
         )
 
         active_reply = page[reply_index]
+
         response = self.eco_news_comment_client.get_comment_by_id(expected_comment_id)
         assert response.status_code == 200, f"Expected 200 OK, got {response.status_code}"
+
         created_active_reply = response.json()
 
         assert_comment_response(active_reply, created_active_reply)
@@ -80,4 +91,3 @@ class TestEcoNewsCommentReplies:
             expected_comment_id=self.parent_sub_comment_id,
             query=CommentQuery(page=0, size=1)
         )
-

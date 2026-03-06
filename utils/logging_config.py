@@ -13,7 +13,7 @@ def _build_handler(stream=None) -> logging.StreamHandler:
     return handler
 
 
-class _AllureStepLogger:
+class AllureStepLogger:
     """Allure plugin that mirrors step start/stop events to the Python logger."""
 
     LOGGER_NAME = "allure.step"
@@ -40,26 +40,21 @@ class _AllureStepLogger:
                 exc_val,
             )
 
+    _configured = False
 
-_configured = False
-
-
-def setup_logging(level: int = logging.INFO, stream=None, *, mirror_allure_steps: bool = True) -> None:
-    """Configure the root logger and optionally attach the Allure step bridge."""
-    global _configured  # noqa: PLW0603
-    if _configured:
-        return
-    _configured = True
-
-    root = logging.getLogger()
-    root.setLevel(level)
-
-    if not any(isinstance(h, logging.StreamHandler) for h in root.handlers):
-        root.addHandler(_build_handler(stream))
-
-    if mirror_allure_steps:
-        plugin = _AllureStepLogger()
-        try:
-            allure_commons.plugin_manager.register(plugin, name="greencity_step_logger")
-        except ValueError:
-            pass
+    @classmethod
+    def setup_logging(cls, level=logging.INFO, stream=None, *, mirror_allure_steps=True) -> None:
+        """Configure the root logger and optionally attach the Allure step bridge."""
+        if cls._configured:
+            return
+        cls._configured = True
+        root = logging.getLogger()
+        root.setLevel(level)
+        if not any(isinstance(h, logging.StreamHandler) for h in root.handlers):
+            root.addHandler(_build_handler(stream))
+        if mirror_allure_steps:
+            plugin = AllureStepLogger()
+            try:
+                allure_commons.plugin_manager.register(plugin, name="greencity_step_logger")
+            except ValueError:
+                pass

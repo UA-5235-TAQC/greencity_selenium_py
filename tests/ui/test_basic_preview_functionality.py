@@ -10,7 +10,7 @@ import allure
 @allure.epic("UI Tests")
 @allure.feature("News Creation")
 @allure.story("News Preview Functionality")
-@pytest.mark.usefixtures("sign_in")
+@pytest.mark.usefixtures("driver_with_login")
 class TestNewsDetails:
 
     @allure.title("Verify news preview content and navigation back to edit")
@@ -43,6 +43,6 @@ class TestNewsDetails:
         assert news_preview_page.get_author_name() == Config.USER_NAME, "Author name should match the signed in user"
         news_preview_page.click_back_to_create_news_btn()
         assert "create-news" in get_driver.current_url, "URL should contain 'create-news' after clicking 'Back to create news' button"
-        assert create_news_page.is_page_opened(), "Create news page should be opened after clicking 'Back to create news' button"
+        assert create_news_page.is_page_opened_after_preview_click_back(), "Create news page should be opened after clicking 'Back to create news' button"
 
     

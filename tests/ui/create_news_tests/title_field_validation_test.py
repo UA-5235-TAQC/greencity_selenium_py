@@ -16,26 +16,26 @@ TAGS_TO_SELECT: List[str] = [
 
 @allure.feature("Create News")
 @allure.story("Title field validation")
-def test_title_field_validation(logged_in_user):
+def test_title_field_validation(driver_with_login):
     with allure.step("Login and open create news page"):
-        create_news_page = CreateNewsPage(logged_in_user)
+        create_news_page = CreateNewsPage(driver_with_login)
         create_news_page.open().header.change_to_en()
         assert create_news_page.get_current_url() == f"{Config.BASE_UI_GREEN_CITY_URL}/news/create-news"
 
     with allure.step("Validate empty title"):
         create_news_page.enter_title("")
         assert create_news_page.is_title_invalid()
-        assert create_news_page.get_title_characters_count() == 0
+        assert create_news_page.get_title_length() == 0
 
     with allure.step("Validate too long title"):
         create_news_page.enter_title("A" * 171)
         assert create_news_page.is_title_invalid()
-        assert create_news_page.get_title_characters_count() == 171
+        assert create_news_page.get_title_length() == 171
 
     with allure.step("Validate correct title"):
         create_news_page.enter_title(NEWS_TITLE)
         assert not create_news_page.is_title_invalid()
-        assert create_news_page.get_title_characters_count() == len(NEWS_TITLE)
+        assert create_news_page.get_title_length() == len(NEWS_TITLE)
         assert not create_news_page.is_publish_button_enabled()
 
     with allure.step("Fill content and select tag"):

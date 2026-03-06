@@ -132,7 +132,8 @@ EDIT_NEWS_LANGUAGE_DATA = {Language.EN: {# ---------- Title ----------
         # ---------- Edit News Preview ----------
         "title": "Макс", "tags": EcoNewsTag.get_ua([EcoNewsTag.INITIATIVES, EcoNewsTag.EVENTS]),
         "source": "https://en.wikipedia.org/wiki/Main_Page",
-        "content": "Гора Едзіза — вулканічна гора в окрузі Кассіар-Ленд на північному заході Британської Колумбії , Канада.",
+        "content": ("Гора Едзіза — вулканічна гора в окрузі Кассіар-Ленд "
+                   "на північному заході Британської Колумбії , Канада."),
         "image_file": NewsTestData.TEST_FILE,
 
         # ---------- Edit News ----------

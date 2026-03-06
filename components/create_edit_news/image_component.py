@@ -99,7 +99,7 @@ class ImageComponent(BaseComponent):
         """Checks if the displayed image is a blob URL (indicating a successful local upload)."""
         try:
             return self._has_image_src_prefix(self.uploaded_image, "blob:")
-        except (ElementNotFoundException, Exception):
+        except ElementNotFoundException:
             return False
 
     @allure.step("Check if preview image (blob:) is displayed")

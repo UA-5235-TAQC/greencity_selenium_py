@@ -1,9 +1,10 @@
 from clients.eco_news_client import EcoNewsClient
 from data.config import Config
+from data.ui_news_test_data import NewsTestData
 from enums.news_tag import EcoNewsTag
 from models.queries import EcoNewsQuery
 from models.eco_news_request import EcoNewsRequest
-from schemas.eco_news_response_schema import eco_news_page_schema, eco_news_item_schema
+from schemas.greencity.eco_news import eco_news_response_schema, eco_news_page_schema
 from tests.utils.validators import validate_json
 
 
@@ -17,10 +18,9 @@ def test_create_and_verify_news(auth_token):
         source="https://chatgpt.com/",
         short_info="short description 12341"
     )
-
-    image_path = "data/images/test2.png"
-
-    create_response = eco_news_client.post_eco_news_with_image(news_payload, image_path)
+    create_response = eco_news_client.post_eco_news_with_image(
+        news_payload, image_path=NewsTestData.TEST2_FILE
+    )
 
     assert create_response.status_code == 201
 
@@ -44,7 +44,7 @@ def test_create_and_verify_news(auth_token):
 
     assert actual_news is not None, f"News with ID {news_id} not found in the list!"
 
-    is_valid, msg = validate_json(actual_news, eco_news_item_schema)
+    is_valid, msg = validate_json(actual_news, eco_news_response_schema)
     assert is_valid, msg
 
     assert actual_news["title"] == news_payload.title

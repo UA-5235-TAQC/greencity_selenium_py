@@ -1,7 +1,7 @@
 import json
 import mimetypes
 from pathlib import Path
-from typing import Optional, Dict, List
+from typing import Optional, List
 
 import allure
 from requests import Response
@@ -34,7 +34,8 @@ class EcoNewsCommentClient(BaseClient):
                 file_name = Path(image_path).name
                 mime_type, _ = mimetypes.guess_type(image_path)
                 mime_type = mime_type or 'application/octet-stream'
-                files.append(('images', (file_name, open(image_path, 'rb'), mime_type)))
+                with open(image_path, 'rb') as image_file:
+                    files.append(('images', (file_name, image_file.read(), mime_type)))
 
         return self.post(endpoint, files=files, headers={"Content-Type": None})
 
@@ -71,18 +72,17 @@ class EcoNewsCommentClient(BaseClient):
         endpoint = f"/comments/{parent_comment_id}/replies/active"
         return self.get(endpoint, params=params)
 
-    @allure.step("API: Get all active replies for comment ID {parent_comment_id} with default pagination")
-    def get_active_replies_default(self, parent_comment_id: int) -> Dict:
-        """Get all active replies for a comment using default pagination."""
-        default_query = CommentQuery(page=0, size=20)
-        return self.get_active_replies(parent_comment_id, query=default_query)
-
     @allure.step("Delete comment with children by ID {comment_id}")
     def delete_comment_with_children(self, comment_id: int):
         """Recursively deletes a comment and all its active replies."""
-        replies = self.get_active_replies(comment_id).get("page", [])
+        response = self.get_active_replies(comment_id)
+
+        replies_data = response.json()
+        replies = replies_data.get("page", [])
+
         for reply in replies:
             self.delete_comment_with_children(reply["id"])
+
         return self.delete_comment_by_id(comment_id)
 
     @allure.step("Get comments count")

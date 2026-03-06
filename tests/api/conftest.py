@@ -1,22 +1,21 @@
-from typing import Any, Generator, List
+from typing import Generator, List
 
 import allure
 from pytest import fixture, FixtureRequest
 
 from clients.eco_news_client import EcoNewsClient
-from clients.eco_news_client import EcoNewsClient
 from clients.eco_news_comment_client import EcoNewsCommentClient
 from clients.own_security_client import OwnSecurityClient
 from data.comment_factory import parent_comment, comment_with_images, PARENT_SUB_COMMENT, sub_comment_with_images, \
     sub_comment
-from data.eco_news_factory import EcoNewsDtoFactory
+from data.eco_news_factory import EcoNewsUpdateFactory, create_news_uk
 from data.config import Config
 from data.ui_news_test_data import NewsTestData
 from models.eco_news_request import EcoNewsRequest
 from tests.api.utils.api_test_assertions import assert_ok, assert_created
-from utils.logging_config import setup_logging
+from utils.logging_config import AllureStepLogger
 
-setup_logging()
+AllureStepLogger.setup_logging()
 
 
 @fixture(scope="session")
@@ -87,8 +86,8 @@ def refresh_auth_token(_auth_tokens):
 def created_eco_news_without_image(auth_token):
     """Create EcoNews and print it to console."""
     client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
-    factory = EcoNewsDtoFactory(eco_news_id=0)
-    news_dto: EcoNewsRequest = factory.create_news_uk()
+    factory = EcoNewsUpdateFactory(eco_news_id=0)
+    news_dto: EcoNewsRequest = create_news_uk()
     response = client.post_eco_news(news_dto)
 
     assert_created(response)
@@ -112,8 +111,7 @@ def created_eco_news(auth_token):
     """Create EcoNews with image."""
     client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
 
-    factory = EcoNewsDtoFactory(eco_news_id=0)
-    news_dto = factory.create_news_uk()
+    news_dto = create_news_uk()
 
     response = client.post_eco_news_with_image(news_dto, str(NewsTestData.TEST_FILE))
 
@@ -183,7 +181,7 @@ def create_comments(request, auth_token, created_eco_news_without_image):
     # Comment with images
     comment_with_images_resp = client.add_comment(
         comment_with_images(),
-        parent_comment_id = 0,
+        parent_comment_id=0,
         image_paths=[str(NewsTestData.TEST_FILE), str(NewsTestData.TEST2_FILE)]
     )
     assert_created(comment_with_images_resp)
@@ -228,29 +226,43 @@ def create_comments(request, auth_token, created_eco_news_without_image):
     yield
 
     for cid in [parent_comment_id, comment_id_with_images]:
-        resp = client.delete_comment_with_children(cid)
-        assert_ok(resp)
-
-@fixture(scope="function")
-def create_comment_with_token(create_delete_news_with_token)-> Generator[tuple[str, int, dict], None, None]:
-    """Fixture: create a comment using API.
-    :returns
-    - token: str - the authentication token used for API requests
-    - news_id: int - the ID of the news to which the comment was added
-    - comment_response: dict - the response data of the created comment, including its ID and"""
-
-    token, created_news_response = create_delete_news_with_token
-    news_id = created_news_response["id"]
-    comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, token, news_id)
-
-    comment_response = comment_client.add_comment("This is a test comment.", NewsTestData.TEST2_FILE)
-    assert comment_response.status_code == 201, f"Expected status code 201, but got {comment_response.status_code}"
-
-    yield token, news_id, comment_response.json()
+        client.delete_comment_with_children(cid)
 
 
 @fixture(scope="function")
-def create_and_cleanup_comment(create_comment_with_token)-> Generator[tuple[str, dict], None, None]:
+def create_comment_with_token(created_eco_news, auth_token) -> Generator[tuple[str, int, dict], None, None]:
+    """
+    Fixture: create a comment using API.
+
+    Returns:
+        token (str): authentication token used for API requests
+        news_id (int): ID of the news to which the comment was added
+        comment_response (dict): created comment response data
+    """
+
+    token = auth_token
+    news_id = created_eco_news["eco_news_id"]
+
+    comment_client = EcoNewsCommentClient(
+        Config.BASE_GREEN_CITY_API_URL,
+        token,
+        news_id
+    )
+
+    response = comment_client.add_comment(
+        text="This is a test comment.",
+        parent_comment_id=0,
+        image_paths=[str(NewsTestData.TEST2_FILE)]
+    )
+
+    assert response.status_code == 201, \
+        f"Expected status code 201, but got {response.status_code}"
+
+    yield token, news_id, response.json()
+
+
+@fixture(scope="function")
+def create_and_cleanup_comment(create_comment_with_token) -> Generator[tuple[str, dict], None, None]:
     """Fixture: create a comment using API and delete it after test.
     :returns
     - token: str - the authentication token used for API requests

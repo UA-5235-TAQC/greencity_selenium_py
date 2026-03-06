@@ -1,5 +1,4 @@
 import allure
-from pages.create_edit_news.edit_news_page import EditNewsPage
 from selenium.webdriver.support.ui import WebDriverWait
 
 MODIFIED_TEXT = "Modified text for cancel test"

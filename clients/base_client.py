@@ -1,6 +1,5 @@
 import json
 import mimetypes
-import os
 from dataclasses import asdict
 from typing import Optional, List
 
@@ -8,6 +7,7 @@ import allure
 import requests
 from requests import Response
 
+from data.config import Config
 from models.update_eco_news_request import UpdateEcoNewsRequest
 
 
@@ -54,24 +54,26 @@ class BaseClient:
             return requests.get(
                 url,
                 headers=request_headers,
-                params=params
+                params=params,
+                timeout=Config.REQUEST_WAIT
             )
 
-    def post(self, path: str, json: Optional[dict] = None, data: Optional[dict] = None,
-            files: Optional[dict] = None, params: Optional[dict] = None, headers: Optional[dict] = None
+    def post(self, path: str, json_post: Optional[dict] = None, data: Optional[dict] = None,
+            files: Optional[list] = None, params: Optional[dict] = None, headers: Optional[dict] = None
     ) -> Response:
         """ Execute POST request. """
         request_headers = self.prepare_request(headers)
         return requests.post(
             f"{self.base_api_url}{path}",
             headers=request_headers,
-            json=json,
+            json=json_post,
             data=data,
             files=files,
-            params=params
+            params=params,
+            timeout=Config.REQUEST_WAIT
         )
 
-    def put(self, path: str, json_put: Optional[dict] = None, files: Optional[dict] = None,
+    def put(self, path: str, json_put: Optional[dict] = None, files: Optional[list] = None,
             headers: Optional[dict] = None) -> Response:
         """Execute PUT request."""
         request_headers = self.prepare_request(headers)
@@ -79,9 +81,11 @@ class BaseClient:
             f"{self.base_api_url}{path}",
             headers=request_headers,
             json=json_put,
-            files=files
+            files=files,
+            timeout=Config.REQUEST_WAIT
         )
-    def patch(self, path: str, json_patch = None, files: Optional[dict] = None,
+
+    def patch(self, path: str, json_patch = None, files: Optional[list] = None,
             headers: Optional[dict] = None, params:dict=None) -> Response:
         """Execute PATCH request."""
         request_headers = self.prepare_request(headers)
@@ -90,7 +94,8 @@ class BaseClient:
             headers=request_headers,
             json=json_patch,
             files=files,
-            params=params
+            params=params,
+            timeout=Config.REQUEST_WAIT
         )
 
     def delete(self, path: str) -> Response:
@@ -98,7 +103,8 @@ class BaseClient:
         headers = self.prepare_request()
         response = requests.delete(
             f"{self.base_api_url}{path}",
-            headers=headers
+            headers=headers,
+            timeout=Config.REQUEST_WAIT
         )
         return response
 

@@ -1,9 +1,9 @@
 from typing import List
-
 import allure
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
-
+from selenium.webdriver.support.ui import WebDriverWait
 from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable
 
@@ -23,26 +23,28 @@ class NewsListItemComponent(BaseComponent):
     overlay_backdrop: WebElement
 
     locators: LocatorsTable = {"news_image": (By.CSS_SELECTOR, ".list-image-content"),
-        "bookmark_btn": (By.CSS_SELECTOR, ".favourite-button"),
-        "tags": (By.CSS_SELECTOR, ".filter-tag div", List[WebElement]), "title": (By.CSS_SELECTOR, ".title-list"),
-        "news_text": (By.CSS_SELECTOR, ".list-text"), "creation_date": (By.CSS_SELECTOR, ".text-nowrap>span"),
-        "author_name": (By.CSS_SELECTOR, ".mw"),
-        "comments_count": (By.XPATH, ".//img[contains(@alt, 'comment')]/parent::*/span"),
-        "likes_count": (By.XPATH, ".//img[contains(@alt, 'likes')]/parent::*/span"),
-        "overlay_backdrop": (By.CSS_SELECTOR, ".cdk-overlay-backdrop-showing")}
+                               "bookmark_btn": (By.CSS_SELECTOR, ".favourite-button"),
+                               "tags": (By.CSS_SELECTOR, ".filter-tag div", List[WebElement]),
+                               "title": (By.CSS_SELECTOR, ".title-list"),
+                               "news_text": (By.CSS_SELECTOR, ".list-text"),
+                               "creation_date": (By.CSS_SELECTOR, ".text-nowrap>span"),
+                               "author_name": (By.CSS_SELECTOR, ".mw"),
+                               "comments_count": (By.XPATH, ".//img[contains(@alt, 'comment')]/parent::*/span"),
+                               "likes_count": (By.XPATH, ".//img[contains(@alt, 'likes')]/parent::*/span"),
+                               "overlay_backdrop": (By.CSS_SELECTOR, ".cdk-overlay-backdrop-showing")}
 
     @allure.step("Click bookmark button")
     def click_bookmark(self) -> "NewsPage":
         """ Click the bookmark button of the news item. """
         self.bookmark_btn.click()
-        from pages.news_page import NewsPage
+        from pages.news_page import NewsPage  # pylint: disable=import-outside-toplevel
         return NewsPage(self.driver)
 
     @allure.step("Click news item")
     def click_image(self) -> "NewsDetailsPage":
         """ Click the news image to open the news details page. """
         self.news_image.click()
-        from pages.news_details_page import NewsDetailsPage
+        from pages.news_details_page import NewsDetailsPage  # pylint: disable=import-outside-toplevel
         return NewsDetailsPage(self.driver)
 
     @allure.step("Get list of tag texts for this news item")
@@ -53,6 +55,11 @@ class NewsListItemComponent(BaseComponent):
     @allure.step("Verify news item has expected tags")
     def has_tags(self, tag_names: List[str]) -> bool:
         """ Verify that the news item contains expected tags. """
+        t = self.timeout
+        by, selector = self.locators["tags"][:2]
+        WebDriverWait(self.driver, t).until(
+            EC.visibility_of_all_elements_located((by, selector))
+        )
         displayed_tags = self.get_tags()
         return (len(displayed_tags) == len(tag_names) and all(tag in displayed_tags for tag in tag_names))
 
@@ -95,5 +102,5 @@ class NewsListItemComponent(BaseComponent):
     def open_news_by_card(self) -> "NewsDetailsPage":
         """ Open news by clicking card. """
         self.root_element.click()
-        from pages.news_details_page import NewsDetailsPage
+        from pages.news_details_page import NewsDetailsPage  # pylint: disable=import-outside-toplevel
         return NewsDetailsPage(self.driver)

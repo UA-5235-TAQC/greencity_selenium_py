@@ -3,7 +3,7 @@ import allure
 from allure_commons.types import Severity
 import pytest_check as check
 from clients.eco_news_client import EcoNewsClient
-from data.eco_news_factory import EcoNewsDtoFactory
+from data.eco_news_factory import EcoNewsUpdateFactory, create_news_uk, TEST_TAGS, TITLE_UK, CONTENT_UK, SOURCE_UK
 from data.ui_news_test_data import NewsTestData
 from enums.news_tag import EcoNewsTag
 from models.update_eco_news_request import UpdateEcoNewsRequest
@@ -59,7 +59,7 @@ class TestEcoNewsById:
         client: EcoNewsClient = created_eco_news_without_image_cleanup["client"]
         eco_news_id: int = created_eco_news_without_image_cleanup["eco_news_id"]
 
-        dto_factory = EcoNewsDtoFactory(eco_news_id)
+        dto_factory = EcoNewsUpdateFactory(eco_news_id)
         update_dto: UpdateEcoNewsRequest = dto_factory.update_dto_uk()
 
         response = client.update_eco_news_by_id(eco_news_id, update_dto)
@@ -196,24 +196,24 @@ class TestEcoNewsByIdWithImage:
         """Test updating EcoNews with invalid ID, tags, title, or content."""
         client = created_eco_news_without_image_cleanup["client"]
 
-        dto_factory = EcoNewsDtoFactory(created_eco_news_without_image_cleanup["eco_news_id"])
-        first_news_request = dto_factory.create_news_uk()
+        dto_factory = EcoNewsUpdateFactory(created_eco_news_without_image_cleanup["eco_news_id"])
+        first_news_request = create_news_uk()
         first_news_response = client.post_eco_news(first_news_request)
         first_news = first_news_response.json()
 
-        second_news_request = dto_factory.create_news_uk()
+        second_news_request = create_news_uk()
         second_news_response = client.post_eco_news(second_news_request)
         second_news = second_news_response.json()
 
-        tags = EcoNewsTag.get_ua(EcoNewsDtoFactory.TEST_TAGS)
+        tags = EcoNewsTag.get_ua(TEST_TAGS)
 
         update_dto = UpdateEcoNewsRequest(
             id=second_news["id"],
-            title=EcoNewsDtoFactory.TITLE_UK,
-            content=EcoNewsDtoFactory.CONTENT_UK,
+            title=TITLE_UK,
+            content=CONTENT_UK,
             short_info="Short info",
             tags=tags,
-            source=EcoNewsDtoFactory.SOURCE_UK
+            source=SOURCE_UK
         )
         response = client.update_eco_news_by_id(first_news["id"], update_dto)
         assert_bad_request(
@@ -240,7 +240,7 @@ class TestEcoNewsByIdWithImage:
             "Error 'size must be between 1 and 170' was not returned"
         )
 
-        update_dto.title = EcoNewsDtoFactory.TITLE_UK
+        update_dto.title = TITLE_UK
         update_dto.content = ""
         response = client.update_eco_news_by_id(second_news["id"], update_dto)
         errors = [ErrorResponse(**e) for e in response.json()]
@@ -261,7 +261,7 @@ class TestEcoNewsByIdWithImage:
         client: EcoNewsClient = created_eco_news["client"]
         eco_news_id: int = created_eco_news["eco_news_id"]
 
-        dto_factory = EcoNewsDtoFactory(eco_news_id)
+        dto_factory = EcoNewsUpdateFactory(eco_news_id)
         update_dto: UpdateEcoNewsRequest = dto_factory.update_dto_uk()
 
         response = client.update_eco_news_by_id(eco_news_id, update_dto, str(NewsTestData.TEST2_FILE))

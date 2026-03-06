@@ -1,12 +1,14 @@
 from typing import List, Optional
+from typing_extensions import override
+
+import allure
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
-import allure
-from typing_extensions import override
-from pages.create_edit_news.create_edit_news_page import CreateEditNewsPage
-from utils.page_factory import LocatorsTable
 from selenium.webdriver.remote.webelement import WebElement
 
+from pages.create_edit_news.create_edit_news_page import CreateEditNewsPage
+from utils.page_factory import LocatorsTable
 
 
 class EditNewsPage(CreateEditNewsPage):
@@ -16,7 +18,7 @@ class EditNewsPage(CreateEditNewsPage):
 
     locators: LocatorsTable = {
         "edit_btn": (By.XPATH,
-                        "//button[@type='submit' and contains(@class,'primary-global-button')]")
+                     "//button[@type='submit' and contains(@class,'primary-global-button')]")
     }
 
     def __init__(self, driver: WebDriver, news_id: int):
@@ -98,7 +100,5 @@ class EditNewsPage(CreateEditNewsPage):
     def is_page_opened_safe(self) -> bool:
         try:
             return self.title_input.is_displayed()
-        except Exception:
+        except (NoSuchElementException, StaleElementReferenceException, AttributeError):
             return False
-
-

@@ -7,12 +7,7 @@ from selenium.webdriver.remote.webelement import WebElement
 from components.news_list_item_component import NewsListItemComponent
 from components.tag_component import TagItem
 from pages.base_page import BasePage
-from utils.page_factory import LocatorsTable, ElementNotFoundException
-from selenium.webdriver.common.by import By
-import allure
-from selenium.webdriver.remote.webelement import WebElement
-from pages.create_edit_news.create_news_page import CreateNewsPage
-from utils.page_factory import LocatorsTable
+from utils.page_factory import (ElementNotFoundException, LocatorsTable)
 from utils.web_element_utils import get_int_from_text
 
 
@@ -108,10 +103,10 @@ class NewsPage(BasePage):
         return get_int_from_text(self.remaining_count_text)
 
     @allure.step("Click on Create News button")
-    def click_create_news(self) -> CreateNewsPage:
+    def click_create_news(self) -> "CreateNewsPage":
         """ Click the 'Create News' button and return the CreateNewsPage instance. """
         self.create_news_btn.click()
-        from pages.create_edit_news.create_news_page import CreateNewsPage
+        from pages.create_edit_news.create_news_page import CreateNewsPage  # pylint: disable=import-outside-toplevel
         return CreateNewsPage(self.driver)
 
     @allure.step("Remove all selected tags")
@@ -151,6 +146,8 @@ class NewsPage(BasePage):
 
         raise ValueError(f"Tag not found: {tag_name}")
 
+    @allure.step("Get the latest created news card")
     def get_latest_created_news(self) -> NewsListItemComponent:
+        """Return the most recently created news card from the Eco News list."""
         self.wait_for(lambda _: len(self.news_card_items) > 0)
         return self.news_card_items[0]

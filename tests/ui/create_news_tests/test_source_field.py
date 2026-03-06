@@ -1,7 +1,6 @@
 import allure
 
 from enums.news_tag import EcoNewsTag
-from pages.create_edit_news.create_news_page import CreateNewsPage
 from pages.news_page import NewsPage
 
 
