@@ -14,17 +14,14 @@ LocatorsTable = Dict[str, LocatorStrategy]
 
 class PageFactoryException(Exception):
     """Base exception for PageFactory-related errors."""
-    pass
 
 
 class ElementNotFoundException(PageFactoryException):
     """Raised when an element cannot be found within the specified timeout."""
-    pass
 
 
 class ElementNotVisibleException(PageFactoryException):
     """Raised when an element is found but not visible within the specified timeout."""
-    pass
 
 
 class PageFactory:
@@ -46,6 +43,13 @@ class PageFactory:
         else:
             self.driver = context
 
+        all_locators = {}
+        for cls in reversed(self.__class__.mro()):
+            if hasattr(cls, 'locators'):
+                all_locators.update(cls.locators)
+
+        self.locators = all_locators
+
     def __getattr__(self, name: str) -> Any:
         """ Overrides attribute access to provide lazy loading of elements defined in 'locators'. """
         if name in self.locators:
@@ -60,8 +64,9 @@ class PageFactory:
         selector = config[1]
         multiple = False
         component_class = None
+
         if len(config) > 2:
-            multiple =  get_origin(config[2]) is list
+            multiple = get_origin(config[2]) is list
             component_class = config[2] if not multiple else get_args(config[2])[0]
 
         locator = (by_type, selector)
@@ -80,15 +85,14 @@ class PageFactory:
                         f"but none are visible in context {self.__class__.__name__}"
                     )
 
-                if component_class:
+                if component_class and component_class is not WebElement:
                     return [component_class(el) for el in elements]
 
                 return elements
 
             else:
-                wait.until(EC.presence_of_element_located(locator))
                 element = wait.until(
-                    EC.visibility_of_element_located(locator)
+                    EC.presence_of_element_located(locator)
                 )
 
                 if component_class:
@@ -101,7 +105,6 @@ class PageFactory:
                 f"Element(s) '{name}' not found using locator {locator} "
                 f"in context {self.__class__.__name__}"
             ) from e
-
 
 
 __all__ = [

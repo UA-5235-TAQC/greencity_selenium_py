@@ -1,7 +1,6 @@
 from urllib.parse import urlparse
 
 import allure
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -28,17 +27,6 @@ class BasePage(PageFactory):
         "message": (By.CSS_SELECTOR, ".mat-mdc-snack-bar-label")
     }
 
-    def __init__(self, driver):
-        """ Initialize the base page with a WebDriver instance and merge all declared locators. """
-        all_locators = {}
-        for cls in reversed(self.__class__.mro()):
-            if hasattr(cls, 'locators'):
-                all_locators.update(cls.locators)
-
-        self.locators = all_locators
-
-        super().__init__(driver)
-
     @allure.step("Get the title of the current page")
     def get_title(self) -> str:
         """Return the title of the current page."""
@@ -63,7 +51,11 @@ class BasePage(PageFactory):
 
     @allure.step("Get snackbar message text")
     def get_message_text(self) -> str:
-        return self.message.text
+        """ Get snackbar message text. """
+        element = WebDriverWait(self.driver, Config.EXPLICITLY_WAIT).until(
+            EC.visibility_of_element_located(self.locators["message"][:2])
+        )
+        return element.text
 
     def get_base_host(self) -> str:
         """ Get the base host URL with protocol and hostname for the GreenCity application. """
@@ -86,3 +78,15 @@ class BasePage(PageFactory):
     def wait_until_visible(self, element: WebElement, timeout: int = Config.EXPLICITLY_WAIT) -> WebElement:
         """ Waits for the element to become visible on the page. """
         return WebDriverWait(self.driver, timeout).until(EC.visibility_of(element))
+
+    @allure.step("Reload page")
+    def reload(self):
+        """Refreshes the current page and returns the page object."""
+        self.driver.refresh()
+        return self
+
+    @allure.step("Set browser window size to {width}x{height}")
+    def set_window_size(self, width: int, height: int):
+        """Set the browser window size."""
+        self.driver.set_window_size(width, height)
+        return self

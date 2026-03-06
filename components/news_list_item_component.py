@@ -45,27 +45,30 @@ class NewsListItemComponent(BaseComponent):
         """ Click the news image to open the news details page. """
         self.news_image.click()
         from pages.news_details_page import NewsDetailsPage
-        return NewsDetailsPage(self.driver, self.news_id)
+        return NewsDetailsPage(self.driver)
 
-    @allure.step("Verify news item has expected tags")
-    def has_tags(self, tag_names: List[str]) -> bool:
-        """ Verify that the news item contains expected tags. """
-        displayed_tags = [
+    @allure.step("Get list of tag texts for this news item")
+    def get_tags(self) -> List[str]:
+        """ Return a list of tag names as text, cleaned from extra characters like '|'. """
+        return [
             tag.text.replace("|", "").strip()
             for tag in self.tags
         ]
 
-        expected_tags = [tag.upper() for tag in tag_names]
+    @allure.step("Verify news item has expected tags")
+    def has_tags(self, tag_names: List[str]) -> bool:
 
+        """ Verify that the news item contains expected tags. """
+        displayed_tags = self.get_tags()
         return (
-                len(displayed_tags) == len(expected_tags)
-                and all(tag in displayed_tags for tag in expected_tags)
+                len(displayed_tags) == len(tag_names)
+                and all(tag in displayed_tags for tag in tag_names)
         )
 
     @allure.step("Get news title text")
     def get_title(self) -> str:
         """ Get title text of the news item. """
-        return self.title.text
+        return self.title.text.strip()
 
     @allure.step("Get news text")
     def get_news_text(self) -> str:
@@ -92,12 +95,14 @@ class NewsListItemComponent(BaseComponent):
         """ Get number of likes. """
         return int(self.likes_count.text)
 
-    @allure.step("Get news ID")
-    def get_news_id(self) -> int:
-        """ Get news ID. """
-        return self.news_id
-
     @allure.step("Get bookmark button text")
     def get_bookmark_button_text(self) -> str:
         """ Get bookmark button text. """
         return self.bookmark_btn.text
+
+    @allure.step("Open news by clicking card")
+    def open_news_by_card(self) -> "NewsDetailsPage":
+        """ Open news by clicking card. """
+        self.root_element.click()
+        from pages.news_details_page import NewsDetailsPage
+        return NewsDetailsPage(self.driver)
