@@ -1,5 +1,6 @@
 import json
 import mimetypes
+import os
 from dataclasses import asdict
 from typing import Optional, List
 

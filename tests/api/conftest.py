@@ -1,9 +1,10 @@
-from typing import List
+from typing import Any, Generator, List
 
 import allure
 from pytest import fixture, FixtureRequest
 
 from clients.eco_new_client import EcoNewClient
+from clients.eco_news_client import EcoNewsClient
 from clients.eco_news_comment_client import EcoNewsCommentClient
 from clients.own_security_client import OwnSecurityClient
 from data.comment_factory import parent_comment, comment_with_images, PARENT_SUB_COMMENT, sub_comment_with_images, \
@@ -229,3 +230,37 @@ def create_comments(request, auth_token, created_eco_news_without_image):
     for cid in [parent_comment_id, comment_id_with_images]:
         resp = client.delete_comment_with_children(cid)
         assert_ok(resp)
+
+@fixture(scope="function")
+def create_comment_with_token(create_delete_news_with_token)-> Generator[tuple[str, int, dict], None, None]:
+    """Fixture: create a comment using API.
+    :returns
+    - token: str - the authentication token used for API requests
+    - news_id: int - the ID of the news to which the comment was added
+    - comment_response: dict - the response data of the created comment, including its ID and"""
+
+    token, created_news_response = create_delete_news_with_token
+    news_id = created_news_response["id"]
+    comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, token, news_id)
+
+    comment_response = comment_client.add_comment("This is a test comment.", NewsTestData.TEST2_FILE)
+    assert comment_response.status_code == 201, f"Expected status code 201, but got {comment_response.status_code}"
+
+    yield token, news_id, comment_response.json()
+
+
+@fixture(scope="function")
+def create_and_cleanup_comment(create_comment_with_token)-> Generator[tuple[str, dict], None, None]:
+    """Fixture: create a comment using API and delete it after test.
+    :returns
+    - token: str - the authentication token used for API requests
+    - comment_response: dict - the response data of the created comment, including its ID and
+    """
+
+    token, news_id, comment_response = create_comment_with_token
+    comments_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, token, news_id)
+
+    yield token, comment_response
+
+    delete_response = comments_client.delete_comment_by_id(comment_response["id"])
+    assert delete_response.status_code == 200, f"Expected status code 200, but got {delete_response.status_code}"

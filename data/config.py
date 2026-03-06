@@ -20,4 +20,3 @@ class Config:
     USER_NAME = os.getenv("USER_NAME")
     USER_PASSWORD = os.getenv("USER_PASSWORD")
     FAVORITE_NEWS_ID = int(os.getenv("FAVORITE_NEWS_ID"))
-

@@ -17,13 +17,10 @@ class SignUpModal(ModalBasePage):
     show_password_icon: WebElement
     sign_in_link: WebElement
 
-    locators = {
-        "username_field": (By.ID, "firstName"),
-        "password_field": (By.ID, "password"),
+    locators = {"username_field": (By.ID, "firstName"), "password_field": (By.ID, "password"),
         "repeat_password_field": (By.ID, "repeatPassword"),
         "show_password_icon": (By.CSS_SELECTOR, "img.show-password-img"),
-        "sign_in_link": (By.CLASS_NAME, "green-link"),
-    }
+        "sign_in_link": (By.CLASS_NAME, "green-link"), }
 
     __password_field_error_locator = (By.CSS_SELECTOR, "p.password-not-valid")
     __confirm_password_field_error_locator = (By.ID, "confirm-err-msg")
@@ -67,10 +64,8 @@ class SignUpModal(ModalBasePage):
     @allure.step("Enter email, username, password, confirm password values")
     def sign_up(self, *, email: str, username: str, password: str, confirm_password: str) -> None:
         """ Enter email, username, password, confirm password values. """
-        self.enter_email(email) \
-            .enter_username(username) \
-            .enter_password(password) \
-            .enter_confirm_password(confirm_password)
+        self.enter_email(email).enter_username(username).enter_password(password).enter_confirm_password(
+            confirm_password)
 
     @allure.step("Get username field value")
     def get_username_field_value(self) -> str:
@@ -107,12 +102,8 @@ class SignUpModal(ModalBasePage):
     def is_form_valid(self) -> bool:
         """ Check if entered data is valid. """
         self._trigger_errors()
-        status = [
-            self.is_invalid_email_error_displayed(),
-            self.is_invalid_username_error_displayed(),
-            self.is_invalid_password_error_displayed(),
-            self.is_invalid_confirm_password_error_displayed(),
-        ]
+        status = [self.is_invalid_email_error_displayed(), self.is_invalid_username_error_displayed(),
+            self.is_invalid_password_error_displayed(), self.is_invalid_confirm_password_error_displayed(), ]
         is_valid = all(x == False for x in status)
         return is_valid
 

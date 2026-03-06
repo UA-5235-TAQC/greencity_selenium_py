@@ -1,7 +1,9 @@
 from __future__ import annotations
+
 import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
+
 from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable
 
@@ -24,8 +26,7 @@ class FooterComponent(BaseComponent):
     follow_us_text_element: WebElement
     copyright_label: WebElement
 
-    locators: LocatorsTable = {
-        "logo_link": (By.CSS_SELECTOR, "a[href='#/greenCity'] img.logo"),
+    locators: LocatorsTable = {"logo_link": (By.CSS_SELECTOR, "a[href='#/greenCity'] img.logo"),
         "news_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/news')]"),
         "events_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/events')]"),
         "places_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/places')]"),
@@ -38,8 +39,7 @@ class FooterComponent(BaseComponent):
         "instagram_icon": (By.CSS_SELECTOR, ".footer_social-link img[src*='instagram']"),
         "youtube_icon": (By.CSS_SELECTOR, ".footer_social-link img[src*='youtube']"),
         "follow_us_text_element": (By.CSS_SELECTOR, ".footer_follow-us span"),
-        "copyright_label": (By.ID, "copyright-label")
-    }
+        "copyright_label": (By.ID, "copyright-label")}
 
     @allure.step("Click on footer logo")
     def click_logo_link(self):
@@ -58,23 +58,17 @@ class FooterComponent(BaseComponent):
     @allure.step("Click on 'Events' link in footer")
     def click_events_link(self):
         """Clicks the 'Events' link in the footer."""
-        self.events_link.click()
-        # from pages.events_page import EventsPage
-        # return EventsPage(self.driver)
+        self.events_link.click()  # from pages.events_page import EventsPage  # return EventsPage(self.driver)
 
     @allure.step("Click on 'Places' link in footer")
     def click_places_link(self):
         """Clicks the 'Places' link in the footer."""
-        self.places_link.click()
-        # from pages.places_page import PlacesPage
-        # return PlacesPage(self.driver)
+        self.places_link.click()  # from pages.places_page import PlacesPage  # return PlacesPage(self.driver)
 
     @allure.step("Click on 'About Us' link in footer")
     def click_about_link(self):
         """Clicks the 'About Us' link in the footer."""
-        self.about_link.click()
-        # from pages.about_us_page import AboutUsPage
-        # return AboutUsPage(self.driver)
+        self.about_link.click()  # from pages.about_us_page import AboutUsPage  # return AboutUsPage(self.driver)
 
     @allure.step("Click on 'My Space' link in footer")
     def click_my_space_link(self):

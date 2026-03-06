@@ -1,16 +1,16 @@
+import json
 import mimetypes
+from dataclasses import asdict
+from pathlib import Path
+from typing import Optional
 
 import allure
-from dataclasses import asdict
-from typing import Optional
-import json
-
 from requests import Response
+
 from clients.base_client import BaseClient
 from models.queries import EcoNewsQuery
 from models.eco_news_request import EcoNewsRequest
 from models.update_eco_news_request import UpdateEcoNewsRequest
-from pathlib import Path
 
 
 class EcoNewClient(BaseClient):
@@ -30,13 +30,8 @@ class EcoNewClient(BaseClient):
     @allure.step("Post new EcoNews without image")
     def post_eco_news(self, body: EcoNewsRequest) -> Response:
         """Create EcoNews without image."""
-        files = {
-            "addEcoNewsDtoRequest": (
-                "addEcoNewsDtoRequest",
-                json.dumps(asdict(body), ensure_ascii=False),
-                "application/json"
-            )
-        }
+        files = {"addEcoNewsDtoRequest": ("addEcoNewsDtoRequest", json.dumps(asdict(body), ensure_ascii=False),
+                                          "application/json")}
         headers = {"Content-Type": None}
         return self.post(self.resource_path, files=files, headers=headers)
 
@@ -44,9 +39,7 @@ class EcoNewClient(BaseClient):
     def post_eco_news_with_image(self, body: EcoNewsRequest, image_path: str) -> Response:
         """Create EcoNews with image."""
         dto_json = body.to_json()
-        files = {
-            "addEcoNewsDtoRequest": ("addEcoNewsDtoRequest", dto_json, "application/json")
-        }
+        files = {"addEcoNewsDtoRequest": ("addEcoNewsDtoRequest", dto_json, "application/json")}
         headers = {"Content-Type": None}
 
         image_path = Path(image_path)
@@ -111,7 +104,6 @@ class EcoNewClient(BaseClient):
         """Get like count."""
         return self.get(f"{self.get_path(eco_news_id)}/likes/count")
 
-
     @allure.step("Update EcoNews by ID: {eco_news_id}")
     def update_eco_news_by_id(self, eco_news_id: int, update_dto: UpdateEcoNewsRequest,
                               image_path: Optional[str] = None) -> Response:
@@ -119,9 +111,7 @@ class EcoNewClient(BaseClient):
         dto_dict = asdict(update_dto)
         dto_dict["shortInfo"] = dto_dict.pop("short_info")
         dto_json = json.dumps(dto_dict, ensure_ascii=False)
-        files = {
-            "updateEcoNewsDto": ("updateEcoNewsDto", dto_json, "application/json")
-        }
+        files = {"updateEcoNewsDto": ("updateEcoNewsDto", dto_json, "application/json")}
         headers = {"Content-Type": None}
 
         if image_path:
@@ -139,4 +129,3 @@ class EcoNewClient(BaseClient):
     def get_eco_news_by_id_with_lang(self, eco_news_id: int, lang: str) -> Response:
         """Get EcoNews by ID with language."""
         return self.get(self.get_path(eco_news_id), params={"lang": lang})
-

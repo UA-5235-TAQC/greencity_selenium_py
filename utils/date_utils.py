@@ -10,7 +10,7 @@ class DateUtils:
 
     @staticmethod
     @allure.step("Get current date in English {lang}")
-    def get_current_date_formatted(lang: Language) -> str:
+    def get_current_date_formatted(lang: Language = Language.EN) -> str:
         """ Returns the current date in English or Ukrainian. """
         if lang == Language.EN:
             locale.setlocale(locale.LC_TIME, "en_US.UTF-8")

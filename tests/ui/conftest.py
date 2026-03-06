@@ -16,6 +16,7 @@ from pages.create_edit_news.edit_news_page import EditNewsPage
 from pages.home_page import HomePage
 from pages.news_details_page import NewsDetailsPage
 from pages.news_page import NewsPage
+from tests.utils.validators import validate_json
 
 
 @fixture(scope="function", params=["chrome"])

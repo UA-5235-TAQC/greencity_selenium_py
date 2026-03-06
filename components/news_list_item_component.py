@@ -1,7 +1,9 @@
 from typing import List
+
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
-import allure
+
 from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable
 
@@ -20,18 +22,14 @@ class NewsListItemComponent(BaseComponent):
     likes_count: WebElement
     overlay_backdrop: WebElement
 
-    locators: LocatorsTable = {
-        "news_image": (By.CSS_SELECTOR, ".list-image-content"),
+    locators: LocatorsTable = {"news_image": (By.CSS_SELECTOR, ".list-image-content"),
         "bookmark_btn": (By.CSS_SELECTOR, ".favourite-button"),
-        "tags": (By.CSS_SELECTOR, ".filter-tag div", List[WebElement]),
-        "title": (By.CSS_SELECTOR, ".title-list"),
-        "news_text": (By.CSS_SELECTOR, ".list-text"),
-        "creation_date": (By.CSS_SELECTOR, ".text-nowrap>span"),
+        "tags": (By.CSS_SELECTOR, ".filter-tag div", List[WebElement]), "title": (By.CSS_SELECTOR, ".title-list"),
+        "news_text": (By.CSS_SELECTOR, ".list-text"), "creation_date": (By.CSS_SELECTOR, ".text-nowrap>span"),
         "author_name": (By.CSS_SELECTOR, ".mw"),
         "comments_count": (By.XPATH, ".//img[contains(@alt, 'comment')]/parent::*/span"),
         "likes_count": (By.XPATH, ".//img[contains(@alt, 'likes')]/parent::*/span"),
-        "overlay_backdrop": (By.CSS_SELECTOR, ".cdk-overlay-backdrop-showing")
-    }
+        "overlay_backdrop": (By.CSS_SELECTOR, ".cdk-overlay-backdrop-showing")}
 
     @allure.step("Click bookmark button")
     def click_bookmark(self) -> "NewsPage":
@@ -50,20 +48,13 @@ class NewsListItemComponent(BaseComponent):
     @allure.step("Get list of tag texts for this news item")
     def get_tags(self) -> List[str]:
         """ Return a list of tag names as text, cleaned from extra characters like '|'. """
-        return [
-            tag.text.replace("|", "").strip()
-            for tag in self.tags
-        ]
+        return [tag.text.replace("|", "").strip() for tag in self.tags]
 
     @allure.step("Verify news item has expected tags")
     def has_tags(self, tag_names: List[str]) -> bool:
-
         """ Verify that the news item contains expected tags. """
         displayed_tags = self.get_tags()
-        return (
-                len(displayed_tags) == len(tag_names)
-                and all(tag in displayed_tags for tag in tag_names)
-        )
+        return (len(displayed_tags) == len(tag_names) and all(tag in displayed_tags for tag in tag_names))
 
     @allure.step("Get news title text")
     def get_title(self) -> str:
