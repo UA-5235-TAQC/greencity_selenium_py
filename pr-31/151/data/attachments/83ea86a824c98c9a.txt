@@ -1,0 +1,144 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Open home page
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until home page is loaded
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="e6b7a64388e30a3439ebd5b841d94399", element="f.D714B25EAF1ECE9EE2B80EA45C063A31.d.93ED97A44FE955E4ED95C058CBCFCC6A.e.32")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="e6b7a64388e30a3439ebd5b841d94399", element="f.D714B25EAF1ECE9EE2B80EA45C063A31.d.93ED97A44FE955E4ED95C058CBCFCC6A.e.32")>, timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Change language to English
+INFO     allure.step:logging_config.py:30 >> STEP  Get current locale
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click 'Sign In' link in header
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Enter email and password values  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+INFO     allure.step:logging_config.py:30 >> STEP  Enter value in email field  [email='testtestovich611@gmail.com']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Enter value in password field  [password='!Testtestovich611!']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click submit button
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until cancel modal is closed  [timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until My Space Habits tab is fully opened  [timeout=10]
+INFO     allure.step:logging_config.py:30 >> STEP  Verify that My Space Habits tab is opened
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="e6b7a64388e30a3439ebd5b841d94399", element="f.D714B25EAF1ECE9EE2B80EA45C063A31.d.93ED97A44FE955E4ED95C058CBCFCC6A.e.88")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="e6b7a64388e30a3439ebd5b841d94399", element="f.D714B25EAF1ECE9EE2B80EA45C063A31.d.93ED97A44FE955E4ED95C058CBCFCC6A.e.88")>, timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  1. Navigate to Create News and publish a new article
+INFO     allure.step:logging_config.py:30 >> STEP  Open Eco News page
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Open Create News page
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Change language to English
+INFO     allure.step:logging_config.py:30 >> STEP  Get current locale
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Fill out and create news with mandatory fields: title, tags, content  [title='TEST NEWS FOR DELETION', tags=['Education'], content='This is a test news article that will be deleted after the execution.', source=None, image_path=None]
+INFO     allure.step:logging_config.py:30 >> STEP  Enter news title: 'TEST NEWS FOR DELETION'  [title='TEST NEWS FOR DELETION']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Select multiple tags: ['Education']  [tag_names=['Education']]
+INFO     allure.step:logging_config.py:30 >> STEP  Get tag name
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get tag name
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get tag name
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Verify if tag is selected
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click on tag
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Clear and enter content text: 'This is a test news article that will be deleted after the execution.'  [text='This is a test news article that will be deleted after the execution.']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click Publish button
+INFO     allure.step:logging_config.py:30 >> STEP  Wait for a custom lambda condition.  [condition=<function element_to_be_clickable.<locals>._predicate at 0x7f5876c2c680>, timeout=None]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until Eco News page is opened
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="e6b7a64388e30a3439ebd5b841d94399", element="f.D714B25EAF1ECE9EE2B80EA45C063A31.d.93ED97A44FE955E4ED95C058CBCFCC6A.e.137")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="e6b7a64388e30a3439ebd5b841d94399", element="f.D714B25EAF1ECE9EE2B80EA45C063A31.d.93ED97A44FE955E4ED95C058CBCFCC6A.e.137")>, timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  2. Identify and open the newly created news from the list
+INFO     allure.step:logging_config.py:30 >> STEP  Open Eco News page
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Wait for a custom lambda condition.  [condition=<function test_create_and_delete_news.<locals>.<lambda> at 0x7f5876c2c9a0>, timeout=10]
+INFO     allure.step:logging_config.py:30 >> STEP  Get the latest created news card
+INFO     allure.step:logging_config.py:30 >> STEP  Wait for a custom lambda condition.  [condition=<function NewsPage.get_latest_created_news.<locals>.<lambda> at 0x7f5876c2c720>, timeout=None]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get news title text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get the latest created news card
+INFO     allure.step:logging_config.py:30 >> STEP  Wait for a custom lambda condition.  [condition=<function NewsPage.get_latest_created_news.<locals>.<lambda> at 0x7f5876c2c720>, timeout=None]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Open news by clicking card
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  3. Verify news content and extract its ID
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until news details page is loaded
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="e6b7a64388e30a3439ebd5b841d94399", element="f.D714B25EAF1ECE9EE2B80EA45C063A31.d.93ED97A44FE955E4ED95C058CBCFCC6A.e.169")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="e6b7a64388e30a3439ebd5b841d94399", element="f.D714B25EAF1ECE9EE2B80EA45C063A31.d.93ED97A44FE955E4ED95C058CBCFCC6A.e.169")>, timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Extract news ID from URL
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get title text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get content text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  4. Delete the news (ID: 6433)
+INFO     allure.step:logging_config.py:30 >> STEP  Delete news by ID: 6433  [news_id=6433]
+INFO     allure.step:logging_config.py:30 >> STEP  Open news details page with ID  [news_id=6433]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Check that News Details page is opened
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Check if delete news modal is visible
+INFO     allure.step:logging_config.py:30 >> STEP  Check if the component is visible
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Confirm deletion of news
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  5. Verify that news is no longer accessible
+INFO     allure.step:logging_config.py:30 >> STEP  Open Eco News page
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Reload page
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get the latest created news card
+INFO     allure.step:logging_config.py:30 >> STEP  Wait for a custom lambda condition.  [condition=<function NewsPage.get_latest_created_news.<locals>.<lambda> at 0x7f5876d0db20>, timeout=None]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get news title text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get news title text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get news title text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get news title text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get news title text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get news title text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get news title text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get news title text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get news title text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get news title text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get news title text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get news title text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get news title text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
