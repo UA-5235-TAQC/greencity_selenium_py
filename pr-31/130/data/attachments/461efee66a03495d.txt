@@ -1,4 +1,0 @@
-INFO     allure.step:logging_config.py:30 >> STEP  Get EcoNews with typed query parameters: EcoNewsQuery(author_id=149, favorite=None, page=None, size=None, title=None, sort='title', tags=['News', 'Ads'])  [query=EcoNewsQuery(author_id=149, favorite=None, page=None, size=None, title=None, sort='title', tags=['News', 'Ads'])]
-INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news with params {'author-id': 149} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3Mjc5OTU5OCwidXNlcklkIjoxNDksImlhdCI6MTc3Mjc5MjM5OH0.JHfUqOKb4aj3B_Rb7fc38pSw527jmn1aX1SAet4ySQ8'}
-INFO     allure.step:logging_config.py:35 STEP PASSED
-INFO     allure.step:logging_config.py:35 STEP PASSED
