@@ -1,0 +1,92 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Open home page
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until home page is loaded
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="042c708e905d2c5db1bf9c13ba506c41", element="f.3F2DB37B7B2E66728019D2AE24F2AD0B.d.F6CB7121E915F18B6938B50052A20781.e.31")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="042c708e905d2c5db1bf9c13ba506c41", element="f.3F2DB37B7B2E66728019D2AE24F2AD0B.d.F6CB7121E915F18B6938B50052A20781.e.31")>, timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Change language to English
+INFO     allure.step:logging_config.py:30 >> STEP  Get current locale
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click 'Sign In' link in header
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Enter email and password values  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+INFO     allure.step:logging_config.py:30 >> STEP  Enter value in email field  [email='testtestovich611@gmail.com']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Enter value in password field  [password='!Testtestovich611!']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click submit button
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until cancel modal is closed  [timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until My Space Habits tab is fully opened  [timeout=10]
+INFO     allure.step:logging_config.py:30 >> STEP  Verify that My Space Habits tab is opened
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="042c708e905d2c5db1bf9c13ba506c41", element="f.3F2DB37B7B2E66728019D2AE24F2AD0B.d.F6CB7121E915F18B6938B50052A20781.e.91")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="042c708e905d2c5db1bf9c13ba506c41", element="f.3F2DB37B7B2E66728019D2AE24F2AD0B.d.F6CB7121E915F18B6938B50052A20781.e.91")>, timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Open Eco News page
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click on Create News button
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Create news with mandatory fields
+INFO     allure.step:logging_config.py:30 >> STEP  Fill out and create news with mandatory fields: title, tags, content  [title='Hello World', tags=['News', 'Ads'], content='Olaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', source=None, image_path=None]
+INFO     allure.step:logging_config.py:30 >> STEP  Enter news title: 'Hello World'  [title='Hello World']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Select multiple tags: ['News', 'Ads']  [tag_names=['News', 'Ads']]
+INFO     allure.step:logging_config.py:30 >> STEP  Get tag name
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Verify if tag is selected
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click on tag
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get tag name
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get tag name
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get tag name
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get tag name
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get tag name
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Verify if tag is selected
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click on tag
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Clear and enter content text: 'Olaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'  [text='Olaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Verify filled data is correct
+INFO     allure.step:logging_config.py:30 >> STEP  Get title value
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get selected tag names
+INFO     allure.step:logging_config.py:30 >> STEP  Verify if tag is selected
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get tag name
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Verify if tag is selected
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Verify if tag is selected
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Verify if tag is selected
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Verify if tag is selected
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get tag name
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get content text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Check if Publish button is enabled
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Publish news
+INFO     allure.step:logging_config.py:30 >> STEP  Click Publish button
+INFO     allure.step:logging_config.py:30 >> STEP  Wait for a custom lambda condition.  [condition=functools.partial(<function element_to_be_clickable at 0x7f61a16f09a0>, ('xpath', "//button[@type='submit' and contains(@class,'primary-global-button')]")), timeout=None]
+WARNING  allure.step:logging_config.py:37 STEP FAILED  TypeError: element_to_be_clickable() takes 1 positional argument but 2 were given
+WARNING  allure.step:logging_config.py:37 STEP FAILED  TypeError: element_to_be_clickable() takes 1 positional argument but 2 were given
+WARNING  allure.step:logging_config.py:37 STEP FAILED  TypeError: element_to_be_clickable() takes 1 positional argument but 2 were given
