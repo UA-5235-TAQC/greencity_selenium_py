@@ -2,7 +2,7 @@ import pytest
 import allure
 from allure_commons.types import Severity
 import pytest_check as check
-from clients.eco_new_client import EcoNewClient
+from clients.eco_news_client import EcoNewsClient
 from data.eco_news_factory import EcoNewsDtoFactory
 from data.ui_news_test_data import NewsTestData
 from enums.news_tag import EcoNewsTag
@@ -56,7 +56,7 @@ class TestEcoNewsById:
     @allure.description("Verify that updating EcoNews without providing an image works correctly")
     def test_update_eco_news_by_id_without_image(self, created_eco_news_without_image_cleanup):
         """ Test for updating EcoNews without providing an image. """
-        client: EcoNewClient = created_eco_news_without_image_cleanup["client"]
+        client: EcoNewsClient = created_eco_news_without_image_cleanup["client"]
         eco_news_id: int = created_eco_news_without_image_cleanup["eco_news_id"]
 
         dto_factory = EcoNewsDtoFactory(eco_news_id)
@@ -258,7 +258,7 @@ class TestEcoNewsByIdWithImage:
     @allure.description("Verify that updating EcoNews with a specific image is successful")
     def test_update_eco_news_by_id_with_image(self, created_eco_news):
         """ Test updating an EcoNews item with an image and verify response matches expected values. """
-        client: EcoNewClient = created_eco_news["client"]
+        client: EcoNewsClient = created_eco_news["client"]
         eco_news_id: int = created_eco_news["eco_news_id"]
 
         dto_factory = EcoNewsDtoFactory(eco_news_id)

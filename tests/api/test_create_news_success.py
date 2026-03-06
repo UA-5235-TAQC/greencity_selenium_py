@@ -1,4 +1,4 @@
-from clients.eco_new_client import EcoNewClient
+from clients.eco_news_client import EcoNewsClient
 from data.config import Config
 from enums.news_tag import EcoNewsTag
 from models.queries import EcoNewsQuery
@@ -8,7 +8,7 @@ from tests.utils.validators import validate_json
 
 
 def test_create_and_verify_news(auth_token):
-    eco_news_client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
+    eco_news_client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
 
     news_payload: EcoNewsRequest = EcoNewsRequest(
         title="Eco title " + str(Config.USER_ID),
@@ -63,7 +63,7 @@ def test_create_and_verify_news(auth_token):
 
 
 def test_get_news_success(auth_token):
-    eco_news_client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
+    eco_news_client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
     query: EcoNewsQuery = EcoNewsQuery(
         tags=[EcoNewsTag.NEWS.en, EcoNewsTag.ADS.en],
         author_id=Config.USER_ID,

@@ -3,7 +3,7 @@ from typing import Any, Generator, List
 import allure
 from pytest import fixture, FixtureRequest
 
-from clients.eco_new_client import EcoNewClient
+from clients.eco_news_client import EcoNewsClient
 from clients.eco_news_client import EcoNewsClient
 from clients.eco_news_comment_client import EcoNewsCommentClient
 from clients.own_security_client import OwnSecurityClient
@@ -29,7 +29,7 @@ def worker_id(request: FixtureRequest) -> str:
 @fixture(scope="session")
 def eco_news_setup():
     """Fixture to prepare EcoNews client and fetch first EcoNews item."""
-    eco_news_client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, access_token=None)
+    eco_news_client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=None)
     response = eco_news_client.get_eco_news({"page": 0, "size": 10})
     page_response = response.json()
     first_news = page_response["page"][0]
@@ -86,7 +86,7 @@ def refresh_auth_token(_auth_tokens):
 @fixture(scope="module")
 def created_eco_news_without_image(auth_token):
     """Create EcoNews and print it to console."""
-    client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
+    client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
     factory = EcoNewsDtoFactory(eco_news_id=0)
     news_dto: EcoNewsRequest = factory.create_news_uk()
     response = client.post_eco_news(news_dto)
@@ -110,7 +110,7 @@ def created_eco_news_without_image_cleanup(created_eco_news_without_image):
 @fixture(scope="module")
 def created_eco_news(auth_token):
     """Create EcoNews with image."""
-    client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
+    client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
 
     factory = EcoNewsDtoFactory(eco_news_id=0)
     news_dto = factory.create_news_uk()
@@ -133,7 +133,7 @@ def auth_client_favorite(request):
     auth_api = OwnSecurityClient(Config.BASE_GREEN_CITY_USER_API_URL)
     login_resp = auth_api.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
     token = login_resp.json()["accessToken"]
-    client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL, access_token=token)
+    client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=token)
     news_id = request.param
     client.news_id = news_id
     if news_id:

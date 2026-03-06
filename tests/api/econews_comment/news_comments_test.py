@@ -1,7 +1,7 @@
 import allure
 import pytest
 
-from clients.eco_new_client import EcoNewClient
+from clients.eco_news_client import EcoNewsClient
 from allure_commons.types import Severity
 from data.config import Config
 from data.ui_news_test_data import NewsTestData
@@ -15,7 +15,7 @@ class TestNewsComments:
     @pytest.mark.dependency(name="add_comment_to_eco_news")
     def test_add_comment_to_eco_news(self, created_eco_news_without_image_cleanup):
         """Test: Add a comment to eco news."""
-        client: EcoNewClient = created_eco_news_without_image_cleanup["client"]
+        client: EcoNewsClient = created_eco_news_without_image_cleanup["client"]
         news_id: int = created_eco_news_without_image_cleanup["eco_news_id"]
 
         comment_client = EcoNewsCommentClient(

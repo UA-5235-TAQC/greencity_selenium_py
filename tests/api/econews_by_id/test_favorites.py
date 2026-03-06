@@ -1,7 +1,7 @@
 import allure
 import pytest
 
-from clients.eco_new_client import EcoNewClient
+from clients.eco_news_client import EcoNewsClient
 from data.config import Config
 
 
@@ -43,7 +43,7 @@ class TestFavoriteEcoNews:
     def test_add_to_favorites_unauthorized(self, auth_client_favorite):
         news_id = auth_client_favorite.news_id
         # Create a client without an access token
-        unauthorized_client = EcoNewClient(Config.BASE_GREEN_CITY_API_URL)
+        unauthorized_client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL)
 
         resp = unauthorized_client.add_to_favorites(news_id)
 

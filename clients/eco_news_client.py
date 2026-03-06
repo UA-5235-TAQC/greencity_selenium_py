@@ -13,7 +13,7 @@ from models.eco_news_request import EcoNewsRequest
 from models.update_eco_news_request import UpdateEcoNewsRequest
 
 
-class EcoNewClient(BaseClient):
+class EcoNewsClient(BaseClient):
     """Client for interacting with EcoNews API."""
 
     resource_path = "/eco-news"

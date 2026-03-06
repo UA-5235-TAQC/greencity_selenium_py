@@ -1,12 +1,12 @@
-from typing import Optional, Dict, List
-from requests import Response
-import allure
-
-from clients.base_client import BaseClient
 import json
 import mimetypes
 from pathlib import Path
+from typing import Optional, Dict, List
 
+import allure
+from requests import Response
+
+from clients.base_client import BaseClient
 from models.queries import CommentQuery
 
 
@@ -27,9 +27,7 @@ class EcoNewsCommentClient(BaseClient):
         endpoint = f"/{self.news_id}/comments"
         request_data = {"text": text, "parentCommentId": parent_comment_id}
 
-        files: List = [
-            ('request', (None, json.dumps(request_data), 'application/json'))
-        ]
+        files: List = [('request', (None, json.dumps(request_data), 'application/json'))]
 
         if image_paths:
             for image_path in image_paths:
@@ -60,7 +58,7 @@ class EcoNewsCommentClient(BaseClient):
         return self.delete(endpoint)
 
     @allure.step("API: Get all active replies for comment ID {parent_comment_id} with query params")
-    def get_active_replies(self, parent_comment_id: int, query: Optional[CommentQuery] = None) -> Dict:
+    def get_active_replies(self, parent_comment_id: int, query: Optional[CommentQuery] = None) -> Response:
         """Get all active replies for a comment, optionally with pagination and sorting."""
         params = {}
         if query:
@@ -71,8 +69,7 @@ class EcoNewsCommentClient(BaseClient):
             if query.sort:
                 params["sort"] = query.sort
         endpoint = f"/comments/{parent_comment_id}/replies/active"
-        response = self.get(endpoint, params=params)
-        return response.json()
+        return self.get(endpoint, params=params)
 
     @allure.step("API: Get all active replies for comment ID {parent_comment_id} with default pagination")
     def get_active_replies_default(self, parent_comment_id: int) -> Dict:
@@ -87,13 +84,6 @@ class EcoNewsCommentClient(BaseClient):
         for reply in replies:
             self.delete_comment_with_children(reply["id"])
         return self.delete_comment_by_id(comment_id)
-
-    @allure.step("Count active replies for comment ID {parent_comment_id}")
-    def count_active_replies(self, parent_comment_id: int) -> int:
-        """Return the count of active replies for a comment."""
-        endpoint = f"/comments/{parent_comment_id}/replies/active/count"
-        response = self.get(endpoint)
-        return response.json().get("count", 0)
 
     @allure.step("Get comments count")
     def get_comments_count(self, news_id: int) -> Response:
@@ -130,3 +120,9 @@ class EcoNewsCommentClient(BaseClient):
         """Update comment"""
         endpoint = "/comments"
         return self.patch(endpoint, params={"commentId": comment_id}, json_patch=text)
+
+    @allure.step("Get comment replies count")
+    def get_comment_replies_count(self, parent_comment_id: int) -> Response:
+        """Get comment replies count"""
+        endpoint = f"/comments/{parent_comment_id}/replies/active/count"
+        return self.get(endpoint)

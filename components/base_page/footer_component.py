@@ -42,17 +42,17 @@ class FooterComponent(BaseComponent):
         "copyright_label": (By.ID, "copyright-label")}
 
     @allure.step("Click on footer logo")
-    def click_logo_link(self):
+    def click_logo_link(self) -> "HomePage":
         """Clicks the logo in the footer to navigate to the Home Page."""
         self.logo_link.click()
-        from pages.home_page import HomePage
+        from pages.home_page import HomePage # pylint: disable=import-outside-toplevel
         return HomePage(self.driver)
 
     @allure.step("Click on 'Eco news' link in footer")
-    def click_news_link(self):
+    def click_news_link(self) -> "NewsPage":
         """Clicks the 'Eco news' link in the footer."""
         self.news_link.click()
-        from pages.news_page import NewsPage
+        from pages.news_page import NewsPage # pylint: disable=import-outside-toplevel
         return NewsPage(self.driver)
 
     @allure.step("Click on 'Events' link in footer")
@@ -71,17 +71,17 @@ class FooterComponent(BaseComponent):
         self.about_link.click()  # from pages.about_us_page import AboutUsPage  # return AboutUsPage(self.driver)
 
     @allure.step("Click on 'My Space' link in footer")
-    def click_my_space_link(self):
+    def click_my_space_link(self) -> "MySpaceHabitsTabPage":
         """Clicks the 'My Space' (profile) link in the footer."""
         self.my_space_link.click()
-        from pages.my_space.my_space_habits_tab_page import MySpaceHabitsTabPage
+        from pages.my_space.my_space_habits_tab_page import MySpaceHabitsTabPage # pylint: disable=import-outside-toplevel
         return MySpaceHabitsTabPage(self.driver)
 
     @allure.step("Click on 'UBS Courier' link in footer")
-    def click_ubs_link(self):
+    def click_ubs_link(self) -> "UbsCourierPage":
         """Clicks the 'UBS Courier' link in the footer."""
         self.ubs_link.click()
-        from pages.ubs_courier_page import UbsCourierPage
+        from pages.ubs_courier_page import UbsCourierPage # pylint: disable=import-outside-toplevel
         return UbsCourierPage(self.driver)
 
     @allure.step("Click on Twitter icon")
