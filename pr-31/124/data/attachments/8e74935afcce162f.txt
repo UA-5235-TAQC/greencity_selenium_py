@@ -1,0 +1,4 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Getting comment by Id  [comment_id=2651]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/2651 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
