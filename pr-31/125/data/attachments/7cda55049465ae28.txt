@@ -1,4 +1,0 @@
-INFO     allure.step:logging_config.py:30 >> STEP  Deleting comment by Id  [comment_id=2807]
-INFO     allure.step:logging_config.py:35 STEP PASSED
-INFO     allure.step:logging_config.py:30 >> STEP  Delete EcoNews by ID: 5690  [eco_news_id=5690]
-INFO     allure.step:logging_config.py:35 STEP PASSED

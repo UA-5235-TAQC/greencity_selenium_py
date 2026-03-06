@@ -1,0 +1,20 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Open home page
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until home page is loaded
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="9dc99c3786105a4dfaa9316d03fb92b8", element="f.55B20A0DA6BFB50411BEF1982E044EDD.d.99158A5F066CA3B24349DE43FCEE69A6.e.30")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="9dc99c3786105a4dfaa9316d03fb92b8", element="f.55B20A0DA6BFB50411BEF1982E044EDD.d.99158A5F066CA3B24349DE43FCEE69A6.e.30")>, timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get the title of the current page
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click 'Eco News' link in header
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until Eco News page is opened
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="9dc99c3786105a4dfaa9316d03fb92b8", element="f.55B20A0DA6BFB50411BEF1982E044EDD.d.99158A5F066CA3B24349DE43FCEE69A6.e.36")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="9dc99c3786105a4dfaa9316d03fb92b8", element="f.55B20A0DA6BFB50411BEF1982E044EDD.d.99158A5F066CA3B24349DE43FCEE69A6.e.36")>, timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get the current URL of the page
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click header logo
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get the current URL of the page
+INFO     allure.step:logging_config.py:35 STEP PASSED
