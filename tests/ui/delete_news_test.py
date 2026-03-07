@@ -1,6 +1,5 @@
 import allure
-
-
+from allure_commons.types import Severity
 from data.config import Config
 from enums.news_tag import EcoNewsTag
 from pages.create_edit_news.create_news_page import CreateNewsPage
@@ -8,10 +7,17 @@ from pages.news_details_page import NewsDetailsPage
 from pages.news_page import NewsPage
 
 
-@allure.epic("Eco News")
-@allure.feature("News Management")
+@allure.epic("EcoNews UI")
+@allure.feature("Delete News")
 @allure.story("Create and Delete News Workflow")
+@allure.title("Verify that an author can create a news article and delete it successfully")
+@allure.tag("Delete News")
+@allure.severity(Severity.NORMAL)
 def test_create_and_delete_news(driver_with_login) -> None:
+    """
+    Verify that an author can create a news article, view it in the news list,
+    and delete it, ensuring it is no longer accessible afterwards.
+    """
     create_page = CreateNewsPage(driver_with_login)
     news_page = NewsPage(driver_with_login)
     details_page = NewsDetailsPage(driver_with_login)
@@ -60,6 +66,8 @@ def test_create_and_delete_news(driver_with_login) -> None:
         news_page.reload()
         if len(news_page.news_card_items) > 0:
             latest_news = news_page.get_latest_created_news()
-            assert latest_news.get_title() != news_data["title"], f"News with title '{news_data['title']}' still exists as the latest news card!"
+            assert latest_news.get_title() != news_data[
+                "title"], f"News with title '{news_data['title']}' still exists as the latest news card!"
             for card in news_page.news_card_items:
-                assert card.get_title() != news_data["title"], f"News with title '{news_data['title']}' still exists in the news list!"
+                assert card.get_title() != news_data[
+                    "title"], f"News with title '{news_data['title']}' still exists in the news list!"

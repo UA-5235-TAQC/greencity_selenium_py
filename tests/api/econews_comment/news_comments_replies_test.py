@@ -10,7 +10,7 @@ from tests.api.utils.comment_assertions import assert_comment_response, assert_p
 @allure.feature("EcoNews Comments")
 @allure.story("Verify replies and replies count for EcoNews comments")
 @allure.tag("EcoNewsComment API")
-@pytest.mark.severity(Severity.NORMAL)
+@allure.severity(Severity.NORMAL)
 @pytest.mark.usefixtures("create_comments")
 class TestEcoNewsCommentReplies:
     """Test suite verifies replies and replies count for EcoNews comments"""

@@ -45,10 +45,10 @@ class TestUnauthorizedEcoNewsById:
         assert_unauthorized(response)
 
 
-@pytest.mark.epic("EcoNews API")
-@pytest.mark.feature("Update EcoNews without image and Delete EcoNews")
-@pytest.mark.tag("EcoNewsById API")
-@pytest.mark.severity(Severity.NORMAL)
+@allure.epic("EcoNews API")
+@allure.feature("Update EcoNews without image and Delete EcoNews")
+@allure.tag("EcoNewsById API")
+@allure.severity(Severity.NORMAL)
 class TestEcoNewsById:
     """Test suite for EcoNews API operations by ID, including update and delete."""
 
@@ -128,10 +128,10 @@ class TestEcoNewsById:
         )
 
 
-@pytest.mark.epic("EcoNews API")
-@pytest.mark.feature("CRUD operations with created news with image")
-@pytest.mark.tag("EcoNewsById API")
-@pytest.mark.severity(Severity.NORMAL)
+@allure.epic("EcoNews API")
+@allure.feature("CRUD operations with created news with image")
+@allure.tag("EcoNewsById API")
+@allure.severity(Severity.NORMAL)
 class TestEcoNewsByIdWithImage:
     """ Test suite for verifying CRUD operations on EcoNews items with images. """
 
@@ -196,7 +196,6 @@ class TestEcoNewsByIdWithImage:
         """Test updating EcoNews with invalid ID, tags, title, or content."""
         client = created_eco_news_without_image_cleanup["client"]
 
-        dto_factory = EcoNewsUpdateFactory(created_eco_news_without_image_cleanup["eco_news_id"])
         first_news_request = create_news_uk()
         first_news_response = client.post_eco_news(first_news_request)
         first_news = first_news_response.json()

@@ -1,7 +1,6 @@
 from typing import List
-
 import allure
-
+from allure_commons.types import Severity
 from data.config import Config
 from enums.news_tag import EcoNewsTag
 from pages.create_edit_news.create_news_page import CreateNewsPage
@@ -14,9 +13,23 @@ TAGS_TO_SELECT: List[str] = [
     EcoNewsTag.EVENTS.ua,
 ]
 
-@allure.feature("Create News")
+
+@allure.epic("EcoNews UI")
+@allure.feature("Create EcoNews")
 @allure.story("Title field validation")
+@allure.title("Verify Title field validation during news creation")
+@allure.tag("Create News")
+@allure.severity(Severity.NORMAL)
 def test_title_field_validation(driver_with_login):
+    """
+    Test the Title field validation on the Create EcoNews page.
+
+    Scenarios:
+    1. Empty title should be invalid.
+    2. Title exceeding 170 characters should be invalid.
+    3. Correct title length should be valid, but Publish remains disabled until content and tag are filled.
+    4. Publish button becomes enabled after filling content and selecting a tag.
+    """
     with allure.step("Login and open create news page"):
         create_news_page = CreateNewsPage(driver_with_login)
         create_news_page.open().header.change_to_en()

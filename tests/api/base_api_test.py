@@ -1,10 +1,19 @@
+import allure
+from allure_commons.types import Severity
 from clients.own_security_client import OwnSecurityClient
 from data.config import Config
 from schemas.greencity_user.own_security import success_sign_in_schema
 from tests.utils.validators import validate_json
 
 
+@allure.epic("User API")
+@allure.feature("Authentication")
+@allure.story("User Sign In")
+@allure.title("Verify user can sign in and receive access token")
+@allure.tag("Auth API")
+@allure.severity(Severity.CRITICAL)
 def test_api_is_work():
+    """Verify that the user authentication API works correctly."""
     client = OwnSecurityClient(Config.BASE_GREEN_CITY_USER_API_URL)
     response = client.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
     print(response.json())

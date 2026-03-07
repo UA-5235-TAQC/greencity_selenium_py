@@ -1,22 +1,53 @@
 import allure
 from allure_commons.types import Severity
+import pytest
 from components.create_edit_news.image_component import ImageComponent
 from pages.create_edit_news.create_news_page import CreateNewsPage
 from data.ui_news_test_data import NewsTestData
 import pytest_check as check
+from pages.news_page import NewsPage
 
 
-@allure.tag("Create News")
-@allure.epic("EcoNews Management")
+@allure.epic("EcoNews UI")
 @allure.feature("Create News")
-@allure.story("Image upload validation for oversized files")
+@allure.tag("Create News")
 @allure.severity(Severity.NORMAL)
-@allure.issue("6")
 class TestUploadImage:
+    """
+    Test suite for verifying image upload behavior in the Create News page.
 
-    @allure.description("The test checks successful validation when uploading a valid PNG image")
+    Includes tests for:
+    - Uploading an image larger than 10MB (should fail)
+    - Uploading a valid PNG image (should succeed)
+    - Uploading an unsupported GIF image (should fail)
+    """
+
+    @allure.story("Image Size Validation")
+    @allure.title("Validation of error message when uploading an image larger than 10MB")
+    @pytest.mark.usefixtures("driver_with_login")
+    def test_image_size_validation(self, get_driver):
+        """
+        Verify that uploading an image larger than 10MB displays a validation error
+        and the image is not loaded.
+        """
+        create_news_page = CreateNewsPage(get_driver)
+        news_page = NewsPage(get_driver)
+
+        news_page.open()
+        assert "news" in get_driver.current_url, "URL should contain 'news' after opening news page"
+        news_page.click_create_news()
+        assert "create-news" in get_driver.current_url, "URL should contain 'create-news' after clicking 'Create news' button"
+        create_news_page.image_component.upload_image(NewsTestData.TOO_LARGE_IMAGE)
+        assert create_news_page.image_component.get_image_error() == \
+               "Upload only PNG or JPG. File size must be less than 10MB" or \
+               "Завантажуйте лише PNG або JPEG. Розмір файлу не повинен перевищувати 10Mb"
+        assert not create_news_page.image_component.is_uploaded_image_present(), "Image source should be empty for invalid image upload"
+
+    @allure.issue("6")
+    @allure.story("Image Size Validation")
+    @allure.title("The test checks successful validation when uploading a valid PNG image")
     def test_img_upload_positive(self, create_news_page: CreateNewsPage):
-        """ Verifying that a valid PNG image is being uploaded. """
+        """Verify that a valid PNG image is being uploaded."""
         image_component: ImageComponent = create_news_page.image_component
         image_component.upload_image(NewsTestData.SMALL_PNG_IMAGE)
 
@@ -44,9 +75,10 @@ class TestUploadImage:
         )
 
     @allure.issue("6")
-    @allure.description("The test checks validation error when uploading a GIF image (unsupported format)")
+    @allure.story("Check GIF upload (unsupported format)")
+    @allure.title("The test checks validation error when uploading a GIF image (unsupported format)")
     def test_img_upload_gif_negative(self, create_news_page: CreateNewsPage):
-        """ Checking GIF upload (unsupported format). """
+        """Check GIF upload (unsupported format)."""
         image_component: ImageComponent = create_news_page.image_component
         image_component.upload_image(NewsTestData.GIF_IMAGE)
 

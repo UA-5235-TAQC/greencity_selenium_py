@@ -1,3 +1,5 @@
+import allure
+from allure_commons.types import Severity
 from clients.eco_news_client import EcoNewsClient
 from data.config import Config
 from data.ui_news_test_data import NewsTestData
@@ -7,8 +9,17 @@ from models.eco_news_request import EcoNewsRequest
 from schemas.greencity.eco_news import eco_news_response_schema, eco_news_page_schema
 from tests.utils.validators import validate_json
 
-
+@allure.epic("EcoNews API")
+@allure.feature("EcoNews Management")
+@allure.story("Create news and verify it in news list")
+@allure.title("Create EcoNews with image and verify it via query")
+@allure.tag("EcoNews API")
+@allure.severity(Severity.NORMAL)
 def test_create_and_verify_news(auth_token):
+    """
+    Verify that a user can create an EcoNews item with an image
+    and retrieve it later using query parameters.
+    """
     eco_news_client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
 
     news_payload: EcoNewsRequest = EcoNewsRequest(
@@ -61,8 +72,14 @@ def test_create_and_verify_news(auth_token):
     delete_news_response = eco_news_client.delete_eco_news_by_id(news_id)
     assert delete_news_response.status_code == 200
 
-
+@allure.epic("EcoNews API")
+@allure.feature("EcoNews Management")
+@allure.story("Retrieve EcoNews list using query parameters")
+@allure.title("Get EcoNews list filtered by tags and author")
+@allure.tag("EcoNews API")
+@allure.severity(Severity.NORMAL)
 def test_get_news_success(auth_token):
+    """Verify that EcoNews items can be retrieved using query filters."""
     eco_news_client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
     query: EcoNewsQuery = EcoNewsQuery(
         tags=[EcoNewsTag.NEWS.en, EcoNewsTag.ADS.en],

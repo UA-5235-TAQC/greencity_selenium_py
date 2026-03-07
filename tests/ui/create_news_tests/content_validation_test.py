@@ -1,16 +1,30 @@
 import allure
+from allure_commons.types import Severity
 
+from data.ui_news_test_data import NewsTestData
 from pages.create_edit_news.create_news_page import CreateNewsPage
 import re
 
-VALID_CONTENT = "This is a valid test content"
 
-
+@allure.epic("EcoNews UI")
 @allure.feature("Create News")
+@allure.story("Content component validation")
 @allure.issue("7")
-@allure.story("Main Text field validation")
+@allure.title("Validate Main Text field for min/max length and Publish button state")
+@allure.tag("Create News")
+@allure.severity(Severity.NORMAL)
 def test_main_text_field_validation(driver_with_login):
+    """
+    Verify the validation behavior of the Main Text (content) field in the Create News form.
 
+    Steps:
+    1. Login and open Create News page.
+    2. Fill required fields except content.
+    3. Enter too short content (<20 characters) and verify error message and disabled Publish.
+    4. Enter too long content (>63,206 characters) and verify error message and disabled Publish.
+    5. Enter valid content (>=20 characters) and verify error disappears and Publish button is enabled.
+    6. Click Publish to submit the news.
+    """
     with allure.step("Login and open create news page"):
         create_news_page = CreateNewsPage(driver_with_login)
         create_news_page.open().header.change_to_en()
@@ -19,8 +33,6 @@ def test_main_text_field_validation(driver_with_login):
     with allure.step("Fill required fields except content"):
         create_news_page.enter_title("Test")
         create_news_page.select_tag("News")
-
-    # ---------- Too short content ----------
 
     with allure.step("Enter 10 characters in Main Text"):
         create_news_page.content_component.enter_content("Short text")
@@ -34,8 +46,6 @@ def test_main_text_field_validation(driver_with_login):
 
     with allure.step("Verify Publish button is disabled"):
         assert not create_news_page.is_publish_button_enabled()
-
-    # ---------- Too long content ----------
 
     with allure.step("Enter content longer than 63,206 characters"):
         too_long_content = "A" * 63207
@@ -51,18 +61,14 @@ def test_main_text_field_validation(driver_with_login):
     with allure.step("Verify Publish button is disabled for too long content"):
         assert not create_news_page.is_publish_button_enabled()
 
-    # ---------- Valid content ----------
-
     with allure.step("Enter valid content (25+ chars)"):
-        create_news_page.content_component.enter_content(VALID_CONTENT)
+        create_news_page.content_component.enter_content(NewsTestData.VALID_CONTENT)
 
     with allure.step("Verify error disappears"):
         assert create_news_page.content_component.is_content_valid()
 
     with allure.step("Verify Publish button becomes enabled"):
         assert create_news_page.is_publish_button_enabled()
-
-    # ---------- Publish ----------
 
     with allure.step("Click Publish"):
         create_news_page.click_publish()

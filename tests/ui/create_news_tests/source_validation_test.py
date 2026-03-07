@@ -1,8 +1,7 @@
 import allure
-
+from allure_commons.types import Severity
 from enums.news_tag import EcoNewsTag
 from pages.news_page import NewsPage
-
 
 NEWS_TITLE = "Hello World"
 SOURCE_LINK = "hello"
@@ -11,11 +10,21 @@ CONTENT = "Olaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 TAGS = [EcoNewsTag.NEWS.en, EcoNewsTag.ADS.en]
 
 
-@allure.epic("UI Tests")
-@allure.feature("News Creation")
+@allure.epic("EcoNews UI")
+@allure.feature("Create EcoNews")
 @allure.story("Source Field Validation")
+@allure.title("Verify Source field validation during news creation")
+@allure.tag("Create News")
+@allure.severity(Severity.NORMAL)
 def test_source_field_validation(driver_with_login):
+    """
+    Verify the behavior of the Source field in the Create EcoNews page.
 
+    Scenarios:
+    1. Create a news item with mandatory fields only and publish successfully.
+    2. Attempt to create a news item with an invalid source link.
+       Verify that the validation error is displayed and the Publish button is disabled.
+    """
     create_news = NewsPage(driver_with_login).open().click_create_news()
 
     with allure.step("Create news with mandatory fields"):
@@ -51,9 +60,3 @@ def test_source_field_validation(driver_with_login):
         assert create_news.content_component.get_content_text() == CONTENT, "Content text did not match"
         assert SOURCE_FIELD_ERROR_MESSAGE in create_news.get_source_message_text()
         assert not create_news.is_publish_button_enabled(), "Publish button should be disabled"
-
-
-
-
-
-

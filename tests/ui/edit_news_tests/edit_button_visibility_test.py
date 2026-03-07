@@ -4,15 +4,15 @@ from pages.news_details_page import NewsDetailsPage
 
 
 @allure.tag("Edit News")
-@allure.epic("EcoNews Management")
-@allure.feature("Edit existing news")
+@allure.epic("EcoNews UI")
+@allure.feature("Edit News")
 @allure.story("Verify that only the author can see the 'Edit news' button")
 @allure.severity(Severity.CRITICAL)
 class TestEditButtonVisibility:
     """ Verify that the 'Edit news' button is visible and enabled only to the author of the news. """
 
     @allure.issue("11")
-    @allure.description("Verify that the 'Edit news' button is visible only to the author of the news")
+    @allure.title("Verify that the 'Edit news' button is visible only to the author of the news")
     def test_edit_button_visible_to_author(self, eco_news_details_page: NewsDetailsPage):
         """ Verify that the 'Edit news' button is visible and enabled only to the author of the news. """
         eco_news_details_page.header.change_to_en()
@@ -22,7 +22,7 @@ class TestEditButtonVisibility:
 
 
     @allure.issue("12")
-    @allure.description("Verify that the 'Edit news' button is not visible for news created by other users")
+    @allure.title("Verify that the 'Edit news' button is not visible for news created by other users")
     def test_edit_button_not_visible_to_other_users(self, get_driver):
         """ Verify that the 'Edit news' button is NOT visible for news created by another user. """
         another_author_news_id = 564
