@@ -1,4 +1,0 @@
-INFO     allure.step:logging_config.py:30 >> STEP  Open home page
-INFO     allure.step:logging_config.py:30 >> STEP  Wait until home page is loaded
-WARNING  allure.step:logging_config.py:37 STEP FAILED  TypeError: presence_of_element_located() takes 1 positional argument but 2 were given
-WARNING  allure.step:logging_config.py:37 STEP FAILED  TypeError: presence_of_element_located() takes 1 positional argument but 2 were given
