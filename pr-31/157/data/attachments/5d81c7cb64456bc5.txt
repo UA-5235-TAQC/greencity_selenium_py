@@ -1,0 +1,70 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Open home page
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until home page is loaded
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="2519273c3387fa708ac9bf9c1df7deca", element="f.1843A2D48C17072C401559D4DBFE561B.d.18DECDFFAF3E56D9B932851AD0688E42.e.12")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="2519273c3387fa708ac9bf9c1df7deca", element="f.1843A2D48C17072C401559D4DBFE561B.d.18DECDFFAF3E56D9B932851AD0688E42.e.12")>, timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Change language to English
+INFO     allure.step:logging_config.py:30 >> STEP  Get current locale
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click 'Sign In' link in header
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Enter email and password values  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+INFO     allure.step:logging_config.py:30 >> STEP  Enter value in email field  [email='testtestovich611@gmail.com']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Enter value in password field  [password='!Testtestovich611!']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click submit button
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until cancel modal is closed  [timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until My Space Habits tab is fully opened  [timeout=10]
+INFO     allure.step:logging_config.py:30 >> STEP  Verify that My Space Habits tab is opened
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="2519273c3387fa708ac9bf9c1df7deca", element="f.1843A2D48C17072C401559D4DBFE561B.d.18DECDFFAF3E56D9B932851AD0688E42.e.84")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="2519273c3387fa708ac9bf9c1df7deca", element="f.1843A2D48C17072C401559D4DBFE561B.d.18DECDFFAF3E56D9B932851AD0688E42.e.84")>, timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Open Create News page and switch language to English
+INFO     allure.step:logging_config.py:30 >> STEP  Open Create News page
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Change language to English
+INFO     allure.step:logging_config.py:30 >> STEP  Get current locale
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Check if Create/Edit News page is opened
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Fill the news creation form
+INFO     allure.step:logging_config.py:30 >> STEP  Enter news title: 'Test'  [title='Test']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Clear and enter content text: 'Test content with 20 chars'  [text='Test content with 20 chars']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click Cancel button
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Verify confirmation modal is displayed
+INFO     allure.step:logging_config.py:30 >> STEP  Check if the component is visible
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Verify modal warning text
+INFO     allure.step:logging_config.py:30 >> STEP  Get warning title text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get warning subtitle text
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Confirm cancellation
+INFO     allure.step:logging_config.py:30 >> STEP  Click 'Yes, cancel' button in cancel modal
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until user is redirected from Create News page
+INFO     allure.step:logging_config.py:30 >> STEP  Wait for a custom lambda condition.  [condition=<function test_cancel_button_behavior.<locals>.<lambda> at 0x7f0a50635bc0>, timeout=None]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Verify redirection to UBS Courier page
+INFO     allure.step:logging_config.py:30 >> STEP  Check that UBS Courier page is opened
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Verify that Create News URL is no longer present
+INFO     allure.step:logging_config.py:35 STEP PASSED

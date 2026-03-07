@@ -1,0 +1,193 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Verify that a valid PNG image is being uploaded.","205","The test checks successful validation when uploading a valid PNG image","tests.ui.create_news_tests","Sat Mar 07 11:54:53 UTC 2026","passed","Sat Mar 07 11:54:54 UTC 2026","TestUploadImage","upload_image_test","",""
+"Verify that the Edit News page disables the Edit button and highlights the title field when the title is empty","590","test_empty_title_field[chrome]","tests.ui.edit_news_tests","Sat Mar 07 11:56:38 UTC 2026","passed","Sat Mar 07 11:56:38 UTC 2026","","empty_title_validation_test","",""
+"Verify that a user can like a comment.","350","Like comment","tests.api.econews_comment","Sat Mar 07 11:51:58 UTC 2026","passed","Sat Mar 07 11:51:58 UTC 2026","TestNewsComments","news_comments_api_test","",""
+"
+        Verify that uploading an image larger than 10MB displays a validation error
+        and the image is not loaded.
+        ","10351","Validation of error message when uploading an image larger than 10MB","tests.ui.create_news_tests","Sat Mar 07 11:54:36 UTC 2026","passed","Sat Mar 07 11:54:47 UTC 2026","TestUploadImage","upload_image_test","",""
+"
+    Verify that an author can create a news article, view it in the news list,
+    and delete it, ensuring it is no longer accessible afterwards.
+    ","5350","Verify that an author can create a news article and delete it successfully","tests.ui","Sat Mar 07 11:55:16 UTC 2026","passed","Sat Mar 07 11:55:21 UTC 2026","","delete_news_test","",""
+"Test checks selection of three tags.","1681","Check selection of three tags","tests.ui.create_news_tests","Sat Mar 07 11:53:24 UTC 2026","passed","Sat Mar 07 11:53:26 UTC 2026","TestTagSelection","tag_selection_test","",""
+"
+    Verify that the user can cancel the EcoNews creation process.
+
+    Steps:
+    1. Open the Create News page and switch language to English.
+    2. Fill in the news title and content.
+    3. Click the Cancel button.
+    4. Verify that the cancellation confirmation modal appears.
+    5. Verify the modal text content.
+    6. Confirm cancellation.
+    7. Verify that the user is redirected away from the Create News page.
+    ","1304","Verify cancel button behavior and redirection after confirmation","tests.ui.create_news_tests","Sat Mar 07 11:52:17 UTC 2026","passed","Sat Mar 07 11:52:18 UTC 2026","","cancel_creating_test","",""
+"Test that adding the same news item to favorites twice results in an error.","526","Add the same news twice - Error 400","tests.api.econews_by_id","Sat Mar 07 11:51:52 UTC 2026","passed","Sat Mar 07 11:51:53 UTC 2026","TestFavoriteEcoNews","test_favorites","",""
+"
+        Test publishing news with predefined NewsTestData for one or multiple tags.
+        Language param selects English ('en') or Ukrainian ('ua') data.
+        ","2045","Verify Create News publishing with multiple tags in different locales","tests.ui.create_news_tests","Sat Mar 07 11:53:49 UTC 2026","passed","Sat Mar 07 11:53:51 UTC 2026","TestTagSelection","tag_selection_test","",""
+"Verify that an authorized user can successfully delete an existing EcoNews item","1130","test_delete_eco_news_by_id","tests.api.econews_by_id","Sat Mar 07 11:51:43 UTC 2026","passed","Sat Mar 07 11:51:44 UTC 2026","TestEcoNewsById","econews_by_id_test","",""
+"
+    Verify that when editing a news item, if the user clicks Cancel and confirms,
+    all changes are discarded and the original content remains unchanged upon reopening.
+    ","1344","Verify that canceling edit discards changes and original content remains","tests.ui.edit_news_tests","Sat Mar 07 11:56:46 UTC 2026","passed","Sat Mar 07 11:56:47 UTC 2026","","test_cancel_editing","",""
+"Verify that a comment dislike status toggles correctly.","593","Verify that a comment dislike status toggles correctly","tests.api.econews_comment","Sat Mar 07 11:51:55 UTC 2026","passed","Sat Mar 07 11:51:55 UTC 2026","","news_comments_api_test","",""
+" Verify that the 'Edit news' button is visible and enabled only to the author of the news. ","70","Verify that the 'Edit news' button is visible only to the author of the news","tests.ui.edit_news_tests","Sat Mar 07 11:55:30 UTC 2026","passed","Sat Mar 07 11:55:30 UTC 2026","TestEditButtonVisibility","edit_button_visibility_test","",""
+"Verify that the user authentication API works correctly.","887","Verify user can sign in and receive access token","tests.api","Sat Mar 07 11:51:40 UTC 2026","passed","Sat Mar 07 11:51:40 UTC 2026","","base_api_test","",""
+"Test adding a news item to favorites and then removing it.","688","Add and remove news from favorites (Authorized)","tests.api.econews_by_id","Sat Mar 07 11:51:51 UTC 2026","passed","Sat Mar 07 11:51:51 UTC 2026","TestFavoriteEcoNews","test_favorites","",""
+"
+    Verify the validation behavior of the Main Text (content) field in the Create News form.
+
+    Steps:
+    1. Login and open Create News page.
+    2. Fill required fields except content.
+    3. Enter too short content (<20 characters) and verify error message and disabled Publish.
+    4. Enter too long content (>63,206 characters) and verify error message and disabled Publish.
+    5. Enter valid content (>=20 characters) and verify error disappears and Publish button is enabled.
+    6. Click Publish to submit the news.
+    ","11448","Validate Main Text field for min/max length and Publish button state","tests.ui.create_news_tests","Sat Mar 07 11:52:24 UTC 2026","broken","Sat Mar 07 11:52:35 UTC 2026","","content_validation_test","",""
+"Test checks selection of one tag.","1432","Check selection of one tag","tests.ui.create_news_tests","Sat Mar 07 11:53:17 UTC 2026","passed","Sat Mar 07 11:53:18 UTC 2026","TestTagSelection","tag_selection_test","",""
+"
+    Test the Title field validation on the Create EcoNews page.
+
+    Scenarios:
+    1. Empty title should be invalid.
+    2. Title exceeding 170 characters should be invalid.
+    3. Correct title length should be valid, but Publish remains disabled until content and tag are filled.
+    4. Publish button becomes enabled after filling content and selecting a tag.
+    ","1371","Verify Title field validation during news creation","tests.ui.create_news_tests","Sat Mar 07 11:54:29 UTC 2026","passed","Sat Mar 07 11:54:30 UTC 2026","","title_validation_test","",""
+"Test verifies that selecting a 4th tag is blocked.","1046","Verify that selecting a 4th tag is blocked","tests.ui.create_news_tests","Sat Mar 07 11:53:32 UTC 2026","passed","Sat Mar 07 11:53:33 UTC 2026","TestTagSelection","tag_selection_test","",""
+"Verify that active replies for a comment can be retrieved successfully without query parameters.","528","test_get_active_replies_default","tests.api.econews_comment","Sat Mar 07 11:52:03 UTC 2026","passed","Sat Mar 07 11:52:04 UTC 2026","TestEcoNewsCommentReplies","news_comments_replies_test","",""
+"
+    Test to validate that editing EcoNews with content shorter than 20 characters is rejected.
+
+    Steps:
+    1. Open existing news in Edit News page.
+    2. Enter invalid content with less than 20 characters.
+    3. Verify that content field is marked as invalid.
+    4. Fill valid title and select a tag.
+    5. Verify that the Edit button remains disabled due to invalid content.
+    ","929","Verify that content shorter than 20 characters is not accepted when editing news","tests.ui.edit_news_tests","Sat Mar 07 11:56:56 UTC 2026","passed","Sat Mar 07 11:56:57 UTC 2026","","too_short_content_test","",""
+"
+    Verify that the GreenCity main page loads and
+    the browser title starts with 'GreenCity'.
+    ","5","Verify GreenCity main page loads correctly","tests.ui","Sat Mar 07 11:56:58 UTC 2026","passed","Sat Mar 07 11:56:58 UTC 2026","","test_stub","",""
+"
+    Test goals:
+    1. Navigate to 'Create News' page.
+    2. Fill title and content.
+    3. Verify preview page data (title, text, date, author).
+    4. Verify navigation back to the creation page.
+","873","Verify news preview content and navigation back to edit","tests.ui.create_news_tests","Sat Mar 07 11:54:22 UTC 2026","passed","Sat Mar 07 11:54:23 UTC 2026","","test_basic_preview_functionality","",""
+"Verify that updating EcoNews with invalid id, tag, title, content returns 400 Bad Request","2030","test_update_eco_news_by_id_should_return_400","tests.api.econews_by_id","Sat Mar 07 11:51:47 UTC 2026","passed","Sat Mar 07 11:51:49 UTC 2026","TestEcoNewsByIdWithImage","econews_by_id_test","",""
+"Verify that EcoNews can be retrieved in English and Ukrainian using lang parameter.","246","test_get_eco_news_by_lang[en-Title in English should not be null]","tests.api.econews_by_id","Sat Mar 07 11:51:46 UTC 2026","passed","Sat Mar 07 11:51:46 UTC 2026","TestEcoNewsByIdWithImage","econews_by_id_test","",""
+"Verify that updating EcoNews with a specific image is successful","557","test_update_eco_news_by_id_with_image","tests.api.econews_by_id","Sat Mar 07 11:51:49 UTC 2026","passed","Sat Mar 07 11:51:49 UTC 2026","TestEcoNewsByIdWithImage","econews_by_id_test","",""
+"Check GIF upload (unsupported format).","10153","The test checks validation error when uploading a GIF image (unsupported format)","tests.ui.create_news_tests","Sat Mar 07 11:55:00 UTC 2026","passed","Sat Mar 07 11:55:10 UTC 2026","TestUploadImage","upload_image_test","",""
+"Verify that a comment can be successfully updated.","683","Verify that a comment can be successfully updated","tests.api.econews_comment","Sat Mar 07 11:51:55 UTC 2026","passed","Sat Mar 07 11:51:56 UTC 2026","","news_comments_api_test","",""
+"Verify that EcoNews can be successfully retrieved by ID.","259","test_get_eco_news_by_id","tests.api.econews_by_id","Sat Mar 07 11:51:45 UTC 2026","passed","Sat Mar 07 11:51:46 UTC 2026","TestEcoNewsByIdWithImage","econews_by_id_test","",""
+"Verify that active replies for a comment can be retrieved when page size is set to 1.","538","test_get_active_replies_size_one","tests.api.econews_comment","Sat Mar 07 11:52:04 UTC 2026","passed","Sat Mar 07 11:52:05 UTC 2026","TestEcoNewsCommentReplies","news_comments_replies_test","",""
+"Verify that EcoNews can be retrieved in English and Ukrainian using lang parameter.","471","test_get_eco_news_by_lang[uk-Title in Ukrainian should not be null]","tests.api.econews_by_id","Sat Mar 07 11:51:46 UTC 2026","passed","Sat Mar 07 11:51:46 UTC 2026","TestEcoNewsByIdWithImage","econews_by_id_test","",""
+"Verify that deleting a non-existing EcoNews returns 404 Not Found","276","test_delete_non_existing_eco_news_should_return_404","tests.api.econews_by_id","Sat Mar 07 11:51:44 UTC 2026","passed","Sat Mar 07 11:51:45 UTC 2026","TestEcoNewsById","econews_by_id_test","",""
+" Verify that the 'Edit news' button is NOT visible for news created by another user. ","10599","Verify that the 'Edit news' button is not visible for news created by other users","tests.ui.edit_news_tests","Sat Mar 07 11:55:31 UTC 2026","passed","Sat Mar 07 11:55:42 UTC 2026","TestEditButtonVisibility","edit_button_visibility_test","",""
+"
+    Test to validate all fields and interactions in the Edit News form.
+
+    Steps:
+    1. Set window size and switch language.
+    2. Verify Title field behavior: append, prepend, remove characters.
+    3. Verify Tags field: selection, deselection, limits.
+    4. Verify Image Upload component: visibility, error messages, cropper buttons, change image.
+    5. Verify Source field: value, validation message.
+    6. Verify Content field: visibility, toolbar, counter, messages, append/prepend/remove content.
+    7. Verify Author field.
+    8. Verify Post Date field.
+    9. Verify Publish/Edit, Preview, Cancel buttons.
+    10. Verify Cancel modal functionality.
+    11. Verify News Preview page.
+    12. Verify Edit News after returning from preview.
+    ","10196","Verify that the Create News form contains the particular fields.","tests.ui.edit_news_tests","Sat Mar 07 11:55:50 UTC 2026","passed","Sat Mar 07 11:56:00 UTC 2026","","edit_news_form_visibility_test","",""
+"Verify that the EcoNews API returns a list of available tags.","269","Get EcoNews tags by language","tests.api","Sat Mar 07 11:52:09 UTC 2026","passed","Sat Mar 07 11:52:09 UTC 2026","","test_get_tags","",""
+"Verify that active replies for a comment can be retrieved for a specific page (page=0, size=10).","550","test_get_active_replies_with_page","tests.api.econews_comment","Sat Mar 07 11:52:04 UTC 2026","passed","Sat Mar 07 11:52:04 UTC 2026","TestEcoNewsCommentReplies","news_comments_replies_test","",""
+"Verify that requesting a non-existing EcoNews returns 404 status code.","484","test_get_non_existing_eco_news_should_return_404","tests.api.econews_by_id","Sat Mar 07 11:51:46 UTC 2026","passed","Sat Mar 07 11:51:47 UTC 2026","TestEcoNewsByIdWithImage","econews_by_id_test","",""
+"
+    Verify that a user can create an EcoNews item with an image
+    and retrieve it later using query parameters.
+    ","1046","Create EcoNews with image and verify it via query","tests.api","Sat Mar 07 11:52:07 UTC 2026","passed","Sat Mar 07 11:52:09 UTC 2026","","test_create_news_success","",""
+"Verify that the comments count for a news item increases after adding a new comment.","903","Verify comments count increases after adding a comment","tests.api.econews_comment","Sat Mar 07 11:51:54 UTC 2026","passed","Sat Mar 07 11:51:55 UTC 2026","","news_comments_api_test","",""
+"Verify that updating EcoNews without providing an image works correctly","484","test_update_eco_news_by_id_without_image","tests.api.econews_by_id","Sat Mar 07 11:51:43 UTC 2026","passed","Sat Mar 07 11:51:43 UTC 2026","TestEcoNewsById","econews_by_id_test","",""
+"Verify that updating EcoNews without authorization returns 401 status code.","390","test_update_eco_news_by_id_without_token","tests.api.econews_by_id","Sat Mar 07 11:51:41 UTC 2026","passed","Sat Mar 07 11:51:41 UTC 2026","TestUnauthorizedEcoNewsById","econews_by_id_test","",""
+"
+    Verify that the user can navigate from Home page to News page
+    and back to Home page using logo.
+    ","2508","Verify main navigation links work correctly","tests.ui","Sat Mar 07 11:56:59 UTC 2026","passed","Sat Mar 07 11:57:02 UTC 2026","","test_stub","",""
+"
+    Test to validate all fields and interactions in the Edit News form.
+
+    Steps:
+    1. Set window size and switch language.
+    2. Verify Title field behavior: append, prepend, remove characters.
+    3. Verify Tags field: selection, deselection, limits.
+    4. Verify Image Upload component: visibility, error messages, cropper buttons, change image.
+    5. Verify Source field: value, validation message.
+    6. Verify Content field: visibility, toolbar, counter, messages, append/prepend/remove content.
+    7. Verify Author field.
+    8. Verify Post Date field.
+    9. Verify Publish/Edit, Preview, Cancel buttons.
+    10. Verify Cancel modal functionality.
+    11. Verify News Preview page.
+    12. Verify Edit News after returning from preview.
+    ","10433","Verify that the Create News form contains the particular fields.","tests.ui.edit_news_tests","Sat Mar 07 11:56:09 UTC 2026","passed","Sat Mar 07 11:56:19 UTC 2026","","edit_news_form_visibility_test","",""
+"Verify that deleting EcoNews without authorization returns 401 status code.","497","test_delete_eco_news_by_id_without_token","tests.api.econews_by_id","Sat Mar 07 11:51:41 UTC 2026","passed","Sat Mar 07 11:51:42 UTC 2026","TestUnauthorizedEcoNewsById","econews_by_id_test","",""
+"
+        Test publishing news with predefined NewsTestData for one or multiple tags.
+        Language param selects English ('en') or Ukrainian ('ua') data.
+        ","2144","Verify Create News publishing with multiple tags in different locales","tests.ui.create_news_tests","Sat Mar 07 11:53:57 UTC 2026","passed","Sat Mar 07 11:53:59 UTC 2026","TestTagSelection","tag_selection_test","",""
+"Test that adding a news item to favorites without authentication returns 401.","229","Attempt to add to favorites without token - Error 401","tests.api.econews_by_id","Sat Mar 07 11:51:53 UTC 2026","passed","Sat Mar 07 11:51:54 UTC 2026","TestFavoriteEcoNews","test_favorites","",""
+" Test creating news with exactly three tags. ","1849","Verify creating news with three tags","tests.ui.create_news_tests","Sat Mar 07 11:54:14 UTC 2026","passed","Sat Mar 07 11:54:16 UTC 2026","TestTagSelection","tag_selection_test","",""
+"Verify that a comment can be retrieved by its ID.","275","Get comment by ID","tests.api.econews_comment","Sat Mar 07 11:51:59 UTC 2026","passed","Sat Mar 07 11:51:59 UTC 2026","TestNewsComments","news_comments_api_test","",""
+" Test that selecting a fourth tag is blocked (max 3 tags selectable). ","1628","Verify max 3 tags selectable behavior","tests.ui.create_news_tests","Sat Mar 07 11:53:40 UTC 2026","passed","Sat Mar 07 11:53:42 UTC 2026","TestTagSelection","tag_selection_test","",""
+"Verify that EcoNews items can be retrieved using query filters.","345","Get EcoNews list filtered by tags and author","tests.api","Sat Mar 07 11:52:09 UTC 2026","passed","Sat Mar 07 11:52:09 UTC 2026","","test_create_news_success","",""
+" Test creating news with a single tag. ","1678","Verify creating news with single tag","tests.ui.create_news_tests","Sat Mar 07 11:54:06 UTC 2026","passed","Sat Mar 07 11:54:08 UTC 2026","TestTagSelection","tag_selection_test","",""
+"
+    Verify the behavior of the Source field in the Create EcoNews page.
+
+    Scenarios:
+    1. Create a news item with mandatory fields only and publish successfully.
+    2. Attempt to create a news item with an invalid source link.
+       Verify that the validation error is displayed and the Publish button is disabled.
+    ","2345","Verify Source field validation during news creation","tests.ui.create_news_tests","Sat Mar 07 11:53:08 UTC 2026","passed","Sat Mar 07 11:53:10 UTC 2026","","source_validation_test","",""
+"Verify that a user can delete their comment by ID.","312","Delete comment by ID","tests.api.econews_comment","Sat Mar 07 11:52:00 UTC 2026","passed","Sat Mar 07 11:52:00 UTC 2026","TestNewsComments","news_comments_api_test","",""
+"Verify that a user can successfully add a comment to an eco news item with an image.","409","Add comment to eco news","tests.api.econews_comment","Sat Mar 07 11:51:56 UTC 2026","passed","Sat Mar 07 11:51:57 UTC 2026","TestNewsComments","news_comments_api_test","",""
+"
+    Verify that all fields in the Create News form are visible and have correct default values.
+
+    Steps:
+    1. Set window size and language.
+    2. Verify title field and counter.
+    3. Verify tags visibility and default selection.
+    4. Verify image upload component.
+    5. Verify source field visibility and default value.
+    6. Verify content field, toolbar, counter, and default text.
+    7. Verify author field visibility and value.
+    8. Verify post date field visibility.
+    9. Verify action buttons (Cancel, Preview, Publish) visibility.
+    10. Verify that all fields except author match expected language-specific data.
+    ","6554","Verify that the Create News form contains the particular fields.","tests.ui.create_news_tests","Sat Mar 07 11:52:55 UTC 2026","passed","Sat Mar 07 11:53:02 UTC 2026","","create_news_form_visibility_test","",""
+"Verify that the author can edit their own news and the changes are saved","2986","test_verify_author_can_edit_own_news[chrome]","tests.ui.edit_news_tests","Sat Mar 07 11:56:27 UTC 2026","passed","Sat Mar 07 11:56:30 UTC 2026","","edit_own_news_test","",""
+"
+    Verify that all fields in the Create News form are visible and have correct default values.
+
+    Steps:
+    1. Set window size and language.
+    2. Verify title field and counter.
+    3. Verify tags visibility and default selection.
+    4. Verify image upload component.
+    5. Verify source field visibility and default value.
+    6. Verify content field, toolbar, counter, and default text.
+    7. Verify author field visibility and value.
+    8. Verify post date field visibility.
+    9. Verify action buttons (Cancel, Preview, Publish) visibility.
+    10. Verify that all fields except author match expected language-specific data.
+    ","6568","Verify that the Create News form contains the particular fields.","tests.ui.create_news_tests","Sat Mar 07 11:52:43 UTC 2026","passed","Sat Mar 07 11:52:49 UTC 2026","","create_news_form_visibility_test","",""
