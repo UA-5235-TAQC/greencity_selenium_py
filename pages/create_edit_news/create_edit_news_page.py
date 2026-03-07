@@ -287,8 +287,10 @@ class CreateEditNewsPage(BasePage):
         self.wait_until_visible(self.post_date)
         return self
 
+    @allure.step("Check that Title field is valid")
     def is_title_valid(self) -> bool:
-        self.title_input.get_attribute("ng-invalid")
+        """Verify whether the Title field is valid."""
+        return "ng-invalid" not in self.title_input.get_attribute("class")
 
     @allure.step("Click the preview button")
     def click_preview_button(self) -> "NewsPreviewPage":

@@ -27,6 +27,7 @@ def test_main_text_field_validation(driver_with_login):
     """
     with allure.step("Login and open create news page"):
         create_news_page = CreateNewsPage(driver_with_login)
+        create_news_page.set_window_size(2560, 1440)
         create_news_page.open().header.change_to_en()
         assert "/news/create-news" in create_news_page.get_current_url()
 
@@ -71,4 +72,4 @@ def test_main_text_field_validation(driver_with_login):
         assert create_news_page.is_publish_button_enabled()
 
     with allure.step("Click Publish"):
-        create_news_page.click_publish()
+        create_news_page.click_publish_ubs()

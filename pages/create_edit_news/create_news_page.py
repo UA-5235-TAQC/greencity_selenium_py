@@ -29,13 +29,26 @@ class CreateNewsPage(CreateEditNewsPage):
         """Checks if the Publish button is clickable (enabled)."""
         return self.publish_btn.is_enabled()
 
-    @allure.step("Click Publish button")
-    def click_publish(self) -> "NewsPage":
-        """Performs a click action on the Publish button."""
+    def _click_publish_button(self) -> None:
+        """Wait for and click the Publish button."""
         self.wait_for(EC.element_to_be_clickable(self.publish_btn))
         self.publish_btn.click()
+
+    @allure.step("Click Publish button")
+    def click_publish(self) -> "NewsPage":
+        """Click the Publish button and open the Eco News page."""
+        self._click_publish_button()
+
         from pages.news_page import NewsPage  # pylint: disable=import-outside-toplevel
         return NewsPage(self.driver).wait_until_opened()
+
+    @allure.step("Click Publish button and open UBS page")
+    def click_publish_ubs(self) -> "UbsCourierPage":
+        """Click the Publish button and open the UBS Courier page."""
+        self._click_publish_button()
+
+        from pages.ubs_courier_page import UbsCourierPage  # pylint: disable=import-outside-toplevel
+        return UbsCourierPage(self.driver).wait_until_opened()
 
     @allure.step("Get Publish button text")
     def get_publish_button_text(self) -> str:

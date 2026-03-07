@@ -101,7 +101,6 @@ class TestNewsComments:
         "Verify that a user can successfully add a comment to an eco news item with an image."
     )
     @allure.severity(Severity.NORMAL)
-    @pytest.mark.dependency(name="add_comment_to_eco_news")
     def test_add_comment_to_eco_news(self, created_eco_news_without_image_cleanup):
         """Test: Add a comment to eco news."""
         client: EcoNewsClient = created_eco_news_without_image_cleanup["client"]
