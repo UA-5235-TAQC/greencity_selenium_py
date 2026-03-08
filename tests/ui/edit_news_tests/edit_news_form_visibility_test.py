@@ -2,13 +2,13 @@ import allure
 import pytest_check as check
 
 from data.config import Config
+from data.ui_news_test_data import TEST_TAGS, TEST2_FILE
 from enums.news_tag import EcoNewsTag
 from pages.create_edit_news.edit_news_page import EditNewsPage
 from pages.create_edit_news.news_preview_page import NewsPreviewPage
 from pages.news_page import NewsPage
 from data.language_data import EDIT_NEWS_LANGUAGE_DATA
 from tests.utils.merge_tags import merge_tags_unique
-from data.ui_news_test_data import NewsTestData
 from utils.date_utils import DateUtils
 
 
@@ -113,7 +113,7 @@ def test_verify_edit_news_form_fields_visibility(edit_news_page_with_language: E
         check_tags(
             edit_news_page,
             get_all_tags_fn=tags_config["get_all"],
-            test_tags=tags_config["get_selected"](NewsTestData.TEST_TAGS),
+            test_tags=tags_config["get_selected"](TEST_TAGS),
             new_tags=tags_config["get_selected"]([EcoNewsTag.EVENTS, EcoNewsTag.EDUCATION]),
             tags_to_select=tags_config["get_selected"]([EcoNewsTag.INITIATIVES, EcoNewsTag.ADS])
         )
@@ -130,7 +130,7 @@ def test_verify_edit_news_form_fields_visibility(edit_news_page_with_language: E
         check.equal(image_component.get_cancel_cropper_text(), data["cancel_cropper"])
         check.equal(image_component.get_submit_cropper_text(), data["submit_cropper"])
 
-        image_component = image_component.change_image(NewsTestData.TEST2_FILE)
+        image_component = image_component.change_image(TEST2_FILE)
 
         assert image_component.is_preview_image_visible(), "Preview image should be visible"
         assert image_component.get_preview_image_src() != "", "Preview image src should not be empty"

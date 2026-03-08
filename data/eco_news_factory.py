@@ -13,7 +13,6 @@ TITLE_EN: str = "Welcome to Wikipedia"  # pylint: disable=C0103
 CONTENT_EN: str = "The Saxe-Goldstein hypothesis is a prediction in archaeology "
 "about the relationship between a society's funerary practices "
 "and its social organization."  # pylint: disable=C0103, W0105
-
 SHORT_INFO_EN: str = "The main page of Wikipedia in English"  # pylint: disable=C0103
 SOURCE_EN: str = "https://en.wikipedia.org/wiki/Main_Page"  # pylint: disable=C0103
 

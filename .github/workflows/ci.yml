@@ -51,12 +51,17 @@ jobs:
           BASE_UI_GREEN_CITY_URL: ${{ secrets.BASE_UI_GREEN_CITY_URL }}
           HEADLESS_MODE: ${{ secrets.HEADLESS_MODE }}
           IMPLICITLY_WAIT: ${{ secrets.IMPLICITLY_WAIT }}
+          EXPLICITLY_WAIT: ${{ secrets.EXPLICITLY_WAIT }}
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
           USER_ID: ${{ secrets.USER_ID }}
           USER_LOCATION: ${{ secrets.USER_LOCATION }}
           USER_NAME: ${{ secrets.USER_NAME }}
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
-          FAVORITE_NEWS_ID: ${{ secrets.FAVORITE_NEWS_ID }}
+          REQUEST_WAIT: ${{ secrets.REQUEST_WAIT }}
+          SECOND_USER_EMAIL: ${{ secrets.SECOND_USER_EMAIL }}
+          SECOND_USER_NAME: ${{ secrets.SECOND_USER_NAME }}
+          SECOND_USER_PASSWORD: ${{ secrets.SECOND_USER_PASSWORD }}
+          SECOND_USER_ID: ${{ secrets.SECOND_USER_ID }}
 
       - name: Get Allure history
         uses: actions/checkout@v4

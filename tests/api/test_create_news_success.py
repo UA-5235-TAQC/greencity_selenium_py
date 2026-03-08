@@ -2,11 +2,12 @@ import allure
 from allure_commons.types import Severity
 from clients.eco_news_client import EcoNewsClient
 from data.config import Config
-from data.ui_news_test_data import NewsTestData
+from data.ui_news_test_data import TEST2_FILE
 from enums.news_tag import EcoNewsTag
 from models.queries import EcoNewsQuery
 from models.eco_news_request import EcoNewsRequest
 from schemas.greencity.eco_news import eco_news_response_schema, eco_news_page_schema
+from tests.api.utils.api_test_assertions import assert_created, assert_ok
 from tests.utils.validators import validate_json
 
 @allure.epic("EcoNews API")
@@ -30,10 +31,10 @@ def test_create_and_verify_news(auth_token):
         short_info="short description 12341"
     )
     create_response = eco_news_client.post_eco_news_with_image(
-        news_payload, image_path=NewsTestData.TEST2_FILE
+        news_payload, image_path=TEST2_FILE
     )
 
-    assert create_response.status_code == 201
+    assert_created(create_response)
 
     created_news_data = create_response.json()
     news_id = created_news_data.get("id")
@@ -46,7 +47,7 @@ def test_create_and_verify_news(auth_token):
     )
     get_news_response = eco_news_client.get_eco_news_by_query(query)
 
-    assert get_news_response.status_code == 200
+    assert_ok(get_news_response)
 
     full_response_json = get_news_response.json()
     news_list = full_response_json.get("page", [])
@@ -70,7 +71,7 @@ def test_create_and_verify_news(auth_token):
     assert is_valid_page, page_msg
 
     delete_news_response = eco_news_client.delete_eco_news_by_id(news_id)
-    assert delete_news_response.status_code == 200
+    assert_ok(delete_news_response)
 
 @allure.epic("EcoNews API")
 @allure.feature("EcoNews Management")
@@ -88,7 +89,7 @@ def test_get_news_success(auth_token):
     )
     get_created_news = eco_news_client.get_eco_news_by_query(query)
 
-    assert get_created_news.status_code == 200
+    assert_ok(get_created_news)
     response_json = get_created_news.json()
 
     is_valid, msg = validate_json(response_json, eco_news_page_schema)

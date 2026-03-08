@@ -1,17 +1,13 @@
 import allure
 from allure_commons.types import Severity
-import pytest
 from clients.eco_news_comment_client import EcoNewsCommentClient
 from clients.eco_news_client import EcoNewsClient
+from data.comment_factory import COMMENT_MESSAGE, COMMENT_UPDATE_MESSAGE
 from data.config import Config
-from data.ui_news_test_data import NewsTestData
+from data.ui_news_test_data import TEST2_FILE
 from schemas.greencity.comment import comment_schema
+from tests.api.utils.api_test_assertions import assert_ok, assert_created
 from tests.utils.validators import validate_json
-
-NEWS_ID = 4044
-COMMENT_MESSAGE = "hello"
-COMMENT_ID = 2627
-COMMENT_ID_UPDATE = 2636
 
 
 @allure.epic("EcoNewsComments API")
@@ -20,24 +16,25 @@ COMMENT_ID_UPDATE = 2636
 @allure.title("Verify comments count increases after adding a comment")
 @allure.tag("EcoNewsComments API")
 @allure.severity(Severity.NORMAL)
-def test_get_news_comments_count(comments_client: EcoNewsCommentClient):
+def test_get_news_comments_count(create_and_cleanup_comment):
     """Verify that the comments count for a news item increases after adding a new comment."""
-    comments_client.news_id = NEWS_ID
+    comment_response, comments_client = create_and_cleanup_comment
+    news_id = comments_client.news_id
 
     with allure.step("Get comments count response and verify status code"):
-        response = comments_client.get_comments_count(news_id=NEWS_ID)
-        assert response.status_code == 200, "Response status code should be 200"
+        response = comments_client.get_comments_count(news_id)
+        assert_ok(response)
 
     with allure.step("Get comments count"):
         comments_count = response.json()
 
     with allure.step("Add a new comment"):
         response = comments_client.add_comment(text=COMMENT_MESSAGE)
-        assert response.status_code == 201, "Response status code should be 201"
+        assert_created(response)
 
     with allure.step("Get updated comments count"):
-        response = comments_client.get_comments_count(news_id=NEWS_ID)
-        assert response.status_code == 200, "Response status code should be 200"
+        response = comments_client.get_comments_count(news_id)
+        assert_ok(response)
         updated_comments_count = response.json()
         assert updated_comments_count == comments_count + 1, "Comments count should increment by 1"
 
@@ -48,22 +45,25 @@ def test_get_news_comments_count(comments_client: EcoNewsCommentClient):
 @allure.title("Verify that a comment dislike status toggles correctly")
 @allure.tag("EcoNewsComments API")
 @allure.severity(Severity.NORMAL)
-def test_dislike_comment(comments_client: EcoNewsCommentClient):
-    """Verify that a comment dislike status toggles correctly."""
+def test_dislike_comment(comments_client_second_user, create_and_cleanup_comment):
+    """Verify that a comment dislike status toggles correctly by another user."""
+    comment_response, _ = create_and_cleanup_comment
+    comment_id = comment_response["id"]
+
     with allure.step("Get comment by id and verify status"):
-        response = comments_client.get_comment_by_id(comment_id=COMMENT_ID)
-        assert response.status_code == 200, "Response status code should be 200"
+        response = comments_client_second_user.get_comment_by_id(comment_id)
+        assert_ok(response)
 
-    with allure.step("Get dislikes status and verify response status code"):
-        dislikes_before = bool(response.json()["dislikes"])
+    with allure.step("Get dislikes status before"):
+        dislikes_before = bool(response.json().get("dislikes", 0))
 
-    with allure.step("Dislike comment and verify response status code"):
-        response = comments_client.dislike_comment_and_get_instance(comment_id=COMMENT_ID)
-        assert response.status_code == 200, "Response status code should be 200"
+    with allure.step("Dislike comment"):
+        response = comments_client_second_user.dislike_comment_and_get_instance(comment_id)
+        assert_ok(response)
 
     with allure.step("Verify dislike status is updated"):
-        dislikes_after = bool(response.json()["dislikes"])
-        assert dislikes_before != dislikes_after, "The Results should not equal to each other"
+        dislikes_after = bool(response.json().get("dislikes", 0))
+        assert dislikes_before != dislikes_after, "Dislike status should toggle"
 
 
 @allure.epic("EcoNewsComments API")
@@ -72,19 +72,22 @@ def test_dislike_comment(comments_client: EcoNewsCommentClient):
 @allure.title("Verify that a comment can be successfully updated")
 @allure.tag("EcoNewsComments API")
 @allure.severity(Severity.NORMAL)
-def test_update_comment(comments_client: EcoNewsCommentClient):
+def test_update_comment(create_and_cleanup_comment):
     """Verify that a comment can be successfully updated."""
+    comment_response, comments_client = create_and_cleanup_comment
+    comment_id = comment_response["id"]
+
     with allure.step("Update comment and verify status"):
-        response = comments_client.update_comment(comment_id=COMMENT_ID_UPDATE, text=COMMENT_MESSAGE)
-        assert response.status_code == 200, "Response status code should be 200"
+        response = comments_client.update_comment(comment_id=comment_id, text=COMMENT_UPDATE_MESSAGE)
+        assert_ok(response)
 
     with allure.step("Get comment by id and verify status"):
-        response = comments_client.get_comment_by_id(comment_id=COMMENT_ID_UPDATE)
-        assert response.status_code == 200, "Response status code should be 200"
+        response = comments_client.get_comment_by_id(comment_id=comment_id)
+        assert_ok(response)
 
     with allure.step("Verify response body"):
         response = response.json()
-        assert response["text"] == f'"{COMMENT_MESSAGE}"', "Response text should be equal to comment message"
+        assert response["text"] == f'"{COMMENT_UPDATE_MESSAGE}"', "Response text should be equal to comment message"
         assert response["author"]["id"] == Config.USER_ID, "Author id should be equal to 149"
         assert response["author"]["name"] == Config.USER_NAME, "Author name should be equal to NameForTest611"
 
@@ -94,6 +97,7 @@ def test_update_comment(comments_client: EcoNewsCommentClient):
 @allure.tag("EcoNewsComments API")
 class TestNewsComments:
     """API tests for EcoNews comments functionality."""
+    created_comment_id: int = None
 
     @allure.title("Add comment to eco news")
     @allure.story("Create comment")
@@ -114,13 +118,12 @@ class TestNewsComments:
 
         response = comment_client.add_comment(
             "This is a test comment.",
-            image_paths=[str(NewsTestData.TEST2_FILE)]
+            image_paths=[str(TEST2_FILE)]
         )
 
-        assert response.status_code == 201, \
-            f"Expected status code 201, but got {response.status_code}"
+        assert_created(response)
 
-        TestNewsComments.created_comment_id = response.json()["id"]
+        self.created_comment_id = response.json()["id"]
 
         is_valid, error = validate_json(response.json(), comment_schema)
         assert is_valid, f"Response JSON does not match the expected schema: {error}"
@@ -129,13 +132,20 @@ class TestNewsComments:
     @allure.story("React to comment")
     @allure.description("Verify that a user can like a comment.")
     @allure.severity(Severity.NORMAL)
-    def test_like_comment(self, create_and_cleanup_comment):
+    def test_like_comment(self, create_and_cleanup_comment, comments_client_second_user):
         """Test: Like a comment."""
-        access_token, _ = create_and_cleanup_comment
-        comment_id = 2864  # TODO Replace with a dynamic comment ID. Need a second test account.
-        comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token)
-        response = comment_client.like_comment(comment_id)
-        assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
+        comment_response, comments_client = create_and_cleanup_comment
+        comment_id = comment_response["id"]
+        comment_data = comments_client_second_user.get_comment_by_id(comment_id).json()
+        likes = comment_data["likes"]
+
+        with allure.step("Second user likes the comment"):
+            response = comments_client_second_user.like_comment(comment_id)
+            assert_ok(response)
+
+        with allure.step("Verify that the like count increased / is registered"):
+            new_comment_data = comments_client_second_user.get_comment_by_id(comment_id).json()
+            assert new_comment_data["likes"] == likes + 1, "Comment should have one like"
 
     @allure.title("Get comment by ID")
     @allure.story("Retrieve comment")
@@ -143,11 +153,10 @@ class TestNewsComments:
     @allure.severity(Severity.TRIVIAL)
     def test_get_comment_by_id(self, create_and_cleanup_comment):
         """Test: Get a comment by its ID."""
-        access_token, comment_response = create_and_cleanup_comment
+        comment_response, comment_client = create_and_cleanup_comment
         comment_id = comment_response["id"]
-        comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token)
         response = comment_client.get_comment_by_id(comment_id)
-        assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
+        assert_ok(response)
         is_valid, error = validate_json(response.json(), comment_schema)
         assert is_valid, f"Response JSON does not match the expected schema: {error}"
 
@@ -161,4 +170,4 @@ class TestNewsComments:
         comment_id = comment_response["id"]
         comment_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token)
         response = comment_client.delete_comment_by_id(comment_id)
-        assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
+        assert_ok(response)

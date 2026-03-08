@@ -124,5 +124,4 @@ class HeaderComponent(BaseComponent):
     def click_profile_dropdown(self) -> ProfileDropdownComponent:
         """Click the profile dropdown button and return the ProfileDropdownComponent."""
         self.user_name.click()
-        dropdown = self.user_dropdown
-        return ProfileDropdownComponent(dropdown)
+        return self.user_dropdown

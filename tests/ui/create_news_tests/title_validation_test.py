@@ -1,17 +1,9 @@
-from typing import List
 import allure
 from allure_commons.types import Severity
 from data.config import Config
+from data.ui_news_test_data import NEWS_CONTENT, NEWS_TITLE
 from enums.news_tag import EcoNewsTag
 from pages.create_edit_news.create_news_page import CreateNewsPage
-
-NEWS_TITLE: str = "Test News"
-NEWS_CONTENT: str = "Description for test news Description for test news"
-TAGS_TO_SELECT: List[str] = [
-    EcoNewsTag.NEWS.ua,
-    EcoNewsTag.ADS.ua,
-    EcoNewsTag.EVENTS.ua,
-]
 
 
 @allure.epic("EcoNews UI")

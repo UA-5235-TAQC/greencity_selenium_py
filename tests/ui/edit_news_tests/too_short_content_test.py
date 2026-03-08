@@ -1,11 +1,9 @@
 import allure
 from allure_commons.types import Severity
 
+from data.ui_news_test_data import NOT_VALID_CONTENT, UPDATED_NEWS_TITLE
 from enums.news_tag import EcoNewsTag
 from pages.create_edit_news.edit_news_page import EditNewsPage
-
-NEWS_TITLE: str = "Test News Updated"
-NOT_VALID_CONTENT = "Not valid content(("
 
 
 @allure.epic("EcoNews UI")
@@ -38,7 +36,7 @@ def test_edit_content_not_shorter_than_20_chars_not_accepted(eco_news_details_pa
         assert edit_news_page.content_component.is_content_invalid(), "Content field should be marked as invalid"
 
     with allure.step("Enter valid title and select tag"):
-        edit_news_page.enter_title(NEWS_TITLE)
+        edit_news_page.enter_title(UPDATED_NEWS_TITLE)
 
         edit_news_page.clear_all_selected_tags()
         edit_news_page.select_tag(EcoNewsTag.NEWS.en)

@@ -1,6 +1,7 @@
 import allure
 from allure_commons.types import Severity
-from data.ui_news_test_data import NewsTestData
+
+from data.ui_news_test_data import TEST_TITLE_EN, TEST_CONTENT_EN
 from pages.create_edit_news.create_news_page import CreateNewsPage
 
 
@@ -30,8 +31,8 @@ def test_cancel_button_behavior(driver_with_login):
         assert create_news_page.is_page_opened(), "Create News page was not opened"
 
     with allure.step("Fill the news creation form"):
-        create_news_page.enter_title(NewsTestData.TEST_TITLE_EN)
-        create_news_page.content_component.enter_content(NewsTestData.TEST_CONTENT_EN)
+        create_news_page.enter_title(TEST_TITLE_EN)
+        create_news_page.content_component.enter_content(TEST_CONTENT_EN)
 
     with allure.step("Click Cancel button"):
         create_news_page.cancel_btn.click()

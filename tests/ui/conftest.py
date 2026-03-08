@@ -9,7 +9,7 @@ from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
 from components.news_list_item_component import NewsListItemComponent
 from data.config import Config
-from data.ui_news_test_data import NewsTestData
+from data.ui_news_test_data import apply_to_en, apply_to_ua
 from enums.language import Language
 from pages.create_edit_news.create_news_page import CreateNewsPage
 from pages.create_edit_news.edit_news_page import EditNewsPage
@@ -60,7 +60,7 @@ def driver_with_login(get_driver):
 
     allure.dynamic.severity(Severity.CRITICAL)
 
-    sign_in_modal = (HomePage(get_driver).open().header.change_to_en().click_sign_in_link())
+    sign_in_modal = HomePage(get_driver).open().header.change_to_en().click_sign_in_link()
 
     sign_in_modal.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
 
@@ -91,7 +91,7 @@ def create_news_page(driver_with_login, request) -> CreateNewsPage:
 @fixture(scope="function")
 def eco_news_details_page(driver_with_login, create_news_page, request) -> NewsDetailsPage:
     """ Fixture: create a news item, open its news details page. """
-    NewsTestData.apply_to_en(create_news_page)
+    apply_to_en(create_news_page)
     eco_news_page = create_news_page.click_publish()
     news_card: NewsListItemComponent = eco_news_page.get_news_card_by_index(0)
     news_details_page: NewsDetailsPage = news_card.click_image()
@@ -108,10 +108,10 @@ def edit_news_page_with_language(driver_with_login, create_news_page, request) -
     language = request.param
     if language == Language.EN:
         create_news_page.header.change_to_en()
-        NewsTestData.apply_to_en(create_news_page)
+        apply_to_en(create_news_page)
     else:
         create_news_page.header.change_to_uk()
-        NewsTestData.apply_to_ua(create_news_page)
+        apply_to_ua(create_news_page)
 
     eco_news_page = create_news_page.click_publish()
     eco_news_page.header.change_to_en() if language == Language.EN else eco_news_page.header.change_to_uk()
@@ -140,3 +140,54 @@ def tag_selection_environment(driver_with_login):
     yield create_news_page, news_page
     news_page.open()
     news_page.remove_all_selected_tags()
+
+
+@fixture(scope="function")
+def news_created_by_second_user(get_driver) -> Generator[int, None, None]:
+    """Fixture: login as second user, create news and open its details page."""
+
+    driver = get_driver
+
+    with allure.step("Login as second user"):
+        sign_in_modal = HomePage(driver).open().header.change_to_en().click_sign_in_link()
+        sign_in_modal.sign_in(Config.SECOND_USER_EMAIL, Config.SECOND_USER_PASSWORD)
+
+    with allure.step("Open Create News page"):
+        create_news_page: CreateNewsPage = HomePage(driver).header.click_news_link().click_create_news()
+        assert create_news_page.is_page_opened(), "Create News page should be opened"
+
+    with allure.step("Create news as second user"):
+        apply_to_en(create_news_page)
+        eco_news_page = create_news_page.click_publish()
+
+    with allure.step("Open created news details page"):
+        news_card: NewsListItemComponent = eco_news_page.get_news_card_by_index(0)
+        news_details_page: NewsDetailsPage = news_card.click_image()
+        assert news_details_page.is_page_opened(), "News details page should be opened"
+
+    news_id = news_details_page.get_news_id()
+
+    with allure.step("Logout second user"):
+        dropdown = news_details_page.header.click_profile_dropdown()
+        dropdown.sign_out()
+
+    with allure.step("Clear cookies"):
+        driver.delete_all_cookies()
+
+    with allure.step("Login as first user"):
+        sign_in_modal = HomePage(driver).open().header.change_to_en().click_sign_in_link()
+        sign_in_modal.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
+
+    yield news_id
+
+    with allure.step("Logout first user"):
+        dropdown = news_details_page.header.click_profile_dropdown()
+        dropdown.sign_out()
+
+    with allure.step("Login as second user"):
+        sign_in_modal = HomePage(get_driver).open().header.change_to_en().click_sign_in_link()
+        sign_in_modal.sign_in(Config.SECOND_USER_EMAIL, Config.SECOND_USER_PASSWORD)
+
+    with allure.step("Delete created news"):
+        news_details_page = NewsDetailsPage(get_driver).open(news_id)
+        news_details_page.delete_news_by_id(news_id)

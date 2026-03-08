@@ -1,4 +1,6 @@
-from data.ui_news_test_data import NewsTestData
+from data.eco_news_factory import TEST_TAGS
+from data.ui_news_test_data import TEST_TITLE_EN, TEST_CONTENT_EN, TEST_SOURCE_EN, TEST_TITLE_UA, TEST_CONTENT_UA, \
+    TEST_SOURCE_UA, TEST2_FILE, TEST_FILE
 from enums.language import Language
 from enums.news_tag import EcoNewsTag
 from utils.date_utils import DateUtils
@@ -16,8 +18,8 @@ CREATE_NEWS_LANGUAGE_DATA = {
         "publish_text": "Publish", "modal": {"title": "All created content will be lost.",
             "subtitle": "Do you still want to cancel news creating?", "yes": "Yes, cancel",
             "continue": "Continue editing"},
-        "test_data": {"title": NewsTestData.TEST_TITLE_EN, "content": NewsTestData.TEST_CONTENT_EN,
-            "source": NewsTestData.TEST_SOURCE_EN, "tags": EcoNewsTag.get_en(NewsTestData.TEST_TAGS)[0]}},
+        "test_data": {"title": TEST_TITLE_EN, "content": TEST_CONTENT_EN,
+            "source": TEST_SOURCE_EN, "tags": EcoNewsTag.get_en(TEST_TAGS)[0]}},
     Language.UK: {"expected_tags": EcoNewsTag.get_all_ua(), "drop_zone": "Перетягніть зображення сюди або",
         "browse": "огляд", "cancel": "Скасувати", "submit": "Застосувати",
         "image_error": "Завантажуйте лише PNG або JPEG. Розмір файлу не повинен перевищувати 10Mb",
@@ -31,11 +33,11 @@ CREATE_NEWS_LANGUAGE_DATA = {
         "preview_text": "Переглянути", "publish_text": "Опублікувати",
         "modal": {"title": "Внесені зміни будуть втрачені.", "subtitle": "Ви впевнені, що хочете видалити новину?",
             "yes": "Скасувати", "continue": "Продовжити"},
-        "test_data": {"title": NewsTestData.TEST_TITLE_UA, "content": NewsTestData.TEST_CONTENT_UA,
-            "source": NewsTestData.TEST_SOURCE_UA, "tags": EcoNewsTag.get_ua(NewsTestData.TEST_TAGS)[0]}}}
+        "test_data": {"title": TEST_TITLE_UA, "content": TEST_CONTENT_UA,
+            "source": TEST_SOURCE_UA, "tags": EcoNewsTag.get_ua(TEST_TAGS)[0]}}}
 
 EDIT_NEWS_LANGUAGE_DATA = {Language.EN: {# ---------- Title ----------
-    "base_title": NewsTestData.TEST_TITLE_EN, "to_append": " New", "to_prepend": "Add ", "expected_append_len": 8,
+    "base_title": TEST_TITLE_EN, "to_append": " New", "to_prepend": "Add ", "expected_append_len": 8,
     "expected_prepend_len": 12, "remove_last": 4, "remove_first": 4, "final_len": 8,
 
     # ---------- Image ----------
@@ -46,10 +48,10 @@ EDIT_NEWS_LANGUAGE_DATA = {Language.EN: {# ---------- Title ----------
     "source_message": ("Source (optional)\n"
                        "Please add the link of original article/news/post. "
                        "Link must start with http(s)://"), "source_placeholder": "Link to external source",
-    "test_source": NewsTestData.TEST_SOURCE_EN,
+    "test_source": TEST_SOURCE_EN,
 
     # ---------- Content ----------
-    "test_content": NewsTestData.TEST_CONTENT_EN,
+    "test_content": TEST_CONTENT_EN,
     "content_placeholder": "e.g. Short description of news, agenda for event",
     "content_message": "Must be minimum 20 and maximum 63 206 symbols",
 
@@ -79,18 +81,18 @@ EDIT_NEWS_LANGUAGE_DATA = {Language.EN: {# ---------- Title ----------
     "title": "Max", "tags": EcoNewsTag.get_en([EcoNewsTag.INITIATIVES, EcoNewsTag.EVENTS]),
     "source": "https://en.wikipedia.org/wiki/Main_Page",
     "content": "Mount Edziza is a volcanic mountain in Cassiar Land District in northwestern British Columbia, Canada.",
-    "image_file": NewsTestData.TEST2_FILE,
+    "image_file": TEST2_FILE,
 
     # ---------- Edit News ----------
-    "edit_title": NewsTestData.TEST_TITLE_EN, "edit_tags": EcoNewsTag.get_en(NewsTestData.TEST_TAGS),
-    "edit_source": NewsTestData.TEST_SOURCE_EN, "edit_content": NewsTestData.TEST_CONTENT_EN,
-    "edit_image_file": NewsTestData.TEST_FILE,
+    "edit_title": TEST_TITLE_EN, "edit_tags": EcoNewsTag.get_en(TEST_TAGS),
+    "edit_source": TEST_SOURCE_EN, "edit_content": TEST_CONTENT_EN,
+    "edit_image_file": TEST_FILE,
 
     # ---------- Success message ----------
     "success_message": "Your news has been successfully published"},
 
     Language.UK: {# ---------- Title ----------
-        "base_title": NewsTestData.TEST_TITLE_UA, "to_append": " Новий", "to_prepend": "Додати ",
+        "base_title": TEST_TITLE_UA, "to_append": " Новий", "to_prepend": "Додати ",
         "expected_append_len": 10, "expected_prepend_len": 17, "remove_last": 6, "remove_first": 7, "final_len": 11,
 
         # ---------- Image ----------
@@ -101,10 +103,10 @@ EDIT_NEWS_LANGUAGE_DATA = {Language.EN: {# ---------- Title ----------
         "source_message": ("Джерело (не обов'язково)\n"
                            "Будь ласка, додайте посилання на оригінальну статтю/новину/публікацію. "
                            "Посилання повинно починатись з http(s)://"),
-        "source_placeholder": "Посилання на зовнішнє джерело", "test_source": NewsTestData.TEST_SOURCE_UA,
+        "source_placeholder": "Посилання на зовнішнє джерело", "test_source": TEST_SOURCE_UA,
 
         # ---------- Content ----------
-        "test_content": NewsTestData.TEST_CONTENT_UA, "content_placeholder": "напр. Короткий опис новини, план заходу",
+        "test_content": TEST_CONTENT_UA, "content_placeholder": "напр. Короткий опис новини, план заходу",
         "content_message": "Поле повинно містити не менше 20 та не більше 63 206 символів",
 
         "content_counter_after_append": "Кількість символів: 36", "content_length_after_append": 36,
@@ -134,12 +136,12 @@ EDIT_NEWS_LANGUAGE_DATA = {Language.EN: {# ---------- Title ----------
         "source": "https://en.wikipedia.org/wiki/Main_Page",
         "content": ("Гора Едзіза — вулканічна гора в окрузі Кассіар-Ленд "
                    "на північному заході Британської Колумбії , Канада."),
-        "image_file": NewsTestData.TEST_FILE,
+        "image_file": TEST_FILE,
 
         # ---------- Edit News ----------
-        "edit_title": NewsTestData.TEST_TITLE_UA, "edit_tags": EcoNewsTag.get_ua(NewsTestData.TEST_TAGS),
-        "edit_source": NewsTestData.TEST_SOURCE_UA, "edit_content": NewsTestData.TEST_CONTENT_UA,
-        "edit_image_file": NewsTestData.TEST2_FILE,
+        "edit_title": TEST_TITLE_UA, "edit_tags": EcoNewsTag.get_ua(TEST_TAGS),
+        "edit_source": TEST_SOURCE_UA, "edit_content": TEST_CONTENT_UA,
+        "edit_image_file": TEST2_FILE,
 
         # ---------- Success message ----------
         "success_message": "Ваша новина успішно опублікована"}}

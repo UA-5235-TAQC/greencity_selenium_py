@@ -2,8 +2,8 @@ import allure
 from allure_commons.types import Severity
 import pytest
 from components.create_edit_news.image_component import ImageComponent
+from data.ui_news_test_data import TOO_LARGE_IMAGE, SMALL_PNG_IMAGE, GIF_IMAGE
 from pages.create_edit_news.create_news_page import CreateNewsPage
-from data.ui_news_test_data import NewsTestData
 import pytest_check as check
 from pages.news_page import NewsPage
 
@@ -37,7 +37,7 @@ class TestUploadImage:
         assert "news" in get_driver.current_url, "URL should contain 'news' after opening news page"
         news_page.click_create_news()
         assert "create-news" in get_driver.current_url, "URL should contain 'create-news' after clicking 'Create news' button"
-        create_news_page.image_component.upload_image(NewsTestData.TOO_LARGE_IMAGE)
+        create_news_page.image_component.upload_image(TOO_LARGE_IMAGE)
         assert create_news_page.image_component.get_image_error() == \
                "Upload only PNG or JPG. File size must be less than 10MB" or \
                "Завантажуйте лише PNG або JPEG. Розмір файлу не повинен перевищувати 10Mb"
@@ -49,7 +49,7 @@ class TestUploadImage:
     def test_img_upload_positive(self, create_news_page: CreateNewsPage):
         """Verify that a valid PNG image is being uploaded."""
         image_component: ImageComponent = create_news_page.image_component
-        image_component.upload_image(NewsTestData.SMALL_PNG_IMAGE)
+        image_component.upload_image(SMALL_PNG_IMAGE)
 
         assert not image_component.is_image_error_msg_present(), "Error message should not be shown for valid PNG"
         assert image_component.is_image_visible(), "Image should be visible"
@@ -80,7 +80,7 @@ class TestUploadImage:
     def test_img_upload_gif_negative(self, create_news_page: CreateNewsPage):
         """Check GIF upload (unsupported format)."""
         image_component: ImageComponent = create_news_page.image_component
-        image_component.upload_image(NewsTestData.GIF_IMAGE)
+        image_component.upload_image(GIF_IMAGE)
 
         assert image_component.is_image_error_msg_present(), "Error message should be shown for unsupported GIF"
         check.is_false(image_component.is_preview_image()), "Preview image should not be visible for unsupported GIF"

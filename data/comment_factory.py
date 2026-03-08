@@ -1,6 +1,8 @@
 from faker import Faker
 
 PARENT_SUB_COMMENT = "Test subComment for parent subcomment for API testing"
+COMMENT_MESSAGE = "Hello"
+COMMENT_UPDATE_MESSAGE = "Привіт"
 
 fake = Faker()
 

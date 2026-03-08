@@ -1,13 +1,10 @@
 import allure
 from allure_commons.types import Severity
-from enums.news_tag import EcoNewsTag
-from pages.news_page import NewsPage
 
-NEWS_TITLE = "Hello World"
-SOURCE_LINK = "hello"
-SOURCE_FIELD_ERROR_MESSAGE = "Please add the link of original article"
-CONTENT = "Olaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-TAGS = [EcoNewsTag.NEWS.en, EcoNewsTag.ADS.en]
+from data.ui_news_test_data import TAGS_TO_SELECT, SOURCE_LINK, SOURCE_FIELD_ERROR_MESSAGE, \
+    TEST_CONTENT_UA, TEST_TITLE_UA
+from pages.create_edit_news.create_news_page import CreateNewsPage
+from pages.news_page import NewsPage
 
 
 @allure.epic("EcoNews UI")
@@ -25,17 +22,18 @@ def test_source_field_validation(driver_with_login):
     2. Attempt to create a news item with an invalid source link.
        Verify that the validation error is displayed and the Publish button is disabled.
     """
-    create_news = NewsPage(driver_with_login).open().click_create_news()
+    create_news: CreateNewsPage = NewsPage(driver_with_login).open().click_create_news()
+    create_news.header.change_to_uk()
 
     with allure.step("Create news with mandatory fields"):
-        create_news.create_news(title=NEWS_TITLE,
-                                content=CONTENT,
-                                tags=TAGS)
+        create_news.create_news(title=TEST_TITLE_UA,
+                                content=TEST_CONTENT_UA,
+                                tags=TAGS_TO_SELECT)
 
     with allure.step("Verify filled data is correct"):
-        assert create_news.get_title_value() == NEWS_TITLE, "Title field value did not match"
-        assert create_news.get_selected_tags() == TAGS, "Selected tags did not match"
-        assert create_news.content_component.get_content_text() == CONTENT, "Content text did not match"
+        assert create_news.get_title_value() == TEST_TITLE_UA, "Title field value did not match"
+        assert sorted(create_news.get_selected_tags()) == sorted(TAGS_TO_SELECT), "Selected tags did not match"
+        assert create_news.content_component.get_content_text() == TEST_CONTENT_UA, "Content text did not match"
         assert create_news.is_publish_button_enabled(), "Publish button should be enabled"
 
     with allure.step("Publish news"):
@@ -49,14 +47,14 @@ def test_source_field_validation(driver_with_login):
         eco_news_page.click_create_news()
 
     with allure.step("Create news with invalid source link"):
-        create_news.create_news(title=NEWS_TITLE,
+        create_news.create_news(title=TEST_TITLE_UA,
                                 source=SOURCE_LINK,
-                                content=CONTENT,
-                                tags=TAGS)
+                                content=TEST_CONTENT_UA,
+                                tags=TAGS_TO_SELECT)
 
     with allure.step("Verify validation source field error and disabled publish button"):
-        assert create_news.get_title_value() == NEWS_TITLE, "Title field value did not match"
-        assert create_news.get_selected_tags() == TAGS, "Selected tags did not match"
-        assert create_news.content_component.get_content_text() == CONTENT, "Content text did not match"
+        assert create_news.get_title_value() == TEST_TITLE_UA, "Title field value did not match"
+        assert sorted(create_news.get_selected_tags()) == sorted(TAGS_TO_SELECT), "Selected tags did not match"
+        assert create_news.content_component.get_content_text() == TEST_CONTENT_UA, "Content text did not match"
         assert SOURCE_FIELD_ERROR_MESSAGE in create_news.get_source_message_text()
         assert not create_news.is_publish_button_enabled(), "Publish button should be disabled"

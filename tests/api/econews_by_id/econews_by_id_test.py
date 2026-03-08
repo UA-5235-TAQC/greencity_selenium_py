@@ -4,7 +4,7 @@ from allure_commons.types import Severity
 import pytest_check as check
 from clients.eco_news_client import EcoNewsClient
 from data.eco_news_factory import EcoNewsUpdateFactory, create_news_uk, TEST_TAGS, TITLE_UK, CONTENT_UK, SOURCE_UK
-from data.ui_news_test_data import NewsTestData
+from data.ui_news_test_data import TEST2_FILE
 from enums.news_tag import EcoNewsTag
 from models.update_eco_news_request import UpdateEcoNewsRequest
 from tests.api.utils.api_test_assertions import assert_unauthorized, assert_ok, assert_not_found, assert_bad_request
@@ -263,7 +263,7 @@ class TestEcoNewsByIdWithImage:
         dto_factory = EcoNewsUpdateFactory(eco_news_id)
         update_dto: UpdateEcoNewsRequest = dto_factory.update_dto_uk()
 
-        response = client.update_eco_news_by_id(eco_news_id, update_dto, str(NewsTestData.TEST2_FILE))
+        response = client.update_eco_news_by_id(eco_news_id, update_dto, str(TEST2_FILE))
         assert_ok(response)
 
         response_json = response.json()

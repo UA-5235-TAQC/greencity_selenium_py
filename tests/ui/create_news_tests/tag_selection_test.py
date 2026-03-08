@@ -2,12 +2,14 @@ import allure
 from allure_commons.types import Severity
 import pytest
 import uuid
+
+from data.ui_news_test_data import TEST_TITLE_EN, TEST_SOURCE_EN, VALID_CONTENT, TEST_FILE, apply_to_en, TEST_TAGS, \
+    apply_to_ua, TEST_TITLE_UA
 from enums.language import Language
 from enums.news_tag import EcoNewsTag
 from pages.create_edit_news.create_news_page import CreateNewsPage
 from pages.news_page import NewsPage
 from components.news_list_item_component import NewsListItemComponent
-from data.ui_news_test_data import NewsTestData
 import pytest_check as check
 
 
@@ -102,12 +104,10 @@ class TestTagSelection:
         create_news_page: CreateNewsPage = eco_page.click_create_news()
         assert create_news_page.is_page_opened(), "Create News page should be opened"
 
-        create_news_page.enter_title(NewsTestData.TEST_TITLE_EN)
-        create_news_page.enter_source(NewsTestData.TEST_SOURCE_EN)
-        create_news_page.content_component.enter_content(NewsTestData.VALID_CONTENT)
-        create_news_page.image_component.upload_image(
-            str(NewsTestData.TEST_FILE)
-        ).submit_crop()
+        create_news_page.enter_title(TEST_TITLE_EN)
+        create_news_page.enter_source(TEST_SOURCE_EN)
+        create_news_page.content_component.enter_content(VALID_CONTENT)
+        create_news_page.image_component.upload_image(str(TEST_FILE)).submit_crop()
 
         create_news_page.select_tags(tags_en)
 
@@ -135,14 +135,14 @@ class TestTagSelection:
 
         if language == Language.EN:
             create_news_page.header.change_to_en()
-            NewsTestData.apply_to_en(create_news_page)
-            expected_tags = EcoNewsTag.get_en_upper(NewsTestData.TEST_TAGS)
-            expected_title = NewsTestData.TEST_TITLE_EN
+            apply_to_en(create_news_page)
+            expected_tags = EcoNewsTag.get_en_upper(TEST_TAGS)
+            expected_title = TEST_TITLE_EN
         else:
             create_news_page.header.change_to_uk()
-            NewsTestData.apply_to_ua(create_news_page)
-            expected_tags = EcoNewsTag.get_ua_upper(NewsTestData.TEST_TAGS)
-            expected_title = NewsTestData.TEST_TITLE_UA
+            apply_to_ua(create_news_page)
+            expected_tags = EcoNewsTag.get_ua_upper(TEST_TAGS)
+            expected_title = TEST_TITLE_UA
 
         create_news_page.click_publish()
 
@@ -158,10 +158,10 @@ class TestTagSelection:
     def test_single_tag_selection(self, eco_page: NewsPage):
         """ Test creating news with a single tag. """
         create_news_page: CreateNewsPage = eco_page.click_create_news()
-        title = f"{NewsTestData.TEST_TITLE_EN} {uuid.uuid4().hex[:6]}"
+        title = f"{TEST_TITLE_EN} {uuid.uuid4().hex[:6]}"
         create_news_page.enter_title(title)
-        create_news_page.enter_source(NewsTestData.TEST_SOURCE_EN)
-        create_news_page.content_component.enter_content(NewsTestData.VALID_CONTENT)
+        create_news_page.enter_source(TEST_SOURCE_EN)
+        create_news_page.content_component.enter_content(VALID_CONTENT)
         tag = EcoNewsTag.get_en_upper([EcoNewsTag.NEWS])
         create_news_page.select_tags(tag)
         create_news_page.click_publish()
@@ -177,10 +177,10 @@ class TestTagSelection:
     def test_three_tags_selection(self, eco_page: NewsPage):
         """ Test creating news with exactly three tags. """
         create_news_page: CreateNewsPage = eco_page.click_create_news()
-        title = f"{NewsTestData.TEST_TITLE_EN} {uuid.uuid4().hex[:6]}"
+        title = f"{TEST_TITLE_EN} {uuid.uuid4().hex[:6]}"
         create_news_page.enter_title(title)
-        create_news_page.enter_source(NewsTestData.TEST_SOURCE_EN)
-        create_news_page.content_component.enter_content(NewsTestData.VALID_CONTENT)
+        create_news_page.enter_source(TEST_SOURCE_EN)
+        create_news_page.content_component.enter_content(VALID_CONTENT)
 
         tags_to_select = [
             EcoNewsTag.NEWS,

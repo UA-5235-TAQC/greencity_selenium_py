@@ -3,12 +3,12 @@ from allure_commons.types import Severity
 import pytest
 import pytest_check as check
 from data.config import Config
+from data.ui_news_test_data import apply_to_en, apply_to_ua
 from enums.language import Language
 from pages.create_edit_news.create_news_page import CreateNewsPage
 from pages.create_edit_news.news_preview_page import NewsPreviewPage
 from pages.news_page import NewsPage
 from data.language_data import CREATE_NEWS_LANGUAGE_DATA
-from data.ui_news_test_data import NewsTestData
 
 
 @allure.tag("Create News")
@@ -19,7 +19,7 @@ from data.ui_news_test_data import NewsTestData
 @allure.issue("3")
 @allure.title("Verify that the Create News form contains the particular fields.")
 @pytest.mark.parametrize("language", [Language.EN, Language.UK])
-def test_verify_create_news_form_fields_visibility(create_news_page: CreateNewsPage, language: Language):
+def test_create_news_fields_visibility(create_news_page: CreateNewsPage, language: Language):
     """
     Verify that all fields in the Create News form are visible and have correct default values.
 
@@ -37,7 +37,10 @@ def test_verify_create_news_form_fields_visibility(create_news_page: CreateNewsP
     """
     with allure.step("Set window size and switch language"):
         create_news_page.set_window_size(2560, 1440)
-        create_news_page.header.change_to_en() if language == Language.EN else create_news_page.header.change_to_uk()
+        if language == Language.EN:
+            create_news_page.header.change_to_en()
+        else:
+            create_news_page.header.change_to_uk()
 
     with allure.step("Verify Title field"):
         title_counter = create_news_page.get_title_counter_text()
@@ -85,7 +88,8 @@ def test_verify_create_news_form_fields_visibility(create_news_page: CreateNewsP
         assert create_news_page.is_source_visible(), "Source should be visible"
 
         source_value = create_news_page.get_source()
-        assert source_value == "", f"Source field should be empty by default, but was '{source_value}'"
+        assert source_value == "", (f"Source field should be empty by default, "
+                                    f"but was '{source_value}'")
 
     with allure.step("Verify Content field and components"):
         content = create_news_page.content_component
@@ -99,7 +103,8 @@ def test_verify_create_news_form_fields_visibility(create_news_page: CreateNewsP
         content_counter = content.get_content_counter_text()
 
         assert content_text == "", f"Content should be empty by default, but was '{content_text}'"
-        assert content_counter == "", f"Content counter should be empty by default, but was '{content_counter}'"
+        assert content_counter == "", (f"Content counter should be empty by default, "
+                                       f"but was '{content_counter}'")
 
     with allure.step("Verify Author field"):
         assert create_news_page.is_author_visible(), "Author name should be visible"
@@ -109,10 +114,12 @@ def test_verify_create_news_form_fields_visibility(create_news_page: CreateNewsP
         expected_test_author = Config.USER_NAME
 
         assert author_value == expected_user_from_header, \
-            f"Author should be pre-filled from header.\nExpected: '{expected_user_from_header}'\nActual: '{author_value}'"
+            (f"Author should be pre-filled from header.\n"
+             f"Expected: '{expected_user_from_header}'\nActual: '{author_value}'")
 
         assert author_value == expected_test_author, \
-            f"Author should match test author.\nExpected: '{expected_test_author}'\nActual: '{author_value}'"
+            (f"Author should match test author.\nExpected: '{expected_test_author}'\n"
+             f"Actual: '{author_value}'")
 
     with allure.step("Verify Post Date field"):
         assert create_news_page.is_post_date_visible(), "Post date should be visible"
@@ -144,28 +151,38 @@ def test_verify_create_news_form_fields_visibility(create_news_page: CreateNewsP
         cancel_modal = create_news_page.cancel_modal
         assert cancel_modal.is_visible(), \
             "Confirmation modal should appear after clicking Cancel"
-        assert cancel_modal.is_cancel_button_visible(), "'Yes, cancel' button should be visible"
-        assert cancel_modal.is_continue_editing_button_visible(), "'Continue editing' button should be visible"
+        assert cancel_modal.is_cancel_button_visible(), \
+            "'Yes, cancel' button should be visible"
+        assert cancel_modal.is_continue_editing_button_visible(), \
+            "'Continue editing' button should be visible"
 
         check.equal(
             cancel_modal.get_warning_title_text(),
             data["modal"]["title"],
-            f"Warning title text is incorrect.\nExpected: '{data['modal']['title']}'\nActual: '{cancel_modal.get_warning_title_text()}'"
+            f"Warning title text is incorrect.\n"
+            f"Expected: '{data['modal']['title']}'\n"
+            f"Actual: '{cancel_modal.get_warning_title_text()}'"
         )
         check.equal(
             cancel_modal.get_warning_subtitle_text(),
             data["modal"]["subtitle"],
-            f"Warning subtitle text is incorrect.\nExpected: '{data['modal']['subtitle']}'\nActual: '{cancel_modal.get_warning_subtitle_text()}'"
+            f"Warning subtitle text is incorrect.\n"
+            f"Expected: '{data['modal']['subtitle']}'\n"
+            f"Actual: '{cancel_modal.get_warning_subtitle_text()}'"
         )
         check.equal(
             cancel_modal.get_yes_cancel_button_text(),
             data["modal"]["yes"],
-            f"'Yes, cancel' button text is incorrect.\nExpected: '{data['modal']['yes']}'\nActual: '{cancel_modal.get_yes_cancel_button_text()}'"
+            f"'Yes, cancel' button text is incorrect.\n"
+            f"Expected: '{data['modal']['yes']}'\n"
+            f"Actual: '{cancel_modal.get_yes_cancel_button_text()}'"
         )
         check.equal(
             cancel_modal.get_continue_editing_button_text(),
             data["modal"]["continue"],
-            f"'Continue editing' button text is incorrect.\nExpected: '{data['modal']['continue']}'\nActual: '{cancel_modal.get_continue_editing_button_text()}'"
+            f"'Continue editing' button text is incorrect.\n"
+            f"Expected: '{data['modal']['continue']}'\n"
+            f"Actual: '{cancel_modal.get_continue_editing_button_text()}'"
         )
 
         cancel_modal.click_close()
@@ -176,12 +193,15 @@ def test_verify_create_news_form_fields_visibility(create_news_page: CreateNewsP
         assert "/create-news" in current_url, \
             "URL should contain /create-news after closing the cancel modal"
 
-        NewsTestData.apply_to_en(create_news_page) if language == Language.EN else NewsTestData.apply_to_ua(
-            create_news_page)
+        if language == Language.EN:
+            apply_to_en(create_news_page)
+        else:
+            apply_to_ua(create_news_page)
 
         preview: NewsPreviewPage = create_news_page.click_preview()
         assert preview.is_page_opened(), "User should be directed to NewsPreviewPage"
-        assert preview.is_back_to_create_news_btn_visible(), "Back to editing button should be displayed"
+        assert preview.is_back_to_create_news_btn_visible(), \
+            "Back to editing button should be displayed"
         assert preview.is_public_news_btn_visible(), "Publish button should be displayed"
         assert preview.tags, "Tags list should not be empty on Preview page"
 
@@ -194,25 +214,31 @@ def test_verify_create_news_form_fields_visibility(create_news_page: CreateNewsP
         assert src != "", "Preview image src should not be empty"
 
         td = data["test_data"]
-        check.equal(preview.get_news_title(), td["title"], "News title on Preview page should match entered title")
-        check.is_in(td["tags"], preview.get_tag_texts(), f"Preview page should contain tag: {td['tags']}")
-        check.equal(preview.get_news_text(), td["content"], "News content on Preview page should match entered content")
-        check.equal(preview.get_news_source(), td["source"], "News source on Preview page should match entered source")
+        check.equal(preview.get_news_title(), td["title"],
+                    "News title on Preview page should match entered title")
+        check.is_in(td["tags"], preview.get_tag_texts(),
+                    f"Preview page should contain tag: {td['tags']}")
+        check.equal(preview.get_news_text(), td["content"],
+                    "News content on Preview page should match entered content")
+        check.equal(preview.get_news_source(), td["source"],
+                    "News source on Preview page should match entered source")
 
         create_news_page = preview.click_back_to_create_news_btn()
         assert create_news_page.is_page_opened_after_preview_click_back(), \
             "User should be redirected to CreateNewsPage after clicking Back button"
 
         create_news_page.reload()
-        assert create_news_page.is_page_opened(), "Create News page should be opened before creating news"
+        assert create_news_page.is_page_opened(), \
+            "Create News page should be opened before creating news"
 
         if language == Language.EN:
             create_news_page.header.change_to_en()
-            NewsTestData().apply_to_en(create_news_page)
+            apply_to_en(create_news_page)
         else:
             create_news_page.header.change_to_uk()
-            NewsTestData().apply_to_ua(create_news_page)
-        assert create_news_page.is_publish_button_enabled(), "Publish button should become enabled after all fields are valid."
+            apply_to_ua(create_news_page)
+        assert create_news_page.is_publish_button_enabled(), \
+            "Publish button should become enabled after all fields are valid."
         create_news_page.click_publish()
         eco_news_page = NewsPage(create_news_page.driver)
         assert eco_news_page.is_page_opened(), "User should be directed to EcoNewsPage"
@@ -223,4 +249,5 @@ def test_verify_create_news_form_fields_visibility(create_news_page: CreateNewsP
             eco_news_page.header.change_to_uk()
             expected_message = "Ваша новина успішно опублікована"
 
-        assert eco_news_page.get_message_text() == expected_message, "Success message text should be correct"
+        assert eco_news_page.get_message_text() == expected_message, \
+            "Success message text should be correct"

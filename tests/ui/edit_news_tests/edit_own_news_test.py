@@ -3,11 +3,11 @@ from allure_commons.types import Severity
 import pytest_check as check
 from components.news_list_item_component import NewsListItemComponent
 from data.config import Config
+from data.ui_news_test_data import TEST2_FILE, TEST_SOURCE_EN
 from enums.news_tag import EcoNewsTag
 from pages.create_edit_news.edit_news_page import EditNewsPage
 from pages.news_details_page import NewsDetailsPage
 from pages.news_page import NewsPage
-from data.ui_news_test_data import NewsTestData
 
 
 @allure.tag("Edit News")
@@ -50,9 +50,9 @@ def test_verify_author_can_edit_own_news(eco_news_details_page: NewsDetailsPage)
         edit_news_page.edit_news(
             title=updated_title,
             tags=updated_tags,
-            source=NewsTestData.TEST_SOURCE_EN,
+            source=TEST_SOURCE_EN,
             content=updated_content,
-            image_path=NewsTestData.TEST2_FILE
+            image_path=str(TEST2_FILE)
         )
         assert edit_news_page.is_edit_button_enabled(), "Edit button should be enabled after valid changes"
         edit_news_page.click_edit()

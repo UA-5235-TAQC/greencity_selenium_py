@@ -2,7 +2,7 @@ import allure
 from allure_commons.types import Severity
 from selenium.webdriver.support.ui import WebDriverWait
 
-MODIFIED_TEXT = "Modified text for cancel test"
+from data.ui_news_test_data import MODIFIED_TEXT
 
 
 @allure.epic("EcoNews UI")

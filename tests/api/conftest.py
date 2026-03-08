@@ -8,9 +8,9 @@ from clients.eco_news_comment_client import EcoNewsCommentClient
 from clients.own_security_client import OwnSecurityClient
 from data.comment_factory import parent_comment, comment_with_images, PARENT_SUB_COMMENT, sub_comment_with_images, \
     sub_comment
-from data.eco_news_factory import EcoNewsUpdateFactory, create_news_uk
+from data.eco_news_factory import create_news_uk
 from data.config import Config
-from data.ui_news_test_data import NewsTestData
+from data.ui_news_test_data import TEST_FILE, TEST2_FILE, SMALL_PNG_IMAGE
 from models.eco_news_request import EcoNewsRequest
 from tests.api.utils.api_test_assertions import assert_ok, assert_created
 from utils.logging_config import AllureStepLogger
@@ -82,6 +82,16 @@ def refresh_auth_token(_auth_tokens):
     return _auth_tokens["access_token"]
 
 
+@fixture(scope="session")
+def comments_client_second_user():
+    """Provide EcoNewsCommentClient authorized as the second user."""
+    auth_client = OwnSecurityClient(Config.BASE_GREEN_CITY_USER_API_URL)
+    login_resp = auth_client.sign_in(Config.SECOND_USER_EMAIL, Config.SECOND_USER_PASSWORD)
+    assert_ok(login_resp)
+    access_token = login_resp.json()["accessToken"]
+    return EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token=access_token)
+
+
 @fixture(scope="module")
 def created_eco_news_without_image(auth_token):
     """Create EcoNews and print it to console."""
@@ -112,7 +122,7 @@ def created_eco_news(auth_token):
 
     news_dto = create_news_uk()
 
-    response = client.post_eco_news_with_image(news_dto, str(NewsTestData.TEST_FILE))
+    response = client.post_eco_news_with_image(news_dto, str(TEST_FILE))
 
     assert_created(response)
 
@@ -125,35 +135,31 @@ def created_eco_news(auth_token):
 
 
 @fixture(scope="function")
-def auth_client_favorite(request):
-    """Universal fixture: handles authorization, clears the state for news_id, and performs teardown"""
-    auth_api = OwnSecurityClient(Config.BASE_GREEN_CITY_USER_API_URL)
-    login_resp = auth_api.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
-    token = login_resp.json()["accessToken"]
-    client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=token)
-    news_id = request.param
-    client.news_id = news_id
-    if news_id:
-        with allure.step(f"Pre-test cleanup: Removing news {news_id} from favorites"):
-            try:
-                client.remove_from_favorites(news_id)
-            except Exception as exc:
-                allure.attach(str(exc), name=f"Pre-test cleanup failed for news {news_id}", )
+def auth_client_favorite(refresh_auth_token, created_eco_news_without_image_cleanup):
+    """
+    Provide authorized EcoNews client with a news item prepared for favorite tests.
+    Ensures the news is not in favorites before and after the test.
+    """
+    client = EcoNewsClient(
+        Config.BASE_GREEN_CITY_API_URL,
+        access_token=refresh_auth_token
+    )
 
-    yield client
+    news_id = created_eco_news_without_image_cleanup["eco_news_id"]
 
-    if news_id:
-        with allure.step(f"Post-test cleanup: Removing news {news_id} from favorites"):
-            try:
-                client.remove_from_favorites(news_id)
-            except Exception as exc:
-                allure.attach(str(exc), name=f"Post-test cleanup failed for news {news_id}", )
+    with allure.step(f"Pre-test cleanup: remove news {news_id} from favorites"):
+        try:
+            client.remove_from_favorites(news_id)
+        except Exception as exc:  # noqa: BLE001
+            allure.attach(str(exc), name="Pre-test cleanup failed")
 
+    yield {"client": client, "news_id": news_id}
 
-@fixture(scope="function")
-def comments_client(auth_token):
-    client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token=auth_token)
-    return client
+    with allure.step(f"Post-test cleanup: remove news {news_id} from favorites"):
+        try:
+            client.remove_from_favorites(news_id)
+        except Exception as exc:  # noqa: BLE001
+            allure.attach(str(exc), name="Post-test cleanup failed")
 
 
 @fixture(scope="class")
@@ -188,7 +194,7 @@ def create_comments(request, auth_token, created_eco_news_without_image):
         comment_with_images_resp = client.add_comment(
             comment_with_images(),
             parent_comment_id=0,
-            image_paths=[str(NewsTestData.TEST_FILE), str(NewsTestData.TEST2_FILE)]
+            image_paths=[str(TEST_FILE), str(TEST2_FILE)]
         )
         assert_created(comment_with_images_resp)
 
@@ -199,7 +205,7 @@ def create_comments(request, auth_token, created_eco_news_without_image):
         parent_sub_comment_resp = client.add_comment(
             PARENT_SUB_COMMENT,
             parent_comment_id=parent_comment_id,
-            image_paths=[str(NewsTestData.SMALL_PNG_IMAGE)]
+            image_paths=[str(SMALL_PNG_IMAGE)]
         )
         assert_created(parent_sub_comment_resp)
 
@@ -220,7 +226,7 @@ def create_comments(request, auth_token, created_eco_news_without_image):
         sub_comment_with_images_resp = client.add_comment(
             sub_comment_with_images(),
             parent_comment_id=comment_id_with_images,
-            image_paths=[str(NewsTestData.TEST_FILE), str(NewsTestData.TEST2_FILE)]
+            image_paths=[str(TEST_FILE), str(TEST2_FILE)]
         )
         assert_created(sub_comment_with_images_resp)
 
@@ -265,7 +271,7 @@ def create_comment_with_token(created_eco_news, auth_token) -> Generator[tuple[s
     response = comment_client.add_comment(
         text="This is a test comment.",
         parent_comment_id=0,
-        image_paths=[str(NewsTestData.TEST2_FILE)]
+        image_paths=[str(TEST2_FILE)]
     )
 
     assert response.status_code == 201, \
@@ -275,7 +281,7 @@ def create_comment_with_token(created_eco_news, auth_token) -> Generator[tuple[s
 
 
 @fixture(scope="function")
-def create_and_cleanup_comment(create_comment_with_token) -> Generator[tuple[str, dict], None, None]:
+def create_and_cleanup_comment(create_comment_with_token) -> Generator[tuple[dict, EcoNewsCommentClient], None, None]:
     """
     Fixture: create a comment using API and delete it after test.
     Returns:
@@ -285,8 +291,7 @@ def create_and_cleanup_comment(create_comment_with_token) -> Generator[tuple[str
 
     token, news_id, comment_response = create_comment_with_token
     comments_client = EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, token, news_id)
-
-    yield token, comment_response
+    yield comment_response, comments_client
 
     delete_response = comments_client.delete_comment_by_id(comment_response["id"])
     assert delete_response.status_code == 200, f"Expected status code 200, but got {delete_response.status_code}"

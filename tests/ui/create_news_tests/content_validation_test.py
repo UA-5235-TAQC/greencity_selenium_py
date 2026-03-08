@@ -1,7 +1,7 @@
 import allure
 from allure_commons.types import Severity
 
-from data.ui_news_test_data import NewsTestData
+from data.ui_news_test_data import VALID_CONTENT
 from pages.create_edit_news.create_news_page import CreateNewsPage
 import re
 
@@ -63,7 +63,7 @@ def test_main_text_field_validation(driver_with_login):
         assert not create_news_page.is_publish_button_enabled()
 
     with allure.step("Enter valid content (25+ chars)"):
-        create_news_page.content_component.enter_content(NewsTestData.VALID_CONTENT)
+        create_news_page.content_component.enter_content(VALID_CONTENT)
 
     with allure.step("Verify error disappears"):
         assert create_news_page.content_component.is_content_valid()
