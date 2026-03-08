@@ -1,0 +1,6 @@
+15:31:22 [INFO    ] allure.step - >> STEP  Get EcoNews with query parameters: {'page': 0, 'size': 10}  [query_params={'page': 0, 'size': 10}]
+15:31:22 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news with params {'page': 0, 'size': 10} and headers {'Accept': '*/*', 'Content-Type': 'application/json'}
+15:31:22 [INFO    ] allure.step - STEP PASSED
+15:31:22 [INFO    ] allure.step - STEP PASSED
+15:31:22 [INFO    ] allure.step - >> STEP  Update EcoNews by ID: 6977  [eco_news_id=6977, update_dto=UpdateEcoNewsRequest(id=6977, title='Another string', content='Test content with more than 20 chars', short_info='Short info', tags=[], source=''), image_path=None]
+15:31:22 [INFO    ] allure.step - STEP PASSED
