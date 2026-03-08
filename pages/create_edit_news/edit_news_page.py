@@ -59,14 +59,9 @@ class EditNewsPage(CreateEditNewsPage):
         "Edit news with title: {title}, tags: {tags}, "
         "source: {source}, content: [hidden], image: {image_path}"
     )
-    def edit_news(
-            self,
-            title: Optional[str],
-            tags: Optional[List[str]],
-            source: Optional[str],
-            content: Optional[str],
-            image_path: Optional[str],
-    ):
+    def edit_news(  # pylint: disable=too-many-positional-arguments
+            self, title: Optional[str], tags: Optional[List[str]], source: Optional[str],
+            content: Optional[str], image_path: Optional[str]):
         """ Edit news fields conditionally. """
         if title is not None:
             self.enter_title(title)

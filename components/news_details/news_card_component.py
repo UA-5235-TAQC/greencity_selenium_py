@@ -19,13 +19,16 @@ class NewsCardComponent(BaseComponent):
     comments_count: WebElement
     likes_count: WebElement
 
-    locators = {"image": (By.CSS_SELECTOR, ".list-image-content"), "title": (By.CSS_SELECTOR, ".title-list h3"),
+    locators = {
+        "image": (By.CSS_SELECTOR, ".list-image-content"),
+        "title": (By.CSS_SELECTOR, ".title-list h3"),
         "content": (By.CSS_SELECTOR, ".list-text div"),
         "tags": (By.CSS_SELECTOR, ".filter-tag .ul-eco-buttons span", List[WebElement]),
         "date": (By.CSS_SELECTOR, ".user-data-text-date:first-child span"),
         "author": (By.CSS_SELECTOR, ".user-data-text-date:nth-child(2) span.mw"),
         "comments_count": (By.CSS_SELECTOR, ".user-data-like:nth-child(1) .numerosity"),
-        "likes_count": (By.CSS_SELECTOR, ".user-data-like:nth-child(2) .numerosity"), }
+        "likes_count": (By.CSS_SELECTOR, ".user-data-like:nth-child(2) .numerosity"),
+    }
 
     @allure.step("Get news title")
     def get_title(self) -> str:

@@ -26,20 +26,22 @@ class FooterComponent(BaseComponent):
     follow_us_text_element: WebElement
     copyright_label: WebElement
 
-    locators: LocatorsTable = {"logo_link": (By.CSS_SELECTOR, "a[href='#/greenCity'] img.logo"),
-                               "news_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/news')]"),
-                               "events_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/events')]"),
-                               "places_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/places')]"),
-                               "about_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/about')]"),
-                               "my_space_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/profile')]"),
-                               "ubs_link": (By.XPATH, ".//a[contains(@href, '#/ubs')]"),
-                               "twitter_icon": (By.CSS_SELECTOR, ".footer_social-link img[src*='twitter']"),
-                               "linkedin_icon": (By.CSS_SELECTOR, ".footer_social-link img[src*='linkedin']"),
-                               "facebook_icon": (By.CSS_SELECTOR, ".footer_social-link img[src*='facebook']"),
-                               "instagram_icon": (By.CSS_SELECTOR, ".footer_social-link img[src*='instagram']"),
-                               "youtube_icon": (By.CSS_SELECTOR, ".footer_social-link img[src*='youtube']"),
-                               "follow_us_text_element": (By.CSS_SELECTOR, ".footer_follow-us span"),
-                               "copyright_label": (By.ID, "copyright-label")}
+    locators: LocatorsTable = {
+        "logo_link": (By.CSS_SELECTOR, "a[href='#/greenCity'] img.logo"),
+        "news_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/news')]"),
+        "events_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/events')]"),
+        "places_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/places')]"),
+        "about_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/about')]"),
+        "my_space_link": (By.XPATH, ".//a[contains(@href, '#/greenCity/profile')]"),
+        "ubs_link": (By.XPATH, ".//a[contains(@href, '#/ubs')]"),
+        "twitter_icon": (By.CSS_SELECTOR, ".footer_social-link img[src*='twitter']"),
+        "linkedin_icon": (By.CSS_SELECTOR, ".footer_social-link img[src*='linkedin']"),
+        "facebook_icon": (By.CSS_SELECTOR, ".footer_social-link img[src*='facebook']"),
+        "instagram_icon": (By.CSS_SELECTOR, ".footer_social-link img[src*='instagram']"),
+        "youtube_icon": (By.CSS_SELECTOR, ".footer_social-link img[src*='youtube']"),
+        "follow_us_text_element": (By.CSS_SELECTOR, ".footer_follow-us span"),
+        "copyright_label": (By.ID, "copyright-label")
+    }
 
     @allure.step("Click on footer logo")
     def click_logo_link(self) -> "HomePage":

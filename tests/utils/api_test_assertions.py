@@ -1,6 +1,6 @@
 from requests import Response
 
-from tests.api.utils.error_response import ErrorResponse
+from tests.utils.error_response import ErrorResponse
 
 
 def assert_bad_request(response: Response, expected_message: str):

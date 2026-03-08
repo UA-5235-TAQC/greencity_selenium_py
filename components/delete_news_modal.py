@@ -14,9 +14,11 @@ class DeleteNewsModal(BaseComponent):
     yes_btn: WebElement
     no_btn: WebElement
 
-    locators: LocatorsTable = {"warning_text": (By.CSS_SELECTOR, ".warning-title"),
-                               "yes_btn": (By.XPATH, ".//button[normalize-space()='yes']"),
-                               "no_btn": (By.XPATH, ".//button[normalize-space()='no']")}
+    locators: LocatorsTable = {
+        "warning_text": (By.CSS_SELECTOR, ".warning-title"),
+        "yes_btn": (By.XPATH, ".//button[normalize-space()='yes']"),
+        "no_btn": (By.XPATH, ".//button[normalize-space()='no']")
+    }
 
     @allure.step("Confirm deletion of news")
     def click_yes_button(self):

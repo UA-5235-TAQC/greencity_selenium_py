@@ -7,7 +7,7 @@ from enums.news_tag import EcoNewsTag
 from models.queries import EcoNewsQuery
 from models.eco_news_request import EcoNewsRequest
 from schemas.greencity.eco_news import eco_news_response_schema, eco_news_page_schema
-from tests.api.utils.api_test_assertions import assert_created, assert_ok
+from tests.utils.api_test_assertions import assert_created, assert_ok
 from tests.utils.validators import validate_json
 
 @allure.epic("EcoNews API")

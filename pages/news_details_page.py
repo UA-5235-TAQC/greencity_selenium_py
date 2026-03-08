@@ -20,7 +20,7 @@ from utils.page_factory import ElementNotFoundException
 from utils.page_factory import LocatorsTable
 
 
-class NewsDetailsPage(BasePage):
+class NewsDetailsPage(BasePage):  # pylint: disable=too-many-public-methods
     """
     Page object for the News Details page.
     Provides methods to interact with news content, likes, tags, and navigation.

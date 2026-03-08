@@ -1,27 +1,38 @@
-from typing import Generator, List
-
+from typing import Generator
 import allure
+from allure_commons.types import Severity
 from pytest import fixture, FixtureRequest
-
+import requests
+from selenium.webdriver import Chrome, Firefox
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from clients.eco_news_client import EcoNewsClient
 from clients.eco_news_comment_client import EcoNewsCommentClient
 from clients.own_security_client import OwnSecurityClient
-from data.comment_factory import parent_comment, comment_with_images, PARENT_SUB_COMMENT, sub_comment_with_images, \
-    sub_comment
+from data.comment_factory import (parent_comment, comment_with_images,
+                                  PARENT_SUB_COMMENT, sub_comment_with_images, sub_comment)
 from data.eco_news_factory import create_news_uk
 from data.config import Config
-from data.ui_news_test_data import TEST_FILE, TEST2_FILE, SMALL_PNG_IMAGE
+from data.ui_news_test_data import (TEST_FILE, TEST2_FILE,
+                                    SMALL_PNG_IMAGE, apply_to_en, apply_to_ua)
 from models.eco_news_request import EcoNewsRequest
-from tests.api.utils.api_test_assertions import assert_ok, assert_created
+from tests.utils.api_test_assertions import assert_ok, assert_created
 from utils.logging_config import AllureStepLogger
+
+from components.news_list_item_component import NewsListItemComponent
+from enums.language import Language
+from pages.create_edit_news.create_news_page import CreateNewsPage
+from pages.create_edit_news.edit_news_page import EditNewsPage
+from pages.home_page import HomePage
+from pages.news_details_page import NewsDetailsPage
+from pages.news_page import NewsPage
 
 AllureStepLogger.setup_logging()
 
 
 @fixture(scope="session")
 def worker_id(request: FixtureRequest) -> str:
-    """Return the pytest-xdist worker identifier, or ``"master"`` for serial runs.
-    """
+    """Return the pytest-xdist worker identifier, or ``"master"`` for serial runs."""
     return getattr(request.config, "workerinput", {}).get("workerid", "master")
 
 
@@ -150,7 +161,7 @@ def auth_client_favorite(refresh_auth_token, created_eco_news_without_image_clea
     with allure.step(f"Pre-test cleanup: remove news {news_id} from favorites"):
         try:
             client.remove_from_favorites(news_id)
-        except Exception as exc:  # noqa: BLE001
+        except requests.RequestException as exc:
             allure.attach(str(exc), name="Pre-test cleanup failed")
 
     yield {"client": client, "news_id": news_id}
@@ -158,7 +169,7 @@ def auth_client_favorite(refresh_auth_token, created_eco_news_without_image_clea
     with allure.step(f"Post-test cleanup: remove news {news_id} from favorites"):
         try:
             client.remove_from_favorites(news_id)
-        except Exception as exc:  # noqa: BLE001
+        except requests.RequestException as exc:
             allure.attach(str(exc), name="Post-test cleanup failed")
 
 
@@ -181,71 +192,55 @@ def create_comments(request, auth_token, created_eco_news_without_image):
         news_id=news_id
     )
 
-    created_comment_ids: List[int] = []
+    comment_ids = {}
 
     with allure.step("Create parent comment"):
-        parent_comment_resp = client.add_comment(parent_comment(), parent_comment_id=0)
-        assert_created(parent_comment_resp)
-
-        parent_comment_id = parent_comment_resp.json()["id"]
-        created_comment_ids.append(parent_comment_id)
+        resp = client.add_comment(parent_comment(), parent_comment_id=0)
+        assert_created(resp)
+        comment_ids["parent"] = resp.json()["id"]
 
     with allure.step("Create parent comment with images"):
-        comment_with_images_resp = client.add_comment(
+        resp = client.add_comment(
             comment_with_images(),
             parent_comment_id=0,
             image_paths=[str(TEST_FILE), str(TEST2_FILE)]
         )
-        assert_created(comment_with_images_resp)
-
-        comment_id_with_images = comment_with_images_resp.json()["id"]
-        created_comment_ids.append(comment_id_with_images)
+        assert_created(resp)
+        comment_ids["with_images"] = resp.json()["id"]
 
     with allure.step("Create sub-comment for parent comment with image"):
-        parent_sub_comment_resp = client.add_comment(
+        resp = client.add_comment(
             PARENT_SUB_COMMENT,
-            parent_comment_id=parent_comment_id,
+            parent_comment_id=comment_ids["parent"],
             image_paths=[str(SMALL_PNG_IMAGE)]
         )
-        assert_created(parent_sub_comment_resp)
-
-        parent_sub_comment_id = parent_sub_comment_resp.json()["id"]
-        created_comment_ids.append(parent_sub_comment_id)
+        assert_created(resp)
+        comment_ids["parent_sub"] = resp.json()["id"]
 
     with allure.step("Create sub-comment for comment with images"):
-        sub_comment_resp = client.add_comment(
+        resp = client.add_comment(
             sub_comment(),
-            parent_comment_id=comment_id_with_images
+            parent_comment_id=comment_ids["with_images"]
         )
-        assert_created(sub_comment_resp)
-
-        sub_comment_id = sub_comment_resp.json()["id"]
-        created_comment_ids.append(sub_comment_id)
+        assert_created(resp)
+        comment_ids["sub"] = resp.json()["id"]
 
     with allure.step("Create sub-comment with images for comment with images"):
-        sub_comment_with_images_resp = client.add_comment(
+        resp = client.add_comment(
             sub_comment_with_images(),
-            parent_comment_id=comment_id_with_images,
+            parent_comment_id=comment_ids["with_images"],
             image_paths=[str(TEST_FILE), str(TEST2_FILE)]
         )
-        assert_created(sub_comment_with_images_resp)
+        assert_created(resp)
+        comment_ids["sub_with_images"] = resp.json()["id"]
 
-        sub_comment_id_with_images = sub_comment_with_images_resp.json()["id"]
-        created_comment_ids.append(sub_comment_id_with_images)
-
-    with allure.step("Attach created comment data to the test class"):
-        request.cls.eco_news_comment_client = client
-        request.cls.created_comment_ids = created_comment_ids
-        request.cls.parent_comment_id = parent_comment_id
-        request.cls.comment_id_with_images = comment_id_with_images
-        request.cls.parent_sub_comment_id = parent_sub_comment_id
-        request.cls.sub_comment_id = sub_comment_id
-        request.cls.sub_comment_id_with_images = sub_comment_id_with_images
+    request.cls.eco_news_comment_client = client
+    request.cls.comment_ids = comment_ids
 
     yield
 
     with allure.step("Delete parent comments with all their child comments"):
-        for cid in [parent_comment_id, comment_id_with_images]:
+        for cid in [comment_ids["parent"], comment_ids["with_images"]]:
             client.delete_comment_with_children(cid)
 
 
@@ -295,3 +290,172 @@ def create_and_cleanup_comment(create_comment_with_token) -> Generator[tuple[dic
 
     delete_response = comments_client.delete_comment_by_id(comment_response["id"])
     assert delete_response.status_code == 200, f"Expected status code 200, but got {delete_response.status_code}"
+
+
+@fixture(scope="function", params=["chrome"])
+def get_driver(request):
+    """ Pytest fixture that initializes and provides a Selenium WebDriver instance. """
+    allure.dynamic.parameter("browser", request.param)
+    browser = request.param
+    headless = Config.HEADLESS_MODE
+
+    driver = None
+
+    match browser:
+        case "chrome":
+            options = ChromeOptions()
+            if headless:
+                options.add_argument("--headless=new")
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-gpu")
+            options.add_argument("--window-size=1920,1080")
+            driver = Chrome(options=options)  # pylint: disable=not-callable
+        case "firefox":
+
+            options = FirefoxOptions()
+            if headless:
+                options.add_argument("--headless")
+            options.add_argument("--window-size=1920,1080")
+            driver = Firefox(options=options)  # pylint: disable=not-callable
+    driver.implicitly_wait(Config.IMPLICITLY_WAIT)
+    driver.get(Config.BASE_UI_GREEN_CITY_URL)
+
+    yield driver
+
+    driver.quit()
+
+
+@fixture(scope="function")
+def driver_with_login(get_driver):
+    """Fixture that logs in the user before yielding the driver."""
+
+    allure.dynamic.severity(Severity.CRITICAL)
+
+    sign_in_modal = HomePage(get_driver).open().header.change_to_en().click_sign_in_link()
+
+    sign_in_modal.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
+
+    yield get_driver
+
+    get_driver.delete_all_cookies()
+
+
+@fixture(scope="function")
+def eco_page(driver_with_login) -> Generator[NewsPage, None, None]:
+    """ Fixture that opens the EcoNews page after login. """
+    eco_news_page = NewsPage(driver_with_login).open()
+    assert eco_news_page.is_page_opened(), "EcoNews page should be opened"
+    yield eco_news_page
+
+    eco_news_page.remove_all_selected_tags()
+
+
+@fixture(scope="function")
+def eco_news_details_page(driver_with_login, create_news_page) -> NewsDetailsPage:
+    """ Fixture: create a news item, open its news details page. """
+    apply_to_en(create_news_page)
+    eco_news_page = create_news_page.click_publish()
+    news_card: NewsListItemComponent = eco_news_page.get_news_card_by_index(0)
+    news_details_page: NewsDetailsPage = news_card.click_image()
+    assert news_details_page.is_page_opened(), "News details page should be opened"
+    return news_details_page
+
+
+@fixture(scope="function", params=[Language.EN, Language.UK])
+def edit_news_page_with_language(driver_with_login, create_news_page, request) -> EditNewsPage:
+    """
+    Fixture: create a news item, open its edit page, and return EditNewsPage.
+    Param `request.param` is 'en' or 'ua'.
+    """
+    language = request.param
+    if language == Language.EN:
+        create_news_page.header.change_to_en()
+        apply_to_en(create_news_page)
+    else:
+        create_news_page.header.change_to_uk()
+        apply_to_ua(create_news_page)
+
+    eco_news_page: NewsPage = create_news_page.click_publish()
+    if language == Language.EN:
+        eco_news_page.header.change_to_en()
+    else:
+        eco_news_page.header.change_to_uk()
+
+    news_card: NewsListItemComponent = eco_news_page.get_news_card_by_index(0)
+    news_details_page: NewsDetailsPage = news_card.click_image()
+    assert news_details_page.is_page_opened(), "News details page should be opened"
+
+    if language == Language.EN:
+        news_details_page.header.change_to_en()
+    else:
+        news_details_page.header.change_to_uk()
+
+    news_details_page.click_edit_button()
+    eco_news_id = news_details_page.get_news_id()
+
+    edit_news_page = EditNewsPage(driver_with_login, eco_news_id)
+    assert edit_news_page.is_page_opened(), "Edit News page should be opened"
+    return edit_news_page
+
+
+@fixture(scope="function")
+def tag_selection_environment(driver_with_login):
+    """Prepare environment for tag selection tests."""
+    driver = driver_with_login
+    news_page = NewsPage(driver).open()
+    news_page.header.change_to_en()
+    create_news_page = news_page.click_create_news()
+    yield create_news_page, news_page
+    news_page.open()
+    news_page.remove_all_selected_tags()
+
+
+@fixture(scope="function")
+def news_created_by_second_user(get_driver) -> Generator[int, None, None]:
+    """Fixture: login as second user, create news and open its details page."""
+
+    driver = get_driver
+
+    with allure.step("Login as second user"):
+        sign_in_modal = HomePage(driver).open().header.change_to_en().click_sign_in_link()
+        sign_in_modal.sign_in(Config.SECOND_USER_EMAIL, Config.SECOND_USER_PASSWORD)
+
+    with allure.step("Open Create News page"):
+        create_news_page: CreateNewsPage = HomePage(driver).header.click_news_link().click_create_news()
+        assert create_news_page.is_page_opened(), "Create News page should be opened"
+
+    with allure.step("Create news as second user"):
+        apply_to_en(create_news_page)
+        eco_news_page = create_news_page.click_publish()
+
+    with allure.step("Open created news details page"):
+        news_card: NewsListItemComponent = eco_news_page.get_news_card_by_index(0)
+        news_details_page: NewsDetailsPage = news_card.click_image()
+        assert news_details_page.is_page_opened(), "News details page should be opened"
+
+    news_id = news_details_page.get_news_id()
+
+    with allure.step("Logout second user"):
+        dropdown = news_details_page.header.click_profile_dropdown()
+        dropdown.sign_out()
+
+    with allure.step("Clear cookies"):
+        driver.delete_all_cookies()
+
+    with allure.step("Login as first user"):
+        sign_in_modal = HomePage(driver).open().header.change_to_en().click_sign_in_link()
+        sign_in_modal.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
+
+    yield news_id
+
+    with allure.step("Logout first user"):
+        dropdown = news_details_page.header.click_profile_dropdown()
+        dropdown.sign_out()
+
+    with allure.step("Login as second user"):
+        sign_in_modal = HomePage(get_driver).open().header.change_to_en().click_sign_in_link()
+        sign_in_modal.sign_in(Config.SECOND_USER_EMAIL, Config.SECOND_USER_PASSWORD)
+
+    with allure.step("Delete created news"):
+        news_details_page = NewsDetailsPage(get_driver).open(news_id)
+        news_details_page.delete_news_by_id(news_id)

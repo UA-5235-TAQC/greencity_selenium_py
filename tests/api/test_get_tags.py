@@ -5,7 +5,7 @@ from jsonschema import validate
 from clients.eco_news_client import EcoNewsClient
 from data.config import Config
 from schemas.greencity.eco_news_tags_schema import eco_news_tags_schema
-from tests.api.utils.api_test_assertions import assert_ok
+from tests.utils.api_test_assertions import assert_ok
 
 
 @allure.epic("EcoNews API")

@@ -17,12 +17,14 @@ class CancelModalComponent(BaseComponent):
     warning_title: WebElement
     warning_subtitle: WebElement
 
-    locators: LocatorsTable = {"message_container": (By.CSS_SELECTOR, ".warning-text"),
-                               "yes_cancel_btn": (By.CSS_SELECTOR, ".buttons-container .primary-global-button"),
-                               "continue_editing_btn": (By.CSS_SELECTOR, ".buttons-container .secondary-global-button"),
-                               "close_btn": (By.CSS_SELECTOR, ".close"),
-                               "warning_title": (By.CSS_SELECTOR, ".warning-title"),
-                               "warning_subtitle": (By.CSS_SELECTOR, ".warning-subtitle")}
+    locators: LocatorsTable = {
+        "message_container": (By.CSS_SELECTOR, ".warning-text"),
+        "yes_cancel_btn": (By.CSS_SELECTOR, ".buttons-container .primary-global-button"),
+        "continue_editing_btn": (By.CSS_SELECTOR, ".buttons-container .secondary-global-button"),
+        "close_btn": (By.CSS_SELECTOR, ".close"),
+        "warning_title": (By.CSS_SELECTOR, ".warning-title"),
+        "warning_subtitle": (By.CSS_SELECTOR, ".warning-subtitle")
+    }
 
     @allure.step("Wait until cancel modal is visible")
     def wait_until_visible(self):

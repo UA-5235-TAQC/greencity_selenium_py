@@ -56,7 +56,9 @@ class CreateNewsPage(CreateEditNewsPage):
         return self.publish_btn.text.strip()
 
     @allure.step("Fill out and create news with mandatory fields: title, tags, content")
-    def create_news(self, title: str, tags: list[str], content: str, source: str = None, image_path: str = None):
+    def create_news(  # pylint: disable=too-many-positional-arguments
+            self, title: str, tags: list[str], content: str, source: str = None,
+            image_path: str = None):
         """
         Comprehensive method to fill all news details and prepare for publishing.
         Uses inherited methods and components (content_root, image_root).

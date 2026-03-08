@@ -17,10 +17,13 @@ class SignUpModal(ModalBasePage):
     show_password_icon: WebElement
     sign_in_link: WebElement
 
-    locators = {"username_field": (By.ID, "firstName"), "password_field": (By.ID, "password"),
-                "repeat_password_field": (By.ID, "repeatPassword"),
-                "show_password_icon": (By.CSS_SELECTOR, "img.show-password-img"),
-                "sign_in_link": (By.CLASS_NAME, "green-link"), }
+    locators = {
+        "username_field": (By.ID, "firstName"),
+        "password_field": (By.ID, "password"),
+        "repeat_password_field": (By.ID, "repeatPassword"),
+        "show_password_icon": (By.CSS_SELECTOR, "img.show-password-img"),
+        "sign_in_link": (By.CLASS_NAME, "green-link"),
+    }
 
     __password_field_error_locator = (By.CSS_SELECTOR, "p.password-not-valid")
     __confirm_password_field_error_locator = (By.ID, "confirm-err-msg")

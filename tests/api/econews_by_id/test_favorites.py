@@ -1,10 +1,9 @@
 import allure
 from allure_commons.types import Severity
-import pytest
 
 from clients.eco_news_client import EcoNewsClient
 from data.config import Config
-from tests.api.utils.api_test_assertions import assert_ok, assert_bad_request, assert_unauthorized
+from tests.utils.api_test_assertions import assert_ok, assert_bad_request, assert_unauthorized
 
 
 @allure.epic("EcoNews API")

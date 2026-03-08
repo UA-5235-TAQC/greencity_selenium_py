@@ -30,17 +30,19 @@ class HeaderComponent(BaseComponent):
     auth_modal_sign_in: SignInModal
     auth_modal_sign_up: SignUpModal
 
-    locators: LocatorsTable = {"logo": (By.CSS_SELECTOR, 'a.header_logo'),
-                               "news_link": (By.XPATH, "//a[contains(@href, '#/greenCity/news')]"),
-                               "my_space_link": (By.XPATH, "//a[contains(@href, '#/greenCity/profile')]"),
-                               "sign_in": (By.CSS_SELECTOR, "a.header_sign-in-link"),
-                               "sign_up": (By.CSS_SELECTOR, "li.header_sign-up-link"),
-                               "search_btn": (By.CSS_SELECTOR, "li.search-icon"),
-                               "language_dropdown": (By.CSS_SELECTOR, "ul.header_lang-switcher-wrp"),
-                               "user_name": (By.CSS_SELECTOR, ".body-2"),
-                               "user_dropdown": (By.CSS_SELECTOR, "ul.dropdown-list", ProfileDropdownComponent),
-                               "auth_modal_sign_in": (By.XPATH, "//app-auth-modal", SignInModal),
-                               "auth_modal_sign_up": (By.XPATH, "//app-auth-modal", SignUpModal)}
+    locators: LocatorsTable = {
+        "logo": (By.CSS_SELECTOR, 'a.header_logo'),
+        "news_link": (By.XPATH, "//a[contains(@href, '#/greenCity/news')]"),
+        "my_space_link": (By.XPATH, "//a[contains(@href, '#/greenCity/profile')]"),
+        "sign_in": (By.CSS_SELECTOR, "a.header_sign-in-link"),
+        "sign_up": (By.CSS_SELECTOR, "li.header_sign-up-link"),
+        "search_btn": (By.CSS_SELECTOR, "li.search-icon"),
+        "language_dropdown": (By.CSS_SELECTOR, "ul.header_lang-switcher-wrp"),
+        "user_name": (By.CSS_SELECTOR, ".body-2"),
+        "user_dropdown": (By.CSS_SELECTOR, "ul.dropdown-list", ProfileDropdownComponent),
+        "auth_modal_sign_in": (By.XPATH, "//app-auth-modal", SignInModal),
+        "auth_modal_sign_up": (By.XPATH, "//app-auth-modal", SignUpModal)
+    }
 
     @allure.step("Click header logo")
     def click_logo(self) -> "HomePage":

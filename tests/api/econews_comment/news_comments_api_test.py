@@ -6,7 +6,7 @@ from data.comment_factory import COMMENT_MESSAGE, COMMENT_UPDATE_MESSAGE
 from data.config import Config
 from data.ui_news_test_data import TEST2_FILE
 from schemas.greencity.comment import comment_schema
-from tests.api.utils.api_test_assertions import assert_ok, assert_created
+from tests.utils.api_test_assertions import assert_ok, assert_created
 from tests.utils.validators import validate_json
 
 
@@ -97,7 +97,6 @@ def test_update_comment(create_and_cleanup_comment):
 @allure.tag("EcoNewsComments API")
 class TestNewsComments:
     """API tests for EcoNews comments functionality."""
-    created_comment_id: int = None
 
     @allure.title("Add comment to eco news")
     @allure.story("Create comment")
@@ -122,8 +121,6 @@ class TestNewsComments:
         )
 
         assert_created(response)
-
-        self.created_comment_id = response.json()["id"]
 
         is_valid, error = validate_json(response.json(), comment_schema)
         assert is_valid, f"Response JSON does not match the expected schema: {error}"

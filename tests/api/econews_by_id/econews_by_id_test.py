@@ -7,9 +7,9 @@ from data.eco_news_factory import EcoNewsUpdateFactory, create_news_uk, TEST_TAG
 from data.ui_news_test_data import TEST2_FILE
 from enums.news_tag import EcoNewsTag
 from models.update_eco_news_request import UpdateEcoNewsRequest
-from tests.api.utils.api_test_assertions import assert_unauthorized, assert_ok, assert_not_found, assert_bad_request
-from tests.api.utils.econews_assertions import assert_eco_news_response
-from tests.api.utils.error_response import ErrorResponse
+from tests.utils.api_test_assertions import assert_unauthorized, assert_ok, assert_not_found, assert_bad_request
+from tests.utils.econews_assertions import assert_eco_news_response
+from tests.utils.error_response import ErrorResponse
 
 
 @allure.epic("EcoNews API")

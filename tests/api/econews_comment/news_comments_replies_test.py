@@ -3,7 +3,7 @@ import pytest
 from allure_commons.types import Severity
 from clients.eco_news_comment_client import EcoNewsCommentClient
 from models.queries import CommentQuery
-from tests.api.utils.comment_assertions import assert_comment_response, assert_page_meta
+from tests.utils.comment_assertions import assert_comment_response, assert_page_meta
 
 
 @allure.epic("EcoNewsComment API")
@@ -16,11 +16,7 @@ class TestEcoNewsCommentReplies:
     """Test suite verifies replies and replies count for EcoNews comments"""
 
     eco_news_comment_client: EcoNewsCommentClient
-    parent_comment_id: int
-    parent_sub_comment_id: int
-    comment_id_with_images: int
-    sub_comment_id_with_images: int
-    sub_comment_id: int
+    comment_ids: dict
 
     def _verify_active_replies(
             self,
@@ -31,14 +27,11 @@ class TestEcoNewsCommentReplies:
     ):
         """Helper to verify active replies for a given parent comment"""
 
-        response = (
-            self.eco_news_comment_client.get_active_replies(parent_id, query)
-        )
+        response = self.eco_news_comment_client.get_active_replies(parent_id, query)
 
         assert response.status_code == 200, f"Expected 200 OK, got {response.status_code}"
 
         page_response = response.json()
-
         assert page_response is not None, "Response JSON should not be None"
 
         page = page_response.get("page")
@@ -62,32 +55,32 @@ class TestEcoNewsCommentReplies:
 
         return active_reply
 
-    @allure.description("Verify that active replies for a comment can be retrieved " +
-                        "successfully without query parameters.")
+    @allure.title(
+        "Verify that active replies for a comment can be retrieved successfully without query parameters."
+    )
     def test_get_active_replies_default(self):
         self._verify_active_replies(
-            parent_id=self.comment_id_with_images,
-            expected_comment_id=self.sub_comment_id_with_images
+            parent_id=self.comment_ids["with_images"],
+            expected_comment_id=self.comment_ids["sub_with_images"]
         )
 
-    @allure.description(
-        "Verify that active replies for a comment can be retrieved "
-        "for a specific page (page=0, size=10)."
+    @allure.title(
+        "Verify that active replies for a comment can be retrieved for a specific page (page=0, size=10)."
     )
     def test_get_active_replies_with_page(self):
         self._verify_active_replies(
-            parent_id=self.comment_id_with_images,
-            expected_comment_id=self.sub_comment_id,
+            parent_id=self.comment_ids["with_images"],
+            expected_comment_id=self.comment_ids["sub"],
             query=CommentQuery(page=0, size=10),
             reply_index=1
         )
 
-    @allure.description(
+    @allure.title(
         "Verify that active replies for a comment can be retrieved when page size is set to 1."
     )
     def test_get_active_replies_size_one(self):
         self._verify_active_replies(
-            parent_id=self.parent_comment_id,
-            expected_comment_id=self.parent_sub_comment_id,
+            parent_id=self.comment_ids["parent"],
+            expected_comment_id=self.comment_ids["parent_sub"],
             query=CommentQuery(page=0, size=1)
         )

@@ -20,12 +20,14 @@ class MySpaceNewsTabPage(MySpaceBasePage):
     news_items: List[MySpaceNewsItemComponent]
     tags: List[WebElement]
 
-    locators: LocatorsTable = {"page_title": (By.CSS_SELECTOR, ".header app-set-count"),
+    locators: LocatorsTable = {
+        "page_title": (By.CSS_SELECTOR, ".header app-set-count"),
         "add_news_button": (By.ID, "create-button-news"),
         "favourites_button": (By.CSS_SELECTOR, ".buttons-wrapper .favourites"),
         "news_count_label": (By.CSS_SELECTOR, ".header app-set-count span.ng-star-inserted"),
         "news_items": (By.CSS_SELECTOR, "ul.news-list > li", List[MySpaceNewsItemComponent]),
-        "tags": (By.CSS_SELECTOR, "button.tag-button", List[WebElement]), }
+        "tags": (By.CSS_SELECTOR, "button.tag-button", List[WebElement]),
+    }
 
     @allure.step("Get page title")
     def get_page_title(self) -> str:

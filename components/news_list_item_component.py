@@ -22,16 +22,18 @@ class NewsListItemComponent(BaseComponent):
     likes_count: WebElement
     overlay_backdrop: WebElement
 
-    locators: LocatorsTable = {"news_image": (By.CSS_SELECTOR, ".list-image-content"),
-                               "bookmark_btn": (By.CSS_SELECTOR, ".favourite-button"),
-                               "tags": (By.CSS_SELECTOR, ".filter-tag div", List[WebElement]),
-                               "title": (By.CSS_SELECTOR, ".title-list"),
-                               "news_text": (By.CSS_SELECTOR, ".list-text"),
-                               "creation_date": (By.CSS_SELECTOR, ".text-nowrap>span"),
-                               "author_name": (By.CSS_SELECTOR, ".mw"),
-                               "comments_count": (By.XPATH, ".//img[contains(@alt, 'comment')]/parent::*/span"),
-                               "likes_count": (By.XPATH, ".//img[contains(@alt, 'likes')]/parent::*/span"),
-                               "overlay_backdrop": (By.CSS_SELECTOR, ".cdk-overlay-backdrop-showing")}
+    locators: LocatorsTable = {
+        "news_image": (By.CSS_SELECTOR, ".list-image-content"),
+        "bookmark_btn": (By.CSS_SELECTOR, ".favourite-button"),
+        "tags": (By.CSS_SELECTOR, ".filter-tag div", List[WebElement]),
+        "title": (By.CSS_SELECTOR, ".title-list"),
+        "news_text": (By.CSS_SELECTOR, ".list-text"),
+        "creation_date": (By.CSS_SELECTOR, ".text-nowrap>span"),
+        "author_name": (By.CSS_SELECTOR, ".mw"),
+        "comments_count": (By.XPATH, ".//img[contains(@alt, 'comment')]/parent::*/span"),
+        "likes_count": (By.XPATH, ".//img[contains(@alt, 'likes')]/parent::*/span"),
+        "overlay_backdrop": (By.CSS_SELECTOR, ".cdk-overlay-backdrop-showing")
+    }
 
     @allure.step("Click bookmark button")
     def click_bookmark(self) -> "NewsPage":

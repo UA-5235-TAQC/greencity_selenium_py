@@ -1,7 +1,7 @@
 from math import ceil
 import pytest_check as check
 
-from tests.api.utils.author_assertions import assert_author
+from tests.utils.author_assertions import assert_author
 
 
 def assert_comment_response(actual: dict, expected: dict, check_author: bool = False):
@@ -71,10 +71,10 @@ def assert_comment_response(actual: dict, expected: dict, check_author: bool = F
                     "Additional images length should match"
                 )
 
-                for i in range(len(expected_images)):
+                for i, expected_image in enumerate(expected_images):
                     check.equal(
                         actual_images[i],
-                        expected_images[i],
+                        expected_image,
                         f"Additional image at index {i} should match"
                     )
 

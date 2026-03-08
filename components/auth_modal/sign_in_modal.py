@@ -18,9 +18,12 @@ class SignInModal(ModalBasePage):
     show_password_icon: WebElement
     sign_up_link: WebElement
 
-    locators = {"password_field": (By.ID, "password"), "forgot_password_link": (By.CSS_SELECTOR, "a.forgot-password"),
-                "show_password_icon": (By.CSS_SELECTOR, ".image-show-hide-password"),
-                "sign_up_link": (By.CSS_SELECTOR, "a.green-link"), }
+    locators = {
+        "password_field": (By.ID, "password"),
+        "forgot_password_link": (By.CSS_SELECTOR, "a.forgot-password"),
+        "show_password_icon": (By.CSS_SELECTOR, ".image-show-hide-password"),
+        "sign_up_link": (By.CSS_SELECTOR, "a.green-link"),
+    }
 
     __password_field_error_locator = (By.CSS_SELECTOR, "#pass-err-msg div")
 

@@ -51,61 +51,41 @@ class BaseClient:
         request_headers = self.prepare_request(headers)
         url = f"{self.base_api_url}{path}"
         with allure.step(f"Execute GET request to {url} with params {params} and headers {request_headers}"):
-            return requests.get(
-                url,
-                headers=request_headers,
-                params=params,
-                timeout=Config.REQUEST_WAIT
-            )
+            return requests.get(url, headers=request_headers,
+                                params=params, timeout=Config.REQUEST_WAIT)
 
-    def post(self, path: str, json_post: Optional[dict] = None, data: Optional[dict] = None,
+    def post(  # pylint: disable=too-many-positional-arguments
+            self, path: str, json_post: Optional[dict] = None, data: Optional[dict] = None,
             files: Optional[list] = None, params: Optional[dict] = None, headers: Optional[dict] = None
     ) -> Response:
         """ Execute POST request. """
         request_headers = self.prepare_request(headers)
-        return requests.post(
-            f"{self.base_api_url}{path}",
-            headers=request_headers,
-            json=json_post,
-            data=data,
-            files=files,
-            params=params,
-            timeout=Config.REQUEST_WAIT
-        )
+        return requests.post(f"{self.base_api_url}{path}", headers=request_headers,
+                             json=json_post, data=data, files=files, params=params,
+                             timeout=Config.REQUEST_WAIT)
 
     def put(self, path: str, json_put: Optional[dict] = None, files: Optional[list] = None,
             headers: Optional[dict] = None) -> Response:
         """Execute PUT request."""
         request_headers = self.prepare_request(headers)
-        return requests.put(
-            f"{self.base_api_url}{path}",
-            headers=request_headers,
-            json=json_put,
-            files=files,
-            timeout=Config.REQUEST_WAIT
-        )
+        return requests.put(f"{self.base_api_url}{path}", headers=request_headers,
+                            json=json_put, files=files, timeout=Config.REQUEST_WAIT)
 
-    def patch(self, path: str, json_patch = None, files: Optional[list] = None,
-            headers: Optional[dict] = None, params:dict=None) -> Response:
+    def patch(  # pylint: disable=too-many-positional-arguments
+            self, path: str, json_patch=None, files: Optional[list] = None,
+            headers: Optional[dict] = None, params: dict = None
+    ) -> Response:
         """Execute PATCH request."""
         request_headers = self.prepare_request(headers)
-        return requests.patch(
-            f"{self.base_api_url}{path}",
-            headers=request_headers,
-            json=json_patch,
-            files=files,
-            params=params,
-            timeout=Config.REQUEST_WAIT
-        )
+        return requests.patch(f"{self.base_api_url}{path}", headers=request_headers,
+                              json=json_patch, files=files, params=params,
+                              timeout=Config.REQUEST_WAIT)
 
     def delete(self, path: str) -> Response:
         """  Execute DELETE request. """
         headers = self.prepare_request()
-        response = requests.delete(
-            f"{self.base_api_url}{path}",
-            headers=headers,
-            timeout=Config.REQUEST_WAIT
-        )
+        response = requests.delete(f"{self.base_api_url}{path}", headers=headers,
+                                   timeout=Config.REQUEST_WAIT)
         return response
 
     def attach_file_to_request(self, files: dict, image_path: Optional[str]) -> None:

@@ -3,7 +3,7 @@ from typing import Dict
 from jsonschema import validate, ValidationError
 import pytest_check as check
 from schemas.greencity.eco_news import eco_news_response_schema
-from tests.api.utils.author_assertions import assert_author
+from tests.utils.author_assertions import assert_author
 
 
 def assert_eco_news_response(actual: Dict, expected: Dict,
@@ -18,7 +18,9 @@ def assert_eco_news_response(actual: Dict, expected: Dict,
     try:
         validate(instance=actual, schema=eco_news_response_schema)
     except ValidationError as e:
-        raise AssertionError(f"JSON does not match EcoNews schema: {e.message}")
+        raise AssertionError(
+            f"JSON does not match EcoNews schema: {e.message}"
+        ) from e
 
     check.equal(actual.get("id"), expected.get("id"), "ID should match")
     check.equal(actual.get("title"), expected.get("title"), "Title should match")
