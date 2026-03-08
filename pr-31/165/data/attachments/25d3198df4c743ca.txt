@@ -1,0 +1,2 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Get page title and verify
+INFO     allure.step:logging_config.py:35 STEP PASSED
