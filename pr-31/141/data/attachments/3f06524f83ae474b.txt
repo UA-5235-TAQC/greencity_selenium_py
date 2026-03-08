@@ -1,6 +1,0 @@
-INFO     allure.step:logging_config.py:30 >> STEP  Open news details page with ID  [news_id=564]
-INFO     allure.step:logging_config.py:35 STEP PASSED
-INFO     allure.step:logging_config.py:30 >> STEP  Check that News Details page is opened
-INFO     allure.step:logging_config.py:35 STEP PASSED
-INFO     allure.step:logging_config.py:30 >> STEP  Check if Edit button is visible
-INFO     allure.step:logging_config.py:35 STEP PASSED
