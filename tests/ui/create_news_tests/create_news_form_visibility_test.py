@@ -223,7 +223,7 @@ def test_create_news_fields_visibility(go_to_create_news_page: CreateNewsPage, l
         check.equal(preview.get_news_source(), td["source"],
                     "News source on Preview page should match entered source")
 
-        go_to_create_news_page = preview.click_back_to_create_news_btn()
+        create_news_page: CreateNewsPage = preview.click_back_to_create_news_btn()
         assert create_news_page.is_page_opened_after_preview_click_back(), \
             "User should be redirected to CreateNewsPage after clicking Back button"
 
