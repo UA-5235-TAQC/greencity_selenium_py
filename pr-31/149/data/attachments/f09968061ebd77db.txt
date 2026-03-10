@@ -1,8 +1,0 @@
-INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3265 with query params  [parent_comment_id=3265, query=CommentQuery(page=0, size=10, sort=[])]
-INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3265/replies/active with params {'page': 0, 'size': 10} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MjgyODA1OSwidXNlcklkIjoxNDksImlhdCI6MTc3MjgyMDg1OX0.5-bZHIxZoC8CD7mZB5iMM8jT-mqeqAALNDkDJ_7Af1w'}
-INFO     allure.step:logging_config.py:35 STEP PASSED
-INFO     allure.step:logging_config.py:35 STEP PASSED
-INFO     allure.step:logging_config.py:30 >> STEP  Getting comment by Id  [comment_id=3267]
-INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3267 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MjgyODA1OSwidXNlcklkIjoxNDksImlhdCI6MTc3MjgyMDg1OX0.5-bZHIxZoC8CD7mZB5iMM8jT-mqeqAALNDkDJ_7Af1w'}
-INFO     allure.step:logging_config.py:35 STEP PASSED
-INFO     allure.step:logging_config.py:35 STEP PASSED
