@@ -1,0 +1,28 @@
+09:35:48 [INFO    ] allure.step - >> STEP  Open home page
+09:35:48 [INFO    ] allure.step - >> STEP  Wait until home page is loaded
+09:35:48 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="f9c5b488053458d602f7460d51188f13", element="f.18EA92012AA8A893441DEE02657B8571.d.6AF9AA9298153915EC686DABC055B4B8.e.31")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="f9c5b488053458d602f7460d51188f13", element="f.18EA92012AA8A893441DEE02657B8571.d.6AF9AA9298153915EC686DABC055B4B8.e.31")>, timeout=10]
+09:35:48 [INFO    ] allure.step - STEP PASSED
+09:35:48 [INFO    ] allure.step - STEP PASSED
+09:35:48 [INFO    ] allure.step - STEP PASSED
+09:35:48 [INFO    ] allure.step - >> STEP  Change language to English
+09:35:48 [INFO    ] allure.step - >> STEP  Get current locale
+09:35:48 [INFO    ] allure.step - STEP PASSED
+09:35:48 [INFO    ] allure.step - STEP PASSED
+09:35:48 [INFO    ] allure.step - >> STEP  Click 'Sign In' link in header
+09:35:48 [INFO    ] allure.step - STEP PASSED
+09:35:48 [INFO    ] allure.step - >> STEP  Enter email and password values  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+09:35:48 [INFO    ] allure.step - >> STEP  Enter value in email field  [email='testtestovich611@gmail.com']
+09:35:50 [INFO    ] allure.step - STEP PASSED
+09:35:50 [INFO    ] allure.step - >> STEP  Enter value in password field  [password='!Testtestovich611!']
+09:35:50 [INFO    ] allure.step - STEP PASSED
+09:35:50 [INFO    ] allure.step - >> STEP  Click submit button
+09:35:50 [INFO    ] allure.step - STEP PASSED
+09:35:50 [INFO    ] allure.step - >> STEP  Wait until cancel modal is closed  [timeout=10]
+09:35:51 [INFO    ] allure.step - STEP PASSED
+09:35:51 [INFO    ] allure.step - >> STEP  Wait until My Space Habits tab is fully opened  [timeout=10]
+09:35:51 [INFO    ] allure.step - >> STEP  Verify that My Space Habits tab is opened
+09:35:51 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="f9c5b488053458d602f7460d51188f13", element="f.18EA92012AA8A893441DEE02657B8571.d.6AF9AA9298153915EC686DABC055B4B8.e.88")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="f9c5b488053458d602f7460d51188f13", element="f.18EA92012AA8A893441DEE02657B8571.d.6AF9AA9298153915EC686DABC055B4B8.e.88")>, timeout=10]
+09:35:51 [INFO    ] allure.step - STEP PASSED
+09:35:51 [INFO    ] allure.step - STEP PASSED
+09:35:51 [INFO    ] allure.step - STEP PASSED
+09:35:51 [INFO    ] allure.step - STEP PASSED

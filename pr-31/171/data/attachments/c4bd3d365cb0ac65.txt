@@ -1,0 +1,20 @@
+09:32:49 [INFO    ] allure.step - >> STEP  Post new EcoNews without image  [body=EcoNewsRequest(title='Ласкаво просимо до Вікіпедії', text='Осип Тадейович Назарук (1883 — 1940) — український громадський і ', source='https://uk.wikipedia.org/wiki/Main_Page', short_info='Головна сторінка Вікіпедії українською', tags=['Новини', 'Освіта'])]
+09:32:49 [INFO    ] allure.step - STEP PASSED
+09:32:49 [INFO    ] allure.step - >> STEP  Refresh access token using refresh token  [refresh_token='eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzE3MTE2NiwidXNlcklkIjoxNDksImlhdCI6MTc3MzEzNTE2Nn0.YBtUUawT6EZi8wdQwwe9FY3yhnzMXuIUIN1OusV74_I']
+09:32:49 [INFO    ] allure.step - STEP PASSED
+09:32:49 [INFO    ] allure.step - >> STEP  Refresh token failed (HTTP 401); performing full re-login
+09:32:49 [INFO    ] allure.step - >> STEP  Sign in to the own security service with email: 'testtestovich611@gmail.com'  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+09:32:49 [INFO    ] allure.step - STEP PASSED
+09:32:49 [INFO    ] allure.step - STEP PASSED
+09:32:49 [INFO    ] allure.step - >> STEP  Pre-test cleanup: remove news 7107 from favorites
+09:32:49 [INFO    ] allure.step - >> STEP  Remove EcoNews from favorites: 7107  [eco_news_id=7107]
+09:32:49 [INFO    ] allure.step - STEP PASSED
+09:32:49 [INFO    ] allure.step - STEP PASSED
+09:32:49 [INFO    ] allure.step - >> STEP  Add EcoNews to favorites: 7107  [eco_news_id=7107]
+09:32:49 [INFO    ] allure.step - STEP PASSED
+09:32:49 [INFO    ] allure.step - >> STEP  Remove EcoNews from favorites: 7107  [eco_news_id=7107]
+09:32:49 [INFO    ] allure.step - STEP PASSED
+09:32:49 [INFO    ] allure.step - >> STEP  Post-test cleanup: remove news 7107 from favorites
+09:32:49 [INFO    ] allure.step - >> STEP  Remove EcoNews from favorites: 7107  [eco_news_id=7107]
+09:32:50 [INFO    ] allure.step - STEP PASSED
+09:32:50 [INFO    ] allure.step - STEP PASSED

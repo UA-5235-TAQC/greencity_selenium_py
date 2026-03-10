@@ -1,0 +1,18 @@
+09:32:50 [INFO    ] allure.step - >> STEP  Refresh access token using refresh token  [refresh_token='eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzE3MTE2OSwidXNlcklkIjoxNDksImlhdCI6MTc3MzEzNTE2OX0.gAwAbxbykpCSZ4LDSHrYhU332SwE-ifaogsLt4wgFiA']
+09:32:50 [INFO    ] allure.step - STEP PASSED
+09:32:50 [INFO    ] allure.step - >> STEP  Refresh token failed (HTTP 401); performing full re-login
+09:32:50 [INFO    ] allure.step - >> STEP  Sign in to the own security service with email: 'testtestovich611@gmail.com'  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+09:32:50 [INFO    ] allure.step - STEP PASSED
+09:32:50 [INFO    ] allure.step - STEP PASSED
+09:32:50 [INFO    ] allure.step - >> STEP  Pre-test cleanup: remove news 7107 from favorites
+09:32:50 [INFO    ] allure.step - >> STEP  Remove EcoNews from favorites: 7107  [eco_news_id=7107]
+09:32:50 [INFO    ] allure.step - STEP PASSED
+09:32:50 [INFO    ] allure.step - STEP PASSED
+09:32:50 [INFO    ] allure.step - >> STEP  Add EcoNews to favorites: 7107  [eco_news_id=7107]
+09:32:50 [INFO    ] allure.step - STEP PASSED
+09:32:50 [INFO    ] allure.step - >> STEP  Add EcoNews to favorites: 7107  [eco_news_id=7107]
+09:32:50 [INFO    ] allure.step - STEP PASSED
+09:32:50 [INFO    ] allure.step - >> STEP  Post-test cleanup: remove news 7107 from favorites
+09:32:50 [INFO    ] allure.step - >> STEP  Remove EcoNews from favorites: 7107  [eco_news_id=7107]
+09:32:51 [INFO    ] allure.step - STEP PASSED
+09:32:51 [INFO    ] allure.step - STEP PASSED
