@@ -1,0 +1,6 @@
+10:29:34 [INFO    ] allure.step - >> STEP  Post new EcoNews with image: '/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif'  [body=EcoNewsRequest(title='Ласкаво просимо до Вікіпедії', text='Осип Тадейович Назарук (1883 — 1940) — український громадський і ', source='https://uk.wikipedia.org/wiki/Main_Page', short_info='Головна сторінка Вікіпедії українською', tags=['Новини', 'Освіта']), image_path='/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif']
+10:29:35 [INFO    ] allure.step - STEP PASSED
+10:29:35 [INFO    ] allure.step - >> STEP  Get EcoNews by ID: 7194  [eco_news_id=7194]
+10:29:35 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua//eco-news/7194 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzE0NTc3MywidXNlcklkIjoxNDksImlhdCI6MTc3MzEzODU3M30.nVG_uZmxmsaKmOqY0Ti6VuMavMfviH8CpasVN3L747Y'}
+10:29:35 [INFO    ] allure.step - STEP PASSED
+10:29:35 [INFO    ] allure.step - STEP PASSED
