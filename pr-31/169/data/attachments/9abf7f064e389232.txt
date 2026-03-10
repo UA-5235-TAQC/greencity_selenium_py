@@ -1,0 +1,26 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Open Home page and verify title
+INFO     allure.step:logging_config.py:30 >> STEP  Open home page
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until home page is loaded
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="51ace6e594fa9bc1d265b37230f97c71", element="f.357970423E25BC52E34186682D2D2D4F.d.A9C7FF97098C18ED2431548141CBF313.e.12")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="51ace6e594fa9bc1d265b37230f97c71", element="f.357970423E25BC52E34186682D2D2D4F.d.A9C7FF97098C18ED2431548141CBF313.e.12")>, timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get the title of the current page
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Navigate to News page via header link
+INFO     allure.step:logging_config.py:30 >> STEP  Click 'Eco News' link in header
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until Eco News page is opened
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="51ace6e594fa9bc1d265b37230f97c71", element="f.357970423E25BC52E34186682D2D2D4F.d.A9C7FF97098C18ED2431548141CBF313.e.65")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="51ace6e594fa9bc1d265b37230f97c71", element="f.357970423E25BC52E34186682D2D2D4F.d.A9C7FF97098C18ED2431548141CBF313.e.65")>, timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get the current URL of the page
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Return to Home page via logo click
+INFO     allure.step:logging_config.py:30 >> STEP  Click header logo
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Get the current URL of the page
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED

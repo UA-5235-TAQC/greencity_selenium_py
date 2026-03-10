@@ -1,0 +1,2 @@
+08:42:02 [INFO    ] allure.step - >> STEP  Get page title and verify
+08:42:02 [INFO    ] allure.step - STEP PASSED

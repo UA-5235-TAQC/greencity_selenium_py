@@ -1,0 +1,56 @@
+08:40:19 [INFO    ] allure.step - >> STEP  Open home page
+08:40:19 [INFO    ] allure.step - >> STEP  Wait until home page is loaded
+08:40:19 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="2b21b13aef2ac900cb7a097f0ad2ff0f", element="f.8835FDCFEC23D987425062AF6AF6F514.d.8275E16CACABC45FA47C72B8AAA05124.e.12")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="2b21b13aef2ac900cb7a097f0ad2ff0f", element="f.8835FDCFEC23D987425062AF6AF6F514.d.8275E16CACABC45FA47C72B8AAA05124.e.12")>, timeout=10]
+08:40:19 [INFO    ] allure.step - STEP PASSED
+08:40:19 [INFO    ] allure.step - STEP PASSED
+08:40:19 [INFO    ] allure.step - STEP PASSED
+08:40:19 [INFO    ] allure.step - >> STEP  Change language to English
+08:40:19 [INFO    ] allure.step - >> STEP  Get current locale
+08:40:19 [INFO    ] allure.step - STEP PASSED
+08:40:19 [INFO    ] allure.step - STEP PASSED
+08:40:19 [INFO    ] allure.step - >> STEP  Click 'Sign In' link in header
+08:40:21 [INFO    ] allure.step - STEP PASSED
+08:40:21 [INFO    ] allure.step - >> STEP  Enter email and password values  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+08:40:21 [INFO    ] allure.step - >> STEP  Enter value in email field  [email='testtestovich611@gmail.com']
+08:40:21 [INFO    ] allure.step - STEP PASSED
+08:40:21 [INFO    ] allure.step - >> STEP  Enter value in password field  [password='!Testtestovich611!']
+08:40:21 [INFO    ] allure.step - STEP PASSED
+08:40:21 [INFO    ] allure.step - >> STEP  Click submit button
+08:40:21 [INFO    ] allure.step - STEP PASSED
+08:40:21 [INFO    ] allure.step - >> STEP  Wait until cancel modal is closed  [timeout=10]
+08:40:22 [INFO    ] allure.step - STEP PASSED
+08:40:22 [INFO    ] allure.step - >> STEP  Wait until My Space Habits tab is fully opened  [timeout=10]
+08:40:22 [INFO    ] allure.step - >> STEP  Verify that My Space Habits tab is opened
+08:40:22 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="2b21b13aef2ac900cb7a097f0ad2ff0f", element="f.8835FDCFEC23D987425062AF6AF6F514.d.8275E16CACABC45FA47C72B8AAA05124.e.84")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="2b21b13aef2ac900cb7a097f0ad2ff0f", element="f.8835FDCFEC23D987425062AF6AF6F514.d.8275E16CACABC45FA47C72B8AAA05124.e.84")>, timeout=10]
+08:40:23 [INFO    ] allure.step - STEP PASSED
+08:40:23 [INFO    ] allure.step - STEP PASSED
+08:40:23 [INFO    ] allure.step - STEP PASSED
+08:40:23 [INFO    ] allure.step - STEP PASSED
+08:40:23 [INFO    ] allure.step - >> STEP  Open Eco News page
+08:40:23 [INFO    ] allure.step - STEP PASSED
+08:40:23 [INFO    ] allure.step - >> STEP  Click on Create News button
+08:40:23 [INFO    ] allure.step - STEP PASSED
+08:40:23 [INFO    ] allure.step - >> STEP  Enter news title: 'Test Preview'  [title='Test Preview']
+08:40:23 [INFO    ] allure.step - STEP PASSED
+08:40:23 [INFO    ] allure.step - >> STEP  Clear and enter content text: 'This is a test preview content'  [text='This is a test preview content']
+08:40:23 [INFO    ] allure.step - STEP PASSED
+08:40:23 [INFO    ] allure.step - >> STEP  Click the preview button
+08:40:23 [INFO    ] allure.step - STEP PASSED
+08:40:23 [INFO    ] allure.step - >> STEP  Check preview page is opened
+08:40:23 [INFO    ] allure.step - STEP PASSED
+08:40:23 [INFO    ] allure.step - >> STEP  Get news title
+08:40:23 [INFO    ] allure.step - STEP PASSED
+08:40:23 [INFO    ] allure.step - >> STEP  Get news text
+08:40:23 [INFO    ] allure.step - STEP PASSED
+08:40:23 [INFO    ] allure.step - >> STEP  Get news creating date
+08:40:24 [INFO    ] allure.step - STEP PASSED
+08:40:24 [INFO    ] allure.step - >> STEP  Get current date in English <Language.EN: 'En'>  [lang=<Language.EN: 'En'>]
+08:40:24 [INFO    ] allure.step - STEP PASSED
+08:40:24 [INFO    ] allure.step - >> STEP  Get author name
+08:40:24 [INFO    ] allure.step - STEP PASSED
+08:40:24 [INFO    ] allure.step - >> STEP  Click 'Back to create news'
+08:40:24 [INFO    ] allure.step - >> STEP  Wait for a custom lambda condition.  [condition=<function element_to_be_clickable.<locals>._predicate at 0x7f35c7f6b2e0>, timeout=None]
+08:40:24 [INFO    ] allure.step - STEP PASSED
+08:40:24 [INFO    ] allure.step - STEP PASSED
+08:40:24 [INFO    ] allure.step - >> STEP  Check if page header is visible after clicking Back from NewsPreviewPage
+08:40:24 [INFO    ] allure.step - STEP PASSED

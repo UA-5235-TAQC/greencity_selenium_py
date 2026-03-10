@@ -1,0 +1,20 @@
+08:38:30 [INFO    ] allure.step - >> STEP  Sign in to the own security service with email: 'vafopi9974@daerdy.com'  [email='vafopi9974@daerdy.com', password='!Testtestovich611!']
+08:38:30 [INFO    ] allure.step - STEP PASSED
+08:38:30 [INFO    ] allure.step - >> STEP  Add a comment to eco news with Id  [text='This is a test comment.', parent_comment_id=0, image_paths=['/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']]
+08:38:30 [INFO    ] allure.step - STEP PASSED
+08:38:30 [INFO    ] allure.step - >> STEP  Get comment by id and verify status
+08:38:30 [INFO    ] allure.step - >> STEP  Getting comment by Id  [comment_id=3605]
+08:38:30 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3605 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YWZvcGk5OTc0QGRhZXJkeS5jb20iLCJyb2xlIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE3NzMxMzkxMTAsInVzZXJJZCI6MTU2OSwiaWF0IjoxNzczMTMxOTEwfQ.Kq0UOdShQAOS8GvakzhE05o2_9TkBIGJqle5e8DoZTY'}
+08:38:31 [INFO    ] allure.step - STEP PASSED
+08:38:31 [INFO    ] allure.step - STEP PASSED
+08:38:31 [INFO    ] allure.step - STEP PASSED
+08:38:31 [INFO    ] allure.step - >> STEP  Get dislikes status before
+08:38:31 [INFO    ] allure.step - STEP PASSED
+08:38:31 [INFO    ] allure.step - >> STEP  Dislike comment
+08:38:31 [INFO    ] allure.step - >> STEP  Dislike comment and get comment instance  [comment_id=3605]
+08:38:31 [INFO    ] allure.step - STEP PASSED
+08:38:31 [INFO    ] allure.step - STEP PASSED
+08:38:31 [INFO    ] allure.step - >> STEP  Verify dislike status is updated
+08:38:31 [INFO    ] allure.step - STEP PASSED
+08:38:31 [INFO    ] allure.step - >> STEP  Deleting comment by Id  [comment_id=3605]
+08:38:31 [INFO    ] allure.step - STEP PASSED
