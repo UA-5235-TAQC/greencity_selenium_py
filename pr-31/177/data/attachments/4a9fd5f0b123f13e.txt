@@ -1,0 +1,34 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Create another sub-comment for sorting test
+INFO     allure.step:logging_config.py:30 >> STEP  Add a comment to eco news with Id  [text='Another API Auto subcomment 367c99d9-0a07-4e72-af66-505e744048ab', parent_comment_id=3775, image_paths=None]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Verify replies sorted by createdDate descending
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3775 with query params  [parent_comment_id=3775, query=CommentQuery(page=0, size=20, sort=['createdDate,desc'])]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3775/replies/active with params {'page': 0, 'size': 20, 'sort': ['createdDate,desc']} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzE0NzY2NywidXNlcklkIjoxNDksImlhdCI6MTc3MzE0MDQ2N30.DvXVbXv05gWWTARsbqvUKDz6kYxNAK45828i0BMhHC0'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Getting comment by Id  [comment_id=3779]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3779 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzE0NzY2NywidXNlcklkIjoxNDksImlhdCI6MTc3MzE0MDQ2N30.DvXVbXv05gWWTARsbqvUKDz6kYxNAK45828i0BMhHC0'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Verify replies sorted by modifiedDate descending
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3775 with query params  [parent_comment_id=3775, query=CommentQuery(page=0, size=20, sort=['modifiedDate,desc'])]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3775/replies/active with params {'page': 0, 'size': 20, 'sort': ['modifiedDate,desc']} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzE0NzY2NywidXNlcklkIjoxNDksImlhdCI6MTc3MzE0MDQ2N30.DvXVbXv05gWWTARsbqvUKDz6kYxNAK45828i0BMhHC0'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Getting comment by Id  [comment_id=3777]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3777 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzE0NzY2NywidXNlcklkIjoxNDksImlhdCI6MTc3MzE0MDQ2N30.DvXVbXv05gWWTARsbqvUKDz6kYxNAK45828i0BMhHC0'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Verify replies sorted by createdDate + modifiedDate descending
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3775 with query params  [parent_comment_id=3775, query=CommentQuery(page=0, size=20, sort=['createdDate,desc', 'modifiedDate,desc'])]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3775/replies/active with params {'page': 0, 'size': 20, 'sort': ['createdDate,desc', 'modifiedDate,desc']} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzE0NzY2NywidXNlcklkIjoxNDksImlhdCI6MTc3MzE0MDQ2N30.DvXVbXv05gWWTARsbqvUKDz6kYxNAK45828i0BMhHC0'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Getting comment by Id  [comment_id=3778]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3778 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzE0NzY2NywidXNlcklkIjoxNDksImlhdCI6MTc3MzE0MDQ2N30.DvXVbXv05gWWTARsbqvUKDz6kYxNAK45828i0BMhHC0'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED

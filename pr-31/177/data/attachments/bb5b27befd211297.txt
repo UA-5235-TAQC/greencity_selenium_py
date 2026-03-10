@@ -1,0 +1,10 @@
+11:01:21 [INFO    ] allure.step - >> STEP  Get active replies for comment with no replies
+11:01:21 [INFO    ] allure.step - >> STEP  API: Get all active replies for comment ID 3777 with query params  [parent_comment_id=3777, query=CommentQuery(page=0, size=20, sort=[])]
+11:01:21 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3777/replies/active with params {'page': 0, 'size': 20} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzE0NzY2NywidXNlcklkIjoxNDksImlhdCI6MTc3MzE0MDQ2N30.DvXVbXv05gWWTARsbqvUKDz6kYxNAK45828i0BMhHC0'}
+11:01:21 [INFO    ] allure.step - STEP PASSED
+11:01:21 [INFO    ] allure.step - STEP PASSED
+11:01:21 [INFO    ] allure.step - STEP PASSED
+11:01:21 [INFO    ] allure.step - >> STEP  Assert that page metadata shows 0 total elements and page 0
+11:01:21 [INFO    ] allure.step - STEP PASSED
+11:01:21 [INFO    ] allure.step - >> STEP  Assert that replies list is empty
+11:01:21 [INFO    ] allure.step - STEP PASSED

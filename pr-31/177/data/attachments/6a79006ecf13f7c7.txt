@@ -1,0 +1,30 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Post new EcoNews without image  [body=EcoNewsRequest(title='Ласкаво просимо до Вікіпедії', text='Осип Тадейович Назарук (1883 — 1940) — український громадський і ', source='https://uk.wikipedia.org/wiki/Main_Page', short_info='Головна сторінка Вікіпедії українською', tags=['Новини', 'Освіта'])]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Create parent comment
+INFO     allure.step:logging_config.py:30 >> STEP  Add a comment to eco news with Id  [text='API Auto parent comment e8489f2c-a6a2-4250-909b-4165a06b9dd2', parent_comment_id=0, image_paths=None]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Create parent comment with images
+INFO     allure.step:logging_config.py:30 >> STEP  Add a comment to eco news with Id  [text='API Auto comment with images d3f3559d-4f46-42bd-aca1-8b76a689572c', parent_comment_id=0, image_paths=['/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif', '/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Create sub-comment for parent comment with image
+INFO     allure.step:logging_config.py:30 >> STEP  Add a comment to eco news with Id  [text='Test subComment for parent subcomment for API testing', parent_comment_id=3774, image_paths=['/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/UploadImageTest/Small PNG.png']]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Create sub-comment for comment with images
+INFO     allure.step:logging_config.py:30 >> STEP  Add a comment to eco news with Id  [text='API Auto subcomment 9cc8d92c-81be-4c93-96c5-4970337e8ac3', parent_comment_id=3775, image_paths=None]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Create sub-comment with images for comment with images
+INFO     allure.step:logging_config.py:30 >> STEP  Add a comment to eco news with Id  [text='API Auto subcomment with images 97fbfd3f-a240-4bcd-b560-906210042880', parent_comment_id=3775, image_paths=['/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif', '/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3775 with query params  [parent_comment_id=3775, query=None]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3775/replies/active with params {} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzE0NzY2NywidXNlcklkIjoxNDksImlhdCI6MTc3MzE0MDQ2N30.DvXVbXv05gWWTARsbqvUKDz6kYxNAK45828i0BMhHC0'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Getting comment by Id  [comment_id=3778]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3778 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzE0NzY2NywidXNlcklkIjoxNDksImlhdCI6MTc3MzE0MDQ2N30.DvXVbXv05gWWTARsbqvUKDz6kYxNAK45828i0BMhHC0'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED

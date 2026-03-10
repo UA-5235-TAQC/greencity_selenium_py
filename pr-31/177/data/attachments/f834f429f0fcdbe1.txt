@@ -1,0 +1,12 @@
+11:01:24 [INFO    ] allure.step - >> STEP  Send request to get tags
+11:01:24 [INFO    ] allure.step - >> STEP  Get tags with language: 'en'  [lang='en']
+11:01:24 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua//eco-news/tags with params {'lang': 'en'} and headers {'Accept': '*/*', 'Content-Type': 'application/json'}
+11:01:24 [INFO    ] allure.step - STEP PASSED
+11:01:24 [INFO    ] allure.step - STEP PASSED
+11:01:24 [INFO    ] allure.step - STEP PASSED
+11:01:24 [INFO    ] allure.step - >> STEP  Verify status code
+11:01:24 [INFO    ] allure.step - STEP PASSED
+11:01:24 [INFO    ] allure.step - >> STEP  Verify response schema
+11:01:24 [INFO    ] allure.step - STEP PASSED
+11:01:24 [INFO    ] allure.step - >> STEP  Verify response content
+11:01:24 [INFO    ] allure.step - STEP PASSED
