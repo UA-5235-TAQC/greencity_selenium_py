@@ -1,0 +1,38 @@
+10:22:19 [INFO    ] allure.step - >> STEP  Open home page
+10:22:20 [INFO    ] allure.step - >> STEP  Wait until home page is loaded
+10:22:20 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="c4858f6ee88006d3ac95855171b231a2", element="f.A1C65E8FEAD8C25C321FAE6DC9EC390C.d.A86CA33E403D0713EF26650B1F292E50.e.49")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="c4858f6ee88006d3ac95855171b231a2", element="f.A1C65E8FEAD8C25C321FAE6DC9EC390C.d.A86CA33E403D0713EF26650B1F292E50.e.49")>, timeout=10]
+10:22:20 [INFO    ] allure.step - STEP PASSED
+10:22:20 [INFO    ] allure.step - STEP PASSED
+10:22:20 [INFO    ] allure.step - STEP PASSED
+10:22:20 [INFO    ] allure.step - >> STEP  Change language to English
+10:22:20 [INFO    ] allure.step - >> STEP  Get current locale
+10:22:20 [INFO    ] allure.step - STEP PASSED
+10:22:20 [INFO    ] allure.step - STEP PASSED
+10:22:20 [INFO    ] allure.step - >> STEP  Click 'Sign In' link in header
+10:22:21 [INFO    ] allure.step - STEP PASSED
+10:22:21 [INFO    ] allure.step - >> STEP  Enter email and password values  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+10:22:21 [INFO    ] allure.step - >> STEP  Enter value in email field  [email='testtestovich611@gmail.com']
+10:22:22 [INFO    ] allure.step - STEP PASSED
+10:22:22 [INFO    ] allure.step - >> STEP  Enter value in password field  [password='!Testtestovich611!']
+10:22:22 [INFO    ] allure.step - STEP PASSED
+10:22:22 [INFO    ] allure.step - >> STEP  Click submit button
+10:22:22 [INFO    ] allure.step - STEP PASSED
+10:22:22 [INFO    ] allure.step - >> STEP  Wait until cancel modal is closed  [timeout=10]
+10:22:23 [INFO    ] allure.step - STEP PASSED
+10:22:23 [INFO    ] allure.step - >> STEP  Wait until My Space Habits tab is fully opened  [timeout=10]
+10:22:23 [INFO    ] allure.step - >> STEP  Verify that My Space Habits tab is opened
+10:22:23 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="c4858f6ee88006d3ac95855171b231a2", element="f.A1C65E8FEAD8C25C321FAE6DC9EC390C.d.A86CA33E403D0713EF26650B1F292E50.e.88")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="c4858f6ee88006d3ac95855171b231a2", element="f.A1C65E8FEAD8C25C321FAE6DC9EC390C.d.A86CA33E403D0713EF26650B1F292E50.e.88")>, timeout=10]
+10:22:23 [INFO    ] allure.step - STEP PASSED
+10:22:23 [INFO    ] allure.step - STEP PASSED
+10:22:23 [INFO    ] allure.step - STEP PASSED
+10:22:23 [INFO    ] allure.step - STEP PASSED
+10:22:23 [INFO    ] allure.step - >> STEP  Open Eco News page
+10:22:23 [INFO    ] allure.step - STEP PASSED
+10:22:23 [INFO    ] allure.step - >> STEP  Click on Create News button
+10:22:24 [INFO    ] allure.step - STEP PASSED
+10:22:24 [INFO    ] allure.step - >> STEP  Upload image from file absolute path: PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/UploadImageTest/Andromeda_Galaxy.jpg')  [file_absolute_path=PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/UploadImageTest/Andromeda_Galaxy.jpg')]
+10:22:24 [INFO    ] allure.step - STEP PASSED
+10:22:24 [INFO    ] allure.step - >> STEP  Get image upload error message text
+10:22:24 [INFO    ] allure.step - STEP PASSED
+10:22:24 [INFO    ] allure.step - >> STEP  Check if uploaded image (blob:) is displayed
+10:22:34 [INFO    ] allure.step - STEP PASSED

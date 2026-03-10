@@ -1,0 +1,4 @@
+10:19:37 [INFO    ] allure.step - >> STEP  Get EcoNews by ID: 7166  [eco_news_id=7166]
+10:19:37 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua//eco-news/7166 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzE0NTE3NCwidXNlcklkIjoxNDksImlhdCI6MTc3MzEzNzk3NH0.Yi-oYalJqfRUOMCfQ5D_y35zRtqlQKjWBieQsXU3sX0'}
+10:19:37 [INFO    ] allure.step - STEP PASSED
+10:19:37 [INFO    ] allure.step - STEP PASSED

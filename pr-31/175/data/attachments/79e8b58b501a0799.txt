@@ -1,0 +1,84 @@
+10:22:11 [INFO    ] allure.step - >> STEP  Open home page
+10:22:11 [INFO    ] allure.step - >> STEP  Wait until home page is loaded
+10:22:12 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="db4d83843e03593cfd7759dd1a5496f1", element="f.90FD18B9CFD2C234A7B727602405AB08.d.3783E5A8C587F3B2E256744A0F91B9F8.e.36")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="db4d83843e03593cfd7759dd1a5496f1", element="f.90FD18B9CFD2C234A7B727602405AB08.d.3783E5A8C587F3B2E256744A0F91B9F8.e.36")>, timeout=10]
+10:22:12 [INFO    ] allure.step - STEP PASSED
+10:22:12 [INFO    ] allure.step - STEP PASSED
+10:22:12 [INFO    ] allure.step - STEP PASSED
+10:22:12 [INFO    ] allure.step - >> STEP  Change language to English
+10:22:12 [INFO    ] allure.step - >> STEP  Get current locale
+10:22:13 [INFO    ] allure.step - STEP PASSED
+10:22:13 [INFO    ] allure.step - STEP PASSED
+10:22:13 [INFO    ] allure.step - >> STEP  Click 'Sign In' link in header
+10:22:13 [INFO    ] allure.step - STEP PASSED
+10:22:13 [INFO    ] allure.step - >> STEP  Enter email and password values  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+10:22:13 [INFO    ] allure.step - >> STEP  Enter value in email field  [email='testtestovich611@gmail.com']
+10:22:14 [INFO    ] allure.step - STEP PASSED
+10:22:14 [INFO    ] allure.step - >> STEP  Enter value in password field  [password='!Testtestovich611!']
+10:22:14 [INFO    ] allure.step - STEP PASSED
+10:22:14 [INFO    ] allure.step - >> STEP  Click submit button
+10:22:15 [INFO    ] allure.step - STEP PASSED
+10:22:15 [INFO    ] allure.step - >> STEP  Wait until cancel modal is closed  [timeout=10]
+10:22:15 [INFO    ] allure.step - STEP PASSED
+10:22:15 [INFO    ] allure.step - >> STEP  Wait until My Space Habits tab is fully opened  [timeout=10]
+10:22:15 [INFO    ] allure.step - >> STEP  Verify that My Space Habits tab is opened
+10:22:15 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="db4d83843e03593cfd7759dd1a5496f1", element="f.90FD18B9CFD2C234A7B727602405AB08.d.3783E5A8C587F3B2E256744A0F91B9F8.e.89")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="db4d83843e03593cfd7759dd1a5496f1", element="f.90FD18B9CFD2C234A7B727602405AB08.d.3783E5A8C587F3B2E256744A0F91B9F8.e.89")>, timeout=10]
+10:22:16 [INFO    ] allure.step - STEP PASSED
+10:22:16 [INFO    ] allure.step - STEP PASSED
+10:22:16 [INFO    ] allure.step - STEP PASSED
+10:22:16 [INFO    ] allure.step - STEP PASSED
+10:22:16 [INFO    ] allure.step - >> STEP  Login and open create news page
+10:22:16 [INFO    ] allure.step - >> STEP  Open Create News page
+10:22:16 [INFO    ] allure.step - STEP PASSED
+10:22:16 [INFO    ] allure.step - >> STEP  Change language to English
+10:22:16 [INFO    ] allure.step - >> STEP  Get current locale
+10:22:16 [INFO    ] allure.step - STEP PASSED
+10:22:16 [INFO    ] allure.step - STEP PASSED
+10:22:16 [INFO    ] allure.step - >> STEP  Get the current URL of the page
+10:22:16 [INFO    ] allure.step - STEP PASSED
+10:22:16 [INFO    ] allure.step - STEP PASSED
+10:22:16 [INFO    ] allure.step - >> STEP  Validate empty title
+10:22:16 [INFO    ] allure.step - >> STEP  Enter news title: ''  [title='']
+10:22:16 [INFO    ] allure.step - STEP PASSED
+10:22:16 [INFO    ] allure.step - >> STEP  Check if title field is highlighted in red because it's empty
+10:22:16 [INFO    ] allure.step - STEP PASSED
+10:22:16 [INFO    ] allure.step - >> STEP  Get title length
+10:22:16 [INFO    ] allure.step - >> STEP  Get title value
+10:22:16 [INFO    ] allure.step - STEP PASSED
+10:22:16 [INFO    ] allure.step - STEP PASSED
+10:22:16 [INFO    ] allure.step - STEP PASSED
+10:22:16 [INFO    ] allure.step - >> STEP  Validate too long title
+10:22:16 [INFO    ] allure.step - >> STEP  Enter news title: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'  [title='AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA']
+10:22:16 [INFO    ] allure.step - STEP PASSED
+10:22:16 [INFO    ] allure.step - >> STEP  Check if title field is highlighted in red because it's empty
+10:22:17 [INFO    ] allure.step - STEP PASSED
+10:22:17 [INFO    ] allure.step - >> STEP  Get title length
+10:22:17 [INFO    ] allure.step - >> STEP  Get title value
+10:22:17 [INFO    ] allure.step - STEP PASSED
+10:22:17 [INFO    ] allure.step - STEP PASSED
+10:22:17 [INFO    ] allure.step - STEP PASSED
+10:22:17 [INFO    ] allure.step - >> STEP  Validate correct title
+10:22:17 [INFO    ] allure.step - >> STEP  Enter news title: 'Hello World'  [title='Hello World']
+10:22:17 [INFO    ] allure.step - STEP PASSED
+10:22:17 [INFO    ] allure.step - >> STEP  Check if title field is highlighted in red because it's empty
+10:22:17 [INFO    ] allure.step - STEP PASSED
+10:22:17 [INFO    ] allure.step - >> STEP  Get title length
+10:22:17 [INFO    ] allure.step - >> STEP  Get title value
+10:22:17 [INFO    ] allure.step - STEP PASSED
+10:22:17 [INFO    ] allure.step - STEP PASSED
+10:22:17 [INFO    ] allure.step - >> STEP  Check if Publish button is enabled
+10:22:17 [INFO    ] allure.step - STEP PASSED
+10:22:17 [INFO    ] allure.step - STEP PASSED
+10:22:17 [INFO    ] allure.step - >> STEP  Fill content and select tag
+10:22:17 [INFO    ] allure.step - >> STEP  Select tag: 'News'  [tag_name='News']
+10:22:17 [INFO    ] allure.step - >> STEP  Click tag by name: 'News'  [tag_name='News']
+10:22:17 [INFO    ] allure.step - >> STEP  Get tag name
+10:22:17 [INFO    ] allure.step - STEP PASSED
+10:22:17 [INFO    ] allure.step - >> STEP  Click on tag
+10:22:17 [INFO    ] allure.step - STEP PASSED
+10:22:17 [INFO    ] allure.step - STEP PASSED
+10:22:17 [INFO    ] allure.step - STEP PASSED
+10:22:17 [INFO    ] allure.step - >> STEP  Clear and enter content text: 'Description for test news Description for test news'  [text='Description for test news Description for test news']
+10:22:17 [INFO    ] allure.step - STEP PASSED
+10:22:17 [INFO    ] allure.step - >> STEP  Check if Publish button is enabled
+10:22:17 [INFO    ] allure.step - STEP PASSED
+10:22:17 [INFO    ] allure.step - STEP PASSED

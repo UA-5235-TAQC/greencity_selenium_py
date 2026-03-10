@@ -1,0 +1,26 @@
+10:25:11 [INFO    ] allure.step - >> STEP  Open Home page and verify title
+10:25:11 [INFO    ] allure.step - >> STEP  Open home page
+10:25:12 [INFO    ] allure.step - >> STEP  Wait until home page is loaded
+10:25:12 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="d6af9eb93ae339d9335a34694311dc8b", element="f.85959B480A6FA746BEAC86278A6FC228.d.DC313D56C4869D11C03CB5675564DFC9.e.34")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="d6af9eb93ae339d9335a34694311dc8b", element="f.85959B480A6FA746BEAC86278A6FC228.d.DC313D56C4869D11C03CB5675564DFC9.e.34")>, timeout=10]
+10:25:12 [INFO    ] allure.step - STEP PASSED
+10:25:12 [INFO    ] allure.step - STEP PASSED
+10:25:12 [INFO    ] allure.step - STEP PASSED
+10:25:12 [INFO    ] allure.step - >> STEP  Get the title of the current page
+10:25:12 [INFO    ] allure.step - STEP PASSED
+10:25:12 [INFO    ] allure.step - STEP PASSED
+10:25:12 [INFO    ] allure.step - >> STEP  Navigate to News page via header link
+10:25:12 [INFO    ] allure.step - >> STEP  Click 'Eco News' link in header
+10:25:13 [INFO    ] allure.step - >> STEP  Wait until Eco News page is opened
+10:25:13 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="d6af9eb93ae339d9335a34694311dc8b", element="f.85959B480A6FA746BEAC86278A6FC228.d.DC313D56C4869D11C03CB5675564DFC9.e.49")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="d6af9eb93ae339d9335a34694311dc8b", element="f.85959B480A6FA746BEAC86278A6FC228.d.DC313D56C4869D11C03CB5675564DFC9.e.49")>, timeout=10]
+10:25:13 [INFO    ] allure.step - STEP PASSED
+10:25:13 [INFO    ] allure.step - STEP PASSED
+10:25:13 [INFO    ] allure.step - STEP PASSED
+10:25:13 [INFO    ] allure.step - >> STEP  Get the current URL of the page
+10:25:13 [INFO    ] allure.step - STEP PASSED
+10:25:13 [INFO    ] allure.step - STEP PASSED
+10:25:13 [INFO    ] allure.step - >> STEP  Return to Home page via logo click
+10:25:13 [INFO    ] allure.step - >> STEP  Click header logo
+10:25:13 [INFO    ] allure.step - STEP PASSED
+10:25:13 [INFO    ] allure.step - >> STEP  Get the current URL of the page
+10:25:13 [INFO    ] allure.step - STEP PASSED
+10:25:13 [INFO    ] allure.step - STEP PASSED
