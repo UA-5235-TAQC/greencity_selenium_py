@@ -46,9 +46,9 @@ class TestUploadImage:
     @allure.issue("6")
     @allure.story("Image Size Validation")
     @allure.title("The test checks successful validation when uploading a valid PNG image")
-    def test_img_upload_positive(self, create_news_page: CreateNewsPage):
+    def test_img_upload_positive(self, go_to_create_news_page: CreateNewsPage):
         """Verify that a valid PNG image is being uploaded."""
-        image_component: ImageComponent = create_news_page.image_component
+        image_component: ImageComponent = go_to_create_news_page.image_component
         image_component.upload_image(SMALL_PNG_IMAGE)
 
         assert not image_component.is_image_error_msg_present(), "Error message should not be shown for valid PNG"
@@ -77,9 +77,9 @@ class TestUploadImage:
     @allure.issue("6")
     @allure.story("Check GIF upload (unsupported format)")
     @allure.title("The test checks validation error when uploading a GIF image (unsupported format)")
-    def test_img_upload_gif_negative(self, create_news_page: CreateNewsPage):
+    def test_img_upload_gif_negative(self, go_to_create_news_page: CreateNewsPage):
         """Check GIF upload (unsupported format)."""
-        image_component: ImageComponent = create_news_page.image_component
+        image_component: ImageComponent = go_to_create_news_page.image_component
         image_component.upload_image(GIF_IMAGE)
 
         assert image_component.is_image_error_msg_present(), "Error message should be shown for unsupported GIF"

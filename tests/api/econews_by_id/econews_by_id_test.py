@@ -2,6 +2,7 @@ import pytest
 import allure
 from allure_commons.types import Severity
 import pytest_check as check
+
 from clients.eco_news_client import EcoNewsClient
 from data.eco_news_factory import EcoNewsUpdateFactory, create_news_uk, TEST_TAGS, TITLE_UK, CONTENT_UK, SOURCE_UK
 from data.ui_news_test_data import TEST2_FILE
@@ -9,7 +10,6 @@ from enums.news_tag import EcoNewsTag
 from models.update_eco_news_request import UpdateEcoNewsRequest
 from tests.utils.api_test_assertions import assert_unauthorized, assert_ok, assert_not_found, assert_bad_request
 from tests.utils.econews_assertions import assert_eco_news_response
-from tests.utils.error_response import ErrorResponse
 
 
 @allure.epic("EcoNews API")
@@ -228,30 +228,12 @@ class TestEcoNewsByIdWithImage:
         update_dto.tags = tags
         update_dto.title = ""
         response = client.update_eco_news_by_id(second_news["id"], update_dto)
-        errors = [ErrorResponse(**e) for e in response.json()]
-        check.equal(response.status_code, 400, "Expected status code 400")
-        check.is_true(
-            any(e.message == "must not be empty" for e in errors),
-            "Error 'must not be empty' was not returned"
-        )
-        check.is_true(
-            any(e.message == "size must be between 1 and 170" for e in errors),
-            "Error 'size must be between 1 and 170' was not returned"
-        )
+        assert_bad_request(response, ["must not be empty", "size must be between 1 and 170"])
 
         update_dto.title = TITLE_UK
         update_dto.content = ""
         response = client.update_eco_news_by_id(second_news["id"], update_dto)
-        errors = [ErrorResponse(**e) for e in response.json()]
-        check.equal(response.status_code, 400, "Expected status code 400")
-        check.is_true(
-            any(e.message == "must not be empty" for e in errors),
-            "Error 'must not be empty' was not returned"
-        )
-        check.is_true(
-            any(e.message == "size must be between 20 and 63206" for e in errors),
-            "Error 'size must be between 20 and 63206' was not returned"
-        )
+        assert_bad_request(response, ["must not be empty", "size must be between 20 and 63206"])
 
     @allure.story("Update EcoNews by ID with image")
     @allure.description("Verify that updating EcoNews with a specific image is successful")

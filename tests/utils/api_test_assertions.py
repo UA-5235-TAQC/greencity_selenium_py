@@ -1,9 +1,11 @@
+from typing import Union, List
+from jsonschema.validators import validate
 from requests import Response
 
-from tests.utils.error_response import ErrorResponse
+from schemas.error_schema import error_response_schema
 
 
-def assert_bad_request(response: Response, expected_message: str):
+def assert_bad_request(response: Response, expected_message: Union[str, List[str]]):
     """Asserts that the response is 400 Bad Request and the error message matches."""
     assert response.status_code == 400, f"Expected 400 Bad Request, got {response.status_code}"
     assert_error_message(response, expected_message)
@@ -32,10 +34,23 @@ def assert_unauthorized(response: Response):
     assert error_message == "Unauthorized", f"Error message should match expected, got {error_message}"
 
 
-def assert_error_message(response: Response, expected_message: str):
-    """Asserts that the error message in the response matches the expected message."""
+def assert_error_message(response: Response, expected_message: Union[str, List[str]]):
+    """
+    Asserts that the error message(s) in the response match the expected message(s).
+    Supports a single message (str) or multiple messages (list of str).
+    """
     json_data = response.json()
-    error = ErrorResponse(**json_data)
-    assert error.message == expected_message, (
-        f"Error message should match expected, got {error.message}"
-    )
+
+    if isinstance(json_data, list):
+        for e in json_data:
+            validate(instance=e, schema=error_response_schema)
+        messages = [e.get("message") for e in json_data]
+    else:
+        validate(instance=json_data, schema=error_response_schema)
+        messages = [json_data.get("message")]
+
+    if isinstance(expected_message, str):
+        expected_message = [expected_message]
+
+    for msg in expected_message:
+        assert msg in messages, f"Expected error message '{msg}' not found in response"

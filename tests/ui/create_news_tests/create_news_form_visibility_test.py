@@ -19,7 +19,7 @@ from data.language_data import CREATE_NEWS_LANGUAGE_DATA
 @allure.issue("3")
 @allure.title("Verify that the Create News form contains the particular fields.")
 @pytest.mark.parametrize("language", [Language.EN, Language.UK])
-def test_create_news_fields_visibility(create_news_page: CreateNewsPage, language: Language):
+def test_create_news_fields_visibility(go_to_create_news_page: CreateNewsPage, language: Language):
     """
     Verify that all fields in the Create News form are visible and have correct default values.
 
@@ -36,30 +36,30 @@ def test_create_news_fields_visibility(create_news_page: CreateNewsPage, languag
     10. Verify that all fields except author match expected language-specific data.
     """
     with allure.step("Set window size and switch language"):
-        create_news_page.set_window_size(2560, 1440)
+        go_to_create_news_page.set_window_size(2560, 1440)
         if language == Language.EN:
-            create_news_page.header.change_to_en()
+            go_to_create_news_page.header.change_to_en()
         else:
-            create_news_page.header.change_to_uk()
+            go_to_create_news_page.header.change_to_uk()
 
     with allure.step("Verify Title field"):
-        title_counter = create_news_page.get_title_counter_text()
+        title_counter = go_to_create_news_page.get_title_counter_text()
         assert title_counter == "0/170", \
             f"Title counter should be '0/170', but was '{title_counter}'"
 
-        title_length = create_news_page.get_title_length()
+        title_length = go_to_create_news_page.get_title_length()
         assert title_length == 0, \
             f"Title length should be 0 by default, but was {title_length}"
 
-        title_value = create_news_page.get_title_value()
+        title_value = go_to_create_news_page.get_title_value()
         assert title_value == "", \
             f"Title should be empty by default, but was '{title_value}'"
 
     with allure.step("Verify Tags field visibility and default selection"):
-        assert create_news_page.are_tags_visible(), "Tags should be visible"
+        assert go_to_create_news_page.are_tags_visible(), "Tags should be visible"
 
-        selected_tags = create_news_page.get_selected_tags()
-        tag_items = create_news_page.tags
+        selected_tags = go_to_create_news_page.get_selected_tags()
+        tag_items = go_to_create_news_page.tags
 
         any_selected = any(tag.is_selected() for tag in tag_items)
 
@@ -69,7 +69,7 @@ def test_create_news_fields_visibility(create_news_page: CreateNewsPage, languag
             f"Selected tags should be empty by default, but was {selected_tags}"
 
     with allure.step("Verify Image Upload component"):
-        image_component = create_news_page.image_component
+        image_component = go_to_create_news_page.image_component
 
         assert image_component.get_image_input_info() is not None, \
             "Image upload field should be present"
@@ -85,14 +85,14 @@ def test_create_news_fields_visibility(create_news_page: CreateNewsPage, languag
             "Submit button on cropper should be visible"
 
     with allure.step("Verify Source field"):
-        assert create_news_page.is_source_visible(), "Source should be visible"
+        assert go_to_create_news_page.is_source_visible(), "Source should be visible"
 
-        source_value = create_news_page.get_source()
+        source_value = go_to_create_news_page.get_source()
         assert source_value == "", (f"Source field should be empty by default, "
                                     f"but was '{source_value}'")
 
     with allure.step("Verify Content field and components"):
-        content = create_news_page.content_component
+        content = go_to_create_news_page.content_component
 
         assert content.is_content_visible(), "Content should be visible"
         assert content.is_content_toolbar_visible(), "Content toolbar should be visible"
@@ -107,10 +107,10 @@ def test_create_news_fields_visibility(create_news_page: CreateNewsPage, languag
                                        f"but was '{content_counter}'")
 
     with allure.step("Verify Author field"):
-        assert create_news_page.is_author_visible(), "Author name should be visible"
+        assert go_to_create_news_page.is_author_visible(), "Author name should be visible"
 
-        author_value = create_news_page.get_author()
-        expected_user_from_header = create_news_page.header.get_user()
+        author_value = go_to_create_news_page.get_author()
+        expected_user_from_header = go_to_create_news_page.header.get_user()
         expected_test_author = Config.USER_NAME
 
         assert author_value == expected_user_from_header, \
@@ -122,33 +122,33 @@ def test_create_news_fields_visibility(create_news_page: CreateNewsPage, languag
              f"Actual: '{author_value}'")
 
     with allure.step("Verify Post Date field"):
-        assert create_news_page.is_post_date_visible(), "Post date should be visible"
+        assert go_to_create_news_page.is_post_date_visible(), "Post date should be visible"
 
     with allure.step("Verify Cancel, Preview, and Publish buttons visibility"):
-        assert create_news_page.is_cancel_button_visible(), "Cancel button should be visible"
-        assert create_news_page.is_preview_button_visible(), "Preview button should be visible"
-        assert create_news_page.is_publish_button_visible(), "Publish button should be visible"
+        assert go_to_create_news_page.is_cancel_button_visible(), "Cancel button should be visible"
+        assert go_to_create_news_page.is_preview_button_visible(), "Preview button should be visible"
+        assert go_to_create_news_page.is_publish_button_visible(), "Publish button should be visible"
 
     with allure.step("Verify language-specific tags"):
         data = CREATE_NEWS_LANGUAGE_DATA[language]
 
-        check.equal(create_news_page.get_all_tags(), data["expected_tags"])
+        check.equal(go_to_create_news_page.get_all_tags(), data["expected_tags"])
         check.equal(image_component.get_drop_zone_text(), data["drop_zone"])
         check.equal(image_component.get_browse_text(), data["browse"])
         check.equal(image_component.get_cancel_cropper_text(), data["cancel"])
         check.equal(image_component.get_submit_cropper_text(), data["submit"])
         check.equal(image_component.get_image_error(), data["image_error"])
-        check.equal(create_news_page.get_source_message_text(), data["source_message"])
-        check.equal(create_news_page.get_source_placeholder(), data["source_placeholder"])
+        check.equal(go_to_create_news_page.get_source_message_text(), data["source_message"])
+        check.equal(go_to_create_news_page.get_source_placeholder(), data["source_placeholder"])
         check.equal(content.get_content_message(), data["content_message"])
         check.equal(content.get_content_placeholder(), data["content_placeholder"])
-        check.equal(create_news_page.get_post_date(), data["date"])
-        check.equal(create_news_page.get_cancel_button_text(), data["cancel_text"])
-        check.equal(create_news_page.get_preview_button_text(), data["preview_text"])
-        check.equal(create_news_page.get_publish_button_text(), data["publish_text"])
+        check.equal(go_to_create_news_page.get_post_date(), data["date"])
+        check.equal(go_to_create_news_page.get_cancel_button_text(), data["cancel_text"])
+        check.equal(go_to_create_news_page.get_preview_button_text(), data["preview_text"])
+        check.equal(go_to_create_news_page.get_publish_button_text(), data["publish_text"])
 
-        create_news_page.click_cancel()
-        cancel_modal = create_news_page.cancel_modal
+        go_to_create_news_page.click_cancel()
+        cancel_modal = go_to_create_news_page.cancel_modal
         assert cancel_modal.is_visible(), \
             "Confirmation modal should appear after clicking Cancel"
         assert cancel_modal.is_cancel_button_visible(), \
@@ -187,18 +187,18 @@ def test_create_news_fields_visibility(create_news_page: CreateNewsPage, languag
 
         cancel_modal.click_close()
         cancel_modal.wait_until_closed()
-        assert create_news_page.is_page_opened(), "User should be redirected to CreateNewsPage"
-        current_url = create_news_page.get_current_url()
+        assert go_to_create_news_page.is_page_opened(), "User should be redirected to CreateNewsPage"
+        current_url = go_to_create_news_page.get_current_url()
         assert current_url is not None, "Current URL should not be null"
         assert "/create-news" in current_url, \
             "URL should contain /create-news after closing the cancel modal"
 
         if language == Language.EN:
-            apply_to_en(create_news_page)
+            apply_to_en(go_to_create_news_page)
         else:
-            apply_to_ua(create_news_page)
+            apply_to_ua(go_to_create_news_page)
 
-        preview: NewsPreviewPage = create_news_page.click_preview()
+        preview: NewsPreviewPage = go_to_create_news_page.click_preview()
         assert preview.is_page_opened(), "User should be directed to NewsPreviewPage"
         assert preview.is_back_to_create_news_btn_visible(), \
             "Back to editing button should be displayed"
@@ -223,7 +223,7 @@ def test_create_news_fields_visibility(create_news_page: CreateNewsPage, languag
         check.equal(preview.get_news_source(), td["source"],
                     "News source on Preview page should match entered source")
 
-        create_news_page = preview.click_back_to_create_news_btn()
+        go_to_create_news_page = preview.click_back_to_create_news_btn()
         assert create_news_page.is_page_opened_after_preview_click_back(), \
             "User should be redirected to CreateNewsPage after clicking Back button"
 

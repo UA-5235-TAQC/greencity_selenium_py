@@ -15,9 +15,8 @@ def test_greencity_is_work(get_driver):
     Verify that the GreenCity main page loads and
     the browser title starts with 'GreenCity'.
     """
-    with allure.step("Get page title and verify"):
-        title = get_driver.title
-        assert title.startswith("GreenCity"), f"Expected title to start with 'GreenCity', but got '{title}'"
+    title = get_driver.title
+    assert title.startswith("GreenCity"), f"Expected title to start with 'GreenCity', but got '{title}'"
 
 
 @allure.epic("EcoNews UI")

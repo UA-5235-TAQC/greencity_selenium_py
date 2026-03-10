@@ -26,9 +26,7 @@ def test_source_field_validation(driver_with_login):
     create_news.header.change_to_uk()
 
     with allure.step("Create news with mandatory fields"):
-        create_news.create_news(title=TEST_TITLE_UA,
-                                content=TEST_CONTENT_UA,
-                                tags=TAGS_TO_SELECT)
+        create_news.create_news(title=TEST_TITLE_UA, content=TEST_CONTENT_UA, tags=TAGS_TO_SELECT)
 
     with allure.step("Verify filled data is correct"):
         assert create_news.get_title_value() == TEST_TITLE_UA, "Title field value did not match"
@@ -47,10 +45,8 @@ def test_source_field_validation(driver_with_login):
         eco_news_page.click_create_news()
 
     with allure.step("Create news with invalid source link"):
-        create_news.create_news(title=TEST_TITLE_UA,
-                                source=SOURCE_LINK,
-                                content=TEST_CONTENT_UA,
-                                tags=TAGS_TO_SELECT)
+        create_news.create_news(title=TEST_TITLE_UA, source=SOURCE_LINK,
+                                content=TEST_CONTENT_UA, tags=TAGS_TO_SELECT)
 
     with allure.step("Verify validation source field error and disabled publish button"):
         assert create_news.get_title_value() == TEST_TITLE_UA, "Title field value did not match"

@@ -351,10 +351,19 @@ def eco_page(driver_with_login) -> Generator[NewsPage, None, None]:
 
 
 @fixture(scope="function")
-def eco_news_details_page(driver_with_login, create_news_page) -> NewsDetailsPage:
+def go_to_create_news_page(driver_with_login) -> CreateNewsPage:
+    """ Fixture: open Create News page. """
+    header = HomePage(driver_with_login).header
+    create_news_page: CreateNewsPage = header.click_news_link().click_create_news()
+    assert create_news_page.is_page_opened(), "Create News page should be opened"
+    return create_news_page
+
+
+@fixture(scope="function")
+def eco_news_details_page(driver_with_login, go_to_create_news_page) -> NewsDetailsPage:
     """ Fixture: create a news item, open its news details page. """
-    apply_to_en(create_news_page)
-    eco_news_page = create_news_page.click_publish()
+    apply_to_en(go_to_create_news_page)
+    eco_news_page = go_to_create_news_page.click_publish()
     news_card: NewsListItemComponent = eco_news_page.get_news_card_by_index(0)
     news_details_page: NewsDetailsPage = news_card.click_image()
     assert news_details_page.is_page_opened(), "News details page should be opened"
@@ -362,20 +371,20 @@ def eco_news_details_page(driver_with_login, create_news_page) -> NewsDetailsPag
 
 
 @fixture(scope="function", params=[Language.EN, Language.UK])
-def edit_news_page_with_language(driver_with_login, create_news_page, request) -> EditNewsPage:
+def edit_news_page_with_language(driver_with_login, go_to_create_news_page, request) -> EditNewsPage:
     """
     Fixture: create a news item, open its edit page, and return EditNewsPage.
     Param `request.param` is 'en' or 'ua'.
     """
     language = request.param
     if language == Language.EN:
-        create_news_page.header.change_to_en()
-        apply_to_en(create_news_page)
+        go_to_create_news_page.header.change_to_en()
+        apply_to_en(go_to_create_news_page)
     else:
-        create_news_page.header.change_to_uk()
-        apply_to_ua(create_news_page)
+        go_to_create_news_page.header.change_to_uk()
+        apply_to_ua(go_to_create_news_page)
 
-    eco_news_page: NewsPage = create_news_page.click_publish()
+    eco_news_page: NewsPage = go_to_create_news_page.click_publish()
     if language == Language.EN:
         eco_news_page.header.change_to_en()
     else:
@@ -404,7 +413,7 @@ def tag_selection_environment(driver_with_login):
     driver = driver_with_login
     news_page = NewsPage(driver).open()
     news_page.header.change_to_en()
-    create_news_page = news_page.click_create_news()
+    create_news_page: CreateNewsPage = news_page.click_create_news()
     yield create_news_page, news_page
     news_page.open()
     news_page.remove_all_selected_tags()
@@ -439,9 +448,6 @@ def news_created_by_second_user(get_driver) -> Generator[int, None, None]:
         dropdown = news_details_page.header.click_profile_dropdown()
         dropdown.sign_out()
 
-    with allure.step("Clear cookies"):
-        driver.delete_all_cookies()
-
     with allure.step("Login as first user"):
         sign_in_modal = HomePage(driver).open().header.change_to_en().click_sign_in_link()
         sign_in_modal.sign_in(Config.USER_EMAIL, Config.USER_PASSWORD)
@@ -459,3 +465,6 @@ def news_created_by_second_user(get_driver) -> Generator[int, None, None]:
     with allure.step("Delete created news"):
         news_details_page = NewsDetailsPage(get_driver).open(news_id)
         news_details_page.delete_news_by_id(news_id)
+
+    with allure.step("Clear cookies after test"):
+        driver.delete_all_cookies()

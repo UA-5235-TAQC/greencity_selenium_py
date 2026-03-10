@@ -35,11 +35,8 @@ class TestTagSelection:
         assert create_news_page.is_page_opened(), "Create News page should be opened"
 
         tag_names = EcoNewsTag.get_en_upper([EcoNewsTag.NEWS])
-        create_news_page.create_news(
-            title="Test Tag Selection",
-            tags=tag_names,
-            content="Test content with more than 20 characters."
-        )
+        create_news_page.create_news(title="Test Tag Selection", tags=tag_names,
+                                     content="Test content with more than 20 characters.")
         create_news_page.click_publish()
 
         assert news_page.is_page_opened(), "Should return to News page"
@@ -56,11 +53,8 @@ class TestTagSelection:
 
         tag_names = EcoNewsTag.get_en_upper([EcoNewsTag.NEWS, EcoNewsTag.EVENTS, EcoNewsTag.EDUCATION])
 
-        create_news_page.create_news(
-            title="Test Three Tags",
-            tags=tag_names,
-            content="Test content with more than 20 characters."
-        )
+        create_news_page.create_news(title="Test Three Tags", tags=tag_names,
+                                     content="Test content with more than 20 characters.")
         create_news_page.click_publish()
 
         assert news_page.is_page_opened(), "Should return to News page"
@@ -92,12 +86,7 @@ class TestTagSelection:
     @allure.severity(Severity.CRITICAL)
     def test_four_tags_selection_blocked(self, eco_page: NewsPage):
         """ Test that selecting a fourth tag is blocked (max 3 tags selectable). """
-        four_tags = [
-            EcoNewsTag.NEWS,
-            EcoNewsTag.EVENTS,
-            EcoNewsTag.EDUCATION,
-            EcoNewsTag.INITIATIVES
-        ]
+        four_tags = [EcoNewsTag.NEWS, EcoNewsTag.EVENTS, EcoNewsTag.EDUCATION, EcoNewsTag.INITIATIVES]
 
         tags_en = EcoNewsTag.get_en(four_tags)
 
@@ -182,11 +171,7 @@ class TestTagSelection:
         create_news_page.enter_source(TEST_SOURCE_EN)
         create_news_page.content_component.enter_content(VALID_CONTENT)
 
-        tags_to_select = [
-            EcoNewsTag.NEWS,
-            EcoNewsTag.EVENTS,
-            EcoNewsTag.EDUCATION
-        ]
+        tags_to_select = [EcoNewsTag.NEWS, EcoNewsTag.EVENTS, EcoNewsTag.EDUCATION]
         selected_tags = EcoNewsTag.get_en_upper(tags_to_select)
         create_news_page.select_tags(selected_tags)
         create_news_page.click_publish()
