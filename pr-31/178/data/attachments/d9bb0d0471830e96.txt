@@ -1,0 +1,24 @@
+08:14:59 [INFO    ] allure.step - >> STEP  Post new EcoNews with image: '/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif'  [body=EcoNewsRequest(title='Ласкаво просимо до Вікіпедії', text='Осип Тадейович Назарук (1883 — 1940) — український громадський і ', source='https://uk.wikipedia.org/wiki/Main_Page', short_info='Головна сторінка Вікіпедії українською', tags=['Новини', 'Освіта']), image_path='/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif']
+08:14:59 [INFO    ] allure.step - STEP PASSED
+08:14:59 [INFO    ] allure.step - >> STEP  Add a comment to eco news with Id  [text='This is a test comment.', parent_comment_id=0, image_paths=['/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']]
+08:14:59 [INFO    ] allure.step - STEP PASSED
+08:14:59 [INFO    ] allure.step - >> STEP  Get comments count response and verify status code
+08:14:59 [INFO    ] allure.step - >> STEP  Get comments count  [news_id=7321]
+08:14:59 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/7321/comments/count with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzMxMDQ5MSwidXNlcklkIjoxNDksImlhdCI6MTc3MzMwMzI5MX0.Rtlou10syCpPjJNaRGabw0RGMDK_yLhD_xf3V8xsCD4'}
+08:14:59 [INFO    ] allure.step - STEP PASSED
+08:14:59 [INFO    ] allure.step - STEP PASSED
+08:14:59 [INFO    ] allure.step - STEP PASSED
+08:14:59 [INFO    ] allure.step - >> STEP  Get comments count
+08:14:59 [INFO    ] allure.step - STEP PASSED
+08:14:59 [INFO    ] allure.step - >> STEP  Add a new comment
+08:14:59 [INFO    ] allure.step - >> STEP  Add a comment to eco news with Id  [text='Hello', parent_comment_id=0, image_paths=None]
+08:15:00 [INFO    ] allure.step - STEP PASSED
+08:15:00 [INFO    ] allure.step - STEP PASSED
+08:15:00 [INFO    ] allure.step - >> STEP  Get updated comments count
+08:15:00 [INFO    ] allure.step - >> STEP  Get comments count  [news_id=7321]
+08:15:00 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/7321/comments/count with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzMxMDQ5MSwidXNlcklkIjoxNDksImlhdCI6MTc3MzMwMzI5MX0.Rtlou10syCpPjJNaRGabw0RGMDK_yLhD_xf3V8xsCD4'}
+08:15:00 [INFO    ] allure.step - STEP PASSED
+08:15:00 [INFO    ] allure.step - STEP PASSED
+08:15:00 [INFO    ] allure.step - STEP PASSED
+08:15:00 [INFO    ] allure.step - >> STEP  Deleting comment by Id  [comment_id=3795]
+08:15:00 [INFO    ] allure.step - STEP PASSED

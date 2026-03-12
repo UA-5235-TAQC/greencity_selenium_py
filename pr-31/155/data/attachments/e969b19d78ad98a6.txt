@@ -1,2 +1,0 @@
-Actual tags: ['NEWS']
-Expected tags: ['NEWS']

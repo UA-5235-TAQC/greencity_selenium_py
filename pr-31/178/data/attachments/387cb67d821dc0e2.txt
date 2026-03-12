@@ -1,0 +1,30 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Invalid page number (-1)
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3803 with query params  [parent_comment_id=3803, query=CommentQuery(page=-1, size=10, sort=[])]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3803/replies/active with params {'page': -1, 'size': 10} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzMxMDQ5MSwidXNlcklkIjoxNDksImlhdCI6MTc3MzMwMzI5MX0.Rtlou10syCpPjJNaRGabw0RGMDK_yLhD_xf3V8xsCD4'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Invalid size (-1)
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3803 with query params  [parent_comment_id=3803, query=CommentQuery(page=0, size=-1, sort=[])]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3803/replies/active with params {'page': 0, 'size': -1} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzMxMDQ5MSwidXNlcklkIjoxNDksImlhdCI6MTc3MzMwMzI5MX0.Rtlou10syCpPjJNaRGabw0RGMDK_yLhD_xf3V8xsCD4'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Unsupported sort field [foo]
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3803 with query params  [parent_comment_id=3803, query=CommentQuery(page=0, size=10, sort=['foo'])]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3803/replies/active with params {'page': 0, 'size': 10, 'sort': ['foo']} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzMxMDQ5MSwidXNlcklkIjoxNDksImlhdCI6MTc3MzMwMzI5MX0.Rtlou10syCpPjJNaRGabw0RGMDK_yLhD_xf3V8xsCD4'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Sort field without direction [createdDate, foo]
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3803 with query params  [parent_comment_id=3803, query=CommentQuery(page=0, size=10, sort=['createdDate', 'foo'])]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3803/replies/active with params {'page': 0, 'size': 10, 'sort': ['createdDate', 'foo']} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzMxMDQ5MSwidXNlcklkIjoxNDksImlhdCI6MTc3MzMwMzI5MX0.Rtlou10syCpPjJNaRGabw0RGMDK_yLhD_xf3V8xsCD4'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Invalid sort direction [text, descending]
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3803 with query params  [parent_comment_id=3803, query=CommentQuery(page=0, size=10, sort=['text', 'descending'])]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3803/replies/active with params {'page': 0, 'size': 10, 'sort': ['text', 'descending']} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzMxMDQ5MSwidXNlcklkIjoxNDksImlhdCI6MTc3MzMwMzI5MX0.Rtlou10syCpPjJNaRGabw0RGMDK_yLhD_xf3V8xsCD4'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED

@@ -1,0 +1,16 @@
+08:15:00 [INFO    ] allure.step - >> STEP  Add a comment to eco news with Id  [text='This is a test comment.', parent_comment_id=0, image_paths=['/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']]
+08:15:00 [INFO    ] allure.step - STEP PASSED
+08:15:00 [INFO    ] allure.step - >> STEP  Update comment and verify status
+08:15:00 [INFO    ] allure.step - >> STEP  Update comment  [comment_id=3798, text='Привіт']
+08:15:00 [INFO    ] allure.step - STEP PASSED
+08:15:00 [INFO    ] allure.step - STEP PASSED
+08:15:00 [INFO    ] allure.step - >> STEP  Get comment by id and verify status
+08:15:00 [INFO    ] allure.step - >> STEP  Getting comment by Id  [comment_id=3798]
+08:15:00 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3798 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzMxMDQ5MSwidXNlcklkIjoxNDksImlhdCI6MTc3MzMwMzI5MX0.Rtlou10syCpPjJNaRGabw0RGMDK_yLhD_xf3V8xsCD4'}
+08:15:01 [INFO    ] allure.step - STEP PASSED
+08:15:01 [INFO    ] allure.step - STEP PASSED
+08:15:01 [INFO    ] allure.step - STEP PASSED
+08:15:01 [INFO    ] allure.step - >> STEP  Verify response body
+08:15:01 [INFO    ] allure.step - STEP PASSED
+08:15:01 [INFO    ] allure.step - >> STEP  Deleting comment by Id  [comment_id=3798]
+08:15:01 [INFO    ] allure.step - STEP PASSED

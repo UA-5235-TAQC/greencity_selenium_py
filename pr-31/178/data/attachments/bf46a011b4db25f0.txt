@@ -1,0 +1,10 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Get active replies for comment with no replies
+INFO     allure.step:logging_config.py:30 >> STEP  API: Get all active replies for comment ID 3806 with query params  [parent_comment_id=3806, query=CommentQuery(page=0, size=20, sort=[])]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3806/replies/active with params {'page': 0, 'size': 20} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzMxMDQ5MSwidXNlcklkIjoxNDksImlhdCI6MTc3MzMwMzI5MX0.Rtlou10syCpPjJNaRGabw0RGMDK_yLhD_xf3V8xsCD4'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Assert that page metadata shows 0 total elements and page 0
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Assert that replies list is empty
+INFO     allure.step:logging_config.py:35 STEP PASSED

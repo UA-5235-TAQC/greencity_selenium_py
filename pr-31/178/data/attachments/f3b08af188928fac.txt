@@ -1,0 +1,14 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Sign in to the own security service with email: 'vafopi9974@daerdy.com'  [email='vafopi9974@daerdy.com', password='!Testtestovich611!']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Refresh access token using refresh token  [refresh_token='eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzMzOTI5NSwidXNlcklkIjoxNDksImlhdCI6MTc3MzMwMzI5NX0.9qlEaOinP6Bz0N-vNw_B4biek44h_AmK6manmS5vwPQ']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Refresh token failed (HTTP 401); performing full re-login
+INFO     allure.step:logging_config.py:30 >> STEP  Sign in to the own security service with email: 'testtestovich611@gmail.com'  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Post new EcoNews without image  [body=EcoNewsRequest(title='Ласкаво просимо до Вікіпедії', text='Осип Тадейович Назарук (1883 — 1940) — український громадський і ', source='https://uk.wikipedia.org/wiki/Main_Page', short_info='Головна сторінка Вікіпедії українською', tags=['Новини', 'Освіта'])]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Like EcoNews by ID: 7318  [eco_news_id=7318]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Delete EcoNews by ID: 7318  [eco_news_id=7318]
+INFO     allure.step:logging_config.py:35 STEP PASSED

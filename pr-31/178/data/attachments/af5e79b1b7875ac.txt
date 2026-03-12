@@ -1,0 +1,18 @@
+08:15:00 [INFO    ] allure.step - >> STEP  Add a comment to eco news with Id  [text='This is a test comment.', parent_comment_id=0, image_paths=['/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']]
+08:15:00 [INFO    ] allure.step - STEP PASSED
+08:15:00 [INFO    ] allure.step - >> STEP  Get comment by id and verify status
+08:15:00 [INFO    ] allure.step - >> STEP  Getting comment by Id  [comment_id=3797]
+08:15:00 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3797 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YWZvcGk5OTc0QGRhZXJkeS5jb20iLCJyb2xlIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE3NzMzMTA0OTUsInVzZXJJZCI6MTU2OSwiaWF0IjoxNzczMzAzMjk1fQ.ZNhHFJrXGfvrs4CE-UfOHyvQWwiV0PSnUOWcpBn2TqI'}
+08:15:00 [INFO    ] allure.step - STEP PASSED
+08:15:00 [INFO    ] allure.step - STEP PASSED
+08:15:00 [INFO    ] allure.step - STEP PASSED
+08:15:00 [INFO    ] allure.step - >> STEP  Get dislikes status before
+08:15:00 [INFO    ] allure.step - STEP PASSED
+08:15:00 [INFO    ] allure.step - >> STEP  Dislike comment
+08:15:00 [INFO    ] allure.step - >> STEP  Dislike comment and get comment instance  [comment_id=3797]
+08:15:00 [INFO    ] allure.step - STEP PASSED
+08:15:00 [INFO    ] allure.step - STEP PASSED
+08:15:00 [INFO    ] allure.step - >> STEP  Verify dislike status is updated
+08:15:00 [INFO    ] allure.step - STEP PASSED
+08:15:00 [INFO    ] allure.step - >> STEP  Deleting comment by Id  [comment_id=3797]
+08:15:00 [INFO    ] allure.step - STEP PASSED
