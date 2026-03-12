@@ -4,6 +4,7 @@ from allure_commons.types import Severity
 import pytest_check as check
 
 from clients.eco_news_client import EcoNewsClient
+from data.config import Config
 from data.eco_news_factory import EcoNewsUpdateFactory, create_news_uk, TEST_TAGS, TITLE_UK, CONTENT_UK, SOURCE_UK
 from data.ui_news_test_data import TEST2_FILE
 from enums.news_tag import EcoNewsTag
@@ -273,3 +274,114 @@ class TestEcoNewsByIdWithImage:
         check.equal(response_json.get("likes", 0), 0, "Likes should be 0")
         check.equal(response_json.get("dislikes", 0), 0, "Dislikes should be 0")
         check.equal(response_json.get("countComments", 0), 0, "CountComments should be 0")
+
+
+@allure.epic("EcoNews API")
+@allure.feature("Count likes on EcoNews by ID")
+@allure.tag("EcoNewsById API")
+@allure.severity(Severity.NORMAL)
+class TestEcoNewsByIdLikes:
+    """Test suite for verifying the likes count and like actions on EcoNews by ID."""
+
+    @allure.story("Get likes count for EcoNews by ID")
+    @allure.description(
+        "Verify that retrieving the likes count for an EcoNews item by ID "
+        "is successful."
+    )
+    def test_count_eco_news_likes(self, created_eco_news):
+        """
+        Verify that the API returns the correct response when requesting
+        the number of likes for an EcoNews item by its ID.
+        """
+        client = created_eco_news["client"]
+        eco_news_id = created_eco_news["eco_news_id"]
+
+        response = client.count_eco_news_likes(eco_news_id)
+        assert_ok(response)
+
+        body = response.text.strip()
+
+        with allure.step("Verify response body is an integer"):
+            assert body.lstrip("-").isdigit(), f"Response body is not an integer: {body}"
+
+    @allure.story("Get likes count for non-existing EcoNews")
+    @allure.description(
+        "Verify that an attempt to get likes count for a non-existing EcoNews item "
+        "returns 404 Not Found."
+    )
+    def test_count_non_existing_eco_news_likes_should_return_404(self, eco_news_setup):
+        """
+        Verify that the API returns 404 when requesting likes count
+        for a non-existing EcoNews ID.
+        """
+        client = eco_news_setup["client"]
+        non_existing_id = eco_news_setup["eco_news_id"] + 10
+        response = client.count_eco_news_likes(non_existing_id)
+        expected_message = f"Eco new doesn't exist by this id: {non_existing_id}"
+        assert_not_found(response, expected_message)
+
+    @allure.story("Count likes with invalid input")
+    @allure.description(
+        "Verify that providing invalid input to count_eco_news_likes returns 400 Bad Request.")
+    def test_count_eco_news_likes_should_return_400(self, refresh_auth_token):
+        """Check that API returns 400 Bad Request when likes count is requested with invalid ID."""
+        client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=refresh_auth_token)
+        invalid_id = "invalid_id"
+        response = client.count_eco_news_likes(invalid_id)
+        expected_message = "Wrong ecoNewsId. Should be 'Long'"
+        assert_bad_request(response, expected_message)
+
+    @allure.story("Like non-existing EcoNews")
+    @allure.description(
+        "Verify that an attempt to like a non-existing EcoNews item "
+        "returns 404 Not Found."
+    )
+    def test_like_non_existing_eco_news_by_id_should_return_404(self, refresh_auth_token, eco_news_setup):
+        """
+        Verify that the API returns 404 when trying to like
+        a non-existing EcoNews item.
+        """
+        client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=refresh_auth_token)
+        non_existing_id = eco_news_setup["eco_news_id"] + 10
+        response = client.like_eco_news_by_id(non_existing_id)
+        expected_message = f"Eco new doesn't exist by this id: {non_existing_id}"
+        assert_not_found(response, expected_message)
+
+    @allure.story("Like another user's EcoNews")
+    @allure.description(
+        "Verify that an attempt to like EcoNews created by another user "
+        "is successful."
+    )
+    def test_like_another_users_eco_news_by_id(self, refresh_auth_token, created_eco_news_second_user):
+        """ Verify that a user can like EcoNews created by another user. """
+        client = EcoNewsClient(Config.BASE_GREEN_CITY_API_URL, access_token=refresh_auth_token)
+        another_user_eco_news_id = created_eco_news_second_user["eco_news_id"]
+        response = client.like_eco_news_by_id(another_user_eco_news_id)
+        assert_ok(response)
+
+    @allure.story("Like EcoNews without token")
+    @allure.description(
+        "Verify that an attempt to like EcoNews without being authorized "
+        "returns 401 status code."
+    )
+    def test_like_another_users_eco_news_by_id_without_token(
+            self, eco_news_setup, created_eco_news_second_user
+    ):
+        """Verify that liking EcoNews without an access token returns 401."""
+        client = eco_news_setup["client"]
+        eco_news_id = created_eco_news_second_user["eco_news_id"]
+        response = client.like_eco_news_by_id(eco_news_id)
+        assert_unauthorized(response)
+
+    @allure.story("Like own EcoNews")
+    @allure.description(
+        "Verify that an attempt to like a user's own EcoNews returns 400 Bad Request "
+        "with the correct error message."
+    )
+    def test_like_own_eco_news_should_return_400(self, created_eco_news):
+        """Verify that a user cannot like their own EcoNews."""
+        client = created_eco_news["client"]
+        eco_news_id = created_eco_news["eco_news_id"]
+        response = client.like_eco_news_by_id(eco_news_id)
+        expected_message = "Current user has no permission for this action"
+        assert_bad_request(response, expected_message)

@@ -94,13 +94,26 @@ def refresh_auth_token(_auth_tokens):
 
 
 @fixture(scope="session")
-def comments_client_second_user():
-    """Provide EcoNewsCommentClient authorized as the second user."""
+def second_user_token():
+    """Return access token for the second user."""
     auth_client = OwnSecurityClient(Config.BASE_GREEN_CITY_USER_API_URL)
-    login_resp = auth_client.sign_in(Config.SECOND_USER_EMAIL, Config.SECOND_USER_PASSWORD)
+
+    login_resp = auth_client.sign_in(
+        Config.SECOND_USER_EMAIL,
+        Config.SECOND_USER_PASSWORD
+    )
     assert_ok(login_resp)
-    access_token = login_resp.json()["accessToken"]
-    return EcoNewsCommentClient(Config.BASE_GREEN_CITY_API_URL, access_token=access_token)
+
+    return login_resp.json()["accessToken"]
+
+
+@fixture(scope="session")
+def comments_client_second_user(second_user_token):
+    """Provide EcoNewsCommentClient authorized as the second user."""
+    return EcoNewsCommentClient(
+        Config.BASE_GREEN_CITY_API_URL,
+        access_token=second_user_token
+    )
 
 
 @fixture(scope="module")
@@ -290,6 +303,31 @@ def create_and_cleanup_comment(create_comment_with_token) -> Generator[tuple[dic
 
     delete_response = comments_client.delete_comment_by_id(comment_response["id"])
     assert delete_response.status_code == 200, f"Expected status code 200, but got {delete_response.status_code}"
+
+
+@fixture(scope="function")
+def created_eco_news_second_user(second_user_token) -> Generator[dict, None, None]:
+    """Create EcoNews as the second user and delete it after the test."""
+    client = EcoNewsClient(
+        Config.BASE_GREEN_CITY_API_URL,
+        access_token=second_user_token
+    )
+
+    news_dto = create_news_uk()
+
+    response = client.post_eco_news(news_dto)
+    assert_created(response)
+
+    news = response.json()
+    eco_news_id = news["id"]
+
+    yield {
+        "client": client,
+        "eco_news_id": eco_news_id,
+        "news": news
+    }
+
+    client.delete_eco_news_by_id(eco_news_id)
 
 
 @fixture(scope="function", params=["chrome"])
