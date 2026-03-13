@@ -1,6 +1,7 @@
 import allure
 from allure_commons.types import Severity
 from selenium.common.exceptions import StaleElementReferenceException
+from selenium.webdriver.common.keys import Keys
 from pages.home_page import HomePage
 
 @allure.tag("Auth")
@@ -16,8 +17,8 @@ class TestSignInModal:
         """Verify Sign In modal opens and displays the correct title."""
         get_driver.maximize_window()
         home_page = HomePage(get_driver).open()
-        get_driver.execute_script("arguments[0].click();", home_page.header.sign_in)
-        sign_in_modal = home_page.header.auth_modal_sign_in
+        home_page.header.change_to_en()
+        sign_in_modal = home_page.header.click_sign_in_link()
         sign_in_modal.wait_for(lambda _: sign_in_modal.get_title() == "Welcome back!")
         assert sign_in_modal.get_title() == "Welcome back!", \
             "Sign In modal title should be 'Welcome back!'"
@@ -28,10 +29,10 @@ class TestSignInModal:
         """Verify that an invalid email format triggers an error message."""
         get_driver.maximize_window()
         home_page = HomePage(get_driver).open()
-        get_driver.execute_script("arguments[0].click();", home_page.header.sign_in)
-        sign_in_modal = home_page.header.auth_modal_sign_in
+        home_page.header.change_to_en()
+        sign_in_modal = home_page.header.click_sign_in_link()
         sign_in_modal.enter_email("not-an-email")
-        sign_in_modal.email_field.send_keys("\t")
+        sign_in_modal.email_field.send_keys(Keys.TAB)
         sign_in_modal.wait_for(lambda _: sign_in_modal.is_invalid_email_error_displayed())
         assert sign_in_modal.is_invalid_email_error_displayed(), \
             "Email validation error should be displayed for invalid email"
@@ -42,11 +43,11 @@ class TestSignInModal:
         """Verify that submitting without a password shows a password validation error."""
         get_driver.maximize_window()
         home_page = HomePage(get_driver).open()
-        get_driver.execute_script("arguments[0].click();", home_page.header.sign_in)
-        sign_in_modal = home_page.header.auth_modal_sign_in
+        home_page.header.change_to_en()
+        sign_in_modal = home_page.header.click_sign_in_link()
         sign_in_modal.enter_email("test@test.com")
         sign_in_modal.password_field.click()
-        sign_in_modal.password_field.send_keys("\t")
+        sign_in_modal.password_field.send_keys(Keys.TAB)
         sign_in_modal.click_submit()
         sign_in_modal.wait_for(lambda _: sign_in_modal.is_invalid_password_error_displayed())
         assert sign_in_modal.is_invalid_password_error_displayed(), \
@@ -58,10 +59,9 @@ class TestSignInModal:
         """Verify Sign Up link inside Sign In modal opens the Sign Up modal."""
         get_driver.maximize_window()
         home_page = HomePage(get_driver).open()
-        get_driver.execute_script("arguments[0].click();", home_page.header.sign_in)
-        sign_in_modal = home_page.header.auth_modal_sign_in
-        get_driver.execute_script("arguments[0].click();", sign_in_modal.sign_up_link)
-        sign_up_modal = home_page.header.auth_modal_sign_up
+        home_page.header.change_to_en()
+        sign_in_modal = home_page.header.click_sign_in_link()
+        sign_up_modal = sign_in_modal.click_sign_up_link()
         sign_up_modal.wait_for(lambda _: sign_up_modal.get_title() == "Hello!")
         assert sign_up_modal.get_title() == "Hello!", \
             "Sign Up modal title should be 'Hello!' after clicking Sign Up link"
@@ -72,8 +72,8 @@ class TestSignInModal:
         """Verify that the close button dismisses the Sign In modal."""
         get_driver.maximize_window()
         home_page = HomePage(get_driver).open()
-        get_driver.execute_script("arguments[0].click();", home_page.header.sign_in)
-        sign_in_modal = home_page.header.auth_modal_sign_in
+        home_page.header.change_to_en()
+        sign_in_modal = home_page.header.click_sign_in_link()
         sign_in_modal.close_modal()
         sign_in_modal.wait_until_closed()
         try:
