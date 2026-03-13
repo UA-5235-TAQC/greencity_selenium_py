@@ -17,8 +17,8 @@ class TestSignUpModal:
         """Verify Sign Up modal opens and displays the correct title."""
         get_driver.maximize_window()
         home_page = HomePage(get_driver).open()
-        get_driver.execute_script("arguments[0].click();", home_page.header.sign_up)
-        sign_up_modal = home_page.header.auth_modal_sign_up
+        home_page.header.change_to_en()
+        sign_up_modal = home_page.header.click_sign_up_link()
         sign_up_modal.wait_for(lambda _: sign_up_modal.get_title() == "Hello!")
         assert sign_up_modal.get_title() == "Hello!", "Sign Up modal title should be 'Hello!'"
 
@@ -28,8 +28,8 @@ class TestSignUpModal:
         """Verify that the Sign Up button cannot be clicked without filling the form."""
         get_driver.maximize_window()
         home_page = HomePage(get_driver).open()
-        get_driver.execute_script("arguments[0].click();", home_page.header.sign_up)
-        sign_up_modal = home_page.header.auth_modal_sign_up
+        home_page.header.change_to_en()
+        sign_up_modal = home_page.header.click_sign_up_link()
         sign_up_modal.wait_for(lambda _: sign_up_modal.get_title() == "Hello!")
         assert not sign_up_modal.is_submit_button_enabled(), "Sign Up submit button should be disabled when fields are empty"
 
@@ -39,8 +39,7 @@ class TestSignUpModal:
         """Verify that mismatching passwords trigger a confirm password validation error."""
         get_driver.maximize_window()
         home_page = HomePage(get_driver).open()
-        get_driver.execute_script("arguments[0].click();", home_page.header.sign_up)
-        sign_up_modal = home_page.header.auth_modal_sign_up
+        sign_up_modal = home_page.header.click_sign_up_link()
         sign_up_modal.enter_password("Password1!")
         sign_up_modal.enter_confirm_password("DifferentPassword1!")
         sign_up_modal.email_field.click()
@@ -66,8 +65,8 @@ class TestSignUpModal:
         """Verify Sign In link inside Sign Up modal opens the Sign In modal."""
         get_driver.maximize_window()
         home_page = HomePage(get_driver).open()
-        get_driver.execute_script("arguments[0].click();", home_page.header.sign_up)
-        sign_up_modal = home_page.header.auth_modal_sign_up
+        home_page.header.change_to_en()
+        sign_up_modal = home_page.header.click_sign_up_link()
         get_driver.execute_script("arguments[0].click();", sign_up_modal.sign_in_link)
         sign_in_modal = home_page.header.auth_modal_sign_in
         sign_in_modal.wait_for(lambda _: sign_in_modal.get_title() == "Welcome back!")
@@ -79,12 +78,8 @@ class TestSignUpModal:
         """Verify that the close button dismisses the Sign Up modal."""
         get_driver.maximize_window()
         home_page = HomePage(get_driver).open()
-        get_driver.execute_script("arguments[0].click();", home_page.header.sign_up)
-        sign_up_modal = home_page.header.auth_modal_sign_up
+        sign_up_modal = home_page.header.click_sign_up_link()
         sign_up_modal.close_modal()
         sign_up_modal.wait_until_closed()
-        try:
-            is_displayed = sign_up_modal.is_visible()
-        except StaleElementReferenceException:
-            is_displayed = False
+        is_displayed = sign_up_modal.is_visible()
         assert not is_displayed, "Sign Up modal should not be visible after clicking close"
