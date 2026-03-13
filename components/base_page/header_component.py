@@ -30,29 +30,32 @@ class HeaderComponent(BaseComponent):
     auth_modal_sign_in: SignInModal
     auth_modal_sign_up: SignUpModal
 
-    locators: LocatorsTable = {"logo": (By.CSS_SELECTOR, 'a.header_logo'),
+    locators: LocatorsTable = {
+        "logo": (By.CSS_SELECTOR, 'a.header_logo'),
         "news_link": (By.XPATH, "//a[contains(@href, '#/greenCity/news')]"),
         "my_space_link": (By.XPATH, "//a[contains(@href, '#/greenCity/profile')]"),
-        "sign_in": (By.CSS_SELECTOR, "a.header_sign-in-link"), "sign_up": (By.CSS_SELECTOR, "li.header_sign-up-link"),
+        "sign_in": (By.CSS_SELECTOR, "a.header_sign-in-link"),
+        "sign_up": (By.CSS_SELECTOR, "li.header_sign-up-link"),
         "search_btn": (By.CSS_SELECTOR, "li.search-icon"),
         "language_dropdown": (By.CSS_SELECTOR, "ul.header_lang-switcher-wrp"),
         "user_name": (By.CSS_SELECTOR, ".body-2"),
         "user_dropdown": (By.CSS_SELECTOR, "ul.dropdown-list", ProfileDropdownComponent),
         "auth_modal_sign_in": (By.XPATH, "//app-auth-modal", SignInModal),
-        "auth_modal_sign_up": (By.XPATH, "//app-auth-modal", SignUpModal)}
+        "auth_modal_sign_up": (By.XPATH, "//app-auth-modal", SignUpModal)
+    }
 
     @allure.step("Click header logo")
     def click_logo(self) -> "HomePage":
         """ Click on the logo in the header to navigate to the home page. """
         self.logo.click()
-        from pages.home_page import HomePage
+        from pages.home_page import HomePage # pylint: disable=import-outside-toplevel
         return HomePage(self.driver)
 
     @allure.step("Click 'Eco News' link in header")
     def click_news_link(self) -> "NewsPage":
         """ Click on the news link in the header to navigate to the Eco News page. """
         self.news_link.click()
-        from pages.news_page import NewsPage
+        from pages.news_page import NewsPage  # pylint: disable=import-outside-toplevel
         return NewsPage(self.driver).wait_until_opened()
 
     @allure.step("Click 'Sign In' link in header")
@@ -65,7 +68,8 @@ class HeaderComponent(BaseComponent):
     def click_my_space_link(self) -> "MySpaceHabitsTabPage":
         """ Click on the My Space link in the header. """
         self.my_space_link.click()
-        from pages.my_space.my_space_habits_tab_page import MySpaceHabitsTabPage
+        from pages.my_space.my_space_habits_tab_page import \
+            MySpaceHabitsTabPage  # pylint: disable=import-outside-toplevel
         return MySpaceHabitsTabPage(self.driver)
 
     @allure.step("Click 'Sign Up' link in header")
@@ -122,5 +126,4 @@ class HeaderComponent(BaseComponent):
     def click_profile_dropdown(self) -> ProfileDropdownComponent:
         """Click the profile dropdown button and return the ProfileDropdownComponent."""
         self.user_name.click()
-        dropdown = self.user_dropdown
-        return ProfileDropdownComponent(dropdown)
+        return self.user_dropdown

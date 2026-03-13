@@ -5,7 +5,7 @@ author_response_schema = {
     "properties": {
         "id": {"type": "integer"},
         "name": {"type": "string"},
-        "profilePicturePath": {"type": "string", "default": ""}
+        "profilePicturePath": {"type": ["string", "null"], "default": ""}
     },
     "required": ["id", "name"],
     "additionalProperties": False

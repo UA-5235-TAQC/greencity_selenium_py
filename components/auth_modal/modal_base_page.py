@@ -21,11 +21,14 @@ class ModalBasePage(BaseComponent):
     close_modal_button: WebElement
     auth_modal: WebElement
 
-    locators = {"title": (By.CSS_SELECTOR, "h1"), "subtitle": (By.CSS_SELECTOR, "h2"),
-        "submit_button": (By.CSS_SELECTOR, "button[type='submit']"), "email_field": (By.ID, "email"),
+    locators = {
+        "title": (By.CSS_SELECTOR, "h1"), "subtitle": (By.CSS_SELECTOR, "h2"),
+        "submit_button": (By.CSS_SELECTOR, "button[type='submit']"),
+        "email_field": (By.ID, "email"),
         "google_sign_in_button": (By.CSS_SELECTOR, "button.google-sign-in"),
         "close_modal_button": (By.CSS_SELECTOR, ".close-modal-window"),
-        "auth_modal": (By.CSS_SELECTOR, "app-auth-modal")}
+        "auth_modal": (By.CSS_SELECTOR, "app-auth-modal")
+    }
 
     __email_field_error_locator = (By.CSS_SELECTOR, "#email-err-msg div")
 

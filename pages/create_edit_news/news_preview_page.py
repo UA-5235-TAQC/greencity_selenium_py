@@ -1,5 +1,5 @@
-import allure
 from typing import List
+import allure
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
@@ -56,15 +56,15 @@ class NewsPreviewPage(BasePage):
     @allure.step("Click 'Back to create news'")
     def click_back_to_create_news_btn(self):
         """ Click 'Back to create news'. """
-        from pages.create_edit_news.create_news_page import CreateNewsPage
-        self.wait_for(lambda driver: EC.element_to_be_clickable(self.back_to_create_news_btn)(driver))
+        from pages.create_edit_news.create_news_page import CreateNewsPage  # pylint: disable=import-outside-toplevel
+        self.wait_for(EC.element_to_be_clickable(self.back_to_create_news_btn))
         self.back_to_create_news_btn.click()
         return CreateNewsPage(self.driver)
 
     @allure.step("Back to editing news with id: {news_id}")
     def back_to_editing(self, news_id: int):
         """ Back to editing news with id: {news_id}. """
-        from pages.create_edit_news.edit_news_page import EditNewsPage
+        from pages.create_edit_news.edit_news_page import EditNewsPage  # pylint: disable=import-outside-toplevel
         self.back_to_create_news_btn.click()
         return EditNewsPage(self.driver, news_id)
 

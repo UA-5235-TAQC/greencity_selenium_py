@@ -1,17 +1,5 @@
 from schemas.author import author_response_schema
-
-tag_response_schema = {
-    "id": "integer",
-    "title": "TagResponse",
-    "type": "object",
-    "properties": {
-        "id": {"type": "integer"},
-        "name": {"type": "string"},
-        "languageCode": {"type": "string"}
-    },
-    "required": ["name"],
-    "additionalProperties": False
-}
+from schemas.greencity.eco_news_tags_schema import tag_response_schema
 
 eco_news_response_schema = {
     "title": "EcoNewsResponse",

@@ -17,11 +17,13 @@ class ToDoListComponent(BaseComponent):
     items_count_label: WebElement
     to_do_items: List[WebElement]
 
-    locators: LocatorsTable = {"to_do_list_container": (By.CSS_SELECTOR, "app-to-do-list .outer"),
+    locators: LocatorsTable = {
+        "to_do_list_container": (By.CSS_SELECTOR, "app-to-do-list .outer"),
         "header": (By.CSS_SELECTOR, "app-to-do-list .header"),
         "items_count_label": (By.CSS_SELECTOR, "app-to-do-list .items-count"),
         "to_do_items": (By.CSS_SELECTOR, "app-to-do-list .to-do-list-block > div:not(.header-position)",
-                        List[WebElement])}
+                        List[WebElement])
+    }
 
     @allure.step("Get To-do list header text")
     def get_header(self) -> str:

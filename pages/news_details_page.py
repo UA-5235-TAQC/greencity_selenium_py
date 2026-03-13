@@ -1,3 +1,4 @@
+import re
 from typing import List
 from urllib.parse import urlparse, parse_qs
 
@@ -19,7 +20,7 @@ from utils.page_factory import ElementNotFoundException
 from utils.page_factory import LocatorsTable
 
 
-class NewsDetailsPage(BasePage):
+class NewsDetailsPage(BasePage):  # pylint: disable=too-many-public-methods
     """
     Page object for the News Details page.
     Provides methods to interact with news content, likes, tags, and navigation.
@@ -78,22 +79,26 @@ class NewsDetailsPage(BasePage):
         url = self.driver.current_url
         parsed_url = urlparse(url)
 
-        if parsed_url.query:
-            query_params = parse_qs(parsed_url.query)
-            if "id" in query_params:
-                return int(query_params["id"][0])
+        with allure.step("Check query parameters (?id=123)"):
+            if parsed_url.query:
+                query_params = parse_qs(parsed_url.query)
+                if "id" in query_params:
+                    return int(query_params["id"][0])
 
-        if parsed_url.fragment:
-            fragment = parsed_url.fragment
-
-            if "?" in fragment:
-                fragment_query = fragment.split("?", 1)[1]
+        with allure.step("Check fragment query (#/... ?id=123)"):
+            if parsed_url.fragment and "?" in parsed_url.fragment:
+                fragment_query = parsed_url.fragment.split("?", 1)[1]
                 fragment_params = parse_qs(fragment_query)
-
                 if "id" in fragment_params:
                     return int(fragment_params["id"][0])
 
-        raise ValueError(f"Unable to extract news ID from URL: {url}")
+        with allure.step("Check fragment path (#/greenCity/news/6353)"):
+            if parsed_url.fragment:
+                match = re.search(r"/news/(\d+)", parsed_url.fragment)
+                if match:
+                    return int(match.group(1))
+
+        raise ValueError(f"News ID not found in URL: {url}")
 
     @allure.step("Click 'Back to news' button")
     def click_back_to_news_button(self):

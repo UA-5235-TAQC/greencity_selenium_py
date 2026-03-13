@@ -1,14 +1,22 @@
 import allure
-from pages.create_edit_news.edit_news_page import EditNewsPage
+from allure_commons.types import Severity
 from selenium.webdriver.support.ui import WebDriverWait
 
-MODIFIED_TEXT = "Modified text for cancel test"
+from data.ui_news_test_data import MODIFIED_TEXT
 
+
+@allure.epic("EcoNews UI")
 @allure.feature("Edit News")
-@allure.issue("18")
 @allure.story("Cancel editing behavior")
+@allure.title("Verify that canceling edit discards changes and original content remains")
+@allure.issue("18")
+@allure.tag("Edit News")
+@allure.severity(Severity.NORMAL)
 def test_cancel_editing_discards_changes(eco_news_details_page):
-
+    """
+    Verify that when editing a news item, if the user clicks Cancel and confirms,
+    all changes are discarded and the original content remains unchanged upon reopening.
+    """
     with allure.step("Open Edit News page"):
         edit_page = eco_news_details_page.click_edit_button()
         edit_page.open()
@@ -35,7 +43,6 @@ def test_cancel_editing_discards_changes(eco_news_details_page):
         WebDriverWait(edit_page.driver, 5).until(
             lambda d: "create-news" not in d.current_url
         )
-
 
     with allure.step("Reopen same news and verify content unchanged"):
         edit_page.open()

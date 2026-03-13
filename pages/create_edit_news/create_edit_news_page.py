@@ -11,12 +11,11 @@ from components.create_edit_news.content_component import ContentComponent
 from components.create_edit_news.image_component import ImageComponent
 from components.tag_component import TagItem
 from pages.base_page import BasePage
-from pages.create_edit_news.news_preview_page import NewsPreviewPage
 from utils.page_factory import ElementNotFoundException, LocatorsTable
 from utils.web_element_utils import enter_text, clear_element_by_keyboard
 
 
-class CreateEditNewsPage(BasePage):
+class CreateEditNewsPage(BasePage):  # pylint: disable=too-many-public-methods
     """
     Page Object representing Create/Edit News page.
     Provides functionality for creating and editing news items.
@@ -36,7 +35,8 @@ class CreateEditNewsPage(BasePage):
     author_name: WebElement
     cancel_modal: CancelModalComponent
 
-    locators: LocatorsTable = {"title_input": (By.CSS_SELECTOR, "textarea[formcontrolname='title']"),
+    locators: LocatorsTable = {
+        "title_input": (By.CSS_SELECTOR, "textarea[formcontrolname='title']"),
         "tags": (By.CSS_SELECTOR, "div.tags-box button.tag-button", List[TagItem]),
         "source_input": (By.CSS_SELECTOR, "input[formcontrolname='source']"),
         "image_component": (By.CSS_SELECTOR, "div.image-block", ImageComponent),
@@ -48,7 +48,9 @@ class CreateEditNewsPage(BasePage):
         "title_character_counter": (By.CSS_SELECTOR, ".title-block div span.field-info"),
         "post_date": (By.CSS_SELECTOR, "div.date p:nth-of-type(1) span:last-child"),
         "author_name": (By.CSS_SELECTOR, "div.date p:nth-of-type(2) span:last-child"),
-        "cancel_modal": (By.CSS_SELECTOR, "mat-dialog-container.mdc-dialog--open", CancelModalComponent)}
+        "cancel_modal": (By.CSS_SELECTOR, "mat-dialog-container.mdc-dialog--open",
+                        CancelModalComponent)
+    }
 
     @allure.step("Open Create News page")
     def open(self):
@@ -172,6 +174,7 @@ class CreateEditNewsPage(BasePage):
 
     @allure.step("Get title length")
     def get_title_length(self) -> int:
+        """Return the number of characters currently entered in the title field."""
         return len(self.get_title_value() or "")
 
     @allure.step("Check if title field is highlighted in red because it's empty")
@@ -251,7 +254,7 @@ class CreateEditNewsPage(BasePage):
     def click_preview(self) -> "NewsPreviewPage":
         """ Click the Preview button to go to the news preview page. """
         self.preview_btn.click()
-        from pages.create_edit_news.news_preview_page import NewsPreviewPage
+        from pages.create_edit_news.news_preview_page import NewsPreviewPage  # pylint: disable=import-outside-toplevel
         return NewsPreviewPage(self.driver)
 
     @allure.step("Get author name")
@@ -286,11 +289,14 @@ class CreateEditNewsPage(BasePage):
         self.wait_until_visible(self.post_date)
         return self
 
+    @allure.step("Check that Title field is valid")
     def is_title_valid(self) -> bool:
-        self.title_input.get_attribute("ng-invalid")
+        """Verify whether the Title field is valid."""
+        return "ng-invalid" not in self.title_input.get_attribute("class")
 
     @allure.step("Click the preview button")
-    def click_preview_button(self) -> NewsPreviewPage:
+    def click_preview_button(self) -> "NewsPreviewPage":
         """ Click the preview button. """
         self.preview_btn.click()
+        from pages.create_edit_news.news_preview_page import NewsPreviewPage  # pylint: disable=import-outside-toplevel
         return NewsPreviewPage(self.driver)

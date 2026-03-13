@@ -1,15 +1,16 @@
+from typing import Self
 from urllib.parse import urlparse
 
 import allure
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-
+from selenium.webdriver.common.by import By
 from components.base_page.footer_component import FooterComponent
 from components.base_page.header_component import HeaderComponent
 from data.config import Config
 from utils.page_factory import (PageFactory, LocatorsTable)
-from selenium.webdriver.common.by import By
+
 
 
 class BasePage(PageFactory):
@@ -37,16 +38,12 @@ class BasePage(PageFactory):
         """Return the current URL of the page."""
         return self.driver.current_url
 
-    @allure.step("Open page")
-    def open(self):
-        raise NotImplementedError
-
     @allure.step("Check that page is opened")
-    def is_page_opened(self):
+    def is_page_opened(self) -> bool:
         raise NotImplementedError
 
     @allure.step("Wait until page is fully opened")
-    def wait_until_opened(self):
+    def wait_until_opened(self) -> Self:
         raise NotImplementedError
 
     @allure.step("Get snackbar message text")
@@ -64,7 +61,7 @@ class BasePage(PageFactory):
         return f"{parsed_url.scheme}://{parsed_url.hostname}/#/greenCity"
 
     @allure.step("Open Telegram chat")
-    def open_telegram_chat(self):
+    def open_telegram_chat(self) -> None:
         """Open Telegram chat by clicking the chat button."""
         self.telegram.click()
 
@@ -80,13 +77,13 @@ class BasePage(PageFactory):
         return WebDriverWait(self.driver, timeout).until(EC.visibility_of(element))
 
     @allure.step("Reload page")
-    def reload(self):
+    def reload(self) -> Self:
         """Refreshes the current page and returns the page object."""
         self.driver.refresh()
         return self
 
     @allure.step("Set browser window size to {width}x{height}")
-    def set_window_size(self, width: int, height: int):
+    def set_window_size(self, width: int, height: int) -> Self:
         """Set the browser window size."""
         self.driver.set_window_size(width, height)
         return self

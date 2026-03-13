@@ -1,10 +1,9 @@
+from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import allure
 from pages.create_edit_news.create_edit_news_page import CreateEditNewsPage
-from utils.page_factory import LocatorsTable, ElementNotFoundException
-from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.support import expected_conditions as EC
-
+from utils.page_factory import (LocatorsTable, ElementNotFoundException)
 
 
 class CreateNewsPage(CreateEditNewsPage):
@@ -30,14 +29,26 @@ class CreateNewsPage(CreateEditNewsPage):
         """Checks if the Publish button is clickable (enabled)."""
         return self.publish_btn.is_enabled()
 
+    def _click_publish_button(self) -> None:
+        """Wait for and click the Publish button."""
+        self.wait_for(EC.element_to_be_clickable(self.publish_btn))
+        self.publish_btn.click()
+
     @allure.step("Click Publish button")
     def click_publish(self) -> "NewsPage":
-        """Performs a click action on the Publish button."""
-        publish_btn_locator: tuple[str, str] = self.locators["publish_btn"][:2]
-        self.wait_for(lambda d: EC.element_to_be_clickable(publish_btn_locator)(d))
-        self.publish_btn.click()
-        from pages.news_page import NewsPage
+        """Click the Publish button and open the Eco News page."""
+        self._click_publish_button()
+
+        from pages.news_page import NewsPage  # pylint: disable=import-outside-toplevel
         return NewsPage(self.driver).wait_until_opened()
+
+    @allure.step("Click Publish button and open UBS page")
+    def click_publish_ubs(self) -> "UbsCourierPage":
+        """Click the Publish button and open the UBS Courier page."""
+        self._click_publish_button()
+
+        from pages.ubs_courier_page import UbsCourierPage  # pylint: disable=import-outside-toplevel
+        return UbsCourierPage(self.driver).wait_until_opened()
 
     @allure.step("Get Publish button text")
     def get_publish_button_text(self) -> str:
@@ -45,7 +56,9 @@ class CreateNewsPage(CreateEditNewsPage):
         return self.publish_btn.text.strip()
 
     @allure.step("Fill out and create news with mandatory fields: title, tags, content")
-    def create_news(self, title: str, tags: list[str], content: str, source: str = None, image_path: str = None):
+    def create_news(  # pylint: disable=too-many-positional-arguments
+            self, title: str, tags: list[str], content: str, source: str = None,
+            image_path: str = None):
         """
         Comprehensive method to fill all news details and prepare for publishing.
         Uses inherited methods and components (content_root, image_root).

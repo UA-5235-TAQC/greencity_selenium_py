@@ -1,7 +1,7 @@
 import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
-
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
 from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable
 
@@ -12,8 +12,10 @@ class TagItem(BaseComponent):
     name: WebElement
     close_icon: WebElement
 
-    locators: LocatorsTable = {"name": (By.CSS_SELECTOR, "a.global-tag .text"),
-        "close_icon": (By.CSS_SELECTOR, "a.global-tag div")}
+    locators: LocatorsTable = {
+        "name": (By.CSS_SELECTOR, "a.global-tag .text"),
+        "close_icon": (By.CSS_SELECTOR, "a.global-tag div")
+    }
 
     @allure.step("Get tag name")
     def get_name(self) -> str:
@@ -26,7 +28,7 @@ class TagItem(BaseComponent):
         try:
             classes = self.close_icon.get_attribute("class")
             return classes is not None and "global-tag-close-icon" in classes
-        except Exception:
+        except (NoSuchElementException, StaleElementReferenceException):
             return False
 
     @allure.step("Click on tag")

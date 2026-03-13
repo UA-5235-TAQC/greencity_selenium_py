@@ -18,9 +18,12 @@ class SignInModal(ModalBasePage):
     show_password_icon: WebElement
     sign_up_link: WebElement
 
-    locators = {"password_field": (By.ID, "password"), "forgot_password_link": (By.CSS_SELECTOR, "a.forgot-password"),
+    locators = {
+        "password_field": (By.ID, "password"),
+        "forgot_password_link": (By.CSS_SELECTOR, "a.forgot-password"),
         "show_password_icon": (By.CSS_SELECTOR, ".image-show-hide-password"),
-        "sign_up_link": (By.CSS_SELECTOR, "a.green-link"), }
+        "sign_up_link": (By.CSS_SELECTOR, "a.green-link"),
+    }
 
     __password_field_error_locator = (By.CSS_SELECTOR, "#pass-err-msg div")
 
@@ -53,7 +56,8 @@ class SignInModal(ModalBasePage):
         self.click_submit()
         self.wait_until_closed()
 
-        from pages.my_space.my_space_habits_tab_page import MySpaceHabitsTabPage
+        from pages.my_space.my_space_habits_tab_page import \
+            MySpaceHabitsTabPage  # pylint: disable=import-outside-toplevel
         habits_page = MySpaceHabitsTabPage(self.driver)
         habits_page.wait_until_opened()
 
@@ -73,5 +77,5 @@ class SignInModal(ModalBasePage):
         """ Check if entered data is valid. """
         self._trigger_errors()
         status = [self.is_invalid_email_error_displayed(), self.is_invalid_password_error_displayed(), ]
-        is_valid = all(x == False for x in status)
+        is_valid = all(not x for x in status)
         return is_valid

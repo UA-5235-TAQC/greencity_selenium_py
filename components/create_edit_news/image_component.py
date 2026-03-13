@@ -8,7 +8,7 @@ from components.base_component import BaseComponent
 from utils.page_factory import LocatorsTable, ElementNotFoundException
 
 
-class ImageComponent(BaseComponent):
+class ImageComponent(BaseComponent):  # pylint: disable=too-many-public-methods
     """Component for handling image uploading, cropping, and previewing."""
 
     upload_input: WebElement
@@ -22,15 +22,18 @@ class ImageComponent(BaseComponent):
     cancel_cropper_btn: WebElement
     submit_cropper_btn: WebElement
 
-    locators: LocatorsTable = {"upload_input": (By.CSS_SELECTOR, "input[type='file']"),
-        "drop_zone": (By.CSS_SELECTOR, "div.dropzone"), "drop_zone_text_element": (By.CSS_SELECTOR, "div.centered"),
+    locators: LocatorsTable = {
+        "upload_input": (By.CSS_SELECTOR, "input[type='file']"),
+        "drop_zone": (By.CSS_SELECTOR, "div.dropzone"),
+        "drop_zone_text_element": (By.CSS_SELECTOR, "div.centered"),
         "browse_link": (By.CSS_SELECTOR, "div.centered label span"),
         "uploaded_image": (By.CSS_SELECTOR, "img.ngx-ic-source-image"),
         "preview_image": (By.CSS_SELECTOR, "div.image-preview img"),
         "image_message": (By.CSS_SELECTOR, "div.image-block p.warning"),
         "cropper": (By.CSS_SELECTOR, "image-cropper.cropper"),
         "cancel_cropper_btn": (By.CSS_SELECTOR, "div.cropper-buttons button.secondary-global-button"),
-        "submit_cropper_btn": (By.CSS_SELECTOR, "div.cropper-buttons button.primary-global-button")}
+        "submit_cropper_btn": (By.CSS_SELECTOR, "div.cropper-buttons button.primary-global-button")
+    }
 
     @allure.step("Check if Cancel button in image cropper is visible")
     def is_cancel_cropper_button_visible(self) -> bool:
@@ -99,7 +102,7 @@ class ImageComponent(BaseComponent):
         """Checks if the displayed image is a blob URL (indicating a successful local upload)."""
         try:
             return self._has_image_src_prefix(self.uploaded_image, "blob:")
-        except (ElementNotFoundException, Exception):
+        except ElementNotFoundException:
             return False
 
     @allure.step("Check if preview image (blob:) is displayed")

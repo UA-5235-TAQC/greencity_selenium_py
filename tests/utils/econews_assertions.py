@@ -3,6 +3,7 @@ from typing import Dict
 from jsonschema import validate, ValidationError
 import pytest_check as check
 from schemas.greencity.eco_news import eco_news_response_schema
+from tests.utils.author_assertions import assert_author
 
 
 def assert_eco_news_response(actual: Dict, expected: Dict,
@@ -17,7 +18,9 @@ def assert_eco_news_response(actual: Dict, expected: Dict,
     try:
         validate(instance=actual, schema=eco_news_response_schema)
     except ValidationError as e:
-        raise AssertionError(f"JSON does not match EcoNews schema: {e.message}")
+        raise AssertionError(
+            f"JSON does not match EcoNews schema: {e.message}"
+        ) from e
 
     check.equal(actual.get("id"), expected.get("id"), "ID should match")
     check.equal(actual.get("title"), expected.get("title"), "Title should match")
@@ -35,11 +38,7 @@ def assert_eco_news_response(actual: Dict, expected: Dict,
         check.is_none(actual.get("imagePath"), "Image path should be null")
 
     if check_author:
-        check.is_not_none(actual.get("author"), "Author should not be null")
-        expected_author = expected.get("author")
-        if expected_author:
-            check.equal(actual["author"].get("id"), expected_author.get("id"), "Author ID should match")
-            check.equal(actual["author"].get("name"), expected_author.get("name"), "Author name should match")
+        assert_author(actual.get("author"), expected.get("author"))
 
     check.equal(actual.get("likes", 0), 0, "Likes should be 0")
     check.equal(actual.get("dislikes", 0), 0, "Dislikes should be 0")

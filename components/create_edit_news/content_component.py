@@ -9,7 +9,7 @@ from utils.page_factory import LocatorsTable, ElementNotFoundException
 from utils.web_element_utils import clear_element_by_keyboard, enter_text
 
 
-class ContentComponent(BaseComponent):
+class ContentComponent(BaseComponent):  # pylint: disable=too-many-public-methods
     """ Component representing the news content editor."""
 
     content_editor: WebElement
@@ -17,9 +17,12 @@ class ContentComponent(BaseComponent):
     content_counter: WebElement
     content_message: WebElement
 
-    locators: LocatorsTable = {"content_editor": (By.CSS_SELECTOR, ".ql-editor"),
-        "content_toolbar": (By.CSS_SELECTOR, ".ql-toolbar"), "content_counter": (By.CSS_SELECTOR, "p.quill-counter"),
-        "content_message": (By.CSS_SELECTOR, ".title-wrapper p.field-info")}
+    locators: LocatorsTable = {
+        "content_editor": (By.CSS_SELECTOR, ".ql-editor"),
+        "content_toolbar": (By.CSS_SELECTOR, ".ql-toolbar"),
+        "content_counter": (By.CSS_SELECTOR, "p.quill-counter"),
+        "content_message": (By.CSS_SELECTOR, ".title-wrapper p.field-info")
+    }
 
     @allure.step("Clear content text")
     def clear_content(self):

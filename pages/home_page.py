@@ -1,10 +1,9 @@
 from __future__ import annotations
-
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from pages.base_page import BasePage
 from utils.page_factory import LocatorsTable
-import allure
 
 
 class HomePage(BasePage):

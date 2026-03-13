@@ -15,10 +15,12 @@ class CommentFormComponent(BaseComponent):
     emoji_btn: WebElement
     submit_btn: WebElement
 
-    locators: LocatorsTable = {"comment_input": (By.CSS_SELECTOR, "app-comment-textarea .comment-textarea"),
+    locators: LocatorsTable = {
+        "comment_input": (By.CSS_SELECTOR, "app-comment-textarea .comment-textarea"),
         "image_upload_btn": (By.CSS_SELECTOR, "button.image-upload-btn"),
         "emoji_btn": (By.CSS_SELECTOR, "button.emoji-picker-btn"),
-        "submit_btn": (By.CSS_SELECTOR, "button.primary-global-button"), }
+        "submit_btn": (By.CSS_SELECTOR, "button.primary-global-button"),
+    }
 
     @allure.step("Enter comment text: {text}")
     def enter_comment(self, text: str) -> None:
