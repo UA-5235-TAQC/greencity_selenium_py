@@ -1,6 +1,0 @@
-INFO     allure.step:logging_config.py:30 >> STEP  Like EcoNews by ID: 7518  [eco_news_id=7518]
-INFO     allure.step:logging_config.py:35 STEP PASSED
-INFO     allure.step:logging_config.py:30 >> STEP  Delete EcoNews by ID: 7518  [eco_news_id=7518]
-INFO     allure.step:logging_config.py:35 STEP PASSED
-INFO     allure.step:logging_config.py:30 >> STEP  Delete EcoNews by ID: 7517  [eco_news_id=7517]
-INFO     allure.step:logging_config.py:35 STEP PASSED
