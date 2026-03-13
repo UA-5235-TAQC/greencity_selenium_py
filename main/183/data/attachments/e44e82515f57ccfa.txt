@@ -1,0 +1,18 @@
+11:09:51 [INFO    ] allure.step - >> STEP  Open home page
+11:09:51 [INFO    ] allure.step - >> STEP  Wait until home page is loaded
+11:09:52 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="2ab3620a6e2e0e45f0018590be2087be", element="f.0A6476C2EEDED5D27C9A1AD05664A904.d.B3C48FF9190268713F516C756B7DD885.e.50")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="2ab3620a6e2e0e45f0018590be2087be", element="f.0A6476C2EEDED5D27C9A1AD05664A904.d.B3C48FF9190268713F516C756B7DD885.e.50")>, timeout=10]
+11:09:52 [INFO    ] allure.step - STEP PASSED
+11:09:52 [INFO    ] allure.step - STEP PASSED
+11:09:52 [INFO    ] allure.step - STEP PASSED
+11:09:52 [INFO    ] allure.step - >> STEP  Click 'Sign Up' link in header
+11:09:53 [INFO    ] allure.step - STEP PASSED
+11:09:53 [INFO    ] allure.step - >> STEP  Enter value in password field  [password='Password1!']
+11:09:53 [INFO    ] allure.step - STEP PASSED
+11:09:53 [INFO    ] allure.step - >> STEP  Enter value in confirm password field  [password='DifferentPassword1!']
+11:09:53 [INFO    ] allure.step - STEP PASSED
+11:09:53 [INFO    ] allure.step - >> STEP  Wait for a custom lambda condition.  [condition=<function TestSignUpModal.test_sign_up_password_mismatch_error.<locals>.<lambda> at 0x7f34ef622e80>, timeout=None]
+11:09:53 [INFO    ] allure.step - >> STEP  Check if confirm password field error is displayed
+11:09:53 [INFO    ] allure.step - STEP PASSED
+11:09:53 [INFO    ] allure.step - STEP PASSED
+11:09:53 [INFO    ] allure.step - >> STEP  Check if confirm password field error is displayed
+11:09:53 [INFO    ] allure.step - STEP PASSED

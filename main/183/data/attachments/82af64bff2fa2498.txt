@@ -1,0 +1,762 @@
+11:13:32 [INFO    ] allure.step - >> STEP  Open home page
+11:13:32 [INFO    ] allure.step - >> STEP  Wait until home page is loaded
+11:13:33 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="88c10e89948b90fd5962e2452c4ec77f", element="f.E372B2A6CFDC49F77BAD1A68A3CAB232.d.8F227134667DE0A8267CC1E4EB9DE548.e.34")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="88c10e89948b90fd5962e2452c4ec77f", element="f.E372B2A6CFDC49F77BAD1A68A3CAB232.d.8F227134667DE0A8267CC1E4EB9DE548.e.34")>, timeout=10]
+11:13:33 [INFO    ] allure.step - STEP PASSED
+11:13:33 [INFO    ] allure.step - STEP PASSED
+11:13:33 [INFO    ] allure.step - STEP PASSED
+11:13:33 [INFO    ] allure.step - >> STEP  Change language to English
+11:13:33 [INFO    ] allure.step - >> STEP  Get current locale
+11:13:33 [INFO    ] allure.step - STEP PASSED
+11:13:33 [INFO    ] allure.step - STEP PASSED
+11:13:33 [INFO    ] allure.step - >> STEP  Click 'Sign In' link in header
+11:13:33 [INFO    ] allure.step - STEP PASSED
+11:13:33 [INFO    ] allure.step - >> STEP  Enter email and password values  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+11:13:33 [INFO    ] allure.step - >> STEP  Enter value in email field  [email='testtestovich611@gmail.com']
+11:13:34 [INFO    ] allure.step - STEP PASSED
+11:13:34 [INFO    ] allure.step - >> STEP  Enter value in password field  [password='!Testtestovich611!']
+11:13:34 [INFO    ] allure.step - STEP PASSED
+11:13:34 [INFO    ] allure.step - >> STEP  Click submit button
+11:13:34 [INFO    ] allure.step - STEP PASSED
+11:13:34 [INFO    ] allure.step - >> STEP  Wait until cancel modal is closed  [timeout=10]
+11:13:35 [INFO    ] allure.step - STEP PASSED
+11:13:35 [INFO    ] allure.step - >> STEP  Wait until My Space Habits tab is fully opened  [timeout=10]
+11:13:35 [INFO    ] allure.step - >> STEP  Verify that My Space Habits tab is opened
+11:13:35 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="88c10e89948b90fd5962e2452c4ec77f", element="f.E372B2A6CFDC49F77BAD1A68A3CAB232.d.8F227134667DE0A8267CC1E4EB9DE548.e.90")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="88c10e89948b90fd5962e2452c4ec77f", element="f.E372B2A6CFDC49F77BAD1A68A3CAB232.d.8F227134667DE0A8267CC1E4EB9DE548.e.90")>, timeout=10]
+11:13:35 [INFO    ] allure.step - STEP PASSED
+11:13:35 [INFO    ] allure.step - STEP PASSED
+11:13:35 [INFO    ] allure.step - STEP PASSED
+11:13:35 [INFO    ] allure.step - STEP PASSED
+11:13:35 [INFO    ] allure.step - >> STEP  Click 'Eco News' link in header
+11:13:35 [INFO    ] allure.step - >> STEP  Wait until Eco News page is opened
+11:13:35 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="88c10e89948b90fd5962e2452c4ec77f", element="f.E372B2A6CFDC49F77BAD1A68A3CAB232.d.8F227134667DE0A8267CC1E4EB9DE548.e.106")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="88c10e89948b90fd5962e2452c4ec77f", element="f.E372B2A6CFDC49F77BAD1A68A3CAB232.d.8F227134667DE0A8267CC1E4EB9DE548.e.106")>, timeout=10]
+11:13:35 [INFO    ] allure.step - STEP PASSED
+11:13:35 [INFO    ] allure.step - STEP PASSED
+11:13:35 [INFO    ] allure.step - STEP PASSED
+11:13:35 [INFO    ] allure.step - >> STEP  Click on Create News button
+11:13:35 [INFO    ] allure.step - STEP PASSED
+11:13:35 [INFO    ] allure.step - >> STEP  Check if Create/Edit News page is opened
+11:13:35 [INFO    ] allure.step - STEP PASSED
+11:13:35 [INFO    ] allure.step - >> STEP  Change language to Ukrainian
+11:13:35 [INFO    ] allure.step - >> STEP  Get current locale
+11:13:35 [INFO    ] allure.step - STEP PASSED
+11:13:35 [INFO    ] allure.step - >> STEP  Wait for a custom lambda condition.  [condition=<function HeaderComponent._switch_language.<locals>.<lambda> at 0x7f34ef5849a0>, timeout=None]
+11:13:35 [INFO    ] allure.step - >> STEP  Get current locale
+11:13:35 [INFO    ] allure.step - STEP PASSED
+11:13:35 [INFO    ] allure.step - STEP PASSED
+11:13:35 [INFO    ] allure.step - STEP PASSED
+11:13:35 [INFO    ] allure.step - >> STEP  Fill out and create news with mandatory fields: title, tags, content  [title='Tecт', tags=['Новини', 'Події'], content='Тестовий контент з 30 символів', source='https://claude.ai/', image_path='/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']
+11:13:35 [INFO    ] allure.step - >> STEP  Enter news title: 'Tecт'  [title='Tecт']
+11:13:35 [INFO    ] allure.step - STEP PASSED
+11:13:35 [INFO    ] allure.step - >> STEP  Select multiple tags: ['Новини', 'Події']  [tag_names=['Новини', 'Події']]
+11:13:35 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:35 [INFO    ] allure.step - STEP PASSED
+11:13:35 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:35 [INFO    ] allure.step - STEP PASSED
+11:13:35 [INFO    ] allure.step - >> STEP  Click on tag
+11:13:36 [INFO    ] allure.step - STEP PASSED
+11:13:36 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:36 [INFO    ] allure.step - STEP PASSED
+11:13:36 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:36 [INFO    ] allure.step - STEP PASSED
+11:13:36 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:36 [INFO    ] allure.step - STEP PASSED
+11:13:36 [INFO    ] allure.step - >> STEP  Click on tag
+11:13:36 [INFO    ] allure.step - STEP PASSED
+11:13:36 [INFO    ] allure.step - STEP PASSED
+11:13:36 [INFO    ] allure.step - >> STEP  Clear and enter content text: 'Тестовий контент з 30 символів'  [text='Тестовий контент з 30 символів']
+11:13:36 [INFO    ] allure.step - STEP PASSED
+11:13:36 [INFO    ] allure.step - >> STEP  Enter news source: 'https://claude.ai/'  [url='https://claude.ai/']
+11:13:36 [INFO    ] allure.step - STEP PASSED
+11:13:36 [INFO    ] allure.step - >> STEP  Upload image from file absolute path: '/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png'  [file_absolute_path='/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']
+11:13:36 [INFO    ] allure.step - STEP PASSED
+11:13:36 [INFO    ] allure.step - >> STEP  Click Submit crop
+11:13:36 [INFO    ] allure.step - STEP PASSED
+11:13:36 [INFO    ] allure.step - STEP PASSED
+11:13:36 [INFO    ] allure.step - >> STEP  Click Publish button
+11:13:36 [INFO    ] allure.step - >> STEP  Wait for a custom lambda condition.  [condition=<function element_to_be_clickable.<locals>._predicate at 0x7f34ef523740>, timeout=None]
+11:13:36 [INFO    ] allure.step - STEP PASSED
+11:13:36 [INFO    ] allure.step - >> STEP  Wait until Eco News page is opened
+11:13:37 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="88c10e89948b90fd5962e2452c4ec77f", element="f.E372B2A6CFDC49F77BAD1A68A3CAB232.d.8F227134667DE0A8267CC1E4EB9DE548.e.225")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="88c10e89948b90fd5962e2452c4ec77f", element="f.E372B2A6CFDC49F77BAD1A68A3CAB232.d.8F227134667DE0A8267CC1E4EB9DE548.e.225")>, timeout=10]
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Change language to Ukrainian
+11:13:37 [INFO    ] allure.step - >> STEP  Get current locale
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Get a news card by index: 0  [index=0]
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Click news item
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Check that News Details page is opened
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Change language to Ukrainian
+11:13:37 [INFO    ] allure.step - >> STEP  Get current locale
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Click 'Edit news' button
+11:13:37 [INFO    ] allure.step - >> STEP  Extract news ID from URL
+11:13:37 [INFO    ] allure.step - >> STEP  Check query parameters (?id=123)
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Check fragment query (#/... ?id=123)
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Extract news ID from URL
+11:13:37 [INFO    ] allure.step - >> STEP  Check query parameters (?id=123)
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Check fragment query (#/... ?id=123)
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Check if Create/Edit News page is opened
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Set window size and switch language
+11:13:37 [INFO    ] allure.step - >> STEP  Set browser window size to 2560x1440  [width=2560, height=1440]
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Get current locale
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Verify Title field initial state and modifications
+11:13:37 [INFO    ] allure.step - >> STEP  Check initial state of Title field
+11:13:37 [INFO    ] allure.step - >> STEP  Get title counter text
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Get title length
+11:13:37 [INFO    ] allure.step - >> STEP  Get title value
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Get title value
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Append text to Title
+11:13:37 [INFO    ] allure.step - >> STEP  Append text to title: ' Новий'  [additional_text=' Новий']
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Get title counter text
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Get title length
+11:13:37 [INFO    ] allure.step - >> STEP  Get title value
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Get title value
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Prepend text to Title
+11:13:37 [INFO    ] allure.step - >> STEP  Prepend text to title: 'Додати '  [text='Додати ']
+11:13:37 [INFO    ] allure.step - >> STEP  Get title value
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Get title counter text
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Get title length
+11:13:37 [INFO    ] allure.step - >> STEP  Get title value
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Get title value
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:37 [INFO    ] allure.step - >> STEP  Remove first and last characters from Title
+11:13:37 [INFO    ] allure.step - >> STEP  Remove last 6 characters from title  [count=6]
+11:13:37 [INFO    ] allure.step - >> STEP  Get title value
+11:13:37 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Remove first 7 characters from title  [count=7]
+11:13:38 [INFO    ] allure.step - >> STEP  Get title value
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get title counter text
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get title length
+11:13:38 [INFO    ] allure.step - >> STEP  Get title value
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get title value
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Enter final test Title
+11:13:38 [INFO    ] allure.step - >> STEP  Enter news title: 'Додати Tecт'  [title='Додати Tecт']
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get title counter text
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get title length
+11:13:38 [INFO    ] allure.step - >> STEP  Get title value
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get title value
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Verify Tags field behavior
+11:13:38 [INFO    ] allure.step - >> STEP  Check if tag buttons are visible
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Returns names of all tags
+11:13:38 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get selected tag names
+11:13:38 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Select multiple tags: ['Події', 'Освіта']  [tag_names=['Події', 'Освіта']]
+11:13:38 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Click on tag
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get selected tag names
+11:13:38 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Clear all selected tags
+11:13:38 [INFO    ] allure.step - >> STEP  Get selected tag names
+11:13:38 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:38 [INFO    ] allure.step - STEP PASSED
+11:13:38 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Unselect tag: 'Новини'  [tag_name='Новини']
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Click on tag
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Unselect tag: 'Події'  [tag_name='Події']
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Click on tag
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Unselect tag: 'Освіта'  [tag_name='Освіта']
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Click on tag
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Select multiple tags: ['Ініціативи', 'Реклама']  [tag_names=['Ініціативи', 'Реклама']]
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Click on tag
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Click on tag
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get selected tag names
+11:13:39 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Verify Image Upload component behavior
+11:13:39 [INFO    ] allure.step - >> STEP  Check if uploaded image is visible
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get source URL of the uploaded image
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Check that saved image is displayed with non-empty source
+11:13:39 [INFO    ] allure.step - >> STEP  Get source URL of the uploaded image
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Check if uploaded image (blob:) is displayed
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Check if Cancel button in image cropper is visible
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Check if Submit button in image cropper is visible
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get image upload error message text
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get text of Cancel cropper button
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Get text of Submit cropper button
+11:13:39 [INFO    ] allure.step - STEP PASSED
+11:13:39 [INFO    ] allure.step - >> STEP  Change image: upload new file PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png') and submit crop  [file_path=PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png')]
+11:13:39 [INFO    ] allure.step - >> STEP  Click Cancel crop
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Upload image from file absolute path: PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png')  [file_absolute_path=PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png')]
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Click Submit crop
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Check if image preview is present
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Get source URL of the preview image
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Check if preview image (blob:) is displayed
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Check if Cancel button in image cropper is visible
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Check if Submit button in image cropper is visible
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Verify Source field validation
+11:13:40 [INFO    ] allure.step - >> STEP  Check if source input is visible
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Get source value
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Get source message text
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Verify Content field behavior
+11:13:40 [INFO    ] allure.step - >> STEP  Check initial state of Content field
+11:13:40 [INFO    ] allure.step - >> STEP  Check if content editor is visible
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Check if content toolbar is visible
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Check if content counter is visible
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Check if content message is visible
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Get content text
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Append text to Content field
+11:13:40 [INFO    ] allure.step - >> STEP  Enter content text without clearing: ' Новий'  [text=' Новий']
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Check if content is valid
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Get content character counter text
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Get actual content character count
+11:13:40 [INFO    ] allure.step - >> STEP  Get content character counter text
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Get content text
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Prepend text to Content field
+11:13:40 [INFO    ] allure.step - >> STEP  Prepend text to existing content: 'Додати '  [text_to_add='Додати ']
+11:13:40 [INFO    ] allure.step - >> STEP  Get content text
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Clear and enter content text: 'Додати Тестовий контент з 30 символів Новий'  [text='Додати Тестовий контент з 30 символів Новий']
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Check if content is valid
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Get content character counter text
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Get actual content character count
+11:13:40 [INFO    ] allure.step - >> STEP  Get content character counter text
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Get content text
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Remove first and last characters from Content field
+11:13:40 [INFO    ] allure.step - >> STEP  Remove last 6 characters from content  [count=6]
+11:13:40 [INFO    ] allure.step - >> STEP  Get content text
+11:13:40 [INFO    ] allure.step - STEP PASSED
+11:13:40 [INFO    ] allure.step - >> STEP  Clear and enter content text: 'Додати Тестовий контент з 30 символів'  [text='Додати Тестовий контент з 30 символів']
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Remove first 7 characters from content  [count=7]
+11:13:41 [INFO    ] allure.step - >> STEP  Get content text
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Clear and enter content text: 'Тестовий контент з 30 символів'  [text='Тестовий контент з 30 символів']
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Get content character counter text
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Get actual content character count
+11:13:41 [INFO    ] allure.step - >> STEP  Get content character counter text
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Get content text
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Clear Content field
+11:13:41 [INFO    ] allure.step - >> STEP  Clear content text
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Check if content editor is visible
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Check if content toolbar is visible
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Check if content counter is visible
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Check if content message is visible
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Check if content is valid
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Check if content is invalid (highlighted in red)
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Get content text
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Get content character counter text
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Check if content message is visible
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Check if informational message is displayed
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Get content placeholder text
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Get informational message text
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Enter final Content text
+11:13:41 [INFO    ] allure.step - >> STEP  Clear and enter content text: 'Tecт Тестовий контент з 30 символів'  [text='Tecт Тестовий контент з 30 символів']
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Get content character counter text
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Get actual content character count
+11:13:41 [INFO    ] allure.step - >> STEP  Get content character counter text
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Get content text
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Verify Author field
+11:13:41 [INFO    ] allure.step - >> STEP  Check if author is visible
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Get author name
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Get logged-in user name
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Get author name
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - STEP PASSED
+11:13:41 [INFO    ] allure.step - >> STEP  Verify Post Date field
+11:13:41 [INFO    ] allure.step - >> STEP  Check if post date is visible
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Get current date in English <Language.UK: 'Uk'>  [lang=<Language.UK: 'Uk'>]
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Get post date
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Verify buttons visibility and labels
+11:13:42 [INFO    ] allure.step - >> STEP  Check if Cancel button is visible
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Check if Preview button is visible
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Check if Edit button is visible
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Get Cancel button text
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Get Preview button text
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Get Edit button text
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Get news ID
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Verify Cancel modal behavior
+11:13:42 [INFO    ] allure.step - >> STEP  Open Cancel modal
+11:13:42 [INFO    ] allure.step - >> STEP  Click Cancel button
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Check if the component is visible
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Verify Cancel modal buttons are visible
+11:13:42 [INFO    ] allure.step - >> STEP  Check if 'Yes, cancel' button is visible
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Check Continue Editing button visible
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Verify Cancel modal text content
+11:13:42 [INFO    ] allure.step - >> STEP  Get warning title text
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Get warning subtitle text
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Get 'Yes, cancel' button text
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Get Continue Editing button text
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Close Cancel modal and verify page state
+11:13:42 [INFO    ] allure.step - >> STEP  Click close (X) button in cancel modal
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Wait until cancel modal is closed  [timeout=10]
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Check if Create/Edit News page is opened
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Get the current URL of the page
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Verify News Preview page
+11:13:42 [INFO    ] allure.step - >> STEP  Edit news with title: 'Макс', tags: ['Ініціативи', 'Події'], source: 'https://en.wikipedia.org/wiki/Main_Page', content: [hidden], image: PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif')  [title='Макс', tags=['Ініціативи', 'Події'], source='https://en.wikipedia.org/wiki/Main_Page', content='Гора Едзіза — вулканічна гора в окрузі Кассіар-Ленд на північному заході Британської Колумбії , Канада.', image_path=PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif')]
+11:13:42 [INFO    ] allure.step - >> STEP  Enter news title: 'Макс'  [title='Макс']
+11:13:42 [INFO    ] allure.step - STEP PASSED
+11:13:42 [INFO    ] allure.step - >> STEP  Clear all selected tags
+11:13:42 [INFO    ] allure.step - >> STEP  Get selected tag names
+11:13:42 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Unselect tag: 'Ініціативи'  [tag_name='Ініціативи']
+11:13:43 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Click on tag
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Unselect tag: 'Реклама'  [tag_name='Реклама']
+11:13:43 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Click on tag
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Select multiple tags: ['Ініціативи', 'Події']  [tag_names=['Ініціативи', 'Події']]
+11:13:43 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Click on tag
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Click on tag
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Enter news source: 'https://en.wikipedia.org/wiki/Main_Page'  [url='https://en.wikipedia.org/wiki/Main_Page']
+11:13:43 [INFO    ] allure.step - STEP PASSED
+11:13:43 [INFO    ] allure.step - >> STEP  Clear and enter content text: 'Гора Едзіза — вулканічна гора в окрузі Кассіар-Ленд на північному заході Британської Колумбії , Канада.'  [text='Гора Едзіза — вулканічна гора в окрузі Кассіар-Ленд на північному заході Британської Колумбії , Канада.']
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Change image: upload new file PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif') and submit crop  [file_path=PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif')]
+11:13:44 [INFO    ] allure.step - >> STEP  Click Cancel crop
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Upload image from file absolute path: PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif')  [file_absolute_path=PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif')]
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Click Submit crop
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Click Preview button
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Check preview page is opened
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Check if 'Back to editing' button is visible
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Check if 'Publish' button is visible
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Get news title
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Get tag texts
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Get news source
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Get news text
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Check if author name is visible
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Get author name
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Check if news creating date is visible
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Check image visible
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Get preview image src
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Edit news after returning from Preview page
+11:13:44 [INFO    ] allure.step - >> STEP  Back to editing news with id: 7625  [news_id=7625]
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Check if page header is visible after clicking Back from NewsPreviewPage
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Reload page
+11:13:44 [INFO    ] allure.step - STEP PASSED
+11:13:44 [INFO    ] allure.step - >> STEP  Check if Create/Edit News page is opened
+11:13:45 [INFO    ] allure.step - STEP PASSED
+11:13:45 [INFO    ] allure.step - >> STEP  Edit news with title: 'Tecт', tags: ['Новини', 'Освіта'], source: 'https://claude.ai/', content: [hidden], image: PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png')  [title='Tecт', tags=['Новини', 'Освіта'], source='https://claude.ai/', content='Тестовий контент з 30 символів', image_path=PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png')]
+11:13:45 [INFO    ] allure.step - >> STEP  Enter news title: 'Tecт'  [title='Tecт']
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Clear all selected tags
+11:13:46 [INFO    ] allure.step - >> STEP  Get selected tag names
+11:13:46 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Select multiple tags: ['Новини', 'Освіта']  [tag_names=['Новини', 'Освіта']]
+11:13:46 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Click on tag
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Get tag name
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Click on tag
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Enter news source: 'https://claude.ai/'  [url='https://claude.ai/']
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Clear and enter content text: 'Тестовий контент з 30 символів'  [text='Тестовий контент з 30 символів']
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Change image: upload new file PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png') and submit crop  [file_path=PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png')]
+11:13:46 [INFO    ] allure.step - >> STEP  Click Cancel crop
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Upload image from file absolute path: PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png')  [file_absolute_path=PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png')]
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Click Submit crop
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - STEP PASSED
+11:13:46 [INFO    ] allure.step - >> STEP  Check if Edit button is enabled
+11:13:47 [INFO    ] allure.step - STEP PASSED
+11:13:47 [INFO    ] allure.step - >> STEP  Click Edit button
+11:13:47 [INFO    ] allure.step - STEP PASSED
+11:13:47 [INFO    ] allure.step - >> STEP  Verify Eco News page is opened
+11:13:47 [INFO    ] allure.step - STEP PASSED
+11:13:47 [INFO    ] allure.step - >> STEP  Get snackbar message text
+11:13:47 [INFO    ] allure.step - STEP PASSED
+11:13:47 [INFO    ] allure.step - STEP PASSED

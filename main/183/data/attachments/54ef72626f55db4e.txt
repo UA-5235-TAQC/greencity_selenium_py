@@ -1,0 +1,18 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Open home page
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until home page is loaded
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="e4406a7adafe6e0567e2095568611e58", element="f.10635F4ECFE377021DFF31E615C5B711.d.973EBB17C3E0DB23AD0F114C51E2A732.e.36")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="e4406a7adafe6e0567e2095568611e58", element="f.10635F4ECFE377021DFF31E615C5B711.d.973EBB17C3E0DB23AD0F114C51E2A732.e.36")>, timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Change language to English
+INFO     allure.step:logging_config.py:30 >> STEP  Get current locale
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click 'Sign Up' link in header
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Wait for a custom lambda condition.  [condition=<function TestSignUpModal.test_sign_up_submit_button_disabled.<locals>.<lambda> at 0x7f34ef584180>, timeout=None]
+INFO     allure.step:logging_config.py:30 >> STEP  Get modal window title
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Check if submit button enabled
+INFO     allure.step:logging_config.py:35 STEP PASSED

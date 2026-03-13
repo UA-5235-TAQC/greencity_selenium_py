@@ -1,0 +1,2 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Delete EcoNews by ID: 7588  [eco_news_id=7588]
+INFO     allure.step:logging_config.py:35 STEP PASSED

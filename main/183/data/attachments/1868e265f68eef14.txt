@@ -1,0 +1,3 @@
+11:08:11 [INFO    ] allure.step - >> STEP  Sign in to the own security service with email: 'testtestovich611@gmail.com'  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+11:08:11 [INFO    ] allure.step - STEP PASSED
+{'userId': 149, 'accessToken': 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNzI5MSwidXNlcklkIjoxNDksImlhdCI6MTc3MzQwMDA5MX0.tb2uDnugHtoMLGGdldvsmXu-4HV4HqTSuUUiGYPNYIM', 'refreshToken': 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQzNjA5MSwidXNlcklkIjoxNDksImlhdCI6MTc3MzQwMDA5MX0.Pi1Y5uk9aEJYpSw6UxJyuRayDBV6wUB4BdltWSc8VWk', 'name': 'NameForTest611', 'ownRegistrations': True}
