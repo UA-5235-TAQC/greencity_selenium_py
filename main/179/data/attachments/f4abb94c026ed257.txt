@@ -1,0 +1,54 @@
+10:46:07 [INFO    ] allure.step - >> STEP  Attempt to reply to sub-comment id 3851
+10:46:07 [INFO    ] allure.step - >> STEP  Add a comment to eco news with Id  [text='Another API Auto subcomment 27152264-9d0c-4b98-884b-44b74d2de1d0', parent_comment_id=3851, image_paths=None]
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - >> STEP  Delete parent comments with all their child comments
+10:46:07 [INFO    ] allure.step - >> STEP  Delete comment with children by ID 3849  [comment_id=3849]
+10:46:07 [INFO    ] allure.step - >> STEP  API: Get all active replies for comment ID 3849 with query params  [parent_comment_id=3849, query=None]
+10:46:07 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3849/replies/active with params {} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNTk1MiwidXNlcklkIjoxNDksImlhdCI6MTc3MzM5ODc1Mn0._XHDCGkO_7SUTGp3wl9mICXgOcB9x4-8X87rvpUIbJQ'}
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - >> STEP  Delete comment with children by ID 3851  [comment_id=3851]
+10:46:07 [INFO    ] allure.step - >> STEP  API: Get all active replies for comment ID 3851 with query params  [parent_comment_id=3851, query=None]
+10:46:07 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3851/replies/active with params {} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNTk1MiwidXNlcklkIjoxNDksImlhdCI6MTc3MzM5ODc1Mn0._XHDCGkO_7SUTGp3wl9mICXgOcB9x4-8X87rvpUIbJQ'}
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - >> STEP  Deleting comment by Id  [comment_id=3851]
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - >> STEP  Deleting comment by Id  [comment_id=3849]
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - >> STEP  Delete comment with children by ID 3850  [comment_id=3850]
+10:46:07 [INFO    ] allure.step - >> STEP  API: Get all active replies for comment ID 3850 with query params  [parent_comment_id=3850, query=None]
+10:46:07 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3850/replies/active with params {} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNTk1MiwidXNlcklkIjoxNDksImlhdCI6MTc3MzM5ODc1Mn0._XHDCGkO_7SUTGp3wl9mICXgOcB9x4-8X87rvpUIbJQ'}
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - >> STEP  Delete comment with children by ID 3854  [comment_id=3854]
+10:46:07 [INFO    ] allure.step - >> STEP  API: Get all active replies for comment ID 3854 with query params  [parent_comment_id=3854, query=None]
+10:46:07 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3854/replies/active with params {} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNTk1MiwidXNlcklkIjoxNDksImlhdCI6MTc3MzM5ODc1Mn0._XHDCGkO_7SUTGp3wl9mICXgOcB9x4-8X87rvpUIbJQ'}
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - >> STEP  Deleting comment by Id  [comment_id=3854]
+10:46:08 [INFO    ] allure.step - STEP PASSED
+10:46:08 [INFO    ] allure.step - STEP PASSED
+10:46:08 [INFO    ] allure.step - >> STEP  Delete comment with children by ID 3853  [comment_id=3853]
+10:46:08 [INFO    ] allure.step - >> STEP  API: Get all active replies for comment ID 3853 with query params  [parent_comment_id=3853, query=None]
+10:46:08 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3853/replies/active with params {} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNTk1MiwidXNlcklkIjoxNDksImlhdCI6MTc3MzM5ODc1Mn0._XHDCGkO_7SUTGp3wl9mICXgOcB9x4-8X87rvpUIbJQ'}
+10:46:08 [INFO    ] allure.step - STEP PASSED
+10:46:08 [INFO    ] allure.step - STEP PASSED
+10:46:08 [INFO    ] allure.step - >> STEP  Deleting comment by Id  [comment_id=3853]
+10:46:08 [INFO    ] allure.step - STEP PASSED
+10:46:08 [INFO    ] allure.step - STEP PASSED
+10:46:08 [INFO    ] allure.step - >> STEP  Delete comment with children by ID 3852  [comment_id=3852]
+10:46:08 [INFO    ] allure.step - >> STEP  API: Get all active replies for comment ID 3852 with query params  [parent_comment_id=3852, query=None]
+10:46:08 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3852/replies/active with params {} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNTk1MiwidXNlcklkIjoxNDksImlhdCI6MTc3MzM5ODc1Mn0._XHDCGkO_7SUTGp3wl9mICXgOcB9x4-8X87rvpUIbJQ'}
+10:46:08 [INFO    ] allure.step - STEP PASSED
+10:46:08 [INFO    ] allure.step - STEP PASSED
+10:46:08 [INFO    ] allure.step - >> STEP  Deleting comment by Id  [comment_id=3852]
+10:46:08 [INFO    ] allure.step - STEP PASSED
+10:46:08 [INFO    ] allure.step - STEP PASSED
+10:46:08 [INFO    ] allure.step - >> STEP  Deleting comment by Id  [comment_id=3850]
+10:46:08 [INFO    ] allure.step - STEP PASSED
+10:46:08 [INFO    ] allure.step - STEP PASSED
+10:46:08 [INFO    ] allure.step - STEP PASSED

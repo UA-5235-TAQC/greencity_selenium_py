@@ -1,0 +1,34 @@
+10:46:06 [INFO    ] allure.step - >> STEP  Create another sub-comment for sorting test
+10:46:06 [INFO    ] allure.step - >> STEP  Add a comment to eco news with Id  [text='Another API Auto subcomment fa6e822f-a44e-4507-90e4-22577dcffc31', parent_comment_id=3850, image_paths=None]
+10:46:06 [INFO    ] allure.step - STEP PASSED
+10:46:06 [INFO    ] allure.step - STEP PASSED
+10:46:06 [INFO    ] allure.step - >> STEP  Verify replies sorted by createdDate descending
+10:46:06 [INFO    ] allure.step - >> STEP  API: Get all active replies for comment ID 3850 with query params  [parent_comment_id=3850, query=CommentQuery(page=0, size=20, sort=['createdDate,desc'])]
+10:46:06 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3850/replies/active with params {'page': 0, 'size': 20, 'sort': ['createdDate,desc']} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNTk1MiwidXNlcklkIjoxNDksImlhdCI6MTc3MzM5ODc1Mn0._XHDCGkO_7SUTGp3wl9mICXgOcB9x4-8X87rvpUIbJQ'}
+10:46:06 [INFO    ] allure.step - STEP PASSED
+10:46:06 [INFO    ] allure.step - STEP PASSED
+10:46:06 [INFO    ] allure.step - >> STEP  Getting comment by Id  [comment_id=3854]
+10:46:06 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3854 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNTk1MiwidXNlcklkIjoxNDksImlhdCI6MTc3MzM5ODc1Mn0._XHDCGkO_7SUTGp3wl9mICXgOcB9x4-8X87rvpUIbJQ'}
+10:46:06 [INFO    ] allure.step - STEP PASSED
+10:46:06 [INFO    ] allure.step - STEP PASSED
+10:46:06 [INFO    ] allure.step - STEP PASSED
+10:46:06 [INFO    ] allure.step - >> STEP  Verify replies sorted by modifiedDate descending
+10:46:06 [INFO    ] allure.step - >> STEP  API: Get all active replies for comment ID 3850 with query params  [parent_comment_id=3850, query=CommentQuery(page=0, size=20, sort=['modifiedDate,desc'])]
+10:46:06 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3850/replies/active with params {'page': 0, 'size': 20, 'sort': ['modifiedDate,desc']} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNTk1MiwidXNlcklkIjoxNDksImlhdCI6MTc3MzM5ODc1Mn0._XHDCGkO_7SUTGp3wl9mICXgOcB9x4-8X87rvpUIbJQ'}
+10:46:06 [INFO    ] allure.step - STEP PASSED
+10:46:06 [INFO    ] allure.step - STEP PASSED
+10:46:06 [INFO    ] allure.step - >> STEP  Getting comment by Id  [comment_id=3852]
+10:46:06 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3852 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNTk1MiwidXNlcklkIjoxNDksImlhdCI6MTc3MzM5ODc1Mn0._XHDCGkO_7SUTGp3wl9mICXgOcB9x4-8X87rvpUIbJQ'}
+10:46:06 [INFO    ] allure.step - STEP PASSED
+10:46:06 [INFO    ] allure.step - STEP PASSED
+10:46:06 [INFO    ] allure.step - STEP PASSED
+10:46:06 [INFO    ] allure.step - >> STEP  Verify replies sorted by createdDate + modifiedDate descending
+10:46:06 [INFO    ] allure.step - >> STEP  API: Get all active replies for comment ID 3850 with query params  [parent_comment_id=3850, query=CommentQuery(page=0, size=20, sort=['createdDate,desc', 'modifiedDate,desc'])]
+10:46:06 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3850/replies/active with params {'page': 0, 'size': 20, 'sort': ['createdDate,desc', 'modifiedDate,desc']} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNTk1MiwidXNlcklkIjoxNDksImlhdCI6MTc3MzM5ODc1Mn0._XHDCGkO_7SUTGp3wl9mICXgOcB9x4-8X87rvpUIbJQ'}
+10:46:06 [INFO    ] allure.step - STEP PASSED
+10:46:06 [INFO    ] allure.step - STEP PASSED
+10:46:06 [INFO    ] allure.step - >> STEP  Getting comment by Id  [comment_id=3853]
+10:46:06 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3853 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNTk1MiwidXNlcklkIjoxNDksImlhdCI6MTc3MzM5ODc1Mn0._XHDCGkO_7SUTGp3wl9mICXgOcB9x4-8X87rvpUIbJQ'}
+10:46:06 [INFO    ] allure.step - STEP PASSED
+10:46:06 [INFO    ] allure.step - STEP PASSED
+10:46:06 [INFO    ] allure.step - STEP PASSED

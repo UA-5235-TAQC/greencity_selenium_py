@@ -1,0 +1,18 @@
+10:46:02 [INFO    ] allure.step - >> STEP  Add a comment to eco news with Id  [text='This is a test comment.', parent_comment_id=0, image_paths=['/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']]
+10:46:03 [INFO    ] allure.step - STEP PASSED
+10:46:03 [INFO    ] allure.step - >> STEP  Getting comment by Id  [comment_id=3846]
+10:46:03 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3846 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YWZvcGk5OTc0QGRhZXJkeS5jb20iLCJyb2xlIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE3NzM0MDU5NTcsInVzZXJJZCI6MTU2OSwiaWF0IjoxNzczMzk4NzU3fQ.WCHW4frwWH1xh0HXSx6cEl7kqw9cpYBcxwTOzAbwuVI'}
+10:46:03 [INFO    ] allure.step - STEP PASSED
+10:46:03 [INFO    ] allure.step - STEP PASSED
+10:46:03 [INFO    ] allure.step - >> STEP  Second user likes the comment
+10:46:03 [INFO    ] allure.step - >> STEP  Like comment  [comment_id=3846]
+10:46:03 [INFO    ] allure.step - STEP PASSED
+10:46:03 [INFO    ] allure.step - STEP PASSED
+10:46:03 [INFO    ] allure.step - >> STEP  Verify that the like count increased / is registered
+10:46:03 [INFO    ] allure.step - >> STEP  Getting comment by Id  [comment_id=3846]
+10:46:03 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3846 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YWZvcGk5OTc0QGRhZXJkeS5jb20iLCJyb2xlIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE3NzM0MDU5NTcsInVzZXJJZCI6MTU2OSwiaWF0IjoxNzczMzk4NzU3fQ.WCHW4frwWH1xh0HXSx6cEl7kqw9cpYBcxwTOzAbwuVI'}
+10:46:03 [INFO    ] allure.step - STEP PASSED
+10:46:03 [INFO    ] allure.step - STEP PASSED
+10:46:03 [INFO    ] allure.step - STEP PASSED
+10:46:03 [INFO    ] allure.step - >> STEP  Deleting comment by Id  [comment_id=3846]
+10:46:03 [INFO    ] allure.step - STEP PASSED

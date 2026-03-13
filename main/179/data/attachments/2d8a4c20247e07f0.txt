@@ -1,0 +1,12 @@
+10:46:07 [INFO    ] allure.step - >> STEP  Count active replies for non-existing comment id 3863
+10:46:07 [INFO    ] allure.step - >> STEP  Get comment replies count  [parent_comment_id=3863]
+10:46:07 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3863/replies/active/count with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNTk1MiwidXNlcklkIjoxNDksImlhdCI6MTc3MzM5ODc1Mn0._XHDCGkO_7SUTGp3wl9mICXgOcB9x4-8X87rvpUIbJQ'}
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - >> STEP  Count active replies for non-existing comment id -1
+10:46:07 [INFO    ] allure.step - >> STEP  Get comment replies count  [parent_comment_id=-1]
+10:46:07 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/-1/replies/active/count with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNTk1MiwidXNlcklkIjoxNDksImlhdCI6MTc3MzM5ODc1Mn0._XHDCGkO_7SUTGp3wl9mICXgOcB9x4-8X87rvpUIbJQ'}
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - STEP PASSED
+10:46:07 [INFO    ] allure.step - STEP PASSED
