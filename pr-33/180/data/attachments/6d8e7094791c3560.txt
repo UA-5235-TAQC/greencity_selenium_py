@@ -1,0 +1,6 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Post new EcoNews without image  [body=EcoNewsRequest(title='Ласкаво просимо до Вікіпедії', text='Осип Тадейович Назарук (1883 — 1940) — український громадський і ', source='https://uk.wikipedia.org/wiki/Main_Page', short_info='Головна сторінка Вікіпедії українською', tags=['Новини', 'Освіта'])]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Like EcoNews by ID: 7508  [eco_news_id=7508]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Delete EcoNews by ID: 7508  [eco_news_id=7508]
+INFO     allure.step:logging_config.py:35 STEP PASSED

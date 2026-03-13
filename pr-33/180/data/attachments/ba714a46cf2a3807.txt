@@ -1,0 +1,112 @@
+10:57:57 [INFO    ] allure.step - >> STEP  Open home page
+10:57:57 [INFO    ] allure.step - >> STEP  Wait until home page is loaded
+10:57:57 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="79432f36244a458083c8dd0653c76194", element="f.3B171D042577149E1492FD5BB8E8F483.d.5B8B90D1772D20EE277A43F690229B44.e.33")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="79432f36244a458083c8dd0653c76194", element="f.3B171D042577149E1492FD5BB8E8F483.d.5B8B90D1772D20EE277A43F690229B44.e.33")>, timeout=10]
+10:57:57 [INFO    ] allure.step - STEP PASSED
+10:57:57 [INFO    ] allure.step - STEP PASSED
+10:57:57 [INFO    ] allure.step - STEP PASSED
+10:57:57 [INFO    ] allure.step - >> STEP  Change language to English
+10:57:57 [INFO    ] allure.step - >> STEP  Get current locale
+10:57:57 [INFO    ] allure.step - STEP PASSED
+10:57:57 [INFO    ] allure.step - STEP PASSED
+10:57:57 [INFO    ] allure.step - >> STEP  Click 'Sign In' link in header
+10:57:57 [INFO    ] allure.step - STEP PASSED
+10:57:57 [INFO    ] allure.step - >> STEP  Enter email and password values  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+10:57:57 [INFO    ] allure.step - >> STEP  Enter value in email field  [email='testtestovich611@gmail.com']
+10:57:59 [INFO    ] allure.step - STEP PASSED
+10:57:59 [INFO    ] allure.step - >> STEP  Enter value in password field  [password='!Testtestovich611!']
+10:57:59 [INFO    ] allure.step - STEP PASSED
+10:57:59 [INFO    ] allure.step - >> STEP  Click submit button
+10:57:59 [INFO    ] allure.step - STEP PASSED
+10:57:59 [INFO    ] allure.step - >> STEP  Wait until cancel modal is closed  [timeout=10]
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - >> STEP  Wait until My Space Habits tab is fully opened  [timeout=10]
+10:58:00 [INFO    ] allure.step - >> STEP  Verify that My Space Habits tab is opened
+10:58:00 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="79432f36244a458083c8dd0653c76194", element="f.3B171D042577149E1492FD5BB8E8F483.d.5B8B90D1772D20EE277A43F690229B44.e.89")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="79432f36244a458083c8dd0653c76194", element="f.3B171D042577149E1492FD5BB8E8F483.d.5B8B90D1772D20EE277A43F690229B44.e.89")>, timeout=10]
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - >> STEP  Open Eco News page
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - >> STEP  Verify Eco News page is opened
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - >> STEP  Click on Create News button
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - >> STEP  Check if Create/Edit News page is opened
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - >> STEP  Change language to Ukrainian
+10:58:00 [INFO    ] allure.step - >> STEP  Get current locale
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - >> STEP  Wait for a custom lambda condition.  [condition=<function HeaderComponent._switch_language.<locals>.<lambda> at 0x7fd8cb8249a0>, timeout=None]
+10:58:00 [INFO    ] allure.step - >> STEP  Get current locale
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - >> STEP  Fill out and create news with mandatory fields: title, tags, content  [title='Tecт', tags=['Новини', 'Події'], content='Тестовий контент з 30 символів', source='https://claude.ai/', image_path='/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']
+10:58:00 [INFO    ] allure.step - >> STEP  Enter news title: 'Tecт'  [title='Tecт']
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - >> STEP  Select multiple tags: ['Новини', 'Події']  [tag_names=['Новини', 'Події']]
+10:58:00 [INFO    ] allure.step - >> STEP  Get tag name
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - >> STEP  Click on tag
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - >> STEP  Get tag name
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - >> STEP  Get tag name
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - >> STEP  Click on tag
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:00 [INFO    ] allure.step - STEP PASSED
+10:58:01 [INFO    ] allure.step - >> STEP  Clear and enter content text: 'Тестовий контент з 30 символів'  [text='Тестовий контент з 30 символів']
+10:58:01 [INFO    ] allure.step - STEP PASSED
+10:58:01 [INFO    ] allure.step - >> STEP  Enter news source: 'https://claude.ai/'  [url='https://claude.ai/']
+10:58:01 [INFO    ] allure.step - STEP PASSED
+10:58:01 [INFO    ] allure.step - >> STEP  Upload image from file absolute path: '/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png'  [file_absolute_path='/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']
+10:58:01 [INFO    ] allure.step - STEP PASSED
+10:58:01 [INFO    ] allure.step - >> STEP  Click Submit crop
+10:58:01 [INFO    ] allure.step - STEP PASSED
+10:58:01 [INFO    ] allure.step - STEP PASSED
+10:58:01 [INFO    ] allure.step - >> STEP  Click Publish button
+10:58:01 [INFO    ] allure.step - >> STEP  Wait for a custom lambda condition.  [condition=<function element_to_be_clickable.<locals>._predicate at 0x7fd8cb825800>, timeout=None]
+10:58:01 [INFO    ] allure.step - STEP PASSED
+10:58:01 [INFO    ] allure.step - >> STEP  Wait until Eco News page is opened
+10:58:01 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="79432f36244a458083c8dd0653c76194", element="f.3B171D042577149E1492FD5BB8E8F483.d.5B8B90D1772D20EE277A43F690229B44.e.220")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="79432f36244a458083c8dd0653c76194", element="f.3B171D042577149E1492FD5BB8E8F483.d.5B8B90D1772D20EE277A43F690229B44.e.220")>, timeout=10]
+10:58:01 [INFO    ] allure.step - STEP PASSED
+10:58:01 [INFO    ] allure.step - STEP PASSED
+10:58:01 [INFO    ] allure.step - STEP PASSED
+10:58:01 [INFO    ] allure.step - >> STEP  Verify Eco News page is opened
+10:58:01 [INFO    ] allure.step - STEP PASSED
+10:58:01 [INFO    ] allure.step - >> STEP  Get the latest created news card
+10:58:01 [INFO    ] allure.step - >> STEP  Wait for a custom lambda condition.  [condition=<bound method NewsPage._news_cards_present of <pages.news_page.NewsPage object at 0x7fd8cbaf7920>>, timeout=None]
+10:58:02 [INFO    ] allure.step - STEP PASSED
+10:58:02 [INFO    ] allure.step - STEP PASSED
+10:58:02 [INFO    ] allure.step - >> STEP  Get news title text
+10:58:02 [INFO    ] allure.step - STEP PASSED
+10:58:02 [INFO    ] allure.step - >> STEP  Verify news item has expected tags  [tag_names=['НОВИНИ', 'ПОДІЇ']]
+10:58:02 [INFO    ] allure.step - >> STEP  Get list of tag texts for this news item
+10:58:02 [INFO    ] allure.step - STEP PASSED
+10:58:02 [INFO    ] allure.step - STEP PASSED
+10:58:02 [INFO    ] allure.step - >> STEP  Remove all selected tags
+10:58:02 [INFO    ] allure.step - >> STEP  Wait until Eco News page is opened
+10:58:02 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="79432f36244a458083c8dd0653c76194", element="f.3B171D042577149E1492FD5BB8E8F483.d.5B8B90D1772D20EE277A43F690229B44.e.220")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="79432f36244a458083c8dd0653c76194", element="f.3B171D042577149E1492FD5BB8E8F483.d.5B8B90D1772D20EE277A43F690229B44.e.220")>, timeout=10]
+10:58:02 [INFO    ] allure.step - STEP PASSED
+10:58:02 [INFO    ] allure.step - STEP PASSED
+10:58:02 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+10:58:02 [INFO    ] allure.step - STEP PASSED
+10:58:02 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+10:58:02 [INFO    ] allure.step - STEP PASSED
+10:58:02 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+10:58:02 [INFO    ] allure.step - STEP PASSED
+10:58:02 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+10:58:02 [INFO    ] allure.step - STEP PASSED
+10:58:02 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+10:58:02 [INFO    ] allure.step - STEP PASSED
+10:58:02 [INFO    ] allure.step - >> STEP  Click on tag
+10:58:02 [INFO    ] allure.step - STEP PASSED
+10:58:02 [INFO    ] allure.step - >> STEP  Click on tag
+10:58:02 [INFO    ] allure.step - STEP PASSED
+10:58:02 [INFO    ] allure.step - STEP PASSED
