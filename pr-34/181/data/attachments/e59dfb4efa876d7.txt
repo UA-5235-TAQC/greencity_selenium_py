@@ -1,0 +1,6 @@
+10:57:15 [INFO    ] allure.step - >> STEP  Count likes on EcoNews: 7518  [eco_news_id=7518]
+10:57:15 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua//eco-news/7518/likes/count with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNjYyOCwidXNlcklkIjoxNDksImlhdCI6MTc3MzM5OTQyOH0.ouubcjK1LzbnAQGyj0q-0QbAvZX_5T-iD0S3636BZKA'}
+10:57:15 [INFO    ] allure.step - STEP PASSED
+10:57:15 [INFO    ] allure.step - STEP PASSED
+10:57:15 [INFO    ] allure.step - >> STEP  Verify response body is an integer
+10:57:15 [INFO    ] allure.step - STEP PASSED

@@ -1,0 +1,70 @@
+10:58:10 [INFO    ] allure.step - >> STEP  Open home page
+10:58:10 [INFO    ] allure.step - >> STEP  Wait until home page is loaded
+10:58:11 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="a6737bf0deebc017cdad2c045735d0a0", element="f.677EAD58489859EAB10E775EE5322B7E.d.98095E30B2CBBCB00D08310060FA1FC9.e.12")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="a6737bf0deebc017cdad2c045735d0a0", element="f.677EAD58489859EAB10E775EE5322B7E.d.98095E30B2CBBCB00D08310060FA1FC9.e.12")>, timeout=10]
+10:58:11 [INFO    ] allure.step - STEP PASSED
+10:58:11 [INFO    ] allure.step - STEP PASSED
+10:58:11 [INFO    ] allure.step - STEP PASSED
+10:58:13 [INFO    ] allure.step - >> STEP  Change language to English
+10:58:13 [INFO    ] allure.step - >> STEP  Get current locale
+10:58:13 [INFO    ] allure.step - STEP PASSED
+10:58:13 [INFO    ] allure.step - STEP PASSED
+10:58:13 [INFO    ] allure.step - >> STEP  Click 'Sign In' link in header
+10:58:14 [INFO    ] allure.step - STEP PASSED
+10:58:14 [INFO    ] allure.step - >> STEP  Enter email and password values  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+10:58:14 [INFO    ] allure.step - >> STEP  Enter value in email field  [email='testtestovich611@gmail.com']
+10:58:14 [INFO    ] allure.step - STEP PASSED
+10:58:14 [INFO    ] allure.step - >> STEP  Enter value in password field  [password='!Testtestovich611!']
+10:58:15 [INFO    ] allure.step - STEP PASSED
+10:58:15 [INFO    ] allure.step - >> STEP  Click submit button
+10:58:15 [INFO    ] allure.step - STEP PASSED
+10:58:15 [INFO    ] allure.step - >> STEP  Wait until cancel modal is closed  [timeout=10]
+10:58:15 [INFO    ] allure.step - STEP PASSED
+10:58:15 [INFO    ] allure.step - >> STEP  Wait until My Space Habits tab is fully opened  [timeout=10]
+10:58:15 [INFO    ] allure.step - >> STEP  Verify that My Space Habits tab is opened
+10:58:16 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="a6737bf0deebc017cdad2c045735d0a0", element="f.677EAD58489859EAB10E775EE5322B7E.d.98095E30B2CBBCB00D08310060FA1FC9.e.86")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="a6737bf0deebc017cdad2c045735d0a0", element="f.677EAD58489859EAB10E775EE5322B7E.d.98095E30B2CBBCB00D08310060FA1FC9.e.86")>, timeout=10]
+10:58:16 [INFO    ] allure.step - STEP PASSED
+10:58:16 [INFO    ] allure.step - STEP PASSED
+10:58:16 [INFO    ] allure.step - STEP PASSED
+10:58:16 [INFO    ] allure.step - STEP PASSED
+10:58:16 [INFO    ] allure.step - >> STEP  Open Create News page and switch language to English
+10:58:16 [INFO    ] allure.step - >> STEP  Open Create News page
+10:58:16 [INFO    ] allure.step - STEP PASSED
+10:58:16 [INFO    ] allure.step - >> STEP  Change language to English
+10:58:16 [INFO    ] allure.step - >> STEP  Get current locale
+10:58:16 [INFO    ] allure.step - STEP PASSED
+10:58:16 [INFO    ] allure.step - STEP PASSED
+10:58:16 [INFO    ] allure.step - >> STEP  Check if Create/Edit News page is opened
+10:58:16 [INFO    ] allure.step - STEP PASSED
+10:58:16 [INFO    ] allure.step - STEP PASSED
+10:58:16 [INFO    ] allure.step - >> STEP  Fill the news creation form
+10:58:16 [INFO    ] allure.step - >> STEP  Enter news title: 'Test'  [title='Test']
+10:58:16 [INFO    ] allure.step - STEP PASSED
+10:58:16 [INFO    ] allure.step - >> STEP  Clear and enter content text: 'Test content with 20 chars'  [text='Test content with 20 chars']
+10:58:17 [INFO    ] allure.step - STEP PASSED
+10:58:17 [INFO    ] allure.step - STEP PASSED
+10:58:17 [INFO    ] allure.step - >> STEP  Click Cancel button
+10:58:17 [INFO    ] allure.step - STEP PASSED
+10:58:17 [INFO    ] allure.step - >> STEP  Verify confirmation modal is displayed
+10:58:17 [INFO    ] allure.step - >> STEP  Check if the component is visible
+10:58:17 [INFO    ] allure.step - STEP PASSED
+10:58:17 [INFO    ] allure.step - STEP PASSED
+10:58:17 [INFO    ] allure.step - >> STEP  Verify modal warning text
+10:58:17 [INFO    ] allure.step - >> STEP  Get warning title text
+10:58:17 [INFO    ] allure.step - STEP PASSED
+10:58:17 [INFO    ] allure.step - >> STEP  Get warning subtitle text
+10:58:17 [INFO    ] allure.step - STEP PASSED
+10:58:17 [INFO    ] allure.step - STEP PASSED
+10:58:17 [INFO    ] allure.step - >> STEP  Confirm cancellation
+10:58:17 [INFO    ] allure.step - >> STEP  Click 'Yes, cancel' button in cancel modal
+10:58:17 [INFO    ] allure.step - STEP PASSED
+10:58:17 [INFO    ] allure.step - STEP PASSED
+10:58:17 [INFO    ] allure.step - >> STEP  Wait until user is redirected from Create News page
+10:58:17 [INFO    ] allure.step - >> STEP  Wait for a custom lambda condition.  [condition=<function test_cancel_button_behavior.<locals>.<lambda> at 0x7f5c1692f100>, timeout=None]
+10:58:17 [INFO    ] allure.step - STEP PASSED
+10:58:17 [INFO    ] allure.step - STEP PASSED
+10:58:17 [INFO    ] allure.step - >> STEP  Verify redirection to UBS Courier page
+10:58:17 [INFO    ] allure.step - >> STEP  Check that UBS Courier page is opened
+10:58:17 [INFO    ] allure.step - STEP PASSED
+10:58:17 [INFO    ] allure.step - STEP PASSED
+10:58:17 [INFO    ] allure.step - >> STEP  Verify that Create News URL is no longer present
+10:58:17 [INFO    ] allure.step - STEP PASSED

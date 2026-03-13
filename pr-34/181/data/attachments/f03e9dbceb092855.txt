@@ -1,0 +1,6 @@
+10:57:20 [INFO    ] allure.step - >> STEP  Like EcoNews by ID: 7518  [eco_news_id=7518]
+10:57:20 [INFO    ] allure.step - STEP PASSED
+10:57:20 [INFO    ] allure.step - >> STEP  Delete EcoNews by ID: 7518  [eco_news_id=7518]
+10:57:21 [INFO    ] allure.step - STEP PASSED
+10:57:21 [INFO    ] allure.step - >> STEP  Delete EcoNews by ID: 7517  [eco_news_id=7517]
+10:57:21 [INFO    ] allure.step - STEP PASSED
