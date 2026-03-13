@@ -1,8 +1,0 @@
-08:38:36 [INFO    ] allure.step - >> STEP  Add a comment to eco news with Id  [text='This is a test comment.', parent_comment_id=0, image_paths=['/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']]
-08:38:36 [INFO    ] allure.step - STEP PASSED
-08:38:36 [INFO    ] allure.step - >> STEP  Deleting comment by Id  [comment_id=3610]
-08:38:36 [INFO    ] allure.step - STEP PASSED
-08:38:36 [INFO    ] allure.step - >> STEP  Delete EcoNews by ID: 7077  [eco_news_id=7077]
-08:38:37 [INFO    ] allure.step - STEP PASSED
-08:38:37 [INFO    ] allure.step - >> STEP  Delete EcoNews by ID: 7076  [eco_news_id=7076]
-08:38:37 [INFO    ] allure.step - STEP PASSED

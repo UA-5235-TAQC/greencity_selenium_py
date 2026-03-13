@@ -1,6 +1,0 @@
-11:01:07 [INFO    ] allure.step - >> STEP  Sign in to the own security service with email: 'testtestovich611@gmail.com'  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
-11:01:07 [INFO    ] allure.step - STEP PASSED
-11:01:07 [INFO    ] allure.step - >> STEP  Post new EcoNews without image  [body=EcoNewsRequest(title='Ласкаво просимо до Вікіпедії', text='Осип Тадейович Назарук (1883 — 1940) — український громадський і ', source='https://uk.wikipedia.org/wiki/Main_Page', short_info='Головна сторінка Вікіпедії українською', tags=['Новини', 'Освіта'])]
-11:01:07 [INFO    ] allure.step - STEP PASSED
-11:01:07 [INFO    ] allure.step - >> STEP  Update EcoNews by ID: 7230  [eco_news_id=7230, update_dto=UpdateEcoNewsRequest(id=7230, title='Ласкаво просимо до Вікіпедії', content='Осип Тадейович Назарук (1883 — 1940) — український громадський і ', short_info='Головна сторінка Вікіпедії українською', tags=['Новини', 'Освіта'], source='https://uk.wikipedia.org/wiki/Main_Page'), image_path=None]
-11:01:07 [INFO    ] allure.step - STEP PASSED

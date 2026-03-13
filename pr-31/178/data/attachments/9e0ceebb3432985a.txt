@@ -1,6 +1,0 @@
-08:14:56 [INFO    ] allure.step - >> STEP  Post new EcoNews without image  [body=EcoNewsRequest(title='Ласкаво просимо до Вікіпедії', text='Осип Тадейович Назарук (1883 — 1940) — український громадський і ', source='https://uk.wikipedia.org/wiki/Main_Page', short_info='Головна сторінка Вікіпедії українською', tags=['Новини', 'Освіта'])]
-08:14:56 [INFO    ] allure.step - STEP PASSED
-08:14:56 [INFO    ] allure.step - >> STEP  Like EcoNews by ID: 7319  [eco_news_id=7319]
-08:14:56 [INFO    ] allure.step - STEP PASSED
-08:14:56 [INFO    ] allure.step - >> STEP  Delete EcoNews by ID: 7319  [eco_news_id=7319]
-08:14:56 [INFO    ] allure.step - STEP PASSED

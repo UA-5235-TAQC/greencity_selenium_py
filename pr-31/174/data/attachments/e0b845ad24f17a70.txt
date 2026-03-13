@@ -1,8 +1,0 @@
-INFO     allure.step:logging_config.py:30 >> STEP  Post new EcoNews with image: PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png')  [body=EcoNewsRequest(title='Eco title 149', text='Test content with more than 20 characters', source='https://chatgpt.com/', short_info='short description 12341', tags=['News', 'Ads']), image_path=PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png')]
-INFO     allure.step:logging_config.py:35 STEP PASSED
-INFO     allure.step:logging_config.py:30 >> STEP  Get EcoNews with typed query parameters: EcoNewsQuery(author_id=149, favorite=None, page=None, size=None, title='Eco title 149', sort='id,desc', tags=None)  [query=EcoNewsQuery(author_id=149, favorite=None, page=None, size=None, title='Eco title 149', sort='id,desc', tags=None)]
-INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news with params {'author-id': 149} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzE0NDM4NSwidXNlcklkIjoxNDksImlhdCI6MTc3MzEzNzE4NX0.kpjSbRby4K6LcHfe_n2OPExWNvuiRB6m1_CJ_YiRSlo'}
-INFO     allure.step:logging_config.py:35 STEP PASSED
-INFO     allure.step:logging_config.py:35 STEP PASSED
-INFO     allure.step:logging_config.py:30 >> STEP  Delete EcoNews by ID: 7139  [eco_news_id=7139]
-INFO     allure.step:logging_config.py:35 STEP PASSED

@@ -1,4 +1,0 @@
-INFO     allure.step:logging_config.py:30 >> STEP  Count likes on EcoNews: 7314  [eco_news_id=7314]
-INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua//eco-news/7314/likes/count with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json'}
-INFO     allure.step:logging_config.py:35 STEP PASSED
-INFO     allure.step:logging_config.py:35 STEP PASSED

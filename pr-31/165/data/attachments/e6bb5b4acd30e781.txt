@@ -1,4 +1,0 @@
-INFO     allure.step:logging_config.py:30 >> STEP  Get EcoNews by ID with language: 'uk'  [eco_news_id=6899, lang='uk']
-INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua//eco-news/6899 with params {'lang': 'uk'} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3Mjk0MTgxNCwidXNlcklkIjoxNDksImlhdCI6MTc3MjkzNDYxNH0.6Cy-onLoqnTHY5AW7E7PNXr_HH2_K31Z669N32HKRxA'}
-INFO     allure.step:logging_config.py:35 STEP PASSED
-INFO     allure.step:logging_config.py:35 STEP PASSED

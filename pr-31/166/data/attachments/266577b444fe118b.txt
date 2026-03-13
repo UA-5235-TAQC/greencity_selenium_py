@@ -1,2 +1,0 @@
-INFO     allure.step:logging_config.py:30 >> STEP  Sign in to the own security service with email: 'testtestovich611@gmail.com'  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
-INFO     allure.step:logging_config.py:35 STEP PASSED

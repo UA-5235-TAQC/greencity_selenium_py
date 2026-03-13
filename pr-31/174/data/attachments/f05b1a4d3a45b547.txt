@@ -1,2 +1,0 @@
-10:06:24 [INFO    ] allure.step - >> STEP  Delete EcoNews by ID: 7130  [eco_news_id=7130]
-10:06:25 [INFO    ] allure.step - STEP PASSED

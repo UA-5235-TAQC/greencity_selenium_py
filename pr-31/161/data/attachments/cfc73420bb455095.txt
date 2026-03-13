@@ -1,4 +1,0 @@
-INFO     allure.step:logging_config.py:30 >> STEP  Open news details page with ID  [news_id=1569]
-INFO     allure.step:logging_config.py:35 STEP PASSED
-INFO     allure.step:logging_config.py:30 >> STEP  Check that News Details page is opened
-WARNING  allure.step:logging_config.py:37 STEP FAILED  ElementNotFoundException: Element(s) 'news_title_text' not found using locator ('css selector', '.news-title-container .news-title') in context NewsDetailsPage
