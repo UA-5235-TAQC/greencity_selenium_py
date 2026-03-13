@@ -1,0 +1,30 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Check active replies count for comment id 3891
+INFO     allure.step:logging_config.py:30 >> STEP  Get comment replies count  [parent_comment_id=3891]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3891/replies/active/count with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNzI1MywidXNlcklkIjoxNDksImlhdCI6MTc3MzQwMDA1M30.05LW9oA0dVBRo46slG0H4EhkGKPNc2buYcbuDA1DjDo'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Check active replies count for comment id 3892
+INFO     allure.step:logging_config.py:30 >> STEP  Get comment replies count  [parent_comment_id=3892]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3892/replies/active/count with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNzI1MywidXNlcklkIjoxNDksImlhdCI6MTc3MzQwMDA1M30.05LW9oA0dVBRo46slG0H4EhkGKPNc2buYcbuDA1DjDo'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Check active replies count for comment id 3893
+INFO     allure.step:logging_config.py:30 >> STEP  Get comment replies count  [parent_comment_id=3893]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3893/replies/active/count with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNzI1MywidXNlcklkIjoxNDksImlhdCI6MTc3MzQwMDA1M30.05LW9oA0dVBRo46slG0H4EhkGKPNc2buYcbuDA1DjDo'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Check active replies count for comment id 3894
+INFO     allure.step:logging_config.py:30 >> STEP  Get comment replies count  [parent_comment_id=3894]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3894/replies/active/count with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNzI1MywidXNlcklkIjoxNDksImlhdCI6MTc3MzQwMDA1M30.05LW9oA0dVBRo46slG0H4EhkGKPNc2buYcbuDA1DjDo'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Check active replies count for comment id 3895
+INFO     allure.step:logging_config.py:30 >> STEP  Get comment replies count  [parent_comment_id=3895]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3895/replies/active/count with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNzI1MywidXNlcklkIjoxNDksImlhdCI6MTc3MzQwMDA1M30.05LW9oA0dVBRo46slG0H4EhkGKPNc2buYcbuDA1DjDo'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED

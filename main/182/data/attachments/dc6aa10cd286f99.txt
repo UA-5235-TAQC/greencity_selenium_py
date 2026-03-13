@@ -1,0 +1,18 @@
+11:08:11 [INFO    ] allure.step - >> STEP  Open home page
+11:08:11 [INFO    ] allure.step - >> STEP  Wait until home page is loaded
+11:08:11 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="dd6a091cb9ee2570d40b2a546e29fc45", element="f.97BF2CFEA2994D5F131BE971956AFE43.d.AA607E2EB7F69E59F7C8BC394E1D443C.e.36")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="dd6a091cb9ee2570d40b2a546e29fc45", element="f.97BF2CFEA2994D5F131BE971956AFE43.d.AA607E2EB7F69E59F7C8BC394E1D443C.e.36")>, timeout=10]
+11:08:11 [INFO    ] allure.step - STEP PASSED
+11:08:11 [INFO    ] allure.step - STEP PASSED
+11:08:11 [INFO    ] allure.step - STEP PASSED
+11:08:11 [INFO    ] allure.step - >> STEP  Change language to English
+11:08:11 [INFO    ] allure.step - >> STEP  Get current locale
+11:08:11 [INFO    ] allure.step - STEP PASSED
+11:08:11 [INFO    ] allure.step - STEP PASSED
+11:08:11 [INFO    ] allure.step - >> STEP  Click 'Sign Up' link in header
+11:08:11 [INFO    ] allure.step - STEP PASSED
+11:08:11 [INFO    ] allure.step - >> STEP  Wait for a custom lambda condition.  [condition=<function TestSignUpModal.test_sign_up_modal_opens.<locals>.<lambda> at 0x7f8b842a59e0>, timeout=None]
+11:08:11 [INFO    ] allure.step - >> STEP  Get modal window title
+11:08:11 [INFO    ] allure.step - STEP PASSED
+11:08:11 [INFO    ] allure.step - STEP PASSED
+11:08:11 [INFO    ] allure.step - >> STEP  Get modal window title
+11:08:11 [INFO    ] allure.step - STEP PASSED

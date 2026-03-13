@@ -1,0 +1,35 @@
+11:08:34 [INFO    ] allure.step - >> STEP  Open home page
+11:08:34 [INFO    ] allure.step - >> STEP  Wait until home page is loaded
+11:08:35 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="4c9fa729bbc9df3b2eebc50d1683e0e6", element="f.2F4C77DFBA2019C7180E3918912CF5C0.d.382B58B1FADA9EEB5377E5E8F0955A33.e.37")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="4c9fa729bbc9df3b2eebc50d1683e0e6", element="f.2F4C77DFBA2019C7180E3918912CF5C0.d.382B58B1FADA9EEB5377E5E8F0955A33.e.37")>, timeout=10]
+11:08:35 [INFO    ] allure.step - STEP PASSED
+11:08:35 [INFO    ] allure.step - STEP PASSED
+11:08:35 [INFO    ] allure.step - STEP PASSED
+11:08:35 [INFO    ] allure.step - >> STEP  Click 'Sign Up' link in header
+11:08:35 [INFO    ] allure.step - STEP PASSED
+11:08:35 [INFO    ] allure.step - >> STEP  Close modal window
+11:08:35 [INFO    ] allure.step - STEP PASSED
+11:08:35 [INFO    ] allure.step - >> STEP  Wait until cancel modal is closed  [timeout=10]
+11:08:36 [INFO    ] allure.step - STEP PASSED
+11:08:36 [INFO    ] allure.step - >> STEP  Check if the component is visible
+11:08:36 [WARNING ] allure.step - STEP FAILED  StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=145.0.7632.116); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
+Stacktrace:
+#0 0x556449d39b6a <unknown>
+#1 0x55644974ca32 <unknown>
+#2 0x556449753b62 <unknown>
+#3 0x5564497566d9 <unknown>
+#4 0x5564497eb409 <unknown>
+#5 0x5564497ea369 <unknown>
+#6 0x556449793c0f <unknown>
+#7 0x5564497949d1 <unknown>
+#8 0x556449cfe6b9 <unknown>
+#9 0x556449d015c1 <unknown>
+#10 0x556449ceae29 <unknown>
+#11 0x556449d0217e <unknown>
+#12 0x556449cd14b0 <unknown>
+#13 0x556449d26578 <unknown>
+#14 0x556449d2674b <unknown>
+#15 0x556449d381a3 <unknown>
+#16 0x7fbecdc9caa4 <unknown>
+#17 0x7fbecdd29c6c <unknown>
+

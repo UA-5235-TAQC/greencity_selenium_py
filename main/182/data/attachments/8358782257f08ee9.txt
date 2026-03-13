@@ -1,0 +1,10 @@
+11:07:39 [INFO    ] allure.step - >> STEP  Refresh access token using refresh token  [refresh_token='eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQzNjA1MywidXNlcklkIjoxNDksImlhdCI6MTc3MzQwMDA1M30.NrzGsuaQMOlnGQ6qFI9BxHfwCLBqK0gv_BGw6CkvTCM']
+11:07:39 [INFO    ] allure.step - STEP PASSED
+11:07:39 [INFO    ] allure.step - >> STEP  Refresh token failed (HTTP 401); performing full re-login
+11:07:39 [INFO    ] allure.step - >> STEP  Sign in to the own security service with email: 'testtestovich611@gmail.com'  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+11:07:39 [INFO    ] allure.step - STEP PASSED
+11:07:39 [INFO    ] allure.step - STEP PASSED
+11:07:39 [INFO    ] allure.step - >> STEP  Count likes on EcoNews: 'invalid_id'  [eco_news_id='invalid_id']
+11:07:39 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua//eco-news/invalid_id/likes/count with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNzI1OSwidXNlcklkIjoxNDksImlhdCI6MTc3MzQwMDA1OX0.uT6q5KKnQFPD6J2w-0aQjsD-whnZmUr57AiWfQjZrQM'}
+11:07:39 [INFO    ] allure.step - STEP PASSED
+11:07:39 [INFO    ] allure.step - STEP PASSED

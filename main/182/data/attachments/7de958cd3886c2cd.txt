@@ -1,0 +1,14 @@
+11:08:24 [INFO    ] allure.step - >> STEP  Open home page
+11:08:25 [INFO    ] allure.step - >> STEP  Wait until home page is loaded
+11:08:25 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="c36e5eb7a267050ffd2027f4949c66f2", element="f.FFDD1B3FEC1FCB56A56B41AFF50E8D74.d.48B176FD395B3F22ECC5B81717D76AE1.e.35")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="c36e5eb7a267050ffd2027f4949c66f2", element="f.FFDD1B3FEC1FCB56A56B41AFF50E8D74.d.48B176FD395B3F22ECC5B81717D76AE1.e.35")>, timeout=10]
+11:08:25 [INFO    ] allure.step - STEP PASSED
+11:08:25 [INFO    ] allure.step - STEP PASSED
+11:08:25 [INFO    ] allure.step - STEP PASSED
+11:08:25 [INFO    ] allure.step - >> STEP  Enter value in email field  [email='invalid-email']
+11:08:25 [INFO    ] allure.step - STEP PASSED
+11:08:25 [INFO    ] allure.step - >> STEP  Wait for a custom lambda condition.  [condition=<function TestSignUpModal.test_sign_up_invalid_email_error.<locals>.<lambda> at 0x7f8b842a5c60>, timeout=None]
+11:08:25 [INFO    ] allure.step - >> STEP  Check if email field error is displayed
+11:08:25 [INFO    ] allure.step - STEP PASSED
+11:08:25 [INFO    ] allure.step - STEP PASSED
+11:08:25 [INFO    ] allure.step - >> STEP  Check if email field error is displayed
+11:08:25 [INFO    ] allure.step - STEP PASSED

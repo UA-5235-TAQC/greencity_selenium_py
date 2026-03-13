@@ -1,0 +1,4 @@
+11:07:38 [INFO    ] allure.step - >> STEP  Count likes on EcoNews: 7576  [eco_news_id=7576]
+11:07:38 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua//eco-news/7576/likes/count with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json'}
+11:07:39 [INFO    ] allure.step - STEP PASSED
+11:07:39 [INFO    ] allure.step - STEP PASSED

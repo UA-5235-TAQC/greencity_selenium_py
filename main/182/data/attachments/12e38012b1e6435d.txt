@@ -1,0 +1,14 @@
+11:07:40 [INFO    ] allure.step - >> STEP  Sign in to the own security service with email: 'vafopi9974@daerdy.com'  [email='vafopi9974@daerdy.com', password='!Testtestovich611!']
+11:07:40 [INFO    ] allure.step - STEP PASSED
+11:07:40 [INFO    ] allure.step - >> STEP  Refresh access token using refresh token  [refresh_token='eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQzNjA2MCwidXNlcklkIjoxNDksImlhdCI6MTc3MzQwMDA2MH0.bOtPnFZODv-azOU1SRMCcAPG0deMxWYRzS7qe-ZLEzA']
+11:07:40 [INFO    ] allure.step - STEP PASSED
+11:07:40 [INFO    ] allure.step - >> STEP  Refresh token failed (HTTP 401); performing full re-login
+11:07:40 [INFO    ] allure.step - >> STEP  Sign in to the own security service with email: 'testtestovich611@gmail.com'  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+11:07:41 [INFO    ] allure.step - STEP PASSED
+11:07:41 [INFO    ] allure.step - STEP PASSED
+11:07:41 [INFO    ] allure.step - >> STEP  Post new EcoNews without image  [body=EcoNewsRequest(title='Ласкаво просимо до Вікіпедії', text='Осип Тадейович Назарук (1883 — 1940) — український громадський і ', source='https://uk.wikipedia.org/wiki/Main_Page', short_info='Головна сторінка Вікіпедії українською', tags=['Новини', 'Освіта'])]
+11:07:41 [INFO    ] allure.step - STEP PASSED
+11:07:41 [INFO    ] allure.step - >> STEP  Like EcoNews by ID: 7571  [eco_news_id=7571]
+11:07:41 [INFO    ] allure.step - STEP PASSED
+11:07:41 [INFO    ] allure.step - >> STEP  Delete EcoNews by ID: 7571  [eco_news_id=7571]
+11:07:42 [INFO    ] allure.step - STEP PASSED

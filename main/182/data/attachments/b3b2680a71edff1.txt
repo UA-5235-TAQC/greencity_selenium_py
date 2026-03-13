@@ -1,0 +1,18 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Open home page
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until home page is loaded
+INFO     allure.step:logging_config.py:30 >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="c7a9c7d9c44d74c002228f4c2931a288", element="f.1CA35A0FC4A4AC8F7F78F091B7DAD073.d.72E57732F64F78992C427951B9BAE044.e.43")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="c7a9c7d9c44d74c002228f4c2931a288", element="f.1CA35A0FC4A4AC8F7F78F091B7DAD073.d.72E57732F64F78992C427951B9BAE044.e.43")>, timeout=10]
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Click 'Sign Up' link in header
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Enter value in password field  [password='Password1!']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Enter value in confirm password field  [password='DifferentPassword1!']
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Wait for a custom lambda condition.  [condition=<function TestSignUpModal.test_sign_up_password_mismatch_error.<locals>.<lambda> at 0x7f8b842a7740>, timeout=None]
+INFO     allure.step:logging_config.py:30 >> STEP  Check if confirm password field error is displayed
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Check if confirm password field error is displayed
+INFO     allure.step:logging_config.py:35 STEP PASSED

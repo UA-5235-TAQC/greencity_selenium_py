@@ -1,0 +1,30 @@
+11:07:55 [INFO    ] allure.step - >> STEP  Invalid page number (-1)
+11:07:55 [INFO    ] allure.step - >> STEP  API: Get all active replies for comment ID 3891 with query params  [parent_comment_id=3891, query=CommentQuery(page=-1, size=10, sort=[])]
+11:07:55 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3891/replies/active with params {'page': -1, 'size': 10} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNzI1MywidXNlcklkIjoxNDksImlhdCI6MTc3MzQwMDA1M30.05LW9oA0dVBRo46slG0H4EhkGKPNc2buYcbuDA1DjDo'}
+11:07:55 [INFO    ] allure.step - STEP PASSED
+11:07:55 [INFO    ] allure.step - STEP PASSED
+11:07:55 [INFO    ] allure.step - STEP PASSED
+11:07:55 [INFO    ] allure.step - >> STEP  Invalid size (-1)
+11:07:55 [INFO    ] allure.step - >> STEP  API: Get all active replies for comment ID 3891 with query params  [parent_comment_id=3891, query=CommentQuery(page=0, size=-1, sort=[])]
+11:07:55 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3891/replies/active with params {'page': 0, 'size': -1} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNzI1MywidXNlcklkIjoxNDksImlhdCI6MTc3MzQwMDA1M30.05LW9oA0dVBRo46slG0H4EhkGKPNc2buYcbuDA1DjDo'}
+11:07:56 [INFO    ] allure.step - STEP PASSED
+11:07:56 [INFO    ] allure.step - STEP PASSED
+11:07:56 [INFO    ] allure.step - STEP PASSED
+11:07:56 [INFO    ] allure.step - >> STEP  Unsupported sort field [foo]
+11:07:56 [INFO    ] allure.step - >> STEP  API: Get all active replies for comment ID 3891 with query params  [parent_comment_id=3891, query=CommentQuery(page=0, size=10, sort=['foo'])]
+11:07:56 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3891/replies/active with params {'page': 0, 'size': 10, 'sort': ['foo']} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNzI1MywidXNlcklkIjoxNDksImlhdCI6MTc3MzQwMDA1M30.05LW9oA0dVBRo46slG0H4EhkGKPNc2buYcbuDA1DjDo'}
+11:07:56 [INFO    ] allure.step - STEP PASSED
+11:07:56 [INFO    ] allure.step - STEP PASSED
+11:07:56 [INFO    ] allure.step - STEP PASSED
+11:07:56 [INFO    ] allure.step - >> STEP  Sort field without direction [createdDate, foo]
+11:07:56 [INFO    ] allure.step - >> STEP  API: Get all active replies for comment ID 3891 with query params  [parent_comment_id=3891, query=CommentQuery(page=0, size=10, sort=['createdDate', 'foo'])]
+11:07:56 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3891/replies/active with params {'page': 0, 'size': 10, 'sort': ['createdDate', 'foo']} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNzI1MywidXNlcklkIjoxNDksImlhdCI6MTc3MzQwMDA1M30.05LW9oA0dVBRo46slG0H4EhkGKPNc2buYcbuDA1DjDo'}
+11:07:56 [INFO    ] allure.step - STEP PASSED
+11:07:56 [INFO    ] allure.step - STEP PASSED
+11:07:56 [INFO    ] allure.step - STEP PASSED
+11:07:56 [INFO    ] allure.step - >> STEP  Invalid sort direction [text, descending]
+11:07:56 [INFO    ] allure.step - >> STEP  API: Get all active replies for comment ID 3891 with query params  [parent_comment_id=3891, query=CommentQuery(page=0, size=10, sort=['text', 'descending'])]
+11:07:56 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3891/replies/active with params {'page': 0, 'size': 10, 'sort': ['text', 'descending']} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNzI1MywidXNlcklkIjoxNDksImlhdCI6MTc3MzQwMDA1M30.05LW9oA0dVBRo46slG0H4EhkGKPNc2buYcbuDA1DjDo'}
+11:07:56 [INFO    ] allure.step - STEP PASSED
+11:07:56 [INFO    ] allure.step - STEP PASSED
+11:07:56 [INFO    ] allure.step - STEP PASSED

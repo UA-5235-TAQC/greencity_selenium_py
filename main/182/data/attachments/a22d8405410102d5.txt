@@ -1,0 +1,8 @@
+11:07:39 [INFO    ] allure.step - >> STEP  Refresh access token using refresh token  [refresh_token='eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQzNjA1OSwidXNlcklkIjoxNDksImlhdCI6MTc3MzQwMDA1OX0.eBTWZCCcmUvmBG53fS46934JeaW9HiOk11qQ6AiZruE']
+11:07:39 [INFO    ] allure.step - STEP PASSED
+11:07:39 [INFO    ] allure.step - >> STEP  Refresh token failed (HTTP 401); performing full re-login
+11:07:39 [INFO    ] allure.step - >> STEP  Sign in to the own security service with email: 'testtestovich611@gmail.com'  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+11:07:40 [INFO    ] allure.step - STEP PASSED
+11:07:40 [INFO    ] allure.step - STEP PASSED
+11:07:40 [INFO    ] allure.step - >> STEP  Like EcoNews by ID: 7576  [eco_news_id=7576]
+11:07:40 [INFO    ] allure.step - STEP PASSED

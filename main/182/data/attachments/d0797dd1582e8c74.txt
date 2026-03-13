@@ -1,0 +1,4 @@
+11:07:56 [INFO    ] allure.step - >> STEP  API: Get all active replies for comment ID 3905 with query params  [parent_comment_id=3905, query=None]
+11:07:56 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/3905/replies/active with params {} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3MzQwNzI1MywidXNlcklkIjoxNDksImlhdCI6MTc3MzQwMDA1M30.05LW9oA0dVBRo46slG0H4EhkGKPNc2buYcbuDA1DjDo'}
+11:07:56 [INFO    ] allure.step - STEP PASSED
+11:07:56 [INFO    ] allure.step - STEP PASSED
