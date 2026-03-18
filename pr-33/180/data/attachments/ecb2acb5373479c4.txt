@@ -1,0 +1,58 @@
+19:25:03 [INFO    ] allure.step - >> STEP  Open home page
+19:25:03 [INFO    ] allure.step - >> STEP  Wait until home page is loaded
+19:25:04 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="966c1620af07ac25dbd45ffda84d76a9", element="f.00217477303688DF376F5C85FAF98AA0.d.8609C7F7EF592C2A951C285103A464A9.e.34")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="966c1620af07ac25dbd45ffda84d76a9", element="f.00217477303688DF376F5C85FAF98AA0.d.8609C7F7EF592C2A951C285103A464A9.e.34")>, timeout=10]
+19:25:04 [INFO    ] allure.step - STEP PASSED
+19:25:04 [INFO    ] allure.step - STEP PASSED
+19:25:04 [INFO    ] allure.step - STEP PASSED
+19:25:04 [INFO    ] allure.step - >> STEP  Change language to English
+19:25:04 [INFO    ] allure.step - >> STEP  Get current locale
+19:25:04 [INFO    ] allure.step - STEP PASSED
+19:25:04 [INFO    ] allure.step - STEP PASSED
+19:25:04 [INFO    ] allure.step - >> STEP  Click 'Sign In' link in header
+19:25:06 [INFO    ] allure.step - STEP PASSED
+19:25:06 [INFO    ] allure.step - >> STEP  Enter email and password values  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+19:25:06 [INFO    ] allure.step - >> STEP  Enter value in email field  [email='testtestovich611@gmail.com']
+19:25:06 [INFO    ] allure.step - STEP PASSED
+19:25:06 [INFO    ] allure.step - >> STEP  Enter value in password field  [password='!Testtestovich611!']
+19:25:06 [INFO    ] allure.step - STEP PASSED
+19:25:06 [INFO    ] allure.step - >> STEP  Click submit button
+19:25:06 [INFO    ] allure.step - STEP PASSED
+19:25:06 [INFO    ] allure.step - >> STEP  Wait until cancel modal is closed  [timeout=10]
+19:25:06 [INFO    ] allure.step - STEP PASSED
+19:25:06 [INFO    ] allure.step - >> STEP  Wait until My Space Habits tab is fully opened  [timeout=10]
+19:25:06 [INFO    ] allure.step - >> STEP  Verify that My Space Habits tab is opened
+19:25:07 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="966c1620af07ac25dbd45ffda84d76a9", element="f.00217477303688DF376F5C85FAF98AA0.d.8609C7F7EF592C2A951C285103A464A9.e.88")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="966c1620af07ac25dbd45ffda84d76a9", element="f.00217477303688DF376F5C85FAF98AA0.d.8609C7F7EF592C2A951C285103A464A9.e.88")>, timeout=10]
+19:25:07 [INFO    ] allure.step - STEP PASSED
+19:25:07 [INFO    ] allure.step - STEP PASSED
+19:25:07 [INFO    ] allure.step - STEP PASSED
+19:25:07 [INFO    ] allure.step - STEP PASSED
+19:25:07 [INFO    ] allure.step - >> STEP  Click 'Eco News' link in header
+19:25:07 [INFO    ] allure.step - >> STEP  Wait until Eco News page is opened
+19:25:07 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="966c1620af07ac25dbd45ffda84d76a9", element="f.00217477303688DF376F5C85FAF98AA0.d.8609C7F7EF592C2A951C285103A464A9.e.110")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="966c1620af07ac25dbd45ffda84d76a9", element="f.00217477303688DF376F5C85FAF98AA0.d.8609C7F7EF592C2A951C285103A464A9.e.110")>, timeout=10]
+19:25:07 [INFO    ] allure.step - STEP PASSED
+19:25:07 [INFO    ] allure.step - STEP PASSED
+19:25:07 [INFO    ] allure.step - STEP PASSED
+19:25:07 [INFO    ] allure.step - >> STEP  Click on Create News button
+19:25:07 [INFO    ] allure.step - STEP PASSED
+19:25:07 [INFO    ] allure.step - >> STEP  Check if Create/Edit News page is opened
+19:25:07 [INFO    ] allure.step - STEP PASSED
+19:25:07 [INFO    ] allure.step - >> STEP  Upload image from file absolute path: PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/UploadImageTest/Small PNG.png')  [file_absolute_path=PosixPath('/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/UploadImageTest/Small PNG.png')]
+19:25:08 [INFO    ] allure.step - STEP PASSED
+19:25:08 [INFO    ] allure.step - >> STEP  Check if image error message is displayed
+19:25:08 [INFO    ] allure.step - STEP PASSED
+19:25:08 [INFO    ] allure.step - >> STEP  Check if uploaded image is visible
+19:25:08 [INFO    ] allure.step - STEP PASSED
+19:25:08 [INFO    ] allure.step - >> STEP  Get source URL of the uploaded image
+19:25:08 [INFO    ] allure.step - STEP PASSED
+19:25:08 [INFO    ] allure.step - >> STEP  Check if uploaded image (blob:) is displayed
+19:25:08 [INFO    ] allure.step - STEP PASSED
+19:25:08 [INFO    ] allure.step - >> STEP  Check if Cancel button in image cropper is visible
+19:25:08 [INFO    ] allure.step - STEP PASSED
+19:25:08 [INFO    ] allure.step - >> STEP  Check if Submit button in image cropper is visible
+19:25:08 [INFO    ] allure.step - STEP PASSED
+19:25:08 [INFO    ] allure.step - >> STEP  Get image upload error message text
+19:25:08 [INFO    ] allure.step - STEP PASSED
+19:25:08 [INFO    ] allure.step - >> STEP  Get text of Cancel cropper button
+19:25:08 [INFO    ] allure.step - STEP PASSED
+19:25:08 [INFO    ] allure.step - >> STEP  Get text of Submit cropper button
+19:25:08 [INFO    ] allure.step - STEP PASSED

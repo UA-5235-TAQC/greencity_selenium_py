@@ -1,0 +1,33 @@
+19:22:19 [INFO    ] allure.step - >> STEP  Open home page
+19:22:20 [INFO    ] allure.step - >> STEP  Wait until home page is loaded
+19:22:21 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="5b6f34b9e3fdb828e3830add868fbebb", element="f.9D9544BF86143C4B891BD0F844F49805.d.7EE8251E3E620D5E0DD1809132DBA8D7.e.38")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="5b6f34b9e3fdb828e3830add868fbebb", element="f.9D9544BF86143C4B891BD0F844F49805.d.7EE8251E3E620D5E0DD1809132DBA8D7.e.38")>, timeout=10]
+19:22:21 [INFO    ] allure.step - STEP PASSED
+19:22:21 [INFO    ] allure.step - STEP PASSED
+19:22:21 [INFO    ] allure.step - STEP PASSED
+19:22:21 [INFO    ] allure.step - >> STEP  Change language to English
+19:22:21 [INFO    ] allure.step - >> STEP  Get current locale
+19:22:21 [INFO    ] allure.step - STEP PASSED
+19:22:21 [INFO    ] allure.step - STEP PASSED
+19:22:21 [INFO    ] allure.step - >> STEP  Click 'Sign In' link in header
+19:22:31 [WARNING ] allure.step - STEP FAILED  ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=145.0.7632.159); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementnotinteractableexception
+Stacktrace:
+#0 0x556198746b6a <unknown>
+#1 0x556198159720 <unknown>
+#2 0x5561981aff05 <unknown>
+#3 0x5561981a2cd2 <unknown>
+#4 0x5561981a2617 <unknown>
+#5 0x5561981f7369 <unknown>
+#6 0x5561981a0c0f <unknown>
+#7 0x5561981a19d1 <unknown>
+#8 0x55619870b6b9 <unknown>
+#9 0x55619870e5c1 <unknown>
+#10 0x5561986f7e29 <unknown>
+#11 0x55619870f17e <unknown>
+#12 0x5561986de4b0 <unknown>
+#13 0x556198733578 <unknown>
+#14 0x55619873374b <unknown>
+#15 0x5561987451a3 <unknown>
+#16 0x7fe2cb49caa4 <unknown>
+#17 0x7fe2cb529c6c <unknown>
+

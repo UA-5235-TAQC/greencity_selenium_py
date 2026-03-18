@@ -1,0 +1,136 @@
+19:26:55 [INFO    ] allure.step - >> STEP  Open home page
+19:26:56 [INFO    ] allure.step - >> STEP  Wait until home page is loaded
+19:26:56 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="5311638e8acb4cdc24ad9876a3f3fd87", element="f.1C362397FA5C095BA3E0F9F789C96782.d.2DB2C19645C90C63BBBE2820265F26AB.e.34")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="5311638e8acb4cdc24ad9876a3f3fd87", element="f.1C362397FA5C095BA3E0F9F789C96782.d.2DB2C19645C90C63BBBE2820265F26AB.e.34")>, timeout=10]
+19:26:56 [INFO    ] allure.step - STEP PASSED
+19:26:56 [INFO    ] allure.step - STEP PASSED
+19:26:56 [INFO    ] allure.step - STEP PASSED
+19:26:56 [INFO    ] allure.step - >> STEP  Change language to English
+19:26:56 [INFO    ] allure.step - >> STEP  Get current locale
+19:26:56 [INFO    ] allure.step - STEP PASSED
+19:26:56 [INFO    ] allure.step - STEP PASSED
+19:26:56 [INFO    ] allure.step - >> STEP  Click 'Sign In' link in header
+19:26:56 [INFO    ] allure.step - STEP PASSED
+19:26:56 [INFO    ] allure.step - >> STEP  Enter email and password values  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+19:26:56 [INFO    ] allure.step - >> STEP  Enter value in email field  [email='testtestovich611@gmail.com']
+19:26:57 [INFO    ] allure.step - STEP PASSED
+19:26:57 [INFO    ] allure.step - >> STEP  Enter value in password field  [password='!Testtestovich611!']
+19:26:57 [INFO    ] allure.step - STEP PASSED
+19:26:57 [INFO    ] allure.step - >> STEP  Click submit button
+19:26:58 [INFO    ] allure.step - STEP PASSED
+19:26:58 [INFO    ] allure.step - >> STEP  Wait until cancel modal is closed  [timeout=10]
+19:26:58 [INFO    ] allure.step - STEP PASSED
+19:26:58 [INFO    ] allure.step - >> STEP  Wait until My Space Habits tab is fully opened  [timeout=10]
+19:26:58 [INFO    ] allure.step - >> STEP  Verify that My Space Habits tab is opened
+19:26:58 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="5311638e8acb4cdc24ad9876a3f3fd87", element="f.1C362397FA5C095BA3E0F9F789C96782.d.2DB2C19645C90C63BBBE2820265F26AB.e.88")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="5311638e8acb4cdc24ad9876a3f3fd87", element="f.1C362397FA5C095BA3E0F9F789C96782.d.2DB2C19645C90C63BBBE2820265F26AB.e.88")>, timeout=10]
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - >> STEP  Click 'Eco News' link in header
+19:26:59 [INFO    ] allure.step - >> STEP  Wait until Eco News page is opened
+19:26:59 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="5311638e8acb4cdc24ad9876a3f3fd87", element="f.1C362397FA5C095BA3E0F9F789C96782.d.2DB2C19645C90C63BBBE2820265F26AB.e.109")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="5311638e8acb4cdc24ad9876a3f3fd87", element="f.1C362397FA5C095BA3E0F9F789C96782.d.2DB2C19645C90C63BBBE2820265F26AB.e.109")>, timeout=10]
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - >> STEP  Click on Create News button
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - >> STEP  Check if Create/Edit News page is opened
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - >> STEP  Fill out and create news with mandatory fields: title, tags, content  [title='Test', tags=['News', 'Events'], content='Test content with 20 chars', source='https://chatgpt.com/', image_path='/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif']
+19:26:59 [INFO    ] allure.step - >> STEP  Enter news title: 'Test'  [title='Test']
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - >> STEP  Select multiple tags: ['News', 'Events']  [tag_names=['News', 'Events']]
+19:26:59 [INFO    ] allure.step - >> STEP  Get tag name
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - >> STEP  Click on tag
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - >> STEP  Get tag name
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - >> STEP  Get tag name
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - >> STEP  Click on tag
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - STEP PASSED
+19:26:59 [INFO    ] allure.step - >> STEP  Clear and enter content text: 'Test content with 20 chars'  [text='Test content with 20 chars']
+19:27:00 [INFO    ] allure.step - STEP PASSED
+19:27:00 [INFO    ] allure.step - >> STEP  Enter news source: 'https://chatgpt.com/'  [url='https://chatgpt.com/']
+19:27:00 [INFO    ] allure.step - STEP PASSED
+19:27:00 [INFO    ] allure.step - >> STEP  Upload image from file absolute path: '/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif'  [file_absolute_path='/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif']
+19:27:00 [INFO    ] allure.step - STEP PASSED
+19:27:00 [INFO    ] allure.step - >> STEP  Click Submit crop
+19:27:00 [INFO    ] allure.step - STEP PASSED
+19:27:00 [INFO    ] allure.step - STEP PASSED
+19:27:00 [INFO    ] allure.step - >> STEP  Click Publish button
+19:27:00 [INFO    ] allure.step - >> STEP  Wait for a custom lambda condition.  [condition=<function element_to_be_clickable.<locals>._predicate at 0x7fc7bc336980>, timeout=None]
+19:27:00 [INFO    ] allure.step - STEP PASSED
+19:27:00 [INFO    ] allure.step - >> STEP  Wait until Eco News page is opened
+19:27:00 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="5311638e8acb4cdc24ad9876a3f3fd87", element="f.1C362397FA5C095BA3E0F9F789C96782.d.2DB2C19645C90C63BBBE2820265F26AB.e.213")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="5311638e8acb4cdc24ad9876a3f3fd87", element="f.1C362397FA5C095BA3E0F9F789C96782.d.2DB2C19645C90C63BBBE2820265F26AB.e.213")>, timeout=10]
+19:27:00 [INFO    ] allure.step - STEP PASSED
+19:27:00 [INFO    ] allure.step - STEP PASSED
+19:27:00 [INFO    ] allure.step - STEP PASSED
+19:27:00 [INFO    ] allure.step - >> STEP  Get a news card by index: 0  [index=0]
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Click news item
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Check that News Details page is opened
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Change language to English and open Edit News page
+19:27:01 [INFO    ] allure.step - >> STEP  Change language to English
+19:27:01 [INFO    ] allure.step - >> STEP  Get current locale
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Click 'Edit news' button
+19:27:01 [INFO    ] allure.step - >> STEP  Extract news ID from URL
+19:27:01 [INFO    ] allure.step - >> STEP  Check query parameters (?id=123)
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Check fragment query (#/... ?id=123)
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Extract news ID from URL
+19:27:01 [INFO    ] allure.step - >> STEP  Check query parameters (?id=123)
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Check fragment query (#/... ?id=123)
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Check if Create/Edit News page is opened
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Verify behavior for empty title
+19:27:01 [INFO    ] allure.step - >> STEP  Get title value
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Enter news title: ''  [title='']
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Get title counter text
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Get title length
+19:27:01 [INFO    ] allure.step - >> STEP  Get title value
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Get title value
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Check if title field is highlighted in red because it's empty
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Check if Edit button is enabled
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Restore original title and verify valid state
+19:27:01 [INFO    ] allure.step - >> STEP  Enter news title: 'Test'  [title='Test']
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Get title counter text
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Get title length
+19:27:01 [INFO    ] allure.step - >> STEP  Get title value
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Get title value
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Check if title field is highlighted in red because it's empty
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - >> STEP  Check if Edit button is enabled
+19:27:01 [INFO    ] allure.step - STEP PASSED
+19:27:01 [INFO    ] allure.step - STEP PASSED

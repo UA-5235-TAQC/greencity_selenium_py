@@ -1,0 +1,6 @@
+INFO     allure.step:logging_config.py:30 >> STEP  Count likes on EcoNews: 9591  [eco_news_id=9591]
+INFO     allure.step:logging_config.py:30 >> STEP  Execute GET request to https://greencity.greencity.cx.ua//eco-news/9591/likes/count with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3Mzg2ODg1NiwidXNlcklkIjoxNDksImlhdCI6MTc3Mzg2MTY1Nn0.QSasNg-4RoNequ1nHFvrWapNceqCwYLx1r8z0cD0OVM'}
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:35 STEP PASSED
+INFO     allure.step:logging_config.py:30 >> STEP  Verify response body is an integer
+INFO     allure.step:logging_config.py:35 STEP PASSED

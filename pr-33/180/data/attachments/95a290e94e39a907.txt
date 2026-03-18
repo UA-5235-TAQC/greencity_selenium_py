@@ -1,0 +1,30 @@
+19:21:19 [INFO    ] allure.step - >> STEP  Post new EcoNews without image  [body=EcoNewsRequest(title='Ласкаво просимо до Вікіпедії', text='Осип Тадейович Назарук (1883 — 1940) — український громадський і ', source='https://uk.wikipedia.org/wiki/Main_Page', short_info='Головна сторінка Вікіпедії українською', tags=['Новини', 'Освіта'])]
+19:21:19 [INFO    ] allure.step - STEP PASSED
+19:21:19 [INFO    ] allure.step - >> STEP  Create parent comment
+19:21:19 [INFO    ] allure.step - >> STEP  Add a comment to eco news with Id  [text='API Auto parent comment 655b0799-9d6a-45f8-b489-87e0ac773c79', parent_comment_id=0, image_paths=None]
+19:21:20 [INFO    ] allure.step - STEP PASSED
+19:21:20 [INFO    ] allure.step - STEP PASSED
+19:21:20 [INFO    ] allure.step - >> STEP  Create parent comment with images
+19:21:20 [INFO    ] allure.step - >> STEP  Add a comment to eco news with Id  [text='API Auto comment with images 5c4a699e-9f54-4959-b1c9-7fcd720c07a0', parent_comment_id=0, image_paths=['/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif', '/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']]
+19:21:20 [INFO    ] allure.step - STEP PASSED
+19:21:20 [INFO    ] allure.step - STEP PASSED
+19:21:20 [INFO    ] allure.step - >> STEP  Create sub-comment for parent comment with image
+19:21:20 [INFO    ] allure.step - >> STEP  Add a comment to eco news with Id  [text='Test subComment for parent subcomment for API testing', parent_comment_id=4760, image_paths=['/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/UploadImageTest/Small PNG.png']]
+19:21:20 [INFO    ] allure.step - STEP PASSED
+19:21:20 [INFO    ] allure.step - STEP PASSED
+19:21:20 [INFO    ] allure.step - >> STEP  Create sub-comment for comment with images
+19:21:20 [INFO    ] allure.step - >> STEP  Add a comment to eco news with Id  [text='API Auto subcomment 039f9c62-f76b-4e5b-be3d-969fbc484cf4', parent_comment_id=4761, image_paths=None]
+19:21:21 [INFO    ] allure.step - STEP PASSED
+19:21:21 [INFO    ] allure.step - STEP PASSED
+19:21:21 [INFO    ] allure.step - >> STEP  Create sub-comment with images for comment with images
+19:21:21 [INFO    ] allure.step - >> STEP  Add a comment to eco news with Id  [text='API Auto subcomment with images cc273d73-54ac-48f8-a81c-82a0ce2a144a', parent_comment_id=4761, image_paths=['/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test.jfif', '/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']]
+19:21:21 [INFO    ] allure.step - STEP PASSED
+19:21:21 [INFO    ] allure.step - STEP PASSED
+19:21:21 [INFO    ] allure.step - >> STEP  API: Get all active replies for comment ID 4761 with query params  [parent_comment_id=4761, query=None]
+19:21:21 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/4761/replies/active with params {} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3Mzg2ODg1NiwidXNlcklkIjoxNDksImlhdCI6MTc3Mzg2MTY1Nn0.QSasNg-4RoNequ1nHFvrWapNceqCwYLx1r8z0cD0OVM'}
+19:21:21 [INFO    ] allure.step - STEP PASSED
+19:21:21 [INFO    ] allure.step - STEP PASSED
+19:21:21 [INFO    ] allure.step - >> STEP  Getting comment by Id  [comment_id=4764]
+19:21:21 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua/eco-news/comments/4764 with params None and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3Mzg2ODg1NiwidXNlcklkIjoxNDksImlhdCI6MTc3Mzg2MTY1Nn0.QSasNg-4RoNequ1nHFvrWapNceqCwYLx1r8z0cD0OVM'}
+19:21:22 [INFO    ] allure.step - STEP PASSED
+19:21:22 [INFO    ] allure.step - STEP PASSED

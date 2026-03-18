@@ -1,0 +1,326 @@
+19:23:12 [INFO    ] allure.step - >> STEP  Open home page
+19:23:12 [INFO    ] allure.step - >> STEP  Wait until home page is loaded
+19:23:14 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="d620afdf25d6cc8701bb2c9a0adc1c4b", element="f.6E09E25FF2CC9FAB1B2A0E246BFC7863.d.CC095627645A03FA405C8214FE423185.e.33")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="d620afdf25d6cc8701bb2c9a0adc1c4b", element="f.6E09E25FF2CC9FAB1B2A0E246BFC7863.d.CC095627645A03FA405C8214FE423185.e.33")>, timeout=10]
+19:23:15 [INFO    ] allure.step - STEP PASSED
+19:23:15 [INFO    ] allure.step - STEP PASSED
+19:23:15 [INFO    ] allure.step - STEP PASSED
+19:23:15 [INFO    ] allure.step - >> STEP  Change language to English
+19:23:15 [INFO    ] allure.step - >> STEP  Get current locale
+19:23:15 [INFO    ] allure.step - STEP PASSED
+19:23:15 [INFO    ] allure.step - STEP PASSED
+19:23:15 [INFO    ] allure.step - >> STEP  Click 'Sign In' link in header
+19:23:16 [INFO    ] allure.step - STEP PASSED
+19:23:16 [INFO    ] allure.step - >> STEP  Enter email and password values  [email='testtestovich611@gmail.com', password='!Testtestovich611!']
+19:23:16 [INFO    ] allure.step - >> STEP  Enter value in email field  [email='testtestovich611@gmail.com']
+19:23:16 [INFO    ] allure.step - STEP PASSED
+19:23:16 [INFO    ] allure.step - >> STEP  Enter value in password field  [password='!Testtestovich611!']
+19:23:16 [INFO    ] allure.step - STEP PASSED
+19:23:16 [INFO    ] allure.step - >> STEP  Click submit button
+19:23:16 [INFO    ] allure.step - STEP PASSED
+19:23:16 [INFO    ] allure.step - >> STEP  Wait until cancel modal is closed  [timeout=10]
+19:23:17 [INFO    ] allure.step - STEP PASSED
+19:23:17 [INFO    ] allure.step - >> STEP  Wait until My Space Habits tab is fully opened  [timeout=10]
+19:23:17 [INFO    ] allure.step - >> STEP  Verify that My Space Habits tab is opened
+19:23:17 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="d620afdf25d6cc8701bb2c9a0adc1c4b", element="f.6E09E25FF2CC9FAB1B2A0E246BFC7863.d.CC095627645A03FA405C8214FE423185.e.89")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="d620afdf25d6cc8701bb2c9a0adc1c4b", element="f.6E09E25FF2CC9FAB1B2A0E246BFC7863.d.CC095627645A03FA405C8214FE423185.e.89")>, timeout=10]
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Click 'Eco News' link in header
+19:23:18 [INFO    ] allure.step - >> STEP  Wait until Eco News page is opened
+19:23:18 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="d620afdf25d6cc8701bb2c9a0adc1c4b", element="f.6E09E25FF2CC9FAB1B2A0E246BFC7863.d.CC095627645A03FA405C8214FE423185.e.109")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="d620afdf25d6cc8701bb2c9a0adc1c4b", element="f.6E09E25FF2CC9FAB1B2A0E246BFC7863.d.CC095627645A03FA405C8214FE423185.e.109")>, timeout=10]
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Click on Create News button
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Check if Create/Edit News page is opened
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Set window size and switch language
+19:23:18 [INFO    ] allure.step - >> STEP  Set browser window size to 2560x1440  [width=2560, height=1440]
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Change language to Ukrainian
+19:23:18 [INFO    ] allure.step - >> STEP  Get current locale
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Wait for a custom lambda condition.  [condition=<function HeaderComponent._switch_language.<locals>.<lambda> at 0x7fc7bc334900>, timeout=None]
+19:23:18 [INFO    ] allure.step - >> STEP  Get current locale
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Verify Title field
+19:23:18 [INFO    ] allure.step - >> STEP  Get title counter text
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Get title length
+19:23:18 [INFO    ] allure.step - >> STEP  Get title value
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Get title value
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Verify Tags field visibility and default selection
+19:23:18 [INFO    ] allure.step - >> STEP  Check if tag buttons are visible
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Get selected tag names
+19:23:18 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Verify Image Upload component
+19:23:18 [INFO    ] allure.step - >> STEP  Get image input field value
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Check if drop zone is visible
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Check if uploaded image (blob:) is displayed
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Check if placeholder (data:image) is displayed
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Check if Cancel button in image cropper is visible
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Check if Submit button in image cropper is visible
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Verify Source field
+19:23:18 [INFO    ] allure.step - >> STEP  Check if source input is visible
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Get source value
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - STEP PASSED
+19:23:18 [INFO    ] allure.step - >> STEP  Verify Content field and components
+19:23:18 [INFO    ] allure.step - >> STEP  Check if content editor is visible
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Check if content toolbar is visible
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Check if content counter is visible
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Check if content message is visible
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get content text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get content character counter text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Verify Author field
+19:23:19 [INFO    ] allure.step - >> STEP  Check if author is visible
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get author name
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get logged-in user name
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Verify Post Date field
+19:23:19 [INFO    ] allure.step - >> STEP  Check if post date is visible
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Verify Cancel, Preview, and Publish buttons visibility
+19:23:19 [INFO    ] allure.step - >> STEP  Check if Cancel button is visible
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Check if Preview button is visible
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Check if Publish button is visible
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Verify language-specific tags
+19:23:19 [INFO    ] allure.step - >> STEP  Returns names of all tags
+19:23:19 [INFO    ] allure.step - >> STEP  Get tag name
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get tag name
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get tag name
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get tag name
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get tag name
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get text in drop zone
+19:23:19 [INFO    ] allure.step - >> STEP  Get 'Browse' link text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get 'Browse' link text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get text of Cancel cropper button
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get text of Submit cropper button
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get image upload error message text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get source message text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get source placeholder
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get informational message text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get content placeholder text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get post date
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get Cancel button text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get Preview button text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get Publish button text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Click Cancel button
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Check if the component is visible
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Check if 'Yes, cancel' button is visible
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Check Continue Editing button visible
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get warning title text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get warning title text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get warning subtitle text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get warning subtitle text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get 'Yes, cancel' button text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get 'Yes, cancel' button text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get Continue Editing button text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Get Continue Editing button text
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Click close (X) button in cancel modal
+19:23:19 [INFO    ] allure.step - STEP PASSED
+19:23:19 [INFO    ] allure.step - >> STEP  Wait until cancel modal is closed  [timeout=10]
+19:23:20 [INFO    ] allure.step - STEP PASSED
+19:23:20 [INFO    ] allure.step - >> STEP  Check if Create/Edit News page is opened
+19:23:20 [INFO    ] allure.step - STEP PASSED
+19:23:20 [INFO    ] allure.step - >> STEP  Get the current URL of the page
+19:23:20 [INFO    ] allure.step - STEP PASSED
+19:23:20 [INFO    ] allure.step - >> STEP  Fill out and create news with mandatory fields: title, tags, content  [title='Tecт', tags=['Новини', 'Події'], content='Тестовий контент з 30 символів', source='https://claude.ai/', image_path='/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']
+19:23:20 [INFO    ] allure.step - >> STEP  Enter news title: 'Tecт'  [title='Tecт']
+19:23:20 [INFO    ] allure.step - STEP PASSED
+19:23:20 [INFO    ] allure.step - >> STEP  Select multiple tags: ['Новини', 'Події']  [tag_names=['Новини', 'Події']]
+19:23:20 [INFO    ] allure.step - >> STEP  Get tag name
+19:23:20 [INFO    ] allure.step - STEP PASSED
+19:23:20 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+19:23:20 [INFO    ] allure.step - STEP PASSED
+19:23:20 [INFO    ] allure.step - >> STEP  Click on tag
+19:23:20 [INFO    ] allure.step - STEP PASSED
+19:23:20 [INFO    ] allure.step - >> STEP  Get tag name
+19:23:20 [INFO    ] allure.step - STEP PASSED
+19:23:20 [INFO    ] allure.step - >> STEP  Get tag name
+19:23:20 [INFO    ] allure.step - STEP PASSED
+19:23:20 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+19:23:20 [INFO    ] allure.step - STEP PASSED
+19:23:20 [INFO    ] allure.step - >> STEP  Click on tag
+19:23:20 [INFO    ] allure.step - STEP PASSED
+19:23:20 [INFO    ] allure.step - STEP PASSED
+19:23:20 [INFO    ] allure.step - >> STEP  Clear and enter content text: 'Тестовий контент з 30 символів'  [text='Тестовий контент з 30 символів']
+19:23:20 [INFO    ] allure.step - STEP PASSED
+19:23:20 [INFO    ] allure.step - >> STEP  Enter news source: 'https://claude.ai/'  [url='https://claude.ai/']
+19:23:20 [INFO    ] allure.step - STEP PASSED
+19:23:20 [INFO    ] allure.step - >> STEP  Upload image from file absolute path: '/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png'  [file_absolute_path='/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']
+19:23:20 [INFO    ] allure.step - STEP PASSED
+19:23:20 [INFO    ] allure.step - >> STEP  Click Submit crop
+19:23:20 [INFO    ] allure.step - STEP PASSED
+19:23:20 [INFO    ] allure.step - STEP PASSED
+19:23:20 [INFO    ] allure.step - >> STEP  Click Preview button
+19:23:21 [INFO    ] allure.step - STEP PASSED
+19:23:21 [INFO    ] allure.step - >> STEP  Check preview page is opened
+19:23:21 [INFO    ] allure.step - STEP PASSED
+19:23:21 [INFO    ] allure.step - >> STEP  Check if 'Back to editing' button is visible
+19:23:21 [INFO    ] allure.step - STEP PASSED
+19:23:21 [INFO    ] allure.step - >> STEP  Check if 'Publish' button is visible
+19:23:21 [INFO    ] allure.step - STEP PASSED
+19:23:21 [INFO    ] allure.step - >> STEP  Get author name
+19:23:21 [INFO    ] allure.step - STEP PASSED
+19:23:21 [INFO    ] allure.step - >> STEP  Check if news creating date is visible
+19:23:21 [INFO    ] allure.step - STEP PASSED
+19:23:21 [INFO    ] allure.step - >> STEP  Check image visible
+19:23:21 [INFO    ] allure.step - STEP PASSED
+19:23:21 [INFO    ] allure.step - >> STEP  Get preview image src
+19:23:21 [INFO    ] allure.step - STEP PASSED
+19:23:21 [INFO    ] allure.step - >> STEP  Get news title
+19:23:21 [INFO    ] allure.step - STEP PASSED
+19:23:21 [INFO    ] allure.step - >> STEP  Get tag texts
+19:23:21 [INFO    ] allure.step - STEP PASSED
+19:23:21 [INFO    ] allure.step - >> STEP  Get news text
+19:23:21 [INFO    ] allure.step - STEP PASSED
+19:23:21 [INFO    ] allure.step - >> STEP  Get news source
+19:23:21 [INFO    ] allure.step - STEP PASSED
+19:23:21 [INFO    ] allure.step - >> STEP  Click 'Back to create news'
+19:23:21 [INFO    ] allure.step - >> STEP  Wait for a custom lambda condition.  [condition=<function element_to_be_clickable.<locals>._predicate at 0x7fc7bc3a9940>, timeout=None]
+19:23:21 [INFO    ] allure.step - STEP PASSED
+19:23:21 [INFO    ] allure.step - STEP PASSED
+19:23:21 [INFO    ] allure.step - >> STEP  Check if page header is visible after clicking Back from NewsPreviewPage
+19:23:21 [INFO    ] allure.step - STEP PASSED
+19:23:21 [INFO    ] allure.step - >> STEP  Reload page
+19:23:22 [INFO    ] allure.step - STEP PASSED
+19:23:22 [INFO    ] allure.step - >> STEP  Check if Create/Edit News page is opened
+19:23:22 [INFO    ] allure.step - STEP PASSED
+19:23:22 [INFO    ] allure.step - >> STEP  Change language to Ukrainian
+19:23:22 [INFO    ] allure.step - >> STEP  Get current locale
+19:23:22 [INFO    ] allure.step - STEP PASSED
+19:23:22 [INFO    ] allure.step - STEP PASSED
+19:23:22 [INFO    ] allure.step - >> STEP  Fill out and create news with mandatory fields: title, tags, content  [title='Tecт', tags=['Новини', 'Події'], content='Тестовий контент з 30 символів', source='https://claude.ai/', image_path='/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']
+19:23:22 [INFO    ] allure.step - >> STEP  Enter news title: 'Tecт'  [title='Tecт']
+19:23:22 [INFO    ] allure.step - STEP PASSED
+19:23:22 [INFO    ] allure.step - >> STEP  Select multiple tags: ['Новини', 'Події']  [tag_names=['Новини', 'Події']]
+19:23:22 [INFO    ] allure.step - >> STEP  Get tag name
+19:23:22 [INFO    ] allure.step - STEP PASSED
+19:23:22 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+19:23:22 [INFO    ] allure.step - STEP PASSED
+19:23:22 [INFO    ] allure.step - >> STEP  Click on tag
+19:23:22 [INFO    ] allure.step - STEP PASSED
+19:23:22 [INFO    ] allure.step - >> STEP  Get tag name
+19:23:22 [INFO    ] allure.step - STEP PASSED
+19:23:22 [INFO    ] allure.step - >> STEP  Get tag name
+19:23:22 [INFO    ] allure.step - STEP PASSED
+19:23:22 [INFO    ] allure.step - >> STEP  Verify if tag is selected
+19:23:22 [INFO    ] allure.step - STEP PASSED
+19:23:22 [INFO    ] allure.step - >> STEP  Click on tag
+19:23:22 [INFO    ] allure.step - STEP PASSED
+19:23:22 [INFO    ] allure.step - STEP PASSED
+19:23:22 [INFO    ] allure.step - >> STEP  Clear and enter content text: 'Тестовий контент з 30 символів'  [text='Тестовий контент з 30 символів']
+19:23:23 [INFO    ] allure.step - STEP PASSED
+19:23:23 [INFO    ] allure.step - >> STEP  Enter news source: 'https://claude.ai/'  [url='https://claude.ai/']
+19:23:23 [INFO    ] allure.step - STEP PASSED
+19:23:23 [INFO    ] allure.step - >> STEP  Upload image from file absolute path: '/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png'  [file_absolute_path='/home/runner/work/greencity_selenium_py/greencity_selenium_py/data/images/test2.png']
+19:23:23 [INFO    ] allure.step - STEP PASSED
+19:23:23 [INFO    ] allure.step - >> STEP  Click Submit crop
+19:23:23 [INFO    ] allure.step - STEP PASSED
+19:23:23 [INFO    ] allure.step - STEP PASSED
+19:23:23 [INFO    ] allure.step - >> STEP  Check if Publish button is enabled
+19:23:23 [INFO    ] allure.step - STEP PASSED
+19:23:23 [INFO    ] allure.step - >> STEP  Click Publish button
+19:23:23 [INFO    ] allure.step - >> STEP  Wait for a custom lambda condition.  [condition=<function element_to_be_clickable.<locals>._predicate at 0x7fc7bc3abf60>, timeout=None]
+19:23:23 [INFO    ] allure.step - STEP PASSED
+19:23:23 [INFO    ] allure.step - >> STEP  Wait until Eco News page is opened
+19:23:23 [INFO    ] allure.step - >> STEP  Wait until element is visible <selenium.webdriver.remote.webelement.WebElement (session="d620afdf25d6cc8701bb2c9a0adc1c4b", element="f.6E09E25FF2CC9FAB1B2A0E246BFC7863.d.12924A0DB42526155EE9708684057E2B.e.408")> 10s  [element=<selenium.webdriver.remote.webelement.WebElement (session="d620afdf25d6cc8701bb2c9a0adc1c4b", element="f.6E09E25FF2CC9FAB1B2A0E246BFC7863.d.12924A0DB42526155EE9708684057E2B.e.408")>, timeout=10]
+19:23:23 [INFO    ] allure.step - STEP PASSED
+19:23:23 [INFO    ] allure.step - STEP PASSED
+19:23:23 [INFO    ] allure.step - STEP PASSED
+19:23:23 [INFO    ] allure.step - >> STEP  Verify Eco News page is opened
+19:23:23 [INFO    ] allure.step - STEP PASSED
+19:23:23 [INFO    ] allure.step - >> STEP  Change language to Ukrainian
+19:23:23 [INFO    ] allure.step - >> STEP  Get current locale
+19:23:23 [INFO    ] allure.step - STEP PASSED
+19:23:23 [INFO    ] allure.step - STEP PASSED
+19:23:23 [INFO    ] allure.step - >> STEP  Get snackbar message text
+19:23:24 [INFO    ] allure.step - STEP PASSED
+19:23:24 [INFO    ] allure.step - STEP PASSED

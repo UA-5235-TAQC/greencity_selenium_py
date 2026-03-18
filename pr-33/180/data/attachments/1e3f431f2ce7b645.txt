@@ -1,0 +1,4 @@
+19:20:59 [INFO    ] allure.step - >> STEP  Get EcoNews by ID with language: 'uk'  [eco_news_id=9591, lang='uk']
+19:20:59 [INFO    ] allure.step - >> STEP  Execute GET request to https://greencity.greencity.cx.ua//eco-news/9591 with params {'lang': 'uk'} and headers {'Accept': '*/*', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dGVzdG92aWNoNjExQGdtYWlsLmNvbSIsInJvbGUiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc3Mzg2ODg1NiwidXNlcklkIjoxNDksImlhdCI6MTc3Mzg2MTY1Nn0.QSasNg-4RoNequ1nHFvrWapNceqCwYLx1r8z0cD0OVM'}
+19:20:59 [INFO    ] allure.step - STEP PASSED
+19:20:59 [INFO    ] allure.step - STEP PASSED
